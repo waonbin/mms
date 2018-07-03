@@ -1,0 +1,16 @@
+spring:
+  thymeleaf:
+    suffix: .html
+    prefix: classpath:/templates/
+
+  datasource:
+    url: jdbc:mysql://118.89.182.118:3306/ecunp?useUnicode=true&amp;characterEncoding=UTF-8&allowMultiQueries=true
+    username: game
+    password: 123
+    driver-class-username: com.mysql.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      ddl-auto: update
+      use-new-id-generator-mappings: true
+    show-sql: true

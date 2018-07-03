@@ -1,0 +1,958 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>首页</title>
+    <link rel="stylesheet" type="text/css" href="css/public.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.touchSlider.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $(".main_visual").hover(function () {
+                $("#btn_prev,#btn_next").fadeIn();
+            }, function () {
+                $("#btn_prev,#btn_next").fadeOut();
+            });
+
+            var $dragBln = false;
+
+            $(".main_image").touchSlider({
+                flexible: true,
+                speed: 200,
+                btn_prev: $("#btn_prev"),
+                btn_next: $("#btn_next"),
+                paging: $(".flicking_con a"),
+                counter: function (e) {
+                    $(".flicking_con a").removeClass("on").eq(e.current - 1).addClass("on");
+                }
+            });
+
+            $(".main_image").bind("mousedown", function () {
+                $dragBln = false;
+            });
+
+            $(".main_image").bind("dragstart", function () {
+                $dragBln = true;
+            });
+
+            $(".main_image a").click(function () {
+                if ($dragBln) {
+                    return false;
+                }
+                return true;
+            });
+
+            var timer = setInterval(function () {
+                $("#btn_next").click();
+            }, 5000);
+
+            $(".main_visual").hover(function () {
+                clearInterval(timer);
+            }, function () {
+                timer = setInterval(function () {
+                    $("#btn_next").click();
+                }, 5000);
+            });
+
+            $(".main_image").bind("touchstart", function () {
+                clearInterval(timer);
+            }).bind("touchend", function () {
+                timer = setInterval(function () {
+                    $("#btn_next").click();
+                }, 5000);
+            });
+
+        });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            var navLia = $(".i_box  ul li");
+            navLia.click(function () {
+                $(this).find(".crb").addClass("currenta");
+                $(this).find(".currenta").toggle();
+            });
+        })
+    </script>
+</head>
+
+<body>
+    <div class="header_top">
+        <div class="header">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" /></a>
+            <div class="right_h">
+                <div class="font_hy">
+                    <b>张三丰
+                    <div class="hg">
+                        <i></i><a href="personal_information.html">
+                            <img src="images/gr_icon.png" />个人中心</a> <a href="meetinglist.html">
+                                <img src="images/hy.png" />我的会议</a> <a href="personal_revise.html">
+                                    <img src="images/key_icon.png" />修改密码</a> <a href="#">
+                                        <img src="images/tuc.png" />退出</a>
+                    </div>
+                    </b>，欢迎您进入中国体视学学会！
+                </div>
+                <p><a href="#">English</a><a href="#">加入收藏 </a><a href="#">设为首页</a></p>
+                <div class="inp">
+                    <input type="text" placeholder="请输入您想要搜索的内容">
+                    <a href="#">搜索</a>
+                </div>
+            </div>
+        </div>
+        <div style="clear: both;"></div>
+        <div class="header_nav">
+            <ul>
+                <li><a href="index.html">
+                    <div class="nav_on">学会首页</div>
+                </a></li>
+                <li>
+                    <div>
+                        <a href="GuanYu_JianJie.html" class="me_a">关于学会</a>
+                        <p class="sec_nav">
+                            <a href="GuanYu_JianJie.html">学会简介</a>
+                            <a href="GuanYu_GuiZhang.html">学会规章</a>
+                            <a href="GuanYu_ZuZhi.html">组织架构</a> <a href="GuanYu_LingDao.html">学会领导</a>
+                          
+                        </p>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <a href="DongTai_NewsList.html" class="me_a">学会动态</a>
+                        <p class="sec_nav">
+                            <a href="DongTai_NewsList.html">学会动态</a>
+                            <a href="DongTai_NoticeList.html">通知公告</a>
+                            <a href="DongTai_MeetigList.html">会议信息</a>
+                            <a href="DongTai_CommuList.html">国际交流</a>
+                        </p>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <a href="DangJian_XueXiList.html" class="me_a">学会党建</a>
+                        <p class="sec_nav">
+                            <a href="DangJian_XueXiList.html">党建学习</a>
+                            
+                            <a href="DangJian_DongTaiList.html">党建动态</a><a href="DangJian_ChengYuanList.html">党委成员</a>
+                        </p>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <a href="FenHui_CTLiLun.html" class="me_a">专业分会</a>
+                        <p class="sec_nav">
+                            <a href="FenHui_CTLiLun.html">CT理论与应用</a>
+                            <a href="FenHui_CaiLiao.html">材料科学</a>
+                            <a href="FenHui_FangZhen.html">仿真与虚拟现实</a>
+                            <a href="FenHui_JinXiang.html">金相与显微分析</a>
+                            <a href="FenHui_ShengWu.html">生物医学</a>
+                            <a href="FenHui_TuXiang.html">图像分析</a>
+                        </p>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <a href="QiKan_JieShao.html" class="me_a">学会期刊</a>
+                        <p class="sec_nav">
+                            <a href="QiKan_JieShao.html">期刊介绍</a>
+                            <a href="QiKan_BianWei.html">期刊编委会</a>
+                            <a href="QiKan_ChaXun.html">过刊查询</a>
+                            <a href="QiKan_TouGao.html">我要投稿</a>
+                        </p>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <a href="JiangXiang_JieShao.html" class="me_a">学会奖项</a>
+                        <p class="sec_nav">
+                            <a href="JiangXiang_JieShao.html">奖项介绍</a>
+                            <a href="JiangXiang_TiaoLi.html">奖励条例</a>
+                            <a href="JiangXiang_ShenBao.html">奖励申报</a>
+                            <a href="JiangXiang_NianJian.html">奖励年鉴</a>
+                        </p>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <a href="KePu_ZiYuanList.html" class="me_a">体视学科普</a>
+                        <p class="sec_nav">
+                            <a href="KePu_ZiYuanList.html">科普资源</a>
+                            <a href="KePu_HuoDongList.html">科普活动</a>
+                        </p>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <a href="HuiYuan_TiaoLi.html" class="me_a">会员专区</a>
+                        <p class="sec_nav">
+                            <a href="HuiYuan_TiaoLi.html">会员条例</a>
+                            <a href="HuiYuan_XuZhi.html">入会须知</a>
+                            <a href="HuiYuan_ShenQing.html">入会申请</a>
+                            <a href="HuiYuan_FuWu.html">会员通知</a>
+                        </p>
+                    </div>
+                </li>
+                <li><a href="contact.html">
+                    <div>联系我们</div>
+                </a></li>
+            </ul>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+    <div class="main_visual">
+        <div class="flicking_con"><a href="#">1</a> <a href="#">2</a> <a href="#">3</a> </div>
+        <div class="main_image">
+            <ul>
+
+                <li><span style="background: url(images/banner1.png) center top no-repeat"></span></li>
+                <li><span style="background: url(images/banner.png) center top no-repeat"></span></li>
+                <li><span style="background: url(images/banner1.png) center top no-repeat"></span></li>
+            </ul>
+            <a href="javascript:;" id="btn_prev"></a><a href="javascript:;" id="btn_next"></a>
+        </div>
+    </div>
+    <div class="new_c">
+        <div class="new_list">
+            <ul class="ne_li_nav" id="normaltab2">
+                <li>新闻资讯</li>
+                <li>学会动态</li>
+            </ul>
+            <div class="new_cond" id="normalcon2">
+                <ul>
+                    <li><a href="#">
+                        <h4><b>学会秘书处看望慰问学会老专家</b> <i>2017-02-17</i></h4>
+                        <font>2016年1月28 日，学会秘书处受学会领导委托分别看望慰问了学会的周传
+          农、王德文、刘国权三位老专家，代表学会为专家们送上春节的祝福和问...</font></a></li>
+                    <li><a href="#">
+                        <h4><b>学会秘书处看望慰问学会老专家</b> <i>2017-02-17</i></h4>
+                        <font>2016年1月28 日，学会秘书处受学会领导委托分别看望慰问了学会的周传
+          农、王德文、刘国权三位老专家，代表学会为专家们送上春节的祝福和问...</font></a></li>
+                    <li><a href="#">
+                        <h4><b>学会秘书处看望慰问学会老专家</b> <i>2017-02-17</i></h4>
+                        <font>2016年1月28 日，学会秘书处受学会领导委托分别看望慰问了学会的周传
+          农、王德文、刘国权三位老专家，代表学会为专家们送上春节的祝福和问...</font></a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">
+                        <h4><b>1学会秘书处看望慰问学会老专家</b> <i>2017-02-17</i></h4>
+                        <font>2016年1月28 日，学会秘书处受学会领导委托分别看望慰问了学会的周传
+          农、王德文、刘国权三位老专家，代表学会为专家们送上春节的祝福和问...</font></a></li>
+                    <li><a href="#">
+                        <h4><b>2学会秘书处看望慰问学会老专家</b> <i>2017-02-17</i></h4>
+                        <font>2016年1月28 日，学会秘书处受学会领导委托分别看望慰问了学会的周传
+          农、王德文、刘国权三位老专家，代表学会为专家们送上春节的祝福和问...</font></a></li>
+                    <li><a href="#">
+                        <h4><b>学会秘书处看望慰问学会老专家</b> <i>2017-02-17</i></h4>
+                        <font>2016年1月28 日，学会秘书处受学会领导委托分别看望慰问了学会的周传
+          农、王德文、刘国权三位老专家，代表学会为专家们送上春节的祝福和问...</font></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="l_n">
+            <div class="section-focus-pic" id="section-focus-pic">
+                <div class="pages" data-scro="list">
+                    <ul>
+                        <li class="item" style="left: 0px;"><a href="#">
+                            <img src="images/1.jpg"></a> <a href="#">
+                                <h3>第十五次全国青年地理工作者学术研讨会</h3>
+                            </a>
+                            <div></div>
+                        </li>
+                        <li class="item"><a href="#">
+                            <img src="images/2.jpg"></a> <a href="#">
+                                <h3>第十五次全国青年地理工作者学术研讨会</h3>
+                            </a>
+                            <div></div>
+                        </li>
+                        <li class="item"><a href="#">
+                            <img src="images/3.jpg"></a> <a href="#">
+                                <h3>第十五次全国青年地理工作者学术研讨会</h3>
+                            </a>
+                            <div></div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="controler" data-scro="controler"><b class="down">1</b> <b>2</b> <b>3</b> </div>
+            </div>
+            <div class="mor"><a href="#">6月18日,由我学会和美国哈佛医学院共同主办的“三维图像重建的现状与发展研讨会”在清华大学工物系举行。来自美国、德国、比利时等国的多位专家与由我学会和美国哈佛医学院共同主办的由我学会和美国哈佛医学院共同主办的由我学会和美国哈佛医学院共同主办的由我学会和美国哈佛医学院共同主办的...... </a></div>
+        </div>
+        <div class="nes_a">
+            <div class="ne_li_nav">
+                <h3>通知公告</h3>
+                <a href="#">更多</a>
+            </div>
+            <div class="new_cond" id="normalcon2">
+                <ul>
+                    <li><a href="#">
+                        <h4><b>学会秘书处看望慰问学会老专家</b> <i>2017-02-17</i></h4>
+                        <font>2016年1月28 日，学会秘书处受学会领导委托分别看望慰问了学会的周传
+          农、王德文、刘国权三位老专家，代表学会为专家们送上春节的祝福和问...</font></a></li>
+                    <li><a href="#">
+                        <h4><b>学会秘书处看望慰问学会老专家</b> <i>2017-02-17</i></h4>
+                        <font>2016年1月28 日，学会秘书处受学会领导委托分别看望慰问了学会的周传
+          农、王德文、刘国权三位老专家，代表学会为专家们送上春节的祝福和问...</font></a></li>
+                    <li><a href="#">
+                        <h4><b>学会秘书处看望慰问学会老专家</b> <i>2017-02-17</i></h4>
+                        <font>2016年1月28 日，学会秘书处受学会领导委托分别看望慰问了学会的周传
+          农、王德文、刘国权三位老专家，代表学会为专家们送上春节的祝福和问...</font></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="zx_c">
+        <div class="info">
+            <div class="in_left">
+                <div class="title_l">
+                    <h3>会议信息</h3>
+                    <a href="#">
+                        <img src="images/more.png" /></a>
+                </div>
+                <ul>
+                    <li>
+                        <div class="date">
+                            <div class="date_i">
+                                <span>15</span> <i>2016<br />
+                                    /01</i>
+                            </div>
+                            <p>北京·密云</p>
+                        </div>
+                        <p class="font_S">三维图像重建的现状和发展发展研讨会在京召开</p>
+                        <a href="#">查看详情</a> </li>
+                    <li>
+                        <div class="date">
+                            <div class="date_i">
+                                <span>15</span> <i>2016<br />
+                                    /01</i>
+                            </div>
+                            <p>北京·密云</p>
+                        </div>
+                        <p class="font_S">三维图像重建的现状和发展发展研讨会在京召开</p>
+                        <a href="#">查看详情</a> </li>
+                    <li>
+                        <div class="date">
+                            <div class="date_i">
+                                <span>15</span> <i>2016<br />
+                                    /01</i>
+                            </div>
+                            <p>北京·密云</p>
+                        </div>
+                        <p class="font_S">三维图像重建的现状和发展发展研讨会在京召开</p>
+                        <a href="#">查看详情</a> </li>
+                </ul>
+                <a href="#" class="banner_ce">
+                    <img src="images/0425814.png" width="841" height="75" /></a>
+            </div>
+            <div class="new_right">
+                <div class="r_1 r_e">
+                    <div class="title_l">
+                        <h3>会员登录</h3>
+                    </div>
+                    <p>
+                        <input type="text" placeholder="请输入已注册的E-mail/手机号" />
+                    </p>
+                    <p class="i_2">
+                        <input type="text" placeholder="请输入您的密码" />
+                    </p>
+                    <p><a href="#"><b>忘记密码</b></a><a href="member/register.html"><i>立即注册</i></a></p>
+                    <a href="member/login.html" class="login">登录</a>
+                </div>
+
+                <!--<div class="r_1 cre">
+   <div class="title_l">
+   <h3>会员中心 / <i>MEMBER CENTER</i></h3>
+  </div>
+   <p><img src="images/toux.png"/></p>
+   <h4>张三丰</h4>
+   <b>会员类型：学生会员</b>
+   <b>会员有效期：<a href="#">2018-09-18</a></b>
+   <p><a href="personal_information.html" class="login">进入会员中心</a><a href="#" class="return">退出</a></p>
+  </div>-->
+            </div>
+        </div>
+    </div>
+
+    <!--体视学科普-->
+    <div class="tsx">
+        <div class="info">
+            <div class="ts_left">
+                <div class="title_l">
+                    <h3>体视学科普</h3>
+                    <a href="#">
+                        <img src="images/more.png"></a>
+                </div>
+                <div class="ts_bg">
+                    <ul>
+                        <li>
+                            <img src="images/03221.png" />
+                            <p>材料体视学</p>
+                        </li>
+                        <li>
+                            <img src="images/03222.png" />
+                            <p>生物医学体视学</p>
+                        </li>
+                        <li>
+                            <img src="images/03223.png" />
+                            <p>图像处理与分析</p>
+                        </li>
+                        <li>
+                            <img src="images/03224.png" />
+                            <p>人民网访谈</p>
+                        </li>
+                    </ul>
+                    <div class="viv">
+                        <img src="images/20171019110230_74833.png" onclick="$('#videobox')[0].play();$(this).hide();$('#vicont').hide();" id="viedoimg">
+                        <video controls id="videobox">
+                            <source src="http://m.kinghonor.cn/video/cctvpz.mp4" type="video/mp4" id="viedosrc">
+                        </video>
+                        <div class="playicon" id="vicont" onclick="$('#videobox')[0].play();$(this).hide();$('#viedoimg').hide();"></div>
+                    </div>
+                </div>
+                <a href="#" class="banner_ce">
+                    <img src="images/img_edgd.png" width="840" height="75" /></a>
+            </div>
+            <div class="ts_right">
+                <div class="title_l">
+                    <h3>学会期刊</h3>
+                </div>
+                <div class="inpu_cx">
+                    <div class="in_lid">
+                        <select>
+                            <option>请选择年份</option>
+                        </select>
+                        <select>
+                            <option>请选择期数</option>
+                        </select>
+                        <input type="button" value="查询">
+                    </div>
+                    <div class="in_box">
+                        <img src="images/0425864.png" width="135" height="135" />
+                        <p>
+                            《中国体视学与图像分析测试稿件上传稿件名称》学术期刊是一级学会
+            中国体视学学会的会刊，1996年创刊，现已成为国家
+            科技部中国科技论文统计源期刊（科技核心期刊），
+            被《中国学术期刊综合评价数据库》全文收录，中...
+                        </p>
+                        <a href="#">查看详情</a>
+                    </div>
+                    <a href="#" class="banner_ce">
+                        <img src="images/045286.png" width="312" height="76" /></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--领导-->
+
+    <div class="leader">
+        <div class="info">
+            <ul class="lea_tit" id="normaltab1">
+                <li>学会领导</li>
+                <li>常务理事</li>
+                <li><a href="#">理事</a></li>
+                <li><a href="#">分会</a></li>
+            </ul>
+            <div class="info_con" id="normalcon1">
+                <div class="i_box">
+                    <ul>
+                        <li>
+                            <img src="images/01005.png" width="124" height="124" />
+                            <p>理事长：康克军</p>
+                            <div class="crb">
+                                <div class="layerbox clearfix">
+                                    <a class="close thuicon-cancel">
+                                        <img src="images/close.png" /></a> <span class="imgwrap">
+                                            <img src="images/01005.png" width="98"></span>
+                                    <div class="leftarea">
+                                        <div class="innerarea">
+                                            <h3 class="uname">胡和平<span class="r">党委书记</span> </h3>
+                                            <p>（1962 - 　），籍贯山东临沂。</p>
+                                            <p>2008年12月至2013年12月任清华大学党委书记。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="images/01005.png" width="124" height="124" />
+                            <p>理事长：康克军</p>
+                            <div class="crb">
+                                <div class="layerbox clearfix">
+                                    <a class="close thuicon-cancel">
+                                        <img src="images/close.png" /></a> <span class="imgwrap">
+                                            <img src="images/01005.png" width="98"></span>
+                                    <div class="leftarea">
+                                        <div class="innerarea">
+                                            <h3 class="uname">胡和平<span class="r">党委书记</span> </h3>
+                                            <p>（1962 - 　），籍贯山东临沂。</p>
+                                            <p>2008年12月至2013年12月任清华大学党委书记。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="images/01005.png" width="124" height="124" />
+                            <p>理事长：康克军</p>
+                            <div class="crb">
+                                <div class="layerbox clearfix">
+                                    <a class="close thuicon-cancel">
+                                        <img src="images/close.png" /></a> <span class="imgwrap">
+                                            <img src="images/01005.png" width="98"></span>
+                                    <div class="leftarea">
+                                        <div class="innerarea">
+                                            <h3 class="uname">胡和平<span class="r">党委书记</span> </h3>
+                                            <p>（1962 - 　），籍贯山东临沂。</p>
+                                            <p>2008年12月至2013年12月任清华大学党委书记。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="images/01005.png" width="124" height="124" />
+                            <p>理事长：康克军</p>
+                            <div class="crb">
+                                <div class="layerbox clearfix">
+                                    <a class="close thuicon-cancel">
+                                        <img src="images/close.png" /></a> <span class="imgwrap">
+                                            <img src="images/01005.png" width="98"></span>
+                                    <div class="leftarea">
+                                        <div class="innerarea">
+                                            <h3 class="uname">胡和平<span class="r">党委书记</span> </h3>
+                                            <p>（1962 - 　），籍贯山东临沂。</p>
+                                            <p>2008年12月至2013年12月任清华大学党委书记。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="images/01005.png" width="124" height="124" />
+                            <p>理事长：康克军</p>
+                            <div class="crb">
+                                <div class="layerbox clearfix">
+                                    <a class="close thuicon-cancel">
+                                        <img src="images/close.png" /></a> <span class="imgwrap">
+                                            <img src="images/01005.png" width="98"></span>
+                                    <div class="leftarea">
+                                        <div class="innerarea">
+                                            <h3 class="uname">胡和平<span class="r">党委书记</span> </h3>
+                                            <p>（1962 - 　），籍贯山东临沂。</p>
+                                            <p>2008年12月至2013年12月任清华大学党委书记。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="images/01005.png" width="124" height="124" />
+                            <p>理事长：康克军</p>
+                            <div class="crb">
+                                <div class="layerbox clearfix">
+                                    <a class="close thuicon-cancel">
+                                        <img src="images/close.png" /></a> <span class="imgwrap">
+                                            <img src="images/01005.png" width="98"></span>
+                                    <div class="leftarea">
+                                        <div class="innerarea">
+                                            <h3 class="uname">胡和平<span class="r">党委书记</span> </h3>
+                                            <p>（1962 - 　），籍贯山东临沂。</p>
+                                            <p>2008年12月至2013年12月任清华大学党委书记。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="images/01005.png" width="124" height="124" />
+                            <p>理事长：康克军</p>
+                            <div class="crb">
+                                <div class="layerbox clearfix">
+                                    <a class="close thuicon-cancel">
+                                        <img src="images/close.png" /></a> <span class="imgwrap">
+                                            <img src="images/01005.png" width="98"></span>
+                                    <div class="leftarea">
+                                        <div class="innerarea">
+                                            <h3 class="uname">胡和平<span class="r">党委书记</span> </h3>
+                                            <p>（1962 - 　），籍贯山东临沂。</p>
+                                            <p>2008年12月至2013年12月任清华大学党委书记。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="images/01005.png" width="124" height="124" />
+                            <p>理事长：康克军</p>
+                            <div class="crb">
+                                <div class="layerbox clearfix">
+                                    <a class="close thuicon-cancel">
+                                        <img src="images/close.png" /></a> <span class="imgwrap">
+                                            <img src="images/01005.png" width="98"></span>
+                                    <div class="leftarea">
+                                        <div class="innerarea">
+                                            <h3 class="uname">胡和平<span class="r">党委书记</span> </h3>
+                                            <p>（1962 - 　），籍贯山东临沂。</p>
+                                            <p>2008年12月至2013年12月任清华大学党委书记。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="images/01005.png" width="124" height="124" />
+                            <p>理事长：康克军</p>
+                            <div class="crb">
+                                <div class="layerbox clearfix">
+                                    <a class="close thuicon-cancel">
+                                        <img src="images/close.png" /></a> <span class="imgwrap">
+                                            <img src="images/01005.png" width="98"></span>
+                                    <div class="leftarea">
+                                        <div class="innerarea">
+                                            <h3 class="uname">胡和平<span class="r">党委书记</span> </h3>
+                                            <p>（1962 - 　），籍贯山东临沂。</p>
+                                            <p>2008年12月至2013年12月任清华大学党委书记。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="images/01005.png" width="124" height="124" />
+                            <p>理事长：康克军</p>
+                            <div class="crb">
+                                <div class="layerbox clearfix">
+                                    <a class="close thuicon-cancel">
+                                        <img src="images/close.png" /></a> <span class="imgwrap">
+                                            <img src="images/01005.png" width="98"></span>
+                                    <div class="leftarea">
+                                        <div class="innerarea">
+                                            <h3 class="uname">胡和平<span class="r">党委书记</span> </h3>
+                                            <p>（1962 - 　），籍贯山东临沂。</p>
+                                            <p>2008年12月至2013年12月任清华大学党委书记。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <a href="#" class="more_a">更多</a>
+                </div>
+                <div class="i_box">
+                    <ul>
+                        <li>
+                            <img src="images/big.jpg" width="124" height="124" />
+                            <p>理事长：康克军</p>
+                            <div class="crb">
+                                <div class="layerbox clearfix">
+                                    <a class="close thuicon-cancel">
+                                        <img src="images/close.png" /></a> <span class="imgwrap">
+                                            <img src="images/01005.png" width="98"></span>
+                                    <div class="leftarea">
+                                        <div class="innerarea">
+                                            <h3 class="uname">胡和平<span class="r">党委书记</span> </h3>
+                                            <p>（1962 - 　），籍贯山东临沂。</p>
+                                            <p>2008年12月至2013年12月任清华大学党委书记。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="images/01005.png" width="124" height="124" />
+                            <p>理事长：康克军</p>
+                            <div class="crb">
+                                <div class="layerbox clearfix">
+                                    <a class="close thuicon-cancel">
+                                        <img src="images/close.png" /></a> <span class="imgwrap">
+                                            <img src="images/01005.png" width="98"></span>
+                                    <div class="leftarea">
+                                        <div class="innerarea">
+                                            <h3 class="uname">胡和平<span class="r">党委书记</span> </h3>
+                                            <p>（1962 - 　），籍贯山东临沂。</p>
+                                            <p>2008年12月至2013年12月任清华大学党委书记。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="images/01005.png" width="124" height="124" />
+                            <p>理事长：康克军</p>
+                            <div class="crb">
+                                <div class="layerbox clearfix">
+                                    <a class="close thuicon-cancel">
+                                        <img src="images/close.png" /></a> <span class="imgwrap">
+                                            <img src="images/01005.png" width="98"></span>
+                                    <div class="leftarea">
+                                        <div class="innerarea">
+                                            <h3 class="uname">胡和平<span class="r">党委书记</span> </h3>
+                                            <p>（1962 - 　），籍贯山东临沂。</p>
+                                            <p>2008年12月至2013年12月任清华大学党委书记。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="images/01005.png" width="124" height="124" />
+                            <p>理事长：康克军</p>
+                            <div class="crb">
+                                <div class="layerbox clearfix">
+                                    <a class="close thuicon-cancel">
+                                        <img src="images/close.png" /></a> <span class="imgwrap">
+                                            <img src="images/01005.png" width="98"></span>
+                                    <div class="leftarea">
+                                        <div class="innerarea">
+                                            <h3 class="uname">胡和平<span class="r">党委书记</span> </h3>
+                                            <p>（1962 - 　），籍贯山东临沂。</p>
+                                            <p>2008年12月至2013年12月任清华大学党委书记。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="images/01005.png" width="124" height="124" />
+                            <p>理事长：康克军</p>
+                            <div class="crb">
+                                <div class="layerbox clearfix">
+                                    <a class="close thuicon-cancel">
+                                        <img src="images/close.png" /></a> <span class="imgwrap">
+                                            <img src="images/01005.png" width="98"></span>
+                                    <div class="leftarea">
+                                        <div class="innerarea">
+                                            <h3 class="uname">胡和平<span class="r">党委书记</span> </h3>
+                                            <p>（1962 - 　），籍贯山东临沂。</p>
+                                            <p>2008年12月至2013年12月任清华大学党委书记。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="images/01005.png" width="124" height="124" />
+                            <p>理事长：康克军</p>
+                            <div class="crb">
+                                <div class="layerbox clearfix">
+                                    <a class="close thuicon-cancel">
+                                        <img src="images/close.png" /></a> <span class="imgwrap">
+                                            <img src="images/01005.png" width="98"></span>
+                                    <div class="leftarea">
+                                        <div class="innerarea">
+                                            <h3 class="uname">胡和平<span class="r">党委书记</span> </h3>
+                                            <p>（1962 - 　），籍贯山东临沂。</p>
+                                            <p>2008年12月至2013年12月任清华大学党委书记。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="images/01005.png" width="124" height="124" />
+                            <p>理事长：康克军</p>
+                            <div class="crb">
+                                <div class="layerbox clearfix">
+                                    <a class="close thuicon-cancel">
+                                        <img src="images/close.png" /></a> <span class="imgwrap">
+                                            <img src="images/01005.png" width="98"></span>
+                                    <div class="leftarea">
+                                        <div class="innerarea">
+                                            <h3 class="uname">胡和平<span class="r">党委书记</span> </h3>
+                                            <p>（1962 - 　），籍贯山东临沂。</p>
+                                            <p>2008年12月至2013年12月任清华大学党委书记。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="images/01005.png" width="124" height="124" />
+                            <p>理事长：康克军</p>
+                            <div class="crb">
+                                <div class="layerbox clearfix">
+                                    <a class="close thuicon-cancel">
+                                        <img src="images/close.png" /></a> <span class="imgwrap">
+                                            <img src="images/01005.png" width="98"></span>
+                                    <div class="leftarea">
+                                        <div class="innerarea">
+                                            <h3 class="uname">胡和平<span class="r">党委书记</span> </h3>
+                                            <p>（1962 - 　），籍贯山东临沂。</p>
+                                            <p>2008年12月至2013年12月任清华大学党委书记。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="images/01005.png" width="124" height="124" />
+                            <p>理事长：康克军</p>
+                            <div class="crb">
+                                <div class="layerbox clearfix">
+                                    <a class="close thuicon-cancel">
+                                        <img src="images/close.png" /></a> <span class="imgwrap">
+                                            <img src="images/01005.png" width="98"></span>
+                                    <div class="leftarea">
+                                        <div class="innerarea">
+                                            <h3 class="uname">胡和平<span class="r">党委书记</span> </h3>
+                                            <p>（1962 - 　），籍贯山东临沂。</p>
+                                            <p>2008年12月至2013年12月任清华大学党委书记。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="images/01005.png" width="124" height="124" />
+                            <p>理事长：康克军</p>
+                            <div class="crb">
+                                <div class="layerbox clearfix">
+                                    <a class="close thuicon-cancel">
+                                        <img src="images/close.png" /></a> <span class="imgwrap">
+                                            <img src="images/01005.png" width="98"></span>
+                                    <div class="leftarea">
+                                        <div class="innerarea">
+                                            <h3 class="uname">胡和平<span class="r">党委书记</span> </h3>
+                                            <p>（1962 - 　），籍贯山东临沂。</p>
+                                            <p>2008年12月至2013年12月任清华大学党委书记。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <a href="#" class="more_a">更多</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--友情链接-->
+
+    <div class="info frie">
+        <ul id="normaltab1">
+            <li>友情链接</li>
+            <li>会员单位</li>
+        </ul>
+        <div class="fre_box" id="normalcon1">
+            <div class="fre">
+                <a href="#">
+                    <img src="images/00221.png" /></a> <a href="#">
+                        <img src="images/00222.png" /></a> <a href="#">
+                            <img src="images/00223.png" /></a> <a href="#">
+                                <img src="images/00224.png" /></a> <a href="#">
+                                    <img src="images/00225.png" /></a>
+            </div>
+        </div>
+    </div>
+
+    <!--底部-->
+    <div class="fot_w">
+        <div class="footer">
+            <a href="#" class="top">
+                <img src="images/dib.png" /></a>
+            <ul>
+                <li>
+                    <h5>关于学会</h5>
+                    <a href="GuanYu_JianJie.html">学会简介</a>
+                    <a href="GuanYu_GuiZhang.html">学会规章</a>
+                    <a href="GuanYu_LingDao.html">学会领导</a>
+                    <a href="GuanYu_ZuZhi.html">组织架构</a>
+                </li>
+                <li>
+                    <h5>学会动态</h5>
+                    <a href="DongTai_NewsList.html">学会动态</a>
+                    <a href="DongTai_NoticeList.html">通知公告</a>
+                    <a href="DongTai_MeetigList.html">会议信息</a>
+                    <a href="DongTai_CommuList.html">国际交流</a>
+                </li>
+                <li>
+                    <h5>学会党建</h5>
+
+                    <a href="DangJian_XueXiList.html">党建学习</a>
+                    
+                    <a href="DangJian_DongTaiList.html">党建动态</a><a href="DangJian_ChengYuanList.html">党委成员</a>
+                </li>
+                <li>
+                    <h5>专业分会</h5>
+                    <a href="FenHui_CTLiLun.html">CT理论与应用</a>
+                    <a href="FenHui_CaiLiao.html">材料科学</a>
+                    <a href="FenHui_FangZhen.html">仿真与虚拟现实</a>
+                    <a href="FenHui_JinXiang.html">金相与显微分析</a>
+                    <a href="FenHui_ShengWu.html">生物医学</a>
+                    <a href="FenHui_TuXiang.html">图像分析</a>
+                </li>
+
+                <li>
+                    <h5>学会期刊</h5>
+
+                    <a href="QiKan_JieShao.html">期刊介绍</a>
+                    <a href="QiKan_BianWei.html">期刊编委会</a>
+                    <a href="QiKan_ChaXun.html">过刊查询</a>
+                    <a href="QiKan_TouGao.html">我要投稿</a>
+                </li>
+                <li>
+                    <h5>学会奖项</h5>
+
+                    <a href="JiangXiang_JieShao.html">奖项介绍</a>
+                    <a href="JiangXiang_TiaoLi.html">奖励条例</a>
+                    <a href="JiangXiang_ShenBao.html">奖励申报</a>
+                    <a href="JiangXiang_NianJian.html">奖励年鉴</a>
+                </li>
+                <li>
+                    <h5>体视学科普</h5>
+                    <a href="KePu_ZiYuanList.html">科普资源</a>
+                    <a href="KePu_HuoDongList.html">科普活动</a>
+                </li>
+                <li>
+                    <h5>会员专区</h5>
+
+                    <a href="HuiYuan_TiaoLi.html">会员条例</a>
+                    <a href="HuiYuan_XuZhi.html">入会须知</a>
+                    <a href="HuiYuan_ShenQing.html">入会申请</a>
+                    <a href="HuiYuan_FuWu.html">会员通知</a>
+                </li>
+                <li>
+                    <img src="images/ewm.png" width="130" height="130" />
+                    <p>关注微信公众号</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="fot_w2">
+        Copyright © 2009-2018 中国体视学学会 版权所有 京ICP备10033108 
+        <br />
+        京公网安备110108007550号<br />
+        技术支持：北京智联软件技术有限公司
+    </div>
+    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/jquery.tabso_yeso.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function ($) {
+
+            //默认选项卡切换
+            $("#normaltab1").tabso({
+                cntSelect: "#normalcon1",
+                tabEvent: "click",
+                tabStyle: "normal"
+            });
+            //默认选项卡切换
+            $("#normaltab2").tabso({
+                cntSelect: "#normalcon2",
+                tabEvent: "click",
+                tabStyle: "normal"
+            });
+
+            //默认选项卡切换
+            $(".frie #normaltab1").tabso({
+                cntSelect: ".frie #normalcon1",
+                tabEvent: "click",
+                tabStyle: "normal"
+            });
+
+        });
+
+    </script>
+</body>
+</html>
