@@ -39,19 +39,19 @@
                    pass:'',
                    checkPass:'',
                    name:'',
-                   memberType:'1',
+                   memberType:'普通会员',
                    phone:'',
-                   region:'',
-                   sex:'1',
+                   reference:'',
+                   gender:'男',
                    born:'',
-                   dw:'',
+                   company:'',
                    zc:'',
-                   mz:'',
-                   dp:'1',
-                   zy:'',
-                   xl:'',
-                   yjly:'',
-                   memberId:''
+                   nationality:'',
+                   partisan:'中共党员',
+                   major:'',
+                   education:'',
+                   researchField:'',
+                   memberNo:''
                },
 
 
@@ -70,23 +70,60 @@
        },
        methods: {
            submitForm: function(formName) {
+               var _this = this;
+
                this.$refs[formName].validate((valid) => {
                    if (valid) {
-                       alert('submit!');
+                       _this.submit();
                    } else {
                        console.log('error submit!!');
                        return false;
                    }
                });
            },
+           changeTime(time) {
+               var y = time.getFullYear(),
+                   m = time.getMonth()+1,
+                   d = time.getDate();
+
+               if(m < 10) {
+                   m = '0'+m
+               }
+               if(d < 10) {
+                   d = '0'+d
+               }
+               return y+'-'+m+'-'+d
+
+           },
            submit: function() {
                var param = {
-                   email: this.email,
-                   password: this.pass,
-                   name: this.name,
-                   memberType: this.memberType
+                   email: this.registerValidateForm.email,
+                   password: this.registerValidateForm.pass,
+                   name: this.registerValidateForm.name,
+                   memberType: this.registerValidateForm.memberType,
+                   mobile: this.registerValidateForm.phone,
+                   reference: this.registerValidateForm.reference,
+                   gender: this.registerValidateForm.gender,
+                   birthday: this.changeTime(this.registerValidateForm.born),
+                   company: this.registerValidateForm.company,
+                   title: this.registerValidateForm.zc,
+                   nationality: this.registerValidateForm.nationality,
+                   partisan: this.registerValidateForm.partisan,
+                   major: this.registerValidateForm.major,
+                   education: this.registerValidateForm.education,
+                   researchField: this.registerValidateForm.researchField,
+                   memberNo: this.registerValidateForm.memberNo
+               };
 
-               }
+               $.ajax({
+                   url:'/member/register',
+                   type:'post',
+                   data:param
+               }).done(function() {
+
+               }.bind(this)).fail(function() {
+                   this.$message.error('提交失败');
+               }.bind(this))
            },
            resetForm: function(formName) {
                this.$refs[formName].resetFields();

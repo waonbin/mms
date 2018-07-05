@@ -72,13 +72,13 @@
                           { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }
                         ]"
                 >
-                    <el-input placeholder="请输入您的邮箱" v-model="registerValidateForm.email"></el-input>
+                    <el-input placeholder="请输入您的邮箱" v-model.trim="registerValidateForm.email"></el-input>
                 </el-form-item>
                 <el-form-item label="密码" prop="pass">
-                    <el-input type="password" placeholder="密码请输入8至20个字符" v-model="registerValidateForm.pass" auto-complete="off"></el-input>
+                    <el-input type="password" placeholder="密码请输入8至20个字符" v-model.trim="registerValidateForm.pass" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="确认密码" prop="checkPass">
-                    <el-input type="password" placeholder="请确认密码" v-model="registerValidateForm.checkPass" auto-complete="off"></el-input>
+                    <el-input type="password" placeholder="请确认密码" v-model.trim="registerValidateForm.checkPass" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                         label="会员名称"
@@ -87,7 +87,7 @@
                             { required: true, message: '请输入会员名称', trigger: 'change' }
                         ]"
                 >
-                    <el-input type="age" placeholder="请输入会员名称" v-model.number="registerValidateForm.name" auto-complete="off"></el-input>
+                    <el-input type="age" placeholder="请输入会员名称" v-model.trim="registerValidateForm.name" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                         label="会员类型"
@@ -97,39 +97,39 @@
                             ]"
                 >
                     <el-radio-group v-model="registerValidateForm.memberType">
-                        <el-radio label="1">普通会员</el-radio>
-                        <el-radio label="2">学生会员</el-radio>
-                        <el-radio label="3">团体会员</el-radio>
+                        <el-radio label="普通会员">普通会员</el-radio>
+                        <el-radio label="学生会员">学生会员</el-radio>
+                        <el-radio label="团体会员">团体会员</el-radio>
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item
                         label="手机号码"
                         prop="phone"
                 >
-                    <el-input type="text"  placeholder="请输入手机号" v-model="registerValidateForm.phone" auto-complete="off"></el-input>
+                    <el-input type="text"  placeholder="请输入手机号" v-model.trim="registerValidateForm.phone" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                         label="推荐单位"
-                        prop="region"
+                        prop="reference"
                         :rules="[
                             { required: true, message: '请选择推荐单位', trigger: 'change' }
                             ]"
                 >
-                    <el-select v-model="registerValidateForm.region" placeholder="请选择推荐单位">
+                    <el-select v-model="registerValidateForm.reference" placeholder="请选择推荐单位">
                         <el-option label="CT理论及应用分会" value="CT理论及应用分会"></el-option>
                         <el-option label="材料科学分会" value="材料科学分会"></el-option>
                     </el-select>
                 </el-form-item>
                 <el-form-item
                         label="性别"
-                        prop="sex"
+                        prop="gender"
                         :rules="[
                             { required: true, message: '请选择性别', trigger: 'change' }
                             ]"
                 >
-                    <el-radio-group v-model="registerValidateForm.sex">
-                        <el-radio label="1">男</el-radio>
-                        <el-radio label="2">女</el-radio>
+                    <el-radio-group v-model="registerValidateForm.gender">
+                        <el-radio label="男">男</el-radio>
+                        <el-radio label="女">女</el-radio>
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item
@@ -149,12 +149,12 @@
                 </el-form-item>
                 <el-form-item
                         label="单位"
-                        prop="dw"
+                        prop="company"
                         :rules="[
                             { required: true, message: '请输入您的单位', trigger: 'change' }
                             ]"
                 >
-                    <el-input type="text" placeholder="请输入您的单位" v-model="registerValidateForm.dw" auto-complete="off"></el-input>
+                    <el-input type="text" placeholder="请输入您的单位" v-model.trim="registerValidateForm.company" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                         label="职称"
@@ -163,60 +163,60 @@
                             { required: true, message: '请输入您的职称', trigger: 'change' }
                             ]"
                 >
-                    <el-input type="text" placeholder="请输入您的职称" v-model="registerValidateForm.zc" auto-complete="off"></el-input>
+                    <el-input type="text" placeholder="请输入您的职称" v-model.trim="registerValidateForm.zc" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                         label="民族"
-                        prop="mz"
+                        prop="nationality"
                         :rules="[
                             { required: true, message: '请输入您的民族', trigger: 'change' }
                             ]"
                 >
                     <el-col :span="11">
-                        <el-input type="text" placeholder="请输入您的民族" v-model="registerValidateForm.mz" auto-complete="off"></el-input>
+                        <el-input type="text" placeholder="请输入您的民族" v-model.trim="registerValidateForm.nationality" auto-complete="off"></el-input>
                     </el-col>
                 </el-form-item>
                 <el-form-item
                         label="党派"
-                        prop="dp"
+                        prop="partisan"
                         :rules="[
                             { required: true, message: '请选择党派', trigger: 'change' }
                             ]"
                 >
-                    <el-radio-group v-model="registerValidateForm.dp">
-                        <el-radio label="1">中共党员</el-radio>
-                        <el-radio label="2">群众</el-radio>
+                    <el-radio-group v-model="registerValidateForm.partisan">
+                        <el-radio label="中共党员">中共党员</el-radio>
+                        <el-radio label="群众">群众</el-radio>
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item
                         label="专业"
-                        prop="zy"
+                        prop="major"
                         :rules="[
                             { required: true, message: '请输入您的专业', trigger: 'change' }
                             ]"
                 >
-                    <el-input type="text" placeholder="请输入您的专业" v-model="registerValidateForm.zy" auto-complete="off"></el-input>
+                    <el-input type="text" placeholder="请输入您的专业" v-model.trim="registerValidateForm.major" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                         label="学历"
-                        prop="xl"
+                        prop="education"
                         :rules="[
                             { required: true, message: '请输入您的学历', trigger: 'change' }
                             ]"
                 >
-                    <el-input type="text" placeholder="请输入您的学历" v-model="registerValidateForm.xl" auto-complete="off"></el-input>
+                    <el-input type="text" placeholder="请输入您的学历" v-model.trim="registerValidateForm.education" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item
                         label="研究领域"
-                        prop="yjly"
+                        prop="researchField"
                         :rules="[
                             { required: true, message: '请输入您的研究领域', trigger: 'change' }
                             ]"
                 >
-                    <el-input type="text" placeholder="请输入您的研究领域"  v-model="registerValidateForm.yjly" auto-complete="off"></el-input>
+                    <el-input type="text" placeholder="请输入您的研究领域"  v-model.trim="registerValidateForm.researchField" auto-complete="off"></el-input>
                 </el-form-item>
-                <el-form-item label="已有会员号" prop="memberId">
-                    <el-input type="text" placeholder="如果您一世会员，请输入您的会员号" v-model="registerValidateForm.dw" auto-complete="off"></el-input>
+                <el-form-item label="已有会员号" prop="memberNo">
+                    <el-input type="text" placeholder="如果您一世会员，请输入您的会员号" v-model.trim="registerValidateForm.memberNo" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item>
                     <el-button type="primary" class="submitBtn" @click="submitForm('registerValidateForm')">提交</el-button>
@@ -233,6 +233,7 @@
     技术支持：北京智联软件技术有限公司
 </div>
 </body>
+<script src="/js/jquery-1.7.1.min.js"></script>
 <!-- import Vue before Element -->
 <script src="/js/vue.js"></script>
 <!-- import JavaScript -->
