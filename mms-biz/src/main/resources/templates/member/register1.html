@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <title>用户注册-中国体视学学会会员服务系统</title>
-    <link rel="stylesheet" type="text/css" href="${baseUrl}/css/public.css" />
-    <link rel="stylesheet" type="text/css" href="${baseUrl}/css/vice.css" />
-    <link rel="stylesheet" type="text/css" href="${baseUrl}/css/src/register.css" />
+    <link rel="stylesheet" type="text/css" href="/css/public.css" />
+    <link rel="stylesheet" type="text/css" href="/css/vice.css" />
+    <link rel="stylesheet" type="text/css" href="/css/src/register.css" />
     <!-- import CSS -->
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 </head>
@@ -14,7 +14,7 @@
 <div class="header_top crd_h">
     <div class="header">
         <a href="../index.html" class="logo">
-            <img src="${baseUrl}/images/logo.png" /></a>
+            <img src="/images/logo.png" /></a>
         <div class="right_f">
             <p><a href="#">English</a><a href="#">中文版</a></p>
             <a href="../index.html" class="home">首页</a>
@@ -23,7 +23,7 @@
 </div>
 
 <div class="banner_c">
-    <img src="${baseUrl}/images/register.png" />
+    <img src="/images/register.png" />
 </div>
 <div class="r_cen" id="register">
     <div class="reg_c">
@@ -91,12 +91,12 @@
                 </el-form-item>
                 <el-form-item
                         label="会员类型"
-                        prop="resource"
+                        prop="memberType"
                         :rules="[
                             { required: true, message: '请输入会员类型', trigger: 'change' }
                             ]"
                 >
-                    <el-radio-group v-model="registerValidateForm.resource">
+                    <el-radio-group v-model="registerValidateForm.memberType">
                         <el-radio label="1">普通会员</el-radio>
                         <el-radio label="2">学生会员</el-radio>
                         <el-radio label="3">团体会员</el-radio>
@@ -234,8 +234,8 @@
 </div>
 </body>
 <!-- import Vue before Element -->
-<script src="js/vue.js"></script>
+<script src="/js/vue.js"></script>
 <!-- import JavaScript -->
-<script src="js/element/index.js"></script>
-<script src="js/src/register.js"></script>
+<script src="/js/element/index.js"></script>
+<script src="/js/src/register.js"></script>
 </html>

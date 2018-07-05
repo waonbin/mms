@@ -2,6 +2,10 @@
    公用样式
  */
 
+[v-cloak] {
+    display: none;
+}
+
 /*颜色*/
 .red {
     color: red;

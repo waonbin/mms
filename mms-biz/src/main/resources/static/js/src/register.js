@@ -39,7 +39,7 @@
                    pass:'',
                    checkPass:'',
                    name:'',
-                   resource:'1',
+                   memberType:'1',
                    phone:'',
                    region:'',
                    sex:'1',
@@ -78,6 +78,15 @@
                        return false;
                    }
                });
+           },
+           submit: function() {
+               var param = {
+                   email: this.email,
+                   password: this.pass,
+                   name: this.name,
+                   memberType: this.memberType
+
+               }
            },
            resetForm: function(formName) {
                this.$refs[formName].resetFields();
