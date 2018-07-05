@@ -13,7 +13,7 @@ import java.util.Optional;
  * Created by huangping on 12/11/2016.
  */
 @Transactional
-@Service("userService")
+@Service("memberService")
 public class MemberServiceImpl extends BaseSimpleService<Member, Long> implements MemberService {
 
     @Transactional(readOnly = true)
