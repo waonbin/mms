@@ -1,6 +1,6 @@
-package com.zlsoft.core.service;
+package com.zlsoft.utils.service;
 
-import com.zlsoft.core.domain.Member;
+import com.zlsoft.utils.domain.Member;
 
 import java.util.List;
 
@@ -9,9 +9,12 @@ import java.util.List;
  */
 public interface MemberService extends SimpleService<Member, Long> {
 
+
+    List<Member> findByNameAndPassword(String name, String password);
+
     Member findByEmail(String email);
 
-    Member findByUsername(String username);
+
 
     Member findByTelephone(String telephone);
     /**

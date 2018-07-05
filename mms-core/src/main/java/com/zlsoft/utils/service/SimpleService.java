@@ -1,4 +1,4 @@
-package com.zlsoft.core.service;
+package com.zlsoft.utils.service;
 
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;

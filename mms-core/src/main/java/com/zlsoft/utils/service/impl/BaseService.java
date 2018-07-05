@@ -1,6 +1,6 @@
-package com.zlsoft.core.service.impl;
+package com.zlsoft.utils.service.impl;
 
-import com.zlsoft.core.repository.BaseRepository;
+import com.zlsoft.utils.repository.BaseRepository;
 
 import javax.inject.Inject;
 import java.io.Serializable;

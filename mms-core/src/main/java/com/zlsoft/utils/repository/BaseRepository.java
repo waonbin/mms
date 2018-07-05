@@ -1,4 +1,4 @@
-package com.zlsoft.core.repository;
+package com.zlsoft.utils.repository;
 
 import java.io.Serializable;
 

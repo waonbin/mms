@@ -1,11 +1,12 @@
-package com.zlsoft.core.service.impl;
+package com.zlsoft.utils.service.impl;
 
-import com.zlsoft.core.domain.Member;
-import com.zlsoft.core.repository.MemberRepository;
-import com.zlsoft.core.service.MemberService;
+import com.zlsoft.utils.domain.Member;
+import com.zlsoft.utils.repository.MemberRepository;
+import com.zlsoft.utils.service.MemberService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -15,17 +16,16 @@ import java.util.Optional;
 @Service("userService")
 public class MemberServiceImpl extends BaseSimpleService<Member, Long> implements MemberService {
 
+    @Transactional(readOnly = true)
+    @Override
+    public List<Member> findByNameAndPassword(String name, String password) {
+        return ((MemberRepository)this.getRepository()).findByNameAndPassword(name, password);
+    }
 
     @Transactional(readOnly = true)
     @Override
     public Member findByEmail(String email) {
         return ((MemberRepository)this.getRepository()).findByEmail(email);
-    }
-
-    @Transactional(readOnly = true)
-    @Override
-    public Member findByUsername(String username) {
-        return ((MemberRepository)this.getRepository()).findByUsername(username);
     }
 
     @Transactional(readOnly = true)

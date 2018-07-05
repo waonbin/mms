@@ -1,6 +1,6 @@
-package com.zlsoft.core.service.impl;
+package com.zlsoft.utils.service.impl;
 
-import com.zlsoft.core.service.SimpleService;
+import com.zlsoft.utils.service.SimpleService;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

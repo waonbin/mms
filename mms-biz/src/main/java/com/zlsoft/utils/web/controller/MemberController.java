@@ -1,7 +1,7 @@
-package com.zlsoft.core.web.controller;
+package com.zlsoft.utils.web.controller;
 
-import com.zlsoft.core.domain.Member;
-import com.zlsoft.core.service.MemberService;
+import com.zlsoft.utils.domain.Member;
+import com.zlsoft.utils.service.MemberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

@@ -17,6 +17,7 @@
         <module>mms-starter</module>
         <module>mms-core</module>
         <module>mms-biz</module>
+        <module>mms-utils</module>
     </modules>
 
 </project>

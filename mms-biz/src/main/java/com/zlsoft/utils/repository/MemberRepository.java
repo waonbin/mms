@@ -1,9 +1,12 @@
-package com.zlsoft.core.repository;
+package com.zlsoft.utils.repository;
 
-import com.zlsoft.core.domain.Member;
+import com.zlsoft.utils.domain.Member;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by huangping on 03/11/2016.
@@ -11,7 +14,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface MemberRepository extends JpaRepository<Member, Long>, BaseRepository<Member, Long> {
 
     Member findByEmail(String email);
-    Member findByUsername(String username);
+    List<Member> findByNameAndPassword(String name, String password);
     Member findByPassword(String password);
     Member findByTelephone(String telephone);
 
