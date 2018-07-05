@@ -12,6 +12,10 @@ public interface MemberService extends SimpleService<Member, Long> {
 
     List<Member> findByName(String name);
 
+    List<Member> findByEmail(String email);
+
+    List<Member> findByNameOrEmail(String name, String email);
+
     List<Member> findByNameAndPassword(String name, String password);
 
     int changePassword(Long id, String oldPassword, String newPassword);

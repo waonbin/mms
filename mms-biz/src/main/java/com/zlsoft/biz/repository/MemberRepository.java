@@ -15,6 +15,10 @@ public interface MemberRepository extends JpaRepository<Member, Long>, BaseRepos
 
     List<Member> findByName(String name);
 
+    List<Member> findByEmail(String email);
+
+    List<Member> findByNameOrEmail(String name, String email);
+
     List<Member> findByNameAndPassword(String name, String password);
 
     Page<Member> findAll(Pageable pageable);
