@@ -1,12 +1,12 @@
-package com.zlsoft.utils.repository;
+package com.zlsoft.biz.repository;
 
-import com.zlsoft.utils.domain.Member;
+import com.zlsoft.biz.domain.Member;
+import com.zlsoft.utils.repository.BaseRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Created by huangping on 03/11/2016.
