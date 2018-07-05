@@ -9,6 +9,8 @@ import java.util.List;
  */
 public interface MemberService extends SimpleService<Member, Long> {
 
+    List<Member> findByName(String name);
+
     List<Member> findByNameAndPassword(String name, String password);
 
     int changePassword(Long id, String oldPassword, String newPassword);

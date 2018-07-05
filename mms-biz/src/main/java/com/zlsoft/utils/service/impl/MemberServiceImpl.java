@@ -18,6 +18,12 @@ public class MemberServiceImpl extends BaseSimpleService<Member, Long> implement
 
     @Transactional(readOnly = true)
     @Override
+    public List<Member> findByName(String name) {
+        return ((MemberRepository)this.getRepository()).findByName(name);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
     public List<Member> findByNameAndPassword(String name, String password) {
         return ((MemberRepository)this.getRepository()).findByNameAndPassword(name, password);
     }

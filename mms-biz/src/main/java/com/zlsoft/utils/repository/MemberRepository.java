@@ -13,6 +13,8 @@ import java.util.Optional;
  */
 public interface MemberRepository extends JpaRepository<Member, Long>, BaseRepository<Member, Long> {
 
+    List<Member> findByName(String name);
+
     List<Member> findByNameAndPassword(String name, String password);
 
     Page<Member> findAll(Pageable pageable);
