@@ -22,24 +22,6 @@ public class MemberServiceImpl extends BaseSimpleService<Member, Long> implement
         return ((MemberRepository)this.getRepository()).findByNameAndPassword(name, password);
     }
 
-    @Transactional(readOnly = true)
-    @Override
-    public Member findByEmail(String email) {
-        return ((MemberRepository)this.getRepository()).findByEmail(email);
-    }
-
-    @Transactional(readOnly = true)
-    @Override
-    public Member findByTelephone(String telephone) {
-        return ((MemberRepository)this.getRepository()).findByTelephone(telephone);
-    }
-
-    @Transactional(readOnly = true)
-    @Override
-    public Member findByPassword(String password) {
-        return ((MemberRepository)this.getRepository()).findByPassword(password);
-    }
-
     @Override
     public int changePassword(Long id, String oldPassword, String newPassword) {
 
