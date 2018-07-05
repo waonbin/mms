@@ -132,13 +132,6 @@
 
   <build>
     <plugins>
-      <!--<plugin>-->
-        <!--<groupId>org.springframework.boot</groupId>-->
-        <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
-        <!--<configuration>-->
-          <!--<executable>true</executable>-->
-        <!--</configuration>-->
-      <!--</plugin>-->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -156,28 +149,6 @@
           <useSystemClassLoader>false</useSystemClassLoader>
         </configuration>
       </plugin>
-      <!--<plugin>-->
-        <!--<artifactId>maven-antrun-plugin</artifactId>-->
-        <!--<executions>-->
-          <!--<execution>-->
-            <!--<id>copy-lib-src-webapps</id>-->
-            <!--<phase>package</phase>-->
-            <!--<configuration>-->
-              <!--<tasks>-->
-                <!--&lt;!&ndash; <delete dir="src/main/webapp/WEB-INF/lib" />&ndash;&gt;-->
-                <!--<copy todir="${settings.localRepository}/com/dataexa/security/${artifactId}/${version}/">-->
-                  <!--<fileset dir="${project.build.directory}">-->
-                    <!--<include name="*.jar" />-->
-                  <!--</fileset>-->
-                <!--</copy>-->
-              <!--</tasks>-->
-            <!--</configuration>-->
-            <!--<goals>-->
-              <!--<goal>run</goal>-->
-            <!--</goals>-->
-          <!--</execution>-->
-        <!--</executions>-->
-      <!--</plugin>-->
     </plugins>
   </build>
 

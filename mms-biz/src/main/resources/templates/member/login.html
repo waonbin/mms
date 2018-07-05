@@ -5,6 +5,7 @@
     <title>用户登录</title>
     <link rel="stylesheet" type="text/css" href="css/public.css" />
     <link rel="stylesheet" type="text/css" href="css/vice.css" />
+    <link rel="stylesheet" type="text/css" href="css/base.css" />
 </head>
 
 <body>
@@ -18,7 +19,7 @@
             </div>
         </div>
     </div>
-    <div class="login_k">
+    <div class="login_k" id="login-box">
         <div class="loc_c">
             <div class="k_bg">
                 <h3>用户登录</h3>
@@ -31,9 +32,12 @@
                 <p class="yzm">
                     <input type="text" />
                     <a href="#">
-                        <img src="images/XZDS.png" /></a>
+                        <img src="images/XZDS.png" />
+                    </a>
+                    <span class="red" v-show="tip">* 密码或者账户名错误</span>
                 </p>
-                <p><a href="#"><b>忘记密码?去找回</b></a><a href="register.html"><i>还没有账号,去注册</i></a></p>
+
+                <p><a href="#"><b>忘记密码?去找回</b></a><a href="/register"><i>还没有账号,去注册</i></a></p>
                 <a href="personal_information.html" class="lotin">登录</a>
             </div>
         </div>
@@ -45,4 +49,7 @@
         技术支持：北京智联软件技术有限公司
     </div>
 </body>
+<script src="js/src/base.js"></script>
+<script src="js/vue.js"></script>
+<script src="js/src/login.js"></script>
 </html>

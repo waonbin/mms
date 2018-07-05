@@ -16,10 +16,7 @@ public class HomeController {
         return "member/login";
     }
 
-    @RequestMapping("/register")
-    public String register() {
-        return "member/register";
-    }
+
 
     @RequestMapping("/register2")
     public String register2() {
