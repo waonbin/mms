@@ -17,7 +17,7 @@ public class MemberController extends BaseController {
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register() {
-        return "member/register";
+        return "member/register1";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
