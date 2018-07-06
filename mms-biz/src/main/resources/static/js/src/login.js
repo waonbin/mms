@@ -26,8 +26,9 @@
                   url:'login',
                   type:'post',
                   data: param
-              }).done(function(data) {
-
+              }).done(function(data, status, xhr) {
+                  var url = xhr.getResponseHeader('Location');
+                  document.location = url;
               }.bind(this)).fail(function(data,statue) {
                   draw('canvas');
                   this.tip = true;

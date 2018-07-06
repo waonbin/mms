@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -23,20 +22,30 @@ public class LoginController {
     @Inject
     private MemberService memberService;
 
+    /**
+     * GET  /login : get login page
+     * @return login page
+     */
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String login(){
-        return "member/login";
+        return "/member/login";
     }
 
+    /**
+     * POST  /login : user login
+     * @param session the HTTP Session
+     * @param member member information
+     * @return if login successfully redirect to personal information page; otherwise output error information
+     * @throws URISyntaxException
+     */
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public @ResponseBody
-    ResponseEntity login(HttpSession session, Member member) throws URISyntaxException {
+    public ResponseEntity login(HttpSession session, Member member) throws URISyntaxException {
 
-        List<Member> members = memberService.findByName(member.getName());
+        List<Member> members = memberService.findByNameOrEmail(member.getName(), member.getName());
 
         if(members.size() == 0)
         {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("您所输入的用户不存在！");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("您所输入的用户名不存在！");
         }
         else {
             Member memberInDB = members.get(0);
@@ -46,7 +55,7 @@ public class LoginController {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("您所输入的密码错误！");
             } else {
                 session.setAttribute(Constants.SESSION_USER, memberInDB);
-                return ResponseEntity.created(new URI("member/personal_information")).body(member);
+                return ResponseEntity.created(new URI("/member/personal_information")).body(memberInDB);
             }
 
         }

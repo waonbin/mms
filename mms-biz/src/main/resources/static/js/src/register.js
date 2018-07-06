@@ -119,8 +119,9 @@
                    url:'/member/register',
                    type:'post',
                    data:param
-               }).done(function() {
-
+               }).done(function(data, status, xhr) {
+                   var url = xhr.getResponseHeader('Location');
+                   document.location = url;
                }.bind(this)).fail(function() {
                    this.$message.error('提交失败');
                }.bind(this))
