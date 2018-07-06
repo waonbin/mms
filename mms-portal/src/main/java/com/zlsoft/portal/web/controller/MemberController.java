@@ -131,24 +131,6 @@ public class MemberController extends BaseController {
     }
 
     /**
-     * GET  /payment : get payment page
-     * @return payment page
-     */
-    @RequestMapping(value = "/payment", method = RequestMethod.GET)
-    public String payment() {
-        return "/member/personal_payment";
-    }
-
-    /**
-     * GET  /pay : get pay page
-     * @return pay page
-     */
-    @RequestMapping(value = "/pay", method = RequestMethod.GET)
-    public String pay() {
-        return "/member/personal_pay";
-    }
-
-    /**
      * GET  /revise : get revise page
      * @return revise page
      */

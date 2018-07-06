@@ -3,11 +3,12 @@ package com.zlsoft.portal.domain;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "m_member")
-public class Member {
+public class Member implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator="id_generator")
@@ -42,8 +43,7 @@ public class Member {
     /**
      * 会员类型（字典）
      */
-    @Column
-    private short memberType;
+    private Short memberType;
 
     /**
      * 手机号码
@@ -54,14 +54,12 @@ public class Member {
     /**
      * 推荐单位（字典）
      */
-    @Column
-    private short reference;
+    private Short reference;
 
     /**
      * 性别（字典）
      */
-    @Column
-    private short gender;
+    private Short gender;
 
     /**
      * 出生日期
@@ -84,14 +82,13 @@ public class Member {
     /**
      * 民族
      */
-    @Column
+    @Column(length = 64)
     private String nationality;
 
     /**
      * 党派（字典）
      */
-    @Column
-    private short partisan;
+    private Short partisan;
 
     /**
      * 专业
@@ -116,7 +113,6 @@ public class Member {
      */
     @Column(length = 64)
     private String memberNo;
-
 
     public Long getId() {
         return id;
@@ -150,11 +146,11 @@ public class Member {
         this.name = name;
     }
 
-    public short getMemberType() {
+    public Short getMemberType() {
         return memberType;
     }
 
-    public void setMemberType(short memberType) {
+    public void setMemberType(Short memberType) {
         this.memberType = memberType;
     }
 
@@ -166,19 +162,19 @@ public class Member {
         this.mobile = mobile;
     }
 
-    public short getReference() {
+    public Short getReference() {
         return reference;
     }
 
-    public void setReference(short reference) {
+    public void setReference(Short reference) {
         this.reference = reference;
     }
 
-    public short getGender() {
+    public Short getGender() {
         return gender;
     }
 
-    public void setGender(short gender) {
+    public void setGender(Short gender) {
         this.gender = gender;
     }
 
@@ -214,11 +210,11 @@ public class Member {
         this.nationality = nationality;
     }
 
-    public short getPartisan() {
+    public Short getPartisan() {
         return partisan;
     }
 
-    public void setPartisan(short partisan) {
+    public void setPartisan(Short partisan) {
         this.partisan = partisan;
     }
 
