@@ -19,7 +19,7 @@
 
         <dependency>
             <groupId>com.zlsoft.mms</groupId>
-            <artifactId>mms-biz</artifactId>
+            <artifactId>mms-portal</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
 

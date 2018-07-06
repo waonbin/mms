@@ -16,8 +16,10 @@
     <modules>
         <module>mms-starter</module>
         <module>mms-core</module>
-        <module>mms-biz</module>
+        <module>mms-portal</module>
         <module>mms-utils</module>
+        <module>mms-manager</module>
+        <module>mms-common</module>
     </modules>
 
 </project>

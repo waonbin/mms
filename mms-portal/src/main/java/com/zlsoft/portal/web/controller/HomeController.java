@@ -1,4 +1,4 @@
-package com.zlsoft.biz.web.controller;
+package com.zlsoft.portal.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

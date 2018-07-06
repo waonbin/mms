@@ -1,8 +1,8 @@
-package com.zlsoft.biz.web.controller;
+package com.zlsoft.portal.web.controller;
 
-import com.zlsoft.biz.Constants;
-import com.zlsoft.biz.domain.Member;
-import com.zlsoft.biz.service.MemberService;
+import com.zlsoft.portal.Constants;
+import com.zlsoft.portal.domain.Member;
+import com.zlsoft.portal.service.MemberService;
 import com.zlsoft.utils.MD5Util;
 import com.zlsoft.utils.web.controller.BaseController;
 import org.springframework.http.HttpStatus;

@@ -1,8 +1,8 @@
-package com.zlsoft.biz.service.impl;
+package com.zlsoft.portal.service.impl;
 
-import com.zlsoft.biz.domain.Member;
-import com.zlsoft.biz.repository.MemberRepository;
-import com.zlsoft.biz.service.MemberService;
+import com.zlsoft.portal.domain.Member;
+import com.zlsoft.portal.repository.MemberRepository;
+import com.zlsoft.portal.service.MemberService;
 import com.zlsoft.utils.service.impl.BaseSimpleService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

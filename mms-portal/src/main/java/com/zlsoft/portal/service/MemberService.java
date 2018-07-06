@@ -1,6 +1,6 @@
-package com.zlsoft.biz.service;
+package com.zlsoft.portal.service;
 
-import com.zlsoft.biz.domain.Member;
+import com.zlsoft.portal.domain.Member;
 import com.zlsoft.utils.service.SimpleService;
 
 import java.util.List;

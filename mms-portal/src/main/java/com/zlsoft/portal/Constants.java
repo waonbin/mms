@@ -1,4 +1,4 @@
-package com.zlsoft.biz;
+package com.zlsoft.portal;
 
 public class Constants {
 

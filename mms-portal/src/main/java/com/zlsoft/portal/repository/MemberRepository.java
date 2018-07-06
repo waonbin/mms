@@ -1,6 +1,6 @@
-package com.zlsoft.biz.repository;
+package com.zlsoft.portal.repository;
 
-import com.zlsoft.biz.domain.Member;
+import com.zlsoft.portal.domain.Member;
 import com.zlsoft.utils.repository.BaseRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
