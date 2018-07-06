@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -93,13 +94,14 @@ public class MemberController extends BaseController {
     /**
      * GET  /personal_information : get personal information page
      * @param session the HTTP Session
-     * @return personal information page
-     * @throws URISyntaxException
+     * @return personal information page with data
      */
     @RequestMapping(value = "/personal_information", method = RequestMethod.GET)
-    public ResponseEntity info(HttpSession session) throws URISyntaxException {
+    public ModelAndView info(HttpSession session) {
         Member member = (Member) session.getAttribute(Constants.SESSION_USER);
-        return ResponseEntity.created(new URI("/member/personal_information")).body(member);
+        ModelAndView mav = new ModelAndView("/member/personal_information");
+        mav.addObject("member", member);
+        return mav;
     }
 
     /**

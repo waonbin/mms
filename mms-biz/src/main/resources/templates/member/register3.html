@@ -1,18 +1,17 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <title>用户注册-中国体视学学会会员服务系统</title>
-    <link rel="stylesheet" type="text/css" href="css/public.css" />
-    <link rel="stylesheet" type="text/css" href="css/vice.css" />
-
+    <link rel="stylesheet" type="text/css" th:href="@{{path}/css/public.css(path=${#request.getContextPath()})}" />
+    <link rel="stylesheet" type="text/css" th:href="@{{path}/css/vice.css(path=${#request.getContextPath()})}" />
 </head>
 
 <body>
     <div class="header_top crd_h">
         <div class="header">
             <a href="../index.html" class="logo">
-                <img src="images/logo.png" /></a>
+                <img th:src="@{{path}/images/logo.png(path=${#request.getContextPath()})}" /></a>
             <div class="right_f">
                 <p><a href="#">English</a><a href="#">中文版</a></p>
                 <a href="../index.html" class="home">首页</a>
@@ -21,15 +20,15 @@
     </div>
 
     <div class="banner_c">
-        <img src="images/register.png" /></div>
+        <img th:src="@{{path}/images/register.png(path=${#request.getContextPath()})}" /></a></div>
     <div class="r_cen">
         <div class="reg_c">
             <h4>会员注册</h4>
             <h5>已有账号？<a href="login.html">立即登录</a></h5>
             <p class="lc_bg">
-                 <img src="images/liuc_3.png" /> </p>
+                 <img th:src="@{{path}/images/liuc_3.png(path=${#request.getContextPath()})}" /></p>
             <div class="fonts">
-                <img src="images/cheg.png" />
+                <img th:src="@{{path}/images/cheg.png(path=${#request.getContextPath()})}" />
                 <h4>注册成功</h4>
                 <a href="personal_pay.html" class="xuf">立即缴费成为学会会员</a>
                 <a href="../index.html" class="homes">返回首页</a>

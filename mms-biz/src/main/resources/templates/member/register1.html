@@ -1,11 +1,11 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <title>用户注册-中国体视学学会会员服务系统</title>
-    <link rel="stylesheet" type="text/css" href="/css/public.css" />
-    <link rel="stylesheet" type="text/css" href="/css/vice.css" />
-    <link rel="stylesheet" type="text/css" href="/css/src/register.css" />
+    <link rel="stylesheet" type="text/css" th:href="@{{path}/css/public.css(path=${#request.getContextPath()})}" />
+    <link rel="stylesheet" type="text/css" th:href="@{{path}/css/vice.css(path=${#request.getContextPath()})}" />
+    <link rel="stylesheet" type="text/css" th:href="@{{path}/css/src/register.css(path=${#request.getContextPath()})}" />
     <!-- import CSS -->
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 </head>
@@ -14,7 +14,7 @@
 <div class="header_top crd_h">
     <div class="header">
         <a href="../index.html" class="logo">
-            <img src="/images/logo.png" /></a>
+            <img th:src="@{{path}/images/logo.png(path=${#request.getContextPath()})}" /></a></a>
         <div class="right_f">
             <p><a href="#">English</a><a href="#">中文版</a></p>
             <a href="../index.html" class="home">首页</a>
@@ -23,7 +23,7 @@
 </div>
 
 <div class="banner_c">
-    <img src="/images/register.png" />
+    <img th:src="@{{path}/images/register.png(path=${#request.getContextPath()})}" /></a>
 </div>
 <div class="r_cen" id="register">
     <div class="reg_c">
@@ -233,10 +233,8 @@
     技术支持：北京智联软件技术有限公司
 </div>
 </body>
-<script src="/js/jquery-1.7.1.min.js"></script>
-<!-- import Vue before Element -->
-<script src="/js/vue.js"></script>
-<!-- import JavaScript -->
-<script src="/js/element/index.js"></script>
-<script src="/js/src/register.js"></script>
+<script th:src="@{{path}/js/jquery-1.7.1.min.js(path=${#request.getContextPath()})}"></script>
+<script th:src="@{{path}/js/vue.js(path=${#request.getContextPath()})}"></script>
+<script th:src="@{{path}/js/element/index.js(path=${#request.getContextPath()})}"></script>
+<script th:src="@{{path}/js/src/register.js(path=${#request.getContextPath()})}"></script>
 </html>

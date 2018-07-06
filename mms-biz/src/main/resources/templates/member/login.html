@@ -1,18 +1,18 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <title>用户登录</title>
-    <link rel="stylesheet" type="text/css" href="css/public.css" />
-    <link rel="stylesheet" type="text/css" href="css/vice.css" />
-    <link rel="stylesheet" type="text/css" href="css/base.css" />
+    <link rel="stylesheet" type="text/css" th:href="@{{path}/css/public.css(path=${#request.getContextPath()})}" />
+    <link rel="stylesheet" type="text/css" th:href="@{{path}/css/vice.css(path=${#request.getContextPath()})}" />
+    <link rel="stylesheet" type="text/css" th:href="@{{path}/css/base.css(path=${#request.getContextPath()})}" />
 </head>
 
 <body>
     <div class="header_top crd_h">
         <div class="header">
             <a href="../index.html" class="logo">
-                <img src="images/logo.png" /></a>
+                <img th:src="@{{path}/images/logo.png(path=${#request.getContextPath()})}" /></a>
             <div class="right_f">
                 <p><a href="#">English</a><a href="#">中文版</a></p>
                 <a href="../index.html" class="home">首页</a>
@@ -49,9 +49,10 @@
         技术支持：北京智联软件技术有限公司
     </div>
 </body>
-<script src="/js/jquery-1.7.1.min.js"></script>
-<script src="js/src/base.js"></script>
-<script src="js/vue.js"></script>
-<script src="/plugins/js/verificationCode.js"></script>
-<script src="js/src/login.js"></script>
+<script th:src="@{{path}/js/jquery-1.7.1.min.js(path=${#request.getContextPath()})}"></script>
+<script th:src="@{{path}/js/base.js(path=${#request.getContextPath()})}"></script>
+<script th:src="@{{path}/js/vue.js(path=${#request.getContextPath()})}"></script>
+<script th:src="@{{path}/plugins/js/verificationCode.js(path=${#request.getContextPath()})}"></script>
+<script th:src="@{{path}/js/src/login.js(path=${#request.getContextPath()})}"></script>
+
 </html>
