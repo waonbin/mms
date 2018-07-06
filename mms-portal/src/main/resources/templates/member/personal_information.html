@@ -6,203 +6,233 @@
     <link rel="stylesheet" type="text/css" th:href="@{{path}/css/public.css(path=${#request.getContextPath()})}" />
     <link rel="stylesheet" type="text/css" th:href="@{{path}/css/vice.css(path=${#request.getContextPath()})}" />
     <link rel="stylesheet" type="text/css" th:href="@{{path}/css/new.css(path=${#request.getContextPath()})}" />
+    <link rel="stylesheet" type="text/css" th:href="@{{path}/css/base.css(path=${#request.getContextPath()})}" />
 </head>
 
 <body>
-    <div class="header_top crd_h">
-        <div class="header">
-            <a href="index.html" class="logo">
-                <img th:src="@{{path}/images/logo.png(path=${#request.getContextPath()})}" /></a>
-            <div class="right_f">
-                <p><a href="#">English</a><a href="#">中文版</a></p>
-                <a href="index.html" class="home">首页</a>
+    <div id="information">
+        <div class="header_top crd_h">
+            <div class="header">
+                <a href="index.html" class="logo">
+                    <img th:src="@{{path}/images/logo.png(path=${#request.getContextPath()})}" /></a>
+                <div class="right_f">
+                    <p><a href="#">English</a><a href="#">中文版</a></p>
+                    <a href="index.html" class="home">首页</a>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="banner_c">
-        <img th:src="@{{path}/images/grzx.png(path=${#request.getContextPath()})}" />
-    </div>
-    <div class="personal">
-        <div class="per">
-            <div class="per_left">
-                <div class="p_tit">
-                    <div class="tx_img">
-                        <i></i>
-                        <img th:src="@{{path}/images/big.jpg(path=${#request.getContextPath()})}" />
-                    </div>
-                    <div class="name_f">
-                        <div class="name_c">
-                            <h4>张三丰</h4>
-                            <a href="login.html">退出</a>
+        <div class="banner_c">
+            <img th:src="@{{path}/images/grzx.png(path=${#request.getContextPath()})}" />
+        </div>
+        <div class="personal">
+            <div class="per">
+                <div class="per_left">
+                    <div class="p_tit">
+                        <div class="tx_img">
+                            <i></i>
+                            <img th:src="@{{path}/images/big.jpg(path=${#request.getContextPath()})}" />
                         </div>
-                        <b>会员类型：普通会员</b> <b>有效期：2018-01-19</b>
+                        <div class="name_f">
+                            <div class="name_c">
+                                <h4>{{message.name}}</h4>
+                                <a href="login.html">退出</a>
+                            </div>
+                            <b>会员类型：普通会员</b> <b>有效期：2018-01-19</b>
+                        </div>
                     </div>
-                </div>
-                <ul>
-                    <li class="cur"><a href="personal_information.html"><i>
-                        <img th:src="@{{path}/images/gr_icon.png(path=${#request.getContextPath()})}" width="24" height="23" /></i>个人资料</a> </li>
-                    <li><a href="personal_edit.html"><i>
-                        <img th:src="@{{path}/images/bj_icon.png(path=${#request.getContextPath()})}" width="24" height="23" /></i>编辑资料</a> </li>
-                    <li><a href="membercard.html"><i>
-                        <img th:src="@{{path}/images/mony_icon.png(path=${#request.getContextPath()})}" width="24" height="23" /></i>电子会员证</a> </li>
-                    <li><a href="personal_payment.html"><i>
-                        <img th:src="@{{path}/images/list_icon.png(path=${#request.getContextPath()})}" width="24" height="23" /></i>缴费列表</a> </li>
-                    <li><a href="personal_revise.html"><i>
-                        <img th:src="@{{path}/images/key_icon.png(path=${#request.getContextPath()})}" width="24" height="23" /></i>修改密码</a> </li>
-                </ul>
-            </div>
-            <div class="per_right">
-                <div class="key">
-                    <h4>个人资料详细</h4>
-                </div>
-                <div class="notip">
-                </div>
-                <div class="l_inp">
                     <ul>
-                        <li>
-                            <font>会员名称：</font>
-                            <em>白一通
-                            </em>
-                        </li>
-                        <li>
-                            <font>会员编号：</font>
-                            <em>S110000001M
-                            </em>
-                        </li>
-                        <li class="sex">
-                            <font>性别：</font>
-                            <em>男
-                            </em>
-                        </li>
-                        <li>
-                            <font>毕业学校：</font>
-                            <em>北京大学
-                            </em>
-                        </li>
-                        <li>
-                            <font>党派信息：</font>
-                            <em>中共党员
-                            </em>
-                        </li>
-                        <li>
-                            <font>工作单位：</font>
-                            <em>北京大学
-                            </em>
-                        </li>
-                        <li class="zd_f"><font>职称/等级：</font>
-                            <em>高级
-                                /中级
-                            </em>
-
-                        </li>
+                        <li class="cur"><a href="personal_information.html"><i>
+                            <img th:src="@{{path}/images/gr_icon.png(path=${#request.getContextPath()})}" width="24" height="23" /></i>个人资料</a> </li>
+                        <li><a href="personal_edit.html"><i>
+                            <img th:src="@{{path}/images/bj_icon.png(path=${#request.getContextPath()})}" width="24" height="23" /></i>编辑资料</a> </li>
+                        <li><a href="membercard.html"><i>
+                            <img th:src="@{{path}/images/mony_icon.png(path=${#request.getContextPath()})}" width="24" height="23" /></i>电子会员证</a> </li>
+                        <li><a href="personal_payment.html"><i>
+                            <img th:src="@{{path}/images/list_icon.png(path=${#request.getContextPath()})}" width="24" height="23" /></i>缴费列表</a> </li>
+                        <li><a href="personal_revise.html"><i>
+                            <img th:src="@{{path}/images/key_icon.png(path=${#request.getContextPath()})}" width="24" height="23" /></i>修改密码</a> </li>
                     </ul>
                 </div>
-                <div class="l_inp">
-                    <ul>
-                        <li><font>会员类型：</font>
-                            <em>普通会员
-                            </em>
-                        </li>
-                        <li><font>有效期至：</font>
-                            <em>2019-05-07
-                            </em>
-                        </li>
-                        <li>
-                            <font>出生日期：</font>
-                            <em>2018-05-22
-                            </em>
-                        </li>
-                        <li>
-                            <font>所学专业：</font>
-                            <em>地理资源
-                            </em>
-                        </li>
-                        <li>
-                            <font>工作性质：</font>
-                            <em>管理
-                            </em>
-                        </li>
-                        <li>
-                            <font>工作专业：</font>
-                            <em>地理教师
-                            </em>
-                        </li>
-                        <li>
-                            <font>学历：</font>
-                            <em>博士
-                            </em>
-                        </li>
-                    </ul>
-                </div>
-                <div style="clear: both"></div>
-                <ul class="aed">
-                    <li><font>业务成绩：</font>
-                        <em>无
-                        </em>
-                    </li>
-                </ul>
-                <div class="l_inp">
-                    <ul>
-                        <li>
-                            <font>手机号：</font>
-                            <em>13511111111
-                            </em>
-                        </li>
-                        <li>
-                            <font>QQ：</font>
-                            <em>100001
-                            </em>
-                        </li>
+                <div class="per_right">
+                    <div class="key">
+                        <h4>个人资料详细</h4>
+                    </div>
+                    <div class="notip">
+                    </div>
+                    <div class="l_inp">
+                        <ul>
+                            <li>
+                                <font>会员名称：</font>
+                                <em>{{message.name}}
+                                </em>
+                            </li>
+                            <li>
+                                <font>会员编号：</font>
+                                <em>{{message.memberNo}}
+                                </em>
+                            </li>
+                            <li class="sex">
+                                <font>性别：</font>
+                                <em>{{message.gender === 1?'男':'女'}}
+                                </em>
+                            </li>
+                            <!--自己加的-->
+                            <li class="sex">
+                                <font>民族：</font>
+                                <em>{{message.nationality}}
+                                </em>
+                            </li>
+                            <li>
+                                <font>研究领域：</font>
+                                <em>{{message.researchField}}
+                                </em>
+                            </li>
+                            <li>
+                                <font>推荐单位：</font>
+                                <em>{{message.reference===1?'CT理论及应用分会':'材料科学分会'}}
+                                </em>
+                            </li>
+                            <!--自己假的-->
+                            <!--<li>-->
+                                <!--<font>毕业学校：</font>-->
+                                <!--<em>北京大学-->
+                                <!--</em>-->
+                            <!--</li>-->
+                            <li>
+                                <font>党派信息：</font>
+                                <em>{{message.partisan === 1?'中共党员':'群众'}}
+                                </em>
+                            </li>
+                            <li>
+                                <font>工作单位：</font>
+                                <em>{{message.company}}
+                                </em>
+                            </li>
+                            <li class="zd_f"><font>职称/等级：</font>
+                                <em>{{message.title}}
+                                </em>
 
-                        <li>
-                            <font>传真：</font>
-                            <em>010-4356540
-                            </em>
-                        </li>
-                        <li>
-                            <font>邮编：</font>
-                            <em>100001
-                            </em>
-                        </li>
-                    </ul>
-                </div>
-                <div class="l_inp">
-                    <ul>
-                        <li>
-                            <font>电子邮箱：</font>
-                            <em>13511111111@qq.com
-                            </em>
-                        </li>
-                        <li>
-                            <font>微信：</font>
-                            <em>100001
-                            </em>
-                        </li>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="l_inp">
+                        <ul>
+                            <li><font>会员类型：</font>
+                                <em>{{message.memberType | memberType}}
+                                </em>
+                            </li>
+                            <!--<li><font>有效期至：</font>-->
+                                <!--<em>2019-05-07-->
+                                <!--</em>-->
+                            <!--</li>-->
+                            <li>
+                                <font>出生日期：</font>
+                                <em>{{message.birthday}}
+                                </em>
+                            </li>
+                            <li>
+                                <font>所学专业：</font>
+                                <em>{{message.major}}
+                                </em>
+                            </li>
+                            <!--<li>-->
+                                <!--<font>工作性质：</font>-->
+                                <!--<em>管理-->
+                                <!--</em>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<font>工作专业：</font>-->
+                                <!--<em>地理教师-->
+                                <!--</em>-->
+                            <!--</li>-->
+                            <li>
+                                <font>学历：</font>
+                                <em>{{message.education}}
+                                </em>
+                            </li>
+                            <li>
+                                <font>电子邮箱：</font>
+                                <em>{{message.email}}
+                                </em>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="clear: both"></div>
+                    <!--<ul class="aed">-->
+                        <!--<li><font>业务成绩：</font>-->
+                            <!--<em>无-->
+                            <!--</em>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                    <div class="l_inp">
+                        <ul>
+                            <li>
+                                <font>手机号：</font>
+                                <em>{{message.mobile}}
+                                </em>
+                            </li>
+                            <!--<li>-->
+                                <!--<font>QQ：</font>-->
+                                <!--<em>100001-->
+                                <!--</em>-->
+                            <!--</li>-->
 
-                        <li>
-                            <font>办公电话：</font>
-                            <em>010-4356540
-                            </em>
-                        </li>
+                            <!--<li>-->
+                                <!--<font>传真：</font>-->
+                                <!--<em>010-4356540-->
+                                <!--</em>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<font>邮编：</font>-->
+                                <!--<em>100001-->
+                                <!--</em>-->
+                            <!--</li>-->
+                        </ul>
+                    </div>
+                    <div class="l_inp">
+                        <ul>
+                            <!--<li>-->
+                                <!--<font>电子邮箱：</font>-->
+                                <!--<em>{{message.email}}-->
+                                <!--</em>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<font>微信：</font>-->
+                                <!--<em>100001-->
+                                <!--</em>-->
+                            <!--</li>-->
 
-                    </ul>
+                            <!--<li>-->
+                                <!--<font>办公电话：</font>-->
+                                <!--<em>010-4356540-->
+                                <!--</em>-->
+                            <!--</li>-->
+
+                        </ul>
+                    </div>
+                    <div style="clear: both"></div>
+                    <!--<ul class="aed">-->
+                        <!--<li class="add">-->
+                            <!--<font>通讯地址：</font>-->
+                            <!--<em class="dex">内蒙古自治区秦皇岛市昌平区-->
+                            <!--</em>-->
+                    <!--</ul>-->
+                    <div style="clear: both"></div>
                 </div>
-                <div style="clear: both"></div>
-                <ul class="aed">
-                    <li class="add">
-                        <font>通讯地址：</font>
-                        <em class="dex">内蒙古自治区秦皇岛市昌平区
-                        </em>
-                </ul>
-                <div style="clear: both"></div>
             </div>
         </div>
-    </div>
-    <div class="fot_w2">
-        Copyright © 2009-2018 中国体视学学会 版权所有 京ICP备10033108 
-        <br />
-        京公网安备110108007550号<br />
-        技术支持：北京智联软件技术有限公司
+        <div class="fot_w2">
+            Copyright © 2009-2018 中国体视学学会 版权所有 京ICP备10033108
+            <br />
+            京公网安备110108007550号<br />
+            技术支持：北京智联软件技术有限公司
+        </div>
     </div>
 </body>
+<script th:src="@{{path}/js/jquery-1.7.1.min.js(path=${#request.getContextPath()})}"></script>
+<script th:src="@{{path}/js/vue.js(path=${#request.getContextPath()})}"></script>
+<script th:inline="javascript">
+    window.message = [[${member}]];
+</script>
+<script th:src="@{{path}/js/src/personal-information.js(path=${#request.getContextPath()})}"></script>
 </html>

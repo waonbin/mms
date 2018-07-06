@@ -53,6 +53,7 @@
               } else if (this.code.toLocaleLowerCase() !== code) {
                   this.tip = true;
                   this.tipContent = "验证码不正确";
+                  draw('canvas');
                   return;
               } else {
                   this.tip = false;
