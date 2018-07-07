@@ -60,4 +60,15 @@ public class LoginController {
 
         }
     }
+
+    /**
+     * GET  /logout : user logout
+     * @param session the HTTP Session
+     * @return user login page
+     */
+    @RequestMapping(value = "logout", method = RequestMethod.GET)
+    public String logout(HttpSession session){
+        session.removeAttribute(Constants.SESSION_USER);
+        return "/index";
+    }
 }
