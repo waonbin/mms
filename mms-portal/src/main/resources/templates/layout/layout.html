@@ -1,0 +1,30 @@
+<div th:fragment="layout">
+    <div class="per_left" >
+        <div class="p_tit">
+            <div class="tx_img">
+                <i></i>
+                <img th:src="@{{path}/images/big.jpg(path=${#request.getContextPath()})}" />
+            </div>
+            <div class="name_f">
+                <div class="name_c">
+                    <h4>{{name}}</h4>
+                    <a href="/logout">退出</a>
+                </div>
+                <b>会员类型：普通会员</b> <b>有效期：2018-01-19</b>
+            </div>
+        </div>
+        <ul>
+            <li class="cur"><a href="personal_information.html"><i>
+                <img th:src="@{{path}/images/gr_icon.png(path=${#request.getContextPath()})}" width="24" height="23" /></i>个人资料</a> </li>
+            <li><a href="personal_edit.html"><i>
+                <img th:src="@{{path}/images/bj_icon.png(path=${#request.getContextPath()})}" width="24" height="23" /></i>编辑资料</a> </li>
+            <li><a href="membercard.html"><i>
+                <img th:src="@{{path}/images/mony_icon.png(path=${#request.getContextPath()})}" width="24" height="23" /></i>电子会员证</a> </li>
+            <li><a href="personal_payment.html"><i>
+                <img th:src="@{{path}/images/list_icon.png(path=${#request.getContextPath()})}" width="24" height="23" /></i>缴费列表</a> </li>
+            <li><a href="personal_revise.html"><i>
+                <img th:src="@{{path}/images/key_icon.png(path=${#request.getContextPath()})}" width="24" height="23" /></i>修改密码</a> </li>
+        </ul>
+    </div>
+</div>
+

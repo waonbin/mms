@@ -15,6 +15,7 @@ $(function() {
                 }
             }
         },
+
         methods: {
             getDate: function() {
                 this.message = message || {};
