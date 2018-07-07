@@ -111,9 +111,11 @@ public class MemberController extends BaseController {
      * @throws URISyntaxException
      */
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public ResponseEntity edit(HttpSession session) throws URISyntaxException {
+    public ModelAndView edit(HttpSession session) {
         Member member = (Member) session.getAttribute(Constants.SESSION_USER);
-        return ResponseEntity.created(new URI("/member/personal_edit")).body(member);
+        ModelAndView mav = new ModelAndView("/member/personal_edit");
+        mav.addObject("member", member);
+        return mav;
     }
 
     /**
