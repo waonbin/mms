@@ -18,6 +18,20 @@ $(function() {
         methods: {
             getDate: function() {
                 this.message = message || {};
+            },
+            logout: function() {
+                this.$alert('确定退出？', '提示', {
+                    confirmButtonText: '确定',
+                    callback: action => {
+                        $.ajax({
+                            url:'/logout'
+                        }).done(function(data, status, xhr) {
+                            location.href='/logout'
+                            // var url = xhr.getResponseHeader('Location');
+                            // document.location = url;
+                        })
+                    }
+                });
             }
         },
         mounted: function () {

@@ -7,6 +7,8 @@
     <link rel="stylesheet" type="text/css" th:href="@{{path}/css/vice.css(path=${#request.getContextPath()})}" />
     <link rel="stylesheet" type="text/css" th:href="@{{path}/css/new.css(path=${#request.getContextPath()})}" />
     <link rel="stylesheet" type="text/css" th:href="@{{path}/css/base.css(path=${#request.getContextPath()})}" />
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 </head>
 
 <body>
@@ -34,8 +36,8 @@
                         </div>
                         <div class="name_f">
                             <div class="name_c">
-                                <h4>{{message.name}}</h4>
-                                <a href="login.html">退出</a>
+                                <h4 v-cloak>{{message.name}}</h4>
+                                <a href="/logout">退出</a>
                             </div>
                             <b>会员类型：普通会员</b> <b>有效期：2018-01-19</b>
                         </div>
@@ -63,53 +65,52 @@
                         <ul>
                             <li>
                                 <font>会员名称：</font>
-                                <em>{{message.name}}
+                                <em v-cloak>{{message.name}}
                                 </em>
                             </li>
                             <li>
                                 <font>会员编号：</font>
-                                <em>{{message.memberNo}}
+                                <em v-cloak>{{message.memberNo}}
                                 </em>
                             </li>
                             <li class="sex">
                                 <font>性别：</font>
-                                <em>{{message.gender === 1?'男':'女'}}
+                                <em v-cloak>{{message.gender === 1?'男':'女'}}
                                 </em>
                             </li>
                             <!--自己加的-->
                             <li class="sex">
                                 <font>民族：</font>
-                                <em>{{message.nationality}}
+                                <em v-cloak>{{message.nationality}}
                                 </em>
                             </li>
                             <li>
                                 <font>研究领域：</font>
-                                <em>{{message.researchField}}
+                                <em v-cloak>{{message.researchField}}
                                 </em>
                             </li>
                             <li>
                                 <font>推荐单位：</font>
-                                <em>{{message.reference===1?'CT理论及应用分会':'材料科学分会'}}
+                                <em v-cloak>{{message.reference===1?'CT理论及应用分会':'材料科学分会'}}
                                 </em>
                             </li>
-                            <!--自己假的-->
-                            <!--<li>-->
-                                <!--<font>毕业学校：</font>-->
-                                <!--<em>北京大学-->
-                                <!--</em>-->
-                            <!--</li>-->
+                            <li>
+                                <font>毕业学校：</font>
+                                <em>
+                                </em>
+                            </li>
                             <li>
                                 <font>党派信息：</font>
-                                <em>{{message.partisan === 1?'中共党员':'群众'}}
+                                <em v-cloak>{{message.partisan === 1?'中共党员':'群众'}}
                                 </em>
                             </li>
                             <li>
                                 <font>工作单位：</font>
-                                <em>{{message.company}}
+                                <em v-cloak>{{message.company}}
                                 </em>
                             </li>
                             <li class="zd_f"><font>职称/等级：</font>
-                                <em>{{message.title}}
+                                <em v-cloak>{{message.title}}
                                 </em>
 
                             </li>
@@ -118,105 +119,101 @@
                     <div class="l_inp">
                         <ul>
                             <li><font>会员类型：</font>
-                                <em>{{message.memberType | memberType}}
+                                <em v-cloak>{{message.memberType | memberType}}
                                 </em>
                             </li>
-                            <!--<li><font>有效期至：</font>-->
-                                <!--<em>2019-05-07-->
-                                <!--</em>-->
-                            <!--</li>-->
+                            <li><font>有效期至：</font>
+                                <em>
+                                </em>
+                            </li>
                             <li>
                                 <font>出生日期：</font>
-                                <em>{{message.birthday}}
+                                <em v-cloak>{{message.birthday}}
                                 </em>
                             </li>
                             <li>
                                 <font>所学专业：</font>
-                                <em>{{message.major}}
+                                <em v-cloak>{{message.major}}
                                 </em>
                             </li>
-                            <!--<li>-->
-                                <!--<font>工作性质：</font>-->
-                                <!--<em>管理-->
-                                <!--</em>-->
-                            <!--</li>-->
-                            <!--<li>-->
-                                <!--<font>工作专业：</font>-->
-                                <!--<em>地理教师-->
-                                <!--</em>-->
-                            <!--</li>-->
+                            <li>
+                                <font>工作性质：</font>
+                                <em>
+                                </em>
+                            </li>
+                            <li>
+                                <font>工作专业：</font>
+                                <em>
+                                </em>
+                            </li>
                             <li>
                                 <font>学历：</font>
-                                <em>{{message.education}}
+                                <em v-cloak>{{message.education}}
                                 </em>
                             </li>
                             <li>
                                 <font>电子邮箱：</font>
-                                <em>{{message.email}}
+                                <em v-cloak>{{message.email}}
+                                </em>
+                            </li>
+                            <li>
+                                <font>微信：</font>
+                                <em>
+                                </em>
+                            </li>
+
+                            <li>
+                                <font>办公电话：</font>
+                                <em>
                                 </em>
                             </li>
                         </ul>
                     </div>
                     <div style="clear: both"></div>
-                    <!--<ul class="aed">-->
-                        <!--<li><font>业务成绩：</font>-->
-                            <!--<em>无-->
-                            <!--</em>-->
-                        <!--</li>-->
-                    <!--</ul>-->
+                    <ul class="aed">
+                        <li><font>业务成绩：</font>
+                            <em>
+                            </em>
+                        </li>
+                    </ul>
                     <div class="l_inp">
                         <ul>
                             <li>
                                 <font>手机号：</font>
-                                <em>{{message.mobile}}
+                                <em v-cloak>{{message.mobile}}
                                 </em>
                             </li>
-                            <!--<li>-->
-                                <!--<font>QQ：</font>-->
-                                <!--<em>100001-->
-                                <!--</em>-->
-                            <!--</li>-->
+                            <li>
+                                <font>QQ：</font>
+                                <em>
+                                </em>
+                            </li>
 
-                            <!--<li>-->
-                                <!--<font>传真：</font>-->
-                                <!--<em>010-4356540-->
-                                <!--</em>-->
-                            <!--</li>-->
-                            <!--<li>-->
-                                <!--<font>邮编：</font>-->
-                                <!--<em>100001-->
-                                <!--</em>-->
-                            <!--</li>-->
+                            <li>
+                                <font>传真：</font>
+                                <em>
+                                </em>
+                            </li>
+                            <li>
+                                <font>邮编：</font>
+                                <em>
+                                </em>
+                            </li>
                         </ul>
                     </div>
                     <div class="l_inp">
                         <ul>
-                            <!--<li>-->
-                                <!--<font>电子邮箱：</font>-->
-                                <!--<em>{{message.email}}-->
-                                <!--</em>-->
-                            <!--</li>-->
-                            <!--<li>-->
-                                <!--<font>微信：</font>-->
-                                <!--<em>100001-->
-                                <!--</em>-->
-                            <!--</li>-->
 
-                            <!--<li>-->
-                                <!--<font>办公电话：</font>-->
-                                <!--<em>010-4356540-->
-                                <!--</em>-->
-                            <!--</li>-->
 
                         </ul>
                     </div>
                     <div style="clear: both"></div>
-                    <!--<ul class="aed">-->
-                        <!--<li class="add">-->
-                            <!--<font>通讯地址：</font>-->
-                            <!--<em class="dex">内蒙古自治区秦皇岛市昌平区-->
-                            <!--</em>-->
-                    <!--</ul>-->
+                    <ul class="aed">
+                        <li class="add">
+                            <font>通讯地址：</font>
+                            <em class="dex">
+                            </em>
+                    </ul>
                     <div style="clear: both"></div>
                 </div>
             </div>
@@ -234,5 +231,6 @@
 <script th:inline="javascript">
     window.message = [[${member}]];
 </script>
+<script th:src="@{{path}/js/element/index.js(path=${#request.getContextPath()})}"></script>
 <script th:src="@{{path}/js/src/personal-information.js(path=${#request.getContextPath()})}"></script>
 </html>
