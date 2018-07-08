@@ -25,7 +25,7 @@ public class PaymentController {
     public ModelAndView paymentCheck() {
 
         List<Payment> payments = this.paymentService.findAll();
-        ModelAndView mav = new ModelAndView("/admin/member/payment_check");
+        ModelAndView mav = new ModelAndView("/admin/finance/payment_check");
         mav.addObject("payments", payments);
 
         return mav;
@@ -39,7 +39,7 @@ public class PaymentController {
     public ModelAndView memberPayments() {
 
         List<Payment> payments = this.paymentService.findAll();
-        ModelAndView mav = new ModelAndView("/admin/member/member_payments");
+        ModelAndView mav = new ModelAndView("/admin/finance/member_payments");
         mav.addObject("payments", payments);
 
         return mav;
