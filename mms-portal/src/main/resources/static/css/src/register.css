@@ -8,28 +8,3 @@
     font-size: 16px !important;
 }
 
-.el-radio__input.is-checked .el-radio__inner {
-    border-color: #642b91 !important;
-    background: #642b91 !important;
-}
-
-.el-radio__input.is-checked+.el-radio__label {
-    color: #642b91 !important;
-}
-
-.el-button--primary.submitBtn {
-    width: 195px;
-    color: #fff;
-    background-color: #642b91;
-    border-color: #642b91;
-}
-
-.el-button--primary:focus,.el-button--primary:hover {
-    background-color: #642b91 !important;
-    border-color: #642b91 !important;
-}
-
-.el-button--primary.is-active,.el-button--primary:active {
-    background-color: #642b91 !important;
-    border-color: #642b91 !important;
-}

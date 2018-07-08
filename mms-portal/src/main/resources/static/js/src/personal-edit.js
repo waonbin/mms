@@ -88,6 +88,7 @@ $(function() {
            message.gender = message.gender.toString();
            message.memberType = message.memberType.toString();
            message.partisan= message.partisan.toString();
+           message.birthday= new Date(message.birthday);
            this.registerValidateForm = message;
        }
    })
