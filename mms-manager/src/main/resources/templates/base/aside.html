@@ -11,7 +11,7 @@
                     <!--<h4 class="m-menu__section-text">会员管理</h4>-->
                     <!--<i class="m-menu__section-icon flaticon-more-v3"></i>-->
                 <!--</li>-->
-                <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+                <li id="member_menu" class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
                     <a href="javascript:;" class="m-menu__link m-menu__toggle">
                         <span class="m-menu__item-here"></span>
                         <i class="m-menu__link-icon flaticon-layers"></i>
@@ -21,19 +21,19 @@
                     <div class="m-menu__submenu ">
                         <span class="m-menu__arrow"></span>
                         <ul class="m-menu__subnav">
-                            <li class="m-menu__item " aria-haspopup="true">
+                            <li id="person_member" class="m-menu__item " aria-haspopup="true">
                                 <a th:href="@{{path}/admin/member/individual_members(path=${#request.getContextPath()})}" class="m-menu__link ">
                                     <i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i>
                                     <span class="m-menu__link-text">个人会员管理</span>
                                 </a>
                             </li>
-                            <li class="m-menu__item " aria-haspopup="true" m-menu-link-redirect="1">
+                            <li id="group_member" class="m-menu__item " aria-haspopup="true" m-menu-link-redirect="1">
                                 <a th:href="@{{path}/admin/member/group_members(path=${#request.getContextPath()})}" class="m-menu__link ">
                                     <i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i>
                                     <span class="m-menu__link-text">团体会员管理</span>
                                 </a>
                             </li>
-                            <li class="m-menu__item " aria-haspopup="true" m-menu-link-redirect="1">
+                            <li id=register_member"" class="m-menu__item " aria-haspopup="true" m-menu-link-redirect="1">
                                 <a th:href="@{{path}/admin/member/register_check(path=${#request.getContextPath()})}" class="m-menu__link ">
                                     <i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i>
                                     <span class="m-menu__link-text">注册审核管理</span>
@@ -42,7 +42,7 @@
                         </ul>
                     </div>
                 </li>
-                <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+                <li id="finance_menu" class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
                     <a href="javascript:;" class="m-menu__link m-menu__toggle">
                         <span class="m-menu__item-here"></span>
                         <i class="m-menu__link-icon flaticon-layers"></i>
@@ -52,13 +52,13 @@
                     <div class="m-menu__submenu ">
                         <span class="m-menu__arrow"></span>
                         <ul class="m-menu__subnav">
-                            <li class="m-menu__item " aria-haspopup="true">
+                            <li id="payment_finance" class="m-menu__item " aria-haspopup="true">
                                 <a th:href="@{{path}/admin/payment/payment_check(path=${#request.getContextPath()})}" class="m-menu__link ">
                                     <i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i>
                                     <span class="m-menu__link-text">会员缴费审核管理</span>
                                 </a>
                             </li>
-                            <li class="m-menu__item " aria-haspopup="true" m-menu-link-redirect="1">
+                            <li id="member_finance" class="m-menu__item " aria-haspopup="true" m-menu-link-redirect="1">
                                 <a th:href="@{{path}/admin/payment/member_payments(path=${#request.getContextPath()})}" class="m-menu__link ">
                                     <i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i>
                                     <span class="m-menu__link-text">会员缴费信息管理</span>

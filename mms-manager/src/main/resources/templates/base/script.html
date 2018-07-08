@@ -1,5 +1,9 @@
 <template th:fragment="script">
-    <script src="assets/js/base/vue.js"></script>
-    <script src="assets/js/components/header.js"></script>
-    <script src="assets/js/components/aside.js"></script>
+    <script th:src="@{{path}/assets/vendors/base/vendors.bundle.js(path=${#request.getContextPath()})}" type="text/javascript"></script>
+    <script th:src="@{{path}/assets/demo/demo12/base/scripts.bundle.js(path=${#request.getContextPath()})}" type="text/javascript"></script>
+    <script th:src="@{{path}/assets/vendors/custom/fullcalendar/fullcalendar.bundle.js(path=${#request.getContextPath()})}" type="text/javascript"></script>
+
+    <script th:src="@{{path}/assets/js/base/vue.js(path=${#request.getContextPath()})}"></script>
+    <script th:src="@{{path}/assets/js/components/header.js(path=${#request.getContextPath()})}"></script>
+    <script th:src="@{{path}/assets/js/components/aside.js(path=${#request.getContextPath()})}"></script>
 </template>
