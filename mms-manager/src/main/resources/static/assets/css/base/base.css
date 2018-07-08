@@ -1,0 +1,20 @@
+.search-item {
+    float: left;
+    margin: 0 20px 20px 0;
+}
+.system-search .search-item .label {
+    float: left;
+    width: 65px;
+    margin-right: 10px;
+    line-height: 35px;
+    text-align: right;
+}
+.system-search .search-item > .el-input {
+    float: left;
+    width: 150px;
+}
+.system-search .search-item .label.zhi {
+    width: 20px;
+    text-align: center;
+    margin-inside: 0;
+}
