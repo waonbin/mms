@@ -3,75 +3,82 @@
 <head>
     <meta charset="utf-8">
     <title>修改密码-中国体视学学会会员服务系统</title>
-    <link rel="stylesheet" type="text/css" href="css/public.css" />
-    <link rel="stylesheet" type="text/css" href="css/vice.css" />
+    <link rel="stylesheet" type="text/css" th:href="@{{path}/css/public.css(path=${#request.getContextPath()})}" />
+    <link rel="stylesheet" type="text/css" th:href="@{{path}/css/vice.css(path=${#request.getContextPath()})}" />
+    <link rel="stylesheet" type="text/css" th:href="@{{path}/css/base.css(path=${#request.getContextPath()})}" />
+    <link rel="stylesheet" type="text/css" th:href="@{{path}/css/src/register.css(path=${#request.getContextPath()})}"/>
+    <!-- import CSS -->
+    <link rel="stylesheet" th:href="@{{path}/css/element/index.css(path=${#request.getContextPath()})}" >
+    <style>
+        .revise-form {
+            width: 438px;
+            margin: 50px auto;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="header_top crd_h">
-        <div class="header">
-            <a href="index.html" class="logo">
-                <img src="images/logo.png" /></a>
-            <div class="right_f">
-                <p><a href="#">English</a><a href="#">中文版</a></p>
-                <a href="index.html" class="home">首页</a>
-            </div>
-        </div>
-    </div>
-    <div class="banner_c">
-        <img src="images/grzx.png" />
-    </div>
-    <div class="personal">
-        <div class="per">
-            <div class="per_left">
-                <div class="p_tit">
-                    <div class="tx_img"><i></i>
-                        <img src="images/big.jpg" />
-                    </div>
-                    <div class="name_f">
-                        <div class="name_c">
-                            <h4>张三丰</h4>
-                            <a href="login.html">退出</a></div>
-                        <b>会员类型：普通会员</b> <b>有效期：2018-01-19</b>
-                    </div>
-                </div>
-                <ul>
-                    <li><a href="personal_information.html"><i>
-                        <img src="images/gr_icon.png" width="24" height="23" /></i>个人资料</a> </li>
-                    <li><a href="personal_edit.html"><i>
-                        <img src="images/bj_icon.png" width="24" height="23" /></i>编辑资料</a> </li>
-                    <li><a href="personal_pay.html"><i>
-                        <img src="images/mony_icon.png" width="24" height="23" /></i>电子会员证</a> </li>
-                    <li><a href="personal_payment.html"><i>
-                        <img src="images/list_icon.png" width="24" height="23" /></i>缴费列表</a> </li>
-                    <li class="cur"><a href="personal_revise.html"><i>
-                        <img src="images/key_icon.png" width="24" height="23" /></i>修改密码</a> </li>
-                </ul>
-            </div>
-            <div class="per_right">
-                <div class="key">
-                    <h4>修改密码</h4>
-                    <ul>
-                        <li><font>原密码<i>*</i></font>
-                            <input type="text" placeholder="" />
-                        </li>
-                        <li><font>新密码<i>*</i></font>
-                            <input type="text" placeholder="" />
-                        </li>
-                        <li><font>确认密码<i>*</i></font>
-                            <input type="text" placeholder="" />
-                        </li>
-                    </ul>
-                    <a href="#" class="keep">保存</a>
+    <div id="revise-content">
+        <div th:include="/layout/header::header"></div>
+        <div class="personal">
+            <div class="per">
+                <layout :name="message.name"></layout>
+                <div class="per_right">
+                    <div class="key">
+                        <h4>修改密码</h4>
+                        <!--<ul>-->
+                            <!--<li><font>原密码<i>*</i></font>-->
+                                <!--<input type="password" placeholder="" v-model.trim="old"/>-->
+                            <!--</li>-->
+                            <!--<li><font>新密码<i>*</i></font>-->
+                                <!--<input type="password" placeholder="" v-model.trim="new"/>-->
+                            <!--</li>-->
+                            <!--<li><font>确认密码<i>*</i></font>-->
+                                <!--<input type="password" placeholder="" v-model.trim="confirm"/>-->
+                            <!--</li>-->
+                        <!--</ul>-->
+                        <div class="revise-form">
+                            <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
+                                <el-form-item label="原密码"
+                                              prop="old"
+                                              :rules="[
+                                                { required: true, message: '请输入原密码', trigger: 'blur' }
+                                                ]"
+                                >
+                                    <el-input type="password" v-model="ruleForm2.old" auto-complete="off"></el-input>
+                                </el-form-item>
+                                <el-form-item label="密码" prop="pass">
+                                    <el-input type="password" v-model="ruleForm2.pass" auto-complete="off"></el-input>
+                                </el-form-item>
+                                <el-form-item label="确认密码" prop="checkPass">
+                                    <el-input type="password" v-model="ruleForm2.checkPass" auto-complete="off"></el-input>
+                                </el-form-item>
+                                <el-form-item>
+                                    <el-button type="primary" class="submitBtn" @click="submitForm('ruleForm2')">提交</el-button>
+                                    <el-button @click="resetForm('ruleForm2')">重置</el-button>
+                                </el-form-item>
+                            </el-form>
+                        </div>
+                       </div>
                 </div>
             </div>
         </div>
+        <div class="fot_w2">
+            Copyright © 2009-2018 中国体视学学会 版权所有 京ICP备10033108
+            <br />
+            京公网安备110108007550号<br />
+            技术支持：北京智联软件技术有限公司
+        </div>
     </div>
-    <div class="fot_w2">
-        Copyright © 2009-2018 中国体视学学会 版权所有 京ICP备10033108 
-        <br />
-        京公网安备110108007550号<br />
-        技术支持：北京智联软件技术有限公司
-    </div>
+    <template th:include="/layout/layout::layout" id="per_left"></template>
 </body>
+<script th:src="@{{path}/js/jquery-1.7.1.min.js(path=${#request.getContextPath()})}"></script>
+<script th:src="@{{path}/js/vue.js(path=${#request.getContextPath()})}"></script>
+<script th:inline="javascript">
+    window.message = [[${member}]];
+</script>
+<script th:src="@{{path}/js/element/index.js(path=${#request.getContextPath()})}"></script>
+<script th:src="@{{path}/js/components/layout.js(path=${#request.getContextPath()})}"></script>
+<script th:src="@{{path}/js/src/personal-revise.js(path=${#request.getContextPath()})}"></script>
+
 </html>

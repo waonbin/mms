@@ -297,7 +297,7 @@ border-radius:5px; font-size:12px; float:right; margin-left:15px;}
 .key h4,.key_hf h4{ display:block; padding-bottom:15px; border-bottom:#dfdfdf solid 1px; font-size:16px; font-weight:normal;}
 .key ul{ width:335px; margin-top:5%; margin-bottom:15%; margin-left:23%; display:block;}
 .key li{ overflow:hidden; margin-bottom:20px;}
-.key li font{ text-align:right; width:66px; line-height:35px; display:block; float:left; font-size:14px;}
+.key li font{ text-align:right; width:68px; line-height:35px; display:block; float:left; font-size:14px;}
 .key font i{ color:#F00; margin-left:3px;}
 .key li font b{ font-weight:normal; font-size:12px; line-height:20px;}
 .key li input{ width:252px; padding-left:10px; height:35px; line-height:35px; border:#dfdfdf solid 1px; float:right;

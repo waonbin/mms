@@ -22,7 +22,7 @@
                 <img th:src="@{{path}/images/mony_icon.png(path=${#request.getContextPath()})}" width="24" height="23" /></i>电子会员证</a> </li>
             <li><a href="personal_payment.html"><i>
                 <img th:src="@{{path}/images/list_icon.png(path=${#request.getContextPath()})}" width="24" height="23" /></i>缴费列表</a> </li>
-            <li><a href="personal_revise.html"><i>
+            <li class="revise-btn"><a href="/member/revise"><i>
                 <img th:src="@{{path}/images/key_icon.png(path=${#request.getContextPath()})}" width="24" height="23" /></i>修改密码</a> </li>
         </ul>
     </div>
