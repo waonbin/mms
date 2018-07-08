@@ -37,7 +37,7 @@ $(function() {
         },
         mounted: function () {
             this.getDate()
-
+            $(".info-btn").addClass('cur');
         }
     })
 });
