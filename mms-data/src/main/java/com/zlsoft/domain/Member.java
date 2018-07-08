@@ -1,4 +1,4 @@
-package com.zlsoft.portal.domain;
+package com.zlsoft.domain;
 
 import org.springframework.format.annotation.DateTimeFormat;
 

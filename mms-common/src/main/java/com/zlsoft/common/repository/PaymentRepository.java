@@ -1,6 +1,6 @@
-package com.zlsoft.portal.repository;
+package com.zlsoft.common.repository;
 
-import com.zlsoft.portal.domain.Payment;
+import com.zlsoft.domain.Payment;
 import com.zlsoft.utils.repository.BaseRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 

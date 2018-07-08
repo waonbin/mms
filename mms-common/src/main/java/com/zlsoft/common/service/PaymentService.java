@@ -1,6 +1,6 @@
-package com.zlsoft.portal.service;
+package com.zlsoft.common.service;
 
-import com.zlsoft.portal.domain.Payment;
+import com.zlsoft.domain.Payment;
 import com.zlsoft.utils.service.SimpleService;
 
 import java.util.List;

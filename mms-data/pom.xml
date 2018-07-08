@@ -9,9 +9,9 @@
   </parent>
 
   <groupId>com.zlsoft.mms</groupId>
-  <artifactId>mms-portal</artifactId>
+  <artifactId>mms-data</artifactId>
   <version>1.0.0-SNAPSHOT</version>
-  <name>mms-portal</name>
+  <name>mms-data</name>
   <url>http://maven.apache.org</url>
   <dependencies>
 
@@ -137,12 +137,6 @@
       <dependency>
           <groupId>com.zlsoft.mms</groupId>
           <artifactId>mms-utils</artifactId>
-          <version>1.0.0-SNAPSHOT</version>
-          <scope>compile</scope>
-      </dependency>
-      <dependency>
-          <groupId>com.zlsoft.mms</groupId>
-          <artifactId>mms-common</artifactId>
           <version>1.0.0-SNAPSHOT</version>
           <scope>compile</scope>
       </dependency>

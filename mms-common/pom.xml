@@ -17,7 +17,7 @@
 
     <dependency>
       <groupId>com.zlsoft.mms</groupId>
-      <artifactId>mms-core</artifactId>
+      <artifactId>mms-data</artifactId>
       <version>1.0.0-SNAPSHOT</version>
     </dependency>
 

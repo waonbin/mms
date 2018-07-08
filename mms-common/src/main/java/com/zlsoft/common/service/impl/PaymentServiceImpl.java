@@ -1,8 +1,8 @@
-package com.zlsoft.portal.service.impl;
+package com.zlsoft.common.service.impl;
 
-import com.zlsoft.portal.domain.Payment;
-import com.zlsoft.portal.repository.PaymentRepository;
-import com.zlsoft.portal.service.PaymentService;
+import com.zlsoft.common.repository.PaymentRepository;
+import com.zlsoft.common.service.PaymentService;
+import com.zlsoft.domain.Payment;
 import com.zlsoft.utils.service.impl.BaseSimpleService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

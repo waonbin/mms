@@ -1,9 +1,9 @@
 package com.zlsoft.portal.web.controller;
 
+import com.zlsoft.common.service.PaymentService;
+import com.zlsoft.domain.Member;
+import com.zlsoft.domain.Payment;
 import com.zlsoft.portal.Constants;
-import com.zlsoft.portal.domain.Member;
-import com.zlsoft.portal.domain.Payment;
-import com.zlsoft.portal.service.PaymentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
