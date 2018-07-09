@@ -2,12 +2,14 @@ package com.zlsoft.manager.web.controller;
 
 import com.zlsoft.common.service.MemberService;
 import com.zlsoft.domain.Member;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller(value = "AdminMemberController")

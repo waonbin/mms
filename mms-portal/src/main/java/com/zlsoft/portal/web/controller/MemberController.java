@@ -8,6 +8,7 @@ import com.zlsoft.utils.web.controller.BaseController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -92,6 +93,25 @@ public class MemberController extends BaseController {
     }
 
     /**
+     * GET  /check/password : check if password is already registered
+     * @param session the HTTP Session
+     * @param password the user password
+     * @return HTTP Status with information
+     */
+    @RequestMapping(value = "/check/password", method = RequestMethod.GET)
+    public @ResponseBody
+    ResponseEntity checkPassword(HttpSession session, String password){
+        Member member = (Member) session.getAttribute(Constants.SESSION_USER);
+        String passwordEncoded = MD5Util.getMD5WithBase64(password);
+
+        if(!member.getPassword().equals(passwordEncoded)){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("密码错误！");
+        } else {
+            return ResponseEntity.ok().build();
+        }
+    }
+
+    /**
      * GET  /personal_information : get personal information page
      * @param session the HTTP Session
      * @return personal information page with data
@@ -139,6 +159,25 @@ public class MemberController extends BaseController {
     @RequestMapping(value = "/revise", method = RequestMethod.GET)
     public String revise() {
         return "/member/personal_revise";
+    }
+
+
+    /**
+     * POST  /password : change password
+     * @param session the HTTP Session
+     * @param newPassword new password
+     * @return HTTP Status with information
+     */
+    @PostMapping("/password")
+    public ResponseEntity changePassword(HttpSession session, String newPassword){
+        Member member = (Member) session.getAttribute(Constants.SESSION_USER);
+        String passwordEncoded = MD5Util.getMD5WithBase64(newPassword);
+        member.setPassword(passwordEncoded);
+
+        this.memberService.save(member);
+        session.setAttribute(Constants.SESSION_USER, member);
+
+        return ResponseEntity.ok().build();
     }
 
 }
