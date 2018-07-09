@@ -10,246 +10,360 @@
     <!--begin::Web font -->
     <!--<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>-->
     <!--<script>-->
-        <!--WebFont.load({-->
-            <!--google: {"families": ["Poppins:300,400,500,600,700", "Roboto:300,400,500,600,700"]},-->
-            <!--active: function () {-->
-                <!--sessionStorage.fonts = true;-->
-            <!--}-->
-        <!--});-->
+    <!--WebFont.load({-->
+    <!--google: {"families": ["Poppins:300,400,500,600,700", "Roboto:300,400,500,600,700"]},-->
+    <!--active: function () {-->
+    <!--sessionStorage.fonts = true;-->
+    <!--}-->
+    <!--});-->
     <!--</script>-->
     <!--begin::Page Vendors -->
-    <link th:href="@{{path}/assets/css/base/base.css(path=${#request.getContextPath()})}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{{path}/assets/vendors/custom/fullcalendar/fullcalendar.bundle.css(path=${#request.getContextPath()})}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{{path}/assets/vendors/base/vendors.bundle.css(path=${#request.getContextPath()})}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{{path}/assets/css/element/index.css(path=${#request.getContextPath()})}" rel="stylesheet"
+          type="text/css"/>
+    <link th:href="@{{path}/assets/css/base/base.css(path=${#request.getContextPath()})}" rel="stylesheet"
+          type="text/css"/>
+    <link th:href="@{{path}/assets/vendors/custom/fullcalendar/fullcalendar.bundle.css(path=${#request.getContextPath()})}"
+          rel="stylesheet" type="text/css"/>
+    <link th:href="@{{path}/assets/vendors/base/vendors.bundle.css(path=${#request.getContextPath()})}" rel="stylesheet"
+          type="text/css"/>
     <!--RTL version:<link href="assets/vendors/base/vendors.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
-    <link th:href="@{{path}/assets/demo/demo12/base/style.bundle.css(path=${#request.getContextPath()})}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{{path}/assets/demo/demo12/base/style.bundle.css(path=${#request.getContextPath()})}"
+          rel="stylesheet" type="text/css"/>
     <!--RTL version:<link href="assets/demo/demo12/base/style.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
     <!--end::Base Styles -->
-    <link rel="shortcut icon" th:href="@{{path}/assets/demo/demo12/media/img/logo/favicon.ico(path=${#request.getContextPath()})}"/>
-    <link th:href="@{{path}/assets/css/element/index.css(path=${#request.getContextPath()})}" rel="stylesheet" type="text/css"/>
+    <link rel="shortcut icon"
+          th:href="@{{path}/assets/demo/demo12/media/img/logo/favicon.ico(path=${#request.getContextPath()})}"/>
+    <script th:src="@{{path}/assets/js/base/vue.js(path=${#request.getContextPath()})}"></script>
+    <script th:src="@{{path}/assets/js/element/index.js(path=${#request.getContextPath()})}"></script>
 </head>
 <!-- end::Head -->
 
 <!-- begin::Body -->
 <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
 
-    <!-- begin:: Page -->
-    <div class="m-grid m-grid--hor m-grid--root m-page" id="box">
+<!-- begin:: Page -->
+<div class="m-grid m-grid--hor m-grid--root m-page" id="box">
 
-        <!-- BEGIN: Header -->
-        <header id="m_header" class="m-grid__item m-header " m-minimize-offset="200" m-minimize-mobile-offset="200"
-                th:include="/base/header::header" >
-        </header>
-        <!-- END: Header -->
+    <!-- BEGIN: Header -->
+    <header id="m_header" class="m-grid__item m-header " m-minimize-offset="200" m-minimize-mobile-offset="200"
+            th:include="/base/header::header">
+    </header>
+    <!-- END: Header -->
 
-        <!-- begin::Body -->
-        <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
+    <!-- begin::Body -->
+    <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
 
-            <!-- BEGIN: Left Aside -->
-            <button class="m-aside-left-close  m-aside-left-close--skin-dark " id="m_aside_left_close_btn">
-                <i class="la la-close"></i>
-            </button>
-            <div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-dark "
-                 th:include="/base/aside::aside">
+        <!-- BEGIN: Left Aside -->
+        <button class="m-aside-left-close  m-aside-left-close--skin-dark " id="m_aside_left_close_btn">
+            <i class="la la-close"></i>
+        </button>
+        <div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-dark "
+             th:include="/base/aside::aside">
 
-            </div>
-            <!-- END: Left Aside -->
-            <div class="m-grid__item m-grid__item--fluid m-wrapper">
-                <!-- BEGIN: Subheader -->
-                <div class="m-subheader ">
-                    <div class="d-flex align-items-center">
-                        <div class="mr-auto">
-                            <h3 class="m-subheader__title m-subheader__title--separator">Dashboard</h3>
-                            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
-                                <li class="m-nav__item m-nav__item--home">
-                                    <a href="#" class="m-nav__link m-nav__link--icon">
-                                        <i class="m-nav__link-icon la la-home"></i>
-                                    </a>
-                                </li>
-                                <li class="m-nav__separator">-</li>
-                                <li class="m-nav__item">
-                                    <a href="javascript:" class="m-nav__link">
-                                        <span class="m-nav__link-text">会员信息管理</span>
-                                    </a>
-                                </li>
-                                <li class="m-nav__separator">-</li>
-                                <li class="m-nav__item">
-                                    <a href="javascript:" class="m-nav__link">
-                                        <span class="m-nav__link-text">个人会员管理</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+        </div>
+        <!-- END: Left Aside -->
+        <div class="m-grid__item m-grid__item--fluid m-wrapper">
+            <!-- BEGIN: Subheader -->
+            <div class="m-subheader ">
+                <div class="d-flex align-items-center">
+                    <div class="mr-auto">
+                        <h3 class="m-subheader__title m-subheader__title--separator">Dashboard</h3>
+                        <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                            <li class="m-nav__item m-nav__item--home">
+                                <a href="#" class="m-nav__link m-nav__link--icon">
+                                    <i class="m-nav__link-icon la la-home"></i>
+                                </a>
+                            </li>
+                            <li class="m-nav__separator">-</li>
+                            <li class="m-nav__item">
+                                <a href="javascript:" class="m-nav__link">
+                                    <span class="m-nav__link-text">会员信息管理</span>
+                                </a>
+                            </li>
+                            <li class="m-nav__separator">-</li>
+                            <li class="m-nav__item">
+                                <a href="javascript:" class="m-nav__link">
+                                    <span class="m-nav__link-text">个人会员管理</span>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <!-- END: Subheader -->
-                <div class="m-content" id="box-content">
-                    <div class="row">
-                        <div class="col-md-12">
-
-                            <!--begin::Portlet-->
-                            <div class="m-portlet">
-                                <div class="m-portlet__head">
-                                    <div class="m-portlet__head-caption">
-                                        <div class="m-portlet__head-title">
+            </div>
+            <!-- END: Subheader -->
+            <div class="m-content" id="box-content" v-cloak v-show="show">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!--begin::Portlet-->
+                        <div class="m-portlet">
+                            <div class="m-portlet__head">
+                                <div class="m-portlet__head-caption">
+                                    <div class="m-portlet__head-title">
 												<span class="m-portlet__head-icon m--hide">
 													<i class="la la-gear"></i>
 												</span>
-                                            <h3 class="m-portlet__head-text">
-                                                会员列表
-                                            </h3>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="m-portlet__body">
-                                    <div class="system-search clearfix">
-                                        <div class="search-item clearfix">
-                                            <div class="label">会员名称</div>
-                                            <el-input placeholder="请输入会员名称" class="el-input"/>
-                                        </div>
-                                        <div class="search-item clearfix">
-                                            <div class="label">推荐机构</div>
-                                            <el-select v-model="jg" filterable placeholder="请选择">
-                                                <el-option
-                                                        v-for="item in jgGroup"
-                                                        :key="item.value"
-                                                        :label="item.label"
-                                                        :value="item.value">
-                                                </el-option>
-                                            </el-select>
-                                        </div>
-                                        <div class="search-item clearfix">
-                                            <div class="label">职称</div>
-                                            <el-select v-model="zc" placeholder="请选择">
-                                                <el-option
-                                                        v-for="item in zcGroup"
-                                                        :key="item.value"
-                                                        :label="item.label"
-                                                        :value="item.value">
-                                                </el-option>
-                                            </el-select>
-                                        </div>
-                                        <div class="search-item clearfix">
-                                            <div class="label">党派类型</div>
-                                            <el-select v-model="partisan">
-                                                <el-option
-                                                        v-for="item in partisanGroup"
-                                                        :key="item.value"
-                                                        :label="item.label"
-                                                        :value="item.value">
-                                                </el-option>
-                                            </el-select>
-                                        </div>
-                                        <div class="search-item calendar">
-                                            <div class="label">入会时间</div>
-                                            <el-date-picker
-                                                    v-model="startTime"
-                                                    type="date"
-                                                    placeholder="选择日期"
-                                                    :picker-options="scheduled_time_start_opts"
-                                            >
-                                            </el-date-picker>
-                                            <div class="label zhi"> - </div>
-                                            <el-date-picker
-                                                    v-model="endTime"
-                                                    type="date"
-                                                    placeholder="选择日期"
-                                                    :picker-options="scheduled_time_end_opts"
-                                            >
-                                            </el-date-picker>
-                                        </div>
-                                        <div class="search-item clearfix">
-                                            <div class="label">会员类型</div>
-                                            <el-select v-model="memberType" placeholder="请选择会员类型">
-                                                <el-option
-                                                        v-for="item in memberTypeGroup"
-                                                        :key="item.value"
-                                                        :label="item.label"
-                                                        :value="item.value">
-                                                </el-option>
-                                            </el-select>
-                                        </div>
-                                        <div class="search-item clearfix">
-                                            <div class="label">学历</div>
-                                            <el-select v-model="education">
-                                                <el-option
-                                                        v-for="item in educationGroup"
-                                                        :key="item.value"
-                                                        :label="item.label"
-                                                        :value="item.value">
-                                                </el-option>
-                                            </el-select>
-                                        </div>
-                                        <div class="search-item calendar">
-                                            <div class="label">出生年月</div>
-                                            <el-date-picker
-                                                    v-model="starBirstTime"
-                                                    type="date"
-                                                    placeholder="选择日期"
-                                                    :picker-options="scheduled_time_start_born"
-                                            >
-                                            </el-date-picker>
-                                            <div class="label zhi"> - </div>
-                                            <el-date-picker
-                                                    v-model="endBirstTime"
-                                                    type="date"
-                                                    placeholder="选择日期"
-                                                    :picker-options="scheduled_time_end_born"
-                                            >
-                                            </el-date-picker>
-                                        </div>
-                                        <div class="search-item clearfix">
-                                            <div class="label">毕业院校</div>
-                                            <el-input placeholder="请选择毕业院校" class="el-input"/>
-                                        </div>
-                                        <div class="search-item clearfix">
-                                            <div class="label">会员号</div>
-                                            <el-input placeholder="请输入会员号" class="el-input"/>
-                                        </div>
-                                        <div class="search-item clearfix">
-                                            <div class="label">省份</div>
-                                            <el-select v-model="province">
-                                                <el-option
-                                                        v-for="item in provinceGroup"
-                                                        :key="item.value"
-                                                        :label="item.label"
-                                                        :value="item.value">
-                                                </el-option>
-                                            </el-select>
-                                        </div>
+                                        <h3 class="m-portlet__head-text">
+                                            会员列表
+                                        </h3>
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="m-portlet__body">
+                                <div class="system-search clearfix">
+                                    <div class="search-item clearfix">
+                                        <div class="label">会员名称</div>
+                                        <el-input placeholder="请输入会员名称" class="el-input"/>
+                                    </div>
+                                    <div class="search-item clearfix">
+                                        <div class="label">推荐机构</div>
+                                        <el-select v-model="jg" filterable placeholder="请选择">
+                                            <el-option
+                                                    v-for="item in jgGroup"
+                                                    :key="item.value"
+                                                    :label="item.label"
+                                                    :value="item.value">
+                                            </el-option>
+                                        </el-select>
+                                    </div>
+                                    <div class="search-item clearfix">
+                                        <div class="label">职称</div>
+                                        <el-select v-model="zc" placeholder="请选择">
+                                            <el-option
+                                                    v-for="item in zcGroup"
+                                                    :key="item.value"
+                                                    :label="item.label"
+                                                    :value="item.value">
+                                            </el-option>
+                                        </el-select>
+                                    </div>
+                                    <div class="search-item clearfix">
+                                        <div class="label">党派类型</div>
+                                        <el-select v-model="partisan">
+                                            <el-option
+                                                    v-for="item in partisanGroup"
+                                                    :key="item.value"
+                                                    :label="item.label"
+                                                    :value="item.value">
+                                            </el-option>
+                                        </el-select>
+                                    </div>
+                                    <div class="search-item clearfix">
+                                        <div class="label">会员类型</div>
+                                        <el-select v-model="memberType" placeholder="请选择会员类型">
+                                            <el-option
+                                                    v-for="item in memberTypeGroup"
+                                                    :key="item.value"
+                                                    :label="item.label"
+                                                    :value="item.value">
+                                            </el-option>
+                                        </el-select>
+                                    </div>
+                                    <div class="search-item clearfix">
+                                        <div class="label">学历</div>
+                                        <el-select v-model="education">
+                                            <el-option
+                                                    v-for="item in educationGroup"
+                                                    :key="item.value"
+                                                    :label="item.label"
+                                                    :value="item.value">
+                                            </el-option>
+                                        </el-select>
+                                    </div>
+                                    <div class="search-item clearfix">
+                                        <div class="label">毕业院校</div>
+                                        <el-input placeholder="请选择毕业院校" class="el-input"/>
+                                    </div>
+                                    <div class="search-item clearfix">
+                                        <div class="label">会员号</div>
+                                        <el-input placeholder="请输入会员号" class="el-input"/>
+                                    </div>
+                                    <div class="search-item calendar">
+                                        <div class="label">入会时间</div>
+                                        <el-date-picker
+                                                v-model="startTime"
+                                                type="date"
+                                                placeholder="选择日期"
+                                                :picker-options="scheduled_time_start_opts"
+                                        >
+                                        </el-date-picker>
+                                        <div class="label zhi"> -- </div>
+                                        <el-date-picker
+                                                v-model="endTime"
+                                                type="date"
+                                                placeholder="选择日期"
+                                                :picker-options="scheduled_time_end_opts"
+                                        >
+                                        </el-date-picker>
+                                    </div>
+                                    <div class="search-item calendar">
+                                        <div class="label">出生年月</div>
+                                        <el-date-picker
+                                                v-model="starBirstTime"
+                                                type="date"
+                                                placeholder="选择日期"
+                                                :picker-options="scheduled_time_start_born"
+                                        >
+                                        </el-date-picker>
+                                        <div class="label zhi"> -- </div>
+                                        <el-date-picker
+                                                v-model="endBirstTime"
+                                                type="date"
+                                                placeholder="选择日期"
+                                                :picker-options="scheduled_time_end_born"
+                                        >
+                                        </el-date-picker>
+                                    </div>
+                                    <div class="search-item clearfix">
+                                        <div class="label">省份</div>
+                                        <el-select v-model="province">
+                                            <el-option
+                                                    v-for="item in provinceGroup"
+                                                    :key="item.value"
+                                                    :label="item.label"
+                                                    :value="item.value"
+                                            >
+                                            </el-option>
+                                        </el-select>
+                                    </div>
+                                    <div class="select-btn clearfix">
+                                        <a href="javascript:" class="btn btn-primary m-btn m-btn--icon">
+                                        <span>
+                                            <i class="la flaticon-search-magnifier-interface-symbol"></i>
+                                            <span>搜索</span>
+                                        </span>
+                                        </a>
+                                        <a href="javascript:" class="btn btn-warning m-btn m-btn--icon">
+                                        <span>
+                                            <i class="la flaticon-download"></i>
+                                            <span>导出数据</span>
+                                        </span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="search-table">
+                                    <template>
+                                        <el-table
+                                                :data="tableData"
+                                                stripe
+                                                style="width: 100%">
+                                            <el-table-column
+                                                    type="index"
+                                                    header-align="center"
+                                                    label="序号"
+                                                    align="center"
+                                                    width="50">
+                                            </el-table-column>
+                                            <el-table-column
+                                                    prop="name"
+                                                    header-align="center"
+                                                    label="会员名称"
+                                                    align="center"
+                                                    width="150">
+                                                <template slot-scope="scope">
+                                                    <div class="ellipsis" :title="scope.row.address">
+                                                        {{scope.row.address}}
+                                                    </div>
+                                                </template>
+                                            </el-table-column>
+                                            <el-table-column
+                                                    prop="address"
+                                                    header-align="center"
+                                                    label="会员号">
+                                                <template slot-scope="scope">
+                                                    <div class="ellipsis" :title="scope.row.address">
+                                                        {{scope.row.address}}
+                                                    </div>
+                                                </template>
+                                            </el-table-column>
+                                            <el-table-column
+                                                    prop="address"
+                                                    header-align="center"
+                                                    align="center"
+                                                    label="会员类型">
+                                                <template slot-scope="scope">
+                                                    <div class="ellipsis" :title="scope.row.address">
+                                                        {{scope.row.address}}
+                                                    </div>
+                                                </template>
+                                            </el-table-column>
+                                            <el-table-column
+                                                    prop="address"
+                                                    header-align="center"
+                                                    align="center"
+                                                    label="会员有效期">
+                                                <template slot-scope="scope">
+                                                    <div class="ellipsis" :title="scope.row.address">
+                                                        {{scope.row.address}}
+                                                    </div>
+                                                </template>
+                                            </el-table-column>
+                                            <el-table-column
+                                                    prop="address"
+                                                    header-align="center"
+                                                    align="center"
+                                                    label="推荐机构">
+                                                <template slot-scope="scope">
+                                                    <div class="ellipsis" :title="scope.row.address">
+                                                        {{scope.row.address}}
+                                                    </div>
+                                                </template>
+                                            </el-table-column>
+                                            <el-table-column
+                                                    header-align="center"
+                                                    label="操作"
+                                                    width="60"
+                                                    align="center"
+                                            >
+                                                <template  slot-scope="scope">
+                                                    <a href="javascript:"
+                                                       class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill"
+                                                       title="详情">
+                                                        <i class="la flaticon-interface-6"></i>
+                                                    </a>
+                                                </template>
+                                            </el-table-column>
+                                        </el-table>
+                                    </template>
+                                </div>
+                                <div class="search-pagination clearfix">
+                                    <el-pagination
+                                            background
+                                            layout="prev, pager, next"
+                                            :total="1000">
+                                    </el-pagination>
+                                </div>
+                            </div>
                         </div>
 
                     </div>
+
                 </div>
             </div>
         </div>
-        <!-- end:: Body -->
-
-
-        <!-- begin::Footer -->
-        <div th:include="/base/footer::footer"></div>
-        <!-- end::Footer -->
     </div>
-    <!-- end:: Page -->
+    <!-- end:: Body -->
 
-    <!-- begin::Scroll Top -->
-    <div id="m_scroll_top" class="m-scroll-top">
-        <i class="la la-arrow-up"></i>
-    </div>
 
-    <script th:src="@{{path}/assets/js/base/jquery-1.7.1.min.js(path=${#request.getContextPath()})}"></script>
-    <script>
-        $(function() {
-            $("#member_menu").addClass("m-menu__item--open m-menu__item--expanded");
-            $("#person_member").addClass("m-menu__item--active");
-        })
-    </script>
-    <div th:include="/base/script::script"></div>
-    <script th:src="@{{path}/assets/js/src/individual.js(path=${#request.getContextPath()})}"></script>
+    <!-- begin::Footer -->
+    <div th:include="/base/footer::footer"></div>
+    <!-- end::Footer -->
+</div>
+<!-- end:: Page -->
+
+<!-- begin::Scroll Top -->
+<div id="m_scroll_top" class="m-scroll-top">
+    <i class="la la-arrow-up"></i>
+</div>
+
+<script th:src="@{{path}/assets/js/base/jquery-1.7.1.min.js(path=${#request.getContextPath()})}"></script>
+<script>
+    $(function () {
+        $("#member_menu").addClass("m-menu__item--open m-menu__item--expanded");
+        $("#person_member").addClass("m-menu__item--active");
+    })
+</script>
+<div th:include="/base/script::script"></div>
+<script th:src="@{{path}/assets/js/src/individual.js(path=${#request.getContextPath()})}"></script>
 </body>
 <!-- end::Body -->
 </html>

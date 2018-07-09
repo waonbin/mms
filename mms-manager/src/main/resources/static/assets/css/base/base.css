@@ -1,3 +1,9 @@
+body {
+    font-weight: 400 !important;
+}
+[v-cloak] {
+    display: none;
+}
 .search-item {
     float: left;
     margin: 0 10px 10px 0;
@@ -14,9 +20,18 @@
     width: 150px;
 }
 .system-search .search-item .label.zhi {
-    width: 20px;
+    width: 86px;
     text-align: center;
+    margin-right: 0;
     margin-inside: 0;
+}
+.system-search .select-btn {
+    float: right;
+}
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .el-input__inner {
     height: 35px !important;
@@ -29,4 +44,39 @@
 }
 .el-select-dropdown__item.selected {
     color: #716aca !important;
+}
+.m-subheader, .m-body .m-content {
+    padding-top: 10px !important;
+}
+.m-portlet .m-portlet__head {
+    height: 4.1rem !important;
+}
+.system-search .btn {
+    float: left;
+    padding: .65rem 1.15rem !important;
+    border-radius: .25rem;
+}
+.system-search .btn+.btn {
+    margin-left: 10px;
+}
+.el-table th, .el-table thead tr {
+    background: #f4f3f8 !important;
+}
+.search-table {
+    margin-top: 20px;
+}
+.search-pagination .el-pagination {
+    float: right;
+}
+.search-pagination {
+    margin-top: 10px;
+}
+.search-pagination .el-pagination.is-background .el-pager li:not(.disabled).active {
+    background-color: #5766dd !important;
+}
+.search-pagination .el-pagination.is-background .el-pager li:not(.disabled):hover {
+    color: #5766dd !important;
+}
+.el-loading-spinner .path {
+    stroke: #5766dd !important;
 }
