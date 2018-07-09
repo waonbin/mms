@@ -91,16 +91,79 @@ public class Member implements Serializable {
     private Short partisan;
 
     /**
-     * 专业
+     * 所学专业
      */
     @Column(length = 64)
     private String major;
+
+    /**
+     * 工作专业
+     */
+    @Column(length = 64)
+    private String workajor;
 
     /**
      * 学历
      */
     @Column(length = 64)
     private String education;
+
+    /**
+     * 等级
+     */
+    private Short level;
+
+    /**
+     * 微信
+     */
+    @Column(length = 64)
+    private String wechat;
+
+    /**
+     * QQ
+     */
+    @Column(length = 32)
+    private String oicq;
+
+    /**
+     * 传真
+     */
+    @Column(length = 16)
+    private String fax;
+
+    /**
+     * 办公电话
+     */
+    @Column(length = 16)
+    private String telephone;
+
+    /**
+     * 邮编
+     */
+    @Column(length = 6)
+    private String zipcode;
+
+    /**
+     * 省（字典）
+     */
+    private Short province;
+
+    /**
+     * 市（字典）
+     */
+    private Short city;
+
+    /**
+     * 地址
+     */
+    @Column(length = 128)
+    private String address;
+
+    /**
+     * 地址
+     */
+    @Column(length = 256)
+    private String fullAddress;
 
     /**
      * 研究领域
@@ -113,6 +176,23 @@ public class Member implements Serializable {
      */
     @Column(length = 64)
     private String memberNo;
+
+    /**
+     * 毕业学校
+     */
+    @Column(length = 64)
+    private String school;
+
+    /**
+     * 工作性质（字典）
+     */
+    private Short workNature;
+
+    /**
+     * 工作业绩
+     */
+    @Column(length = 512)
+    private String jobPerformance;
 
     public Long getId() {
         return id;
@@ -226,12 +306,100 @@ public class Member implements Serializable {
         this.major = major;
     }
 
+    public String getWorkajor() {
+        return workajor;
+    }
+
+    public void setWorkajor(String workajor) {
+        this.workajor = workajor;
+    }
+
     public String getEducation() {
         return education;
     }
 
     public void setEducation(String education) {
         this.education = education;
+    }
+
+    public Short getLevel() {
+        return level;
+    }
+
+    public void setLevel(Short level) {
+        this.level = level;
+    }
+
+    public String getWechat() {
+        return wechat;
+    }
+
+    public void setWechat(String wechat) {
+        this.wechat = wechat;
+    }
+
+    public String getOicq() {
+        return oicq;
+    }
+
+    public void setOicq(String oicq) {
+        this.oicq = oicq;
+    }
+
+    public String getFax() {
+        return fax;
+    }
+
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
+
+    public Short getProvince() {
+        return province;
+    }
+
+    public void setProvince(Short province) {
+        this.province = province;
+    }
+
+    public Short getCity() {
+        return city;
+    }
+
+    public void setCity(Short city) {
+        this.city = city;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getFullAddress() {
+        return fullAddress;
+    }
+
+    public void setFullAddress(String fullAddress) {
+        this.fullAddress = fullAddress;
     }
 
     public String getResearchField() {
@@ -248,5 +416,29 @@ public class Member implements Serializable {
 
     public void setMemberNo(String memberNo) {
         this.memberNo = memberNo;
+    }
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
+    public Short getWorkNature() {
+        return workNature;
+    }
+
+    public void setWorkNature(Short workNature) {
+        this.workNature = workNature;
+    }
+
+    public String getJobPerformance() {
+        return jobPerformance;
+    }
+
+    public void setJobPerformance(String jobPerformance) {
+        this.jobPerformance = jobPerformance;
     }
 }
