@@ -1,6 +1,6 @@
 .search-item {
     float: left;
-    margin: 0 20px 20px 0;
+    margin: 0 10px 10px 0;
 }
 .system-search .search-item .label {
     float: left;
@@ -17,4 +17,16 @@
     width: 20px;
     text-align: center;
     margin-inside: 0;
+}
+.el-input__inner {
+    height: 35px !important;
+}
+.el-select {
+    width: 150px !important;
+}
+.el-input.is-active .el-input__inner, .el-input__inner:focus, .el-select-dropdown__item.selected {
+    border-color: #716aca !important;
+}
+.el-select-dropdown__item.selected {
+    color: #716aca !important;
 }

@@ -18,6 +18,7 @@
         <!--});-->
     <!--</script>-->
     <!--begin::Page Vendors -->
+    <link th:href="@{{path}/assets/css/base/base.css(path=${#request.getContextPath()})}" rel="stylesheet" type="text/css"/>
     <link th:href="@{{path}/assets/vendors/custom/fullcalendar/fullcalendar.bundle.css(path=${#request.getContextPath()})}" rel="stylesheet" type="text/css"/>
     <link th:href="@{{path}/assets/vendors/base/vendors.bundle.css(path=${#request.getContextPath()})}" rel="stylesheet" type="text/css"/>
     <!--RTL version:<link href="assets/vendors/base/vendors.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
@@ -26,7 +27,6 @@
     <!--end::Base Styles -->
     <link rel="shortcut icon" th:href="@{{path}/assets/demo/demo12/media/img/logo/favicon.ico(path=${#request.getContextPath()})}"/>
     <link th:href="@{{path}/assets/css/element/index.css(path=${#request.getContextPath()})}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{{path}/assets/css/base/base.css(path=${#request.getContextPath()})}" rel="stylesheet" type="text/css"/>
 </head>
 <!-- end::Head -->
 
@@ -37,9 +37,8 @@
     <div class="m-grid m-grid--hor m-grid--root m-page" id="box">
 
         <!-- BEGIN: Header -->
-        <header id="m_header" class="m-grid__item    m-header " m-minimize-offset="200" m-minimize-mobile-offset="200"
+        <header id="m_header" class="m-grid__item m-header " m-minimize-offset="200" m-minimize-mobile-offset="200"
                 th:include="/base/header::header" >
-
         </header>
         <!-- END: Header -->
 
@@ -60,7 +59,7 @@
                 <div class="m-subheader ">
                     <div class="d-flex align-items-center">
                         <div class="mr-auto">
-                            <h3 class="m-subheader__title ">Dashboard</h3>
+                            <h3 class="m-subheader__title m-subheader__title--separator">Dashboard</h3>
                             <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
                                 <li class="m-nav__item m-nav__item--home">
                                     <a href="#" class="m-nav__link m-nav__link--icon">
@@ -108,6 +107,39 @@
                                             <div class="label">会员名称</div>
                                             <el-input placeholder="请输入会员名称" class="el-input"/>
                                         </div>
+                                        <div class="search-item clearfix">
+                                            <div class="label">推荐机构</div>
+                                            <el-select v-model="jg" filterable placeholder="请选择">
+                                                <el-option
+                                                        v-for="item in jgGroup"
+                                                        :key="item.value"
+                                                        :label="item.label"
+                                                        :value="item.value">
+                                                </el-option>
+                                            </el-select>
+                                        </div>
+                                        <div class="search-item clearfix">
+                                            <div class="label">职称</div>
+                                            <el-select v-model="zc" placeholder="请选择">
+                                                <el-option
+                                                        v-for="item in zcGroup"
+                                                        :key="item.value"
+                                                        :label="item.label"
+                                                        :value="item.value">
+                                                </el-option>
+                                            </el-select>
+                                        </div>
+                                        <div class="search-item clearfix">
+                                            <div class="label">党派类型</div>
+                                            <el-select v-model="partisan">
+                                                <el-option
+                                                        v-for="item in partisanGroup"
+                                                        :key="item.value"
+                                                        :label="item.label"
+                                                        :value="item.value">
+                                                </el-option>
+                                            </el-select>
+                                        </div>
                                         <div class="search-item calendar">
                                             <div class="label">入会时间</div>
                                             <el-date-picker
@@ -125,6 +157,65 @@
                                                     :picker-options="scheduled_time_end_opts"
                                             >
                                             </el-date-picker>
+                                        </div>
+                                        <div class="search-item clearfix">
+                                            <div class="label">会员类型</div>
+                                            <el-select v-model="memberType" placeholder="请选择会员类型">
+                                                <el-option
+                                                        v-for="item in memberTypeGroup"
+                                                        :key="item.value"
+                                                        :label="item.label"
+                                                        :value="item.value">
+                                                </el-option>
+                                            </el-select>
+                                        </div>
+                                        <div class="search-item clearfix">
+                                            <div class="label">学历</div>
+                                            <el-select v-model="education">
+                                                <el-option
+                                                        v-for="item in educationGroup"
+                                                        :key="item.value"
+                                                        :label="item.label"
+                                                        :value="item.value">
+                                                </el-option>
+                                            </el-select>
+                                        </div>
+                                        <div class="search-item calendar">
+                                            <div class="label">出生年月</div>
+                                            <el-date-picker
+                                                    v-model="starBirstTime"
+                                                    type="date"
+                                                    placeholder="选择日期"
+                                                    :picker-options="scheduled_time_start_born"
+                                            >
+                                            </el-date-picker>
+                                            <div class="label zhi"> - </div>
+                                            <el-date-picker
+                                                    v-model="endBirstTime"
+                                                    type="date"
+                                                    placeholder="选择日期"
+                                                    :picker-options="scheduled_time_end_born"
+                                            >
+                                            </el-date-picker>
+                                        </div>
+                                        <div class="search-item clearfix">
+                                            <div class="label">毕业院校</div>
+                                            <el-input placeholder="请选择毕业院校" class="el-input"/>
+                                        </div>
+                                        <div class="search-item clearfix">
+                                            <div class="label">会员号</div>
+                                            <el-input placeholder="请输入会员号" class="el-input"/>
+                                        </div>
+                                        <div class="search-item clearfix">
+                                            <div class="label">省份</div>
+                                            <el-select v-model="province">
+                                                <el-option
+                                                        v-for="item in provinceGroup"
+                                                        :key="item.value"
+                                                        :label="item.label"
+                                                        :value="item.value">
+                                                </el-option>
+                                            </el-select>
                                         </div>
                                     </div>
                                 </div>
@@ -158,49 +249,7 @@
         })
     </script>
     <div th:include="/base/script::script"></div>
-    <script>
-        $(function() {
-            new Vue({
-                el:'#box-content',
-                data() {
-                    return {
-                        startTime: '',
-                        endTime:''
-                    }
-                },
-                computed: {
-                    scheduled_time_start_opts: function(){
-                        let endTime = this.endTime;
-                        //const today = new Date();
-
-                        if(endTime){
-                            endTime = new Date(endTime);
-                        }
-
-                        return {
-                            disabledDate(date) {
-                                return (endTime && endTime < date);
-                            }
-                        };
-                    },
-                    scheduled_time_end_opts: function(){
-                        let startTime = this.startTime;
-                        //const today = new Date();
-
-                        if(startTime){
-                            startTime = new Date(startTime);
-                        }
-
-                        return {
-                            disabledDate(date) {
-                                return (startTime && startTime > date);
-                            }
-                        };
-                    }
-                }
-            })
-        })
-    </script>
+    <script th:src="@{{path}/assets/js/src/individual.js(path=${#request.getContextPath()})}"></script>
 </body>
 <!-- end::Body -->
 </html>
