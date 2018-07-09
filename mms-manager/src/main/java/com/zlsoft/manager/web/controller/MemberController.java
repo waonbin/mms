@@ -2,14 +2,12 @@ package com.zlsoft.manager.web.controller;
 
 import com.zlsoft.common.service.MemberService;
 import com.zlsoft.domain.Member;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller(value = "AdminMemberController")
@@ -23,7 +21,7 @@ public class MemberController {
      * GET  /personal_information : get individual members' list page
      * @return individual members' list page
      */
-    @RequestMapping(value = "/individual_members", method = RequestMethod.GET)
+    @GetMapping("/individual_members")
     public ModelAndView individualMembers() {
         List<Member> members = this.memberService.findAll();
         ModelAndView mav = new ModelAndView("/admin/member/individual_members");
@@ -35,7 +33,7 @@ public class MemberController {
      * GET  /personal_information : get group members' list page
      * @return group members' list page
      */
-    @RequestMapping(value = "/group_members", method = RequestMethod.GET)
+    @GetMapping("/group_members")
     public ModelAndView groupMembers() {
         List<Member> members = this.memberService.findAll();
         ModelAndView mav = new ModelAndView("/admin/member/group_members");
@@ -47,7 +45,7 @@ public class MemberController {
      * GET  /personal_information : get group members' list page
      * @return group members' list page
      */
-    @RequestMapping(value = "/register_check", method = RequestMethod.GET)
+    @GetMapping("/register_check")
     public ModelAndView registerCheck() {
         List<Member> members = this.memberService.findAll();
         ModelAndView mav = new ModelAndView("/admin/member/register_check");

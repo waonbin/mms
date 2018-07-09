@@ -8,9 +8,9 @@ import com.zlsoft.utils.web.controller.BaseController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -31,7 +31,7 @@ public class MemberController extends BaseController {
      * GET  /register : get register page
      * @return register page
      */
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    @GetMapping("/register")
     public String register() {
         return "/member/register1";
     }
@@ -42,7 +42,7 @@ public class MemberController extends BaseController {
      * @return register success page
      * @throws URISyntaxException
      */
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @PostMapping("/register")
     public ResponseEntity register(Member member) throws URISyntaxException {
         String password = MD5Util.getMD5WithBase64(member.getPassword());
         member.setPassword(password);
@@ -54,7 +54,7 @@ public class MemberController extends BaseController {
      * GET  /register3 : get register success page
      * @return register success page
      */
-    @RequestMapping(value = "/register3", method = RequestMethod.GET)
+    @GetMapping("/register3")
     public String register3() {
         return "/member/register3";
     }
@@ -64,7 +64,7 @@ public class MemberController extends BaseController {
      * @param email the Email address
      * @return HTTP Status with information
      */
-    @RequestMapping(value = "/check/email", method = RequestMethod.GET)
+    @GetMapping("/check/email")
     public @ResponseBody
     ResponseEntity checkEmail(String email){
         List<Member> members = this.memberService.findByEmail(email);
@@ -81,7 +81,7 @@ public class MemberController extends BaseController {
      * @param name the user name
      * @return HTTP Status with information
      */
-    @RequestMapping(value = "/check/name", method = RequestMethod.GET)
+    @GetMapping("/check/name")
     public @ResponseBody
     ResponseEntity checkName(String name){
         List<Member> members = this.memberService.findByName(name);
@@ -98,7 +98,7 @@ public class MemberController extends BaseController {
      * @param password the user password
      * @return HTTP Status with information
      */
-    @RequestMapping(value = "/check/password", method = RequestMethod.GET)
+    @GetMapping("/check/password")
     public @ResponseBody
     ResponseEntity checkPassword(HttpSession session, String password){
         Member member = (Member) session.getAttribute(Constants.SESSION_USER);
@@ -116,7 +116,7 @@ public class MemberController extends BaseController {
      * @param session the HTTP Session
      * @return personal information page with data
      */
-    @RequestMapping(value = "/personal_information", method = RequestMethod.GET)
+    @GetMapping("/personal_information")
     public ModelAndView info(HttpSession session) {
         Member member = (Member) session.getAttribute(Constants.SESSION_USER);
         ModelAndView mav = new ModelAndView("/member/personal_information");
@@ -130,7 +130,7 @@ public class MemberController extends BaseController {
      * @return personal information edit page
      * @throws URISyntaxException
      */
-    @RequestMapping(value = "/edit", method = RequestMethod.GET)
+    @GetMapping("/edit")
     public ModelAndView edit(HttpSession session) {
         Member member = (Member) session.getAttribute(Constants.SESSION_USER);
         ModelAndView mav = new ModelAndView("/member/personal_edit");
@@ -144,7 +144,7 @@ public class MemberController extends BaseController {
      * @return personal information edit page
      * @throws URISyntaxException
      */
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    @PostMapping("/edit")
     public ResponseEntity edit(Member member) throws URISyntaxException {
         String password = MD5Util.getMD5WithBase64(member.getPassword());
         member.setPassword(password);
@@ -156,7 +156,7 @@ public class MemberController extends BaseController {
      * GET  /revise : get revise page
      * @return revise page
      */
-    @RequestMapping(value = "/revise", method = RequestMethod.GET)
+    @GetMapping("/revise")
     public String revise() {
         return "/member/personal_revise";
     }

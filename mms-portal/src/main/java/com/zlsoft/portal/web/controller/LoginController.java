@@ -7,8 +7,8 @@ import com.zlsoft.utils.MD5Util;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -26,7 +26,7 @@ public class LoginController {
      * GET  /login : get login page
      * @return login page
      */
-    @RequestMapping(value = "login", method = RequestMethod.GET)
+    @GetMapping("login")
     public String login(){
         return "/member/login";
     }
@@ -38,7 +38,7 @@ public class LoginController {
      * @return if login successfully redirect to personal information page; otherwise output error information
      * @throws URISyntaxException
      */
-    @RequestMapping(value = "login", method = RequestMethod.POST)
+    @PostMapping("login")
     public ResponseEntity login(HttpSession session, Member member) throws URISyntaxException {
 
         List<Member> members = memberService.findByNameOrEmail(member.getName(), member.getName());
@@ -66,7 +66,7 @@ public class LoginController {
      * @param session the HTTP Session
      * @return user login page
      */
-    @RequestMapping(value = "logout", method = RequestMethod.GET)
+    @GetMapping("logout")
     public String logout(HttpSession session){
         session.removeAttribute(Constants.SESSION_USER);
         return "/member/login";
