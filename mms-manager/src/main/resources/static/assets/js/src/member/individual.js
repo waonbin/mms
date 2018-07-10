@@ -1,4 +1,4 @@
-
+$(function() {
     new Vue({
         el:'#box-content',
         data() {
@@ -48,10 +48,10 @@
                         label: '普通会员'
                     }, {
                         value: '2',
-                        label: '高级会员'
+                        label: '学生会员'
                     }, {
                         value: '3',
-                        label: '学生会员'
+                        label: '团体会员'
                     }],
                 educationGroup: [
                     {
@@ -84,7 +84,7 @@
                         value: '2',
                         label: '群众'
                     }
-                    ],
+                ],
                 provinceGroup: [
                     {
                         value: '',
@@ -192,24 +192,7 @@
                         value: '34',
                         label: '台湾省'
                     }],
-                tableData: [
-                    {
-                        date: '2016-05-02',
-                        name: '王小虎',
-                        address: '上海市普陀区金沙江路 1518 弄'
-                    }, {
-                        date: '2016-05-04',
-                        name: '王小虎',
-                        address: '上海市普陀区金沙江路 1517 弄'
-                    }, {
-                        date: '2016-05-01',
-                        name: '王小虎',
-                        address: '上海市普陀区金沙江路 1519 弄'
-                    }, {
-                        date: '2016-05-03',
-                        name: '王小虎',
-                        address: '上海市普陀区金沙江路 1516 弄'
-                    }],
+                tableData: [],
                 fullscreenLoading: false
             }
         },
@@ -222,6 +205,17 @@
                 return {
                     disabledDate(date) {
                         return (endTime && endTime < date);
+                    }
+                };
+            },
+            scheduled_time_end_born: function(){
+                let startTime = this.starBirstTime;
+                if(startTime){
+                    startTime = new Date(startTime);
+                }
+                return {
+                    disabledDate(date) {
+                        return (startTime && startTime > date);
                     }
                 };
             },
@@ -246,17 +240,22 @@
                         return (endTime && endTime < date);
                     }
                 };
-            },
-            scheduled_time_end_born: function(){
-                let startTime = this.starBirstTime;
-                if(startTime){
-                    startTime = new Date(startTime);
-                }
-                return {
-                    disabledDate(date) {
-                        return (startTime && startTime > date);
-                    }
-                };
             }
+        },
+        methods: {
+            getData: function() {
+                $.ajax({
+                    url: '/admin/member/register_check/data',
+                }).done(function(data) {
+                    this.tableData = data;
+                }.bind(this)).fail(function() {
+                    this.$message.error('获取数据失败,请检查网络');
+                }.bind(this))
+            }
+        },
+        mounted: function() {
+            this.getData();
         }
-    })
+    });
+
+});

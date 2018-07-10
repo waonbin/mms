@@ -1,12 +1,14 @@
-<template>
-    <!--CSS 公共部分-->
-    <link th:href="@{{path}/assets/vendors/custom/fullcalendar/fullcalendar.bundle.css(path=${#request.getContextPath()})}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{{path}/assets/vendors/base/vendors.bundle.css(path=${#request.getContextPath()})}" rel="stylesheet" type="text/css"/>
-    <!--RTL version:<link href="assets/vendors/base/vendors.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
-    <link th:href="@{{path}/assets/demo/demo12/base/style.bundle.css(path=${#request.getContextPath()})}" rel="stylesheet" type="text/css"/>
-    <!--RTL version:<link href="assets/demo/demo12/base/style.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
-    <!--end::Base Styles -->
-    <link rel="shortcut icon" th:href="@{{path}/assets/demo/demo12/media/img/logo/favicon.ico(path=${#request.getContextPath()})}"/>
-    <link th:href="@{{path}/assets/css/element/index.css(path=${#request.getContextPath()})}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{{path}/assets/css/base/base.css(path=${#request.getContextPath()})}" rel="stylesheet" type="text/css"/>
+<template th:fragment="css">
+    <link th:href="@{{path}/assets/css/element/index.css(path=${#request.getContextPath()})}" rel="stylesheet"
+          type="text/css"/>
+    <link th:href="@{{path}/assets/css/base/base.css(path=${#request.getContextPath()})}" rel="stylesheet"
+          type="text/css"/>
+    <link th:href="@{{path}/assets/vendors/custom/fullcalendar/fullcalendar.bundle.css(path=${#request.getContextPath()})}"
+          rel="stylesheet" type="text/css"/>
+    <link th:href="@{{path}/assets/vendors/base/vendors.bundle.css(path=${#request.getContextPath()})}" rel="stylesheet"
+          type="text/css"/>
+    <link th:href="@{{path}/assets/demo/demo12/base/style.bundle.css(path=${#request.getContextPath()})}"
+          rel="stylesheet" type="text/css"/>
+    <link rel="shortcut icon"
+          th:href="@{{path}/assets/demo/demo12/media/img/logo/favicon.ico(path=${#request.getContextPath()})}"/>
 </template>

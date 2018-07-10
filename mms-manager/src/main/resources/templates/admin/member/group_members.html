@@ -7,24 +7,19 @@
     <title>团体会员管理</title>
     <meta name="description" content="Latest updates and statistic charts">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-    <!--begin::Web font -->
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>-->
-    <!--<script>-->
-    <!--WebFont.load({-->
-    <!--google: {"families": ["Poppins:300,400,500,600,700", "Roboto:300,400,500,600,700"]},-->
-    <!--active: function () {-->
-    <!--sessionStorage.fonts = true;-->
-    <!--}-->
-    <!--});-->
-    <!--</script>-->
-    <!--begin::Page Vendors -->
-    <link th:href="@{{path}/assets/vendors/custom/fullcalendar/fullcalendar.bundle.css(path=${#request.getContextPath()})}" rel="stylesheet" type="text/css"/>
-    <link th:href="@{{path}/assets/vendors/base/vendors.bundle.css(path=${#request.getContextPath()})}" rel="stylesheet" type="text/css"/>
-    <!--RTL version:<link href="assets/vendors/base/vendors.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
-    <link th:href="@{{path}/assets/demo/demo12/base/style.bundle.css(path=${#request.getContextPath()})}" rel="stylesheet" type="text/css"/>
-    <!--RTL version:<link href="assets/demo/demo12/base/style.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
-    <!--end::Base Styles -->
-    <link rel="shortcut icon" th:href="@{{path}/assets/demo/demo12/media/img/logo/favicon.ico(path=${#request.getContextPath()})}"/>
+    <link th:href="@{{path}/assets/css/element/index.css(path=${#request.getContextPath()})}" rel="stylesheet"
+          type="text/css"/>
+    <link th:href="@{{path}/assets/css/base/base.css(path=${#request.getContextPath()})}" rel="stylesheet"
+          type="text/css"/>
+    <link th:href="@{{path}/assets/vendors/custom/fullcalendar/fullcalendar.bundle.css(path=${#request.getContextPath()})}"
+          rel="stylesheet" type="text/css"/>
+    <link th:href="@{{path}/assets/vendors/base/vendors.bundle.css(path=${#request.getContextPath()})}" rel="stylesheet"
+          type="text/css"/>
+    <link th:href="@{{path}/assets/demo/demo12/base/style.bundle.css(path=${#request.getContextPath()})}"
+          rel="stylesheet" type="text/css"/>
+    <link rel="shortcut icon"
+          th:href="@{{path}/assets/demo/demo12/media/img/logo/favicon.ico(path=${#request.getContextPath()})}"/>
+    <script th:src="@{{path}/assets/js/base/jquery-1.7.1.min.js(path=${#request.getContextPath()})}"></script>
 </head>
 <!-- end::Head -->
 
@@ -58,14 +53,188 @@
             <div class="m-subheader ">
                 <div class="d-flex align-items-center">
                     <div class="mr-auto">
-                        <h3 class="m-subheader__title m-subheader__title--separator">Dashboard</h3>
+                        <h3 class="m-subheader__title m-subheader__title--separator">团体会员管理</h3>
+                        <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                            <li class="m-nav__item m-nav__item--home">
+                                <a href="#" class="m-nav__link m-nav__link--icon">
+                                    <i class="m-nav__link-icon la la-home"></i>
+                                </a>
+                            </li>
+                            <li class="m-nav__separator">-</li>
+                            <li class="m-nav__item">
+                                <a href="javascript:" class="m-nav__link">
+                                    <span class="m-nav__link-text">会员信息管理</span>
+                                </a>
+                            </li>
+                            <li class="m-nav__separator">-</li>
+                            <li class="m-nav__item">
+                                <a href="javascript:" class="m-nav__link">
+                                    <span class="m-nav__link-text">团体会员管理</span>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
             <!-- END: Subheader -->
-            <div class="m-content">
-
-
+            <div class="m-content" id="box-content" v-cloak >
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="m-portlet">
+                            <div class="m-portlet__head">
+                                <div class="m-portlet__head-caption">
+                                    <div class="m-portlet__head-title">
+												<span class="m-portlet__head-icon m--hide">
+													<i class="la la-gear"></i>
+												</span>
+                                        <h3 class="m-portlet__head-text">
+                                            会员列表
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="m-portlet__body">
+                                <div class="system-search clearfix">
+                                    <div class="search-item clearfix">
+                                        <div class="label">会员名称</div>
+                                        <el-input placeholder="请输入会员名称" class="el-input"/>
+                                    </div>
+                                    <div class="search-item clearfix">
+                                        <div class="label">会员号</div>
+                                        <el-input placeholder="请输入会员号" class="el-input"/>
+                                    </div>
+                                    <div class="search-item clearfix">
+                                        <div class="label">推荐机构</div>
+                                        <el-select v-model="jg" filterable placeholder="请选择">
+                                            <el-option
+                                                    v-for="item in jgGroup"
+                                                    :key="item.value"
+                                                    :label="item.label"
+                                                    :value="item.value">
+                                            </el-option>
+                                        </el-select>
+                                    </div>
+                                    <a href="javascript:" class="btn btn-primary m-btn m-btn--icon">
+                                         <span>
+                                             <i class="la flaticon-search-magnifier-interface-symbol"></i>
+                                             <span>搜索</span>
+                                         </span>
+                                    </a>
+                                    <div class="select-btn clearfix">
+                                        <a href="javascript:" class="btn btn-warning m-btn m-btn--icon">
+                                            <span>
+                                                <i class="la flaticon-download"></i>
+                                                <span>导出数据</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="search-table">
+                                    <template>
+                                        <el-table
+                                                :data="tableData"
+                                                stripe
+                                                style="width: 100%">
+                                            <el-table-column
+                                                    type="index"
+                                                    header-align="center"
+                                                    label="序号"
+                                                    align="center"
+                                                    width="50">
+                                            </el-table-column>
+                                            <el-table-column
+                                                    prop="name"
+                                                    header-align="center"
+                                                    label="会员名称"
+                                                    align="center"
+                                                    width="150">
+                                                <template slot-scope="scope">
+                                                    <div class="ellipsis" :title="scope.row.name">
+                                                        {{scope.row.name}}
+                                                    </div>
+                                                </template>
+                                            </el-table-column>
+                                            <el-table-column
+                                                    header-align="center"
+                                                    label="会员号"
+                                                    align="center"
+                                            >
+                                                <template slot-scope="scope">
+                                                    <div class="ellipsis" :title="scope.row.memberNo">
+                                                        {{scope.row.memberNo}}
+                                                    </div>
+                                                </template>
+                                            </el-table-column>
+                                            <el-table-column
+                                                    header-align="center"
+                                                    align="center"
+                                                    label="会员类型">
+                                                <template slot-scope="scope">
+                                                    <span v-if="scope.row.memberType == 1" class="m-badge m-badge--brand m-badge--wide">普通会员</span>
+                                                    <span v-if="scope.row.memberType == 2" class="m-badge m-badge--warning m-badge--wide">学生会员</span>
+                                                    <span v-if="scope.row.memberType == 3" class="m-badge m-badge--info m-badge--wide">团体会员</span>
+                                                </template>
+                                            </el-table-column>
+                                            <el-table-column
+                                                    header-align="center"
+                                                    align="center"
+                                                    label="入会年份">
+                                                <template slot-scope="scope">
+                                                    <div class="ellipsis" :title="scope.row.admitYear">
+                                                        {{scope.row.admitYear}}
+                                                    </div>
+                                                </template>
+                                            </el-table-column>
+                                            <el-table-column
+                                                    prop="address"
+                                                    header-align="center"
+                                                    align="center"
+                                                    label="会员有效期">
+                                                <template slot-scope="scope">
+                                                    <div class="ellipsis" :title="scope.row.expiryDate">
+                                                        {{scope.row.expiryDate}}
+                                                    </div>
+                                                </template>
+                                            </el-table-column>
+                                            <el-table-column
+                                                    header-align="center"
+                                                    align="center"
+                                                    label="推荐机构">
+                                                <template slot-scope="scope">
+                                                    <div class="ellipsis">
+                                                        <span v-if="scope.row.reference == 1">CT理论及应用分会</span>
+                                                        <span v-if="scope.row.reference == 2">材料科学分会</span>
+                                                    </div>
+                                                </template>
+                                            </el-table-column>
+                                            <el-table-column
+                                                    header-align="center"
+                                                    align="center"
+                                                    label="操作"
+                                                    width="60"
+                                            >
+                                                <template  slot-scope="scope">
+                                                    <a href="javascript:"
+                                                       class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill"
+                                                       title="详情">
+                                                        <i class="la flaticon-interface-6"></i>
+                                                    </a>
+                                                </template>
+                                            </el-table-column>
+                                        </el-table>
+                                    </template>
+                                </div>
+                                <div class="search-pagination clearfix">
+                                    <el-pagination
+                                            background
+                                            layout="total, prev, pager, next"
+                                            :total="1000">
+                                    </el-pagination>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -92,6 +261,7 @@
     })
 </script>
 <div th:include="/base/script::script"></div>
+<script th:src="@{{path}/assets/js/src/member/groupMember.js(path=${#request.getContextPath()})}"></script>
 </body>
 <!-- end::Body -->
 </html>
