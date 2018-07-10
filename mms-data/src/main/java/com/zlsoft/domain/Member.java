@@ -194,6 +194,23 @@ public class Member implements Serializable {
     @Column(length = 512)
     private String jobPerformance;
 
+    /**
+     * 会员有效期
+     */
+    private Date expiryDate;
+
+    /**
+     * 会员状态（字典）
+     */
+    @Column(name = "member_status")
+    private Short status;
+
+    /**
+     * 入会年份
+     */
+    @Column(length = 4)
+    private String admitYear;
+
     public Long getId() {
         return id;
     }
@@ -440,5 +457,29 @@ public class Member implements Serializable {
 
     public void setJobPerformance(String jobPerformance) {
         this.jobPerformance = jobPerformance;
+    }
+
+    public Date getExpiryDate() {
+        return expiryDate;
+    }
+
+    public void setExpiryDate(Date expiryDate) {
+        this.expiryDate = expiryDate;
+    }
+
+    public Short getStatus() {
+        return status;
+    }
+
+    public void setStatus(Short status) {
+        this.status = status;
+    }
+
+    public String getAdmitYear() {
+        return admitYear;
+    }
+
+    public void setAdmitYear(String admitYear) {
+        this.admitYear = admitYear;
     }
 }
