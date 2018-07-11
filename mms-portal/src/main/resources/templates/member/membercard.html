@@ -3,72 +3,44 @@
 <head>
     <meta charset="utf-8">
     <title>电子会员证-中国体视学学会会员服务系统</title>
-    <link rel="stylesheet" type="text/css" th:href="@{css/public.css}" />
-    <link rel="stylesheet" type="text/css" th:href="@{css/vice.css}" />
-    <link rel="stylesheet" type="text/css" th:href="@{css/new.css}" />
-    <link rel="stylesheet" type="text/css" th:href="@{css/base.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/public.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/vice.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/new.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/base.css}" />
     <!-- import CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" th:href="@{/css/element/index.css}" >
 </head>
 
 <body>
-    <div class="header_top crd_h">
-        <div class="header">
-            <a href="index.html" class="logo">
-                <img th:src="@{images/logo.png}" /></a>
-            <div class="right_f">
-                <p><a href="#">English</a><a href="#">中文版</a></p>
-                <a th:href="@{index.html}" class="home">首页</a>
-            </div>
-        </div>
-    </div>
-    <div class="banner_c">
-        <img th:src="@{images/grzx.png}" />
-    </div>
-    <div class="personal">
-        <div class="per">
-            <div class="per_left">
-                <div class="p_tit">
-                    <div class="tx_img">
-                        <i></i>
-                        <img th:src="@{images/big.jpg}" />
+    <div id="membercard">
+        <div th:include="/layout/header::header"></div>
+        <div class="personal">
+            <div class="per">
+                <layout :name="message.name"></layout>
+                <div class="per_right">
+                    <div class="key">
+                        <h4>我的电子会员证</h4>
                     </div>
-                    <div class="name_f">
-                        <div class="name_c">
-                            <h4>张三丰</h4>
-                            <a th:href="@{login.html}">退出</a>
-                        </div>
-                        <b>会员类型：普通会员</b> <b>有效期：2018-01-19</b>
+                    <div class="notip">
                     </div>
-                </div>
-                <ul>
-                    <li><a href="personal_information.html"><i>
-                        <img src="images/gr_icon.png" width="24" height="23" /></i>个人资料</a> </li>
-                    <li><a href="personal_edit.html"><i>
-                        <img src="images/bj_icon.png" width="24" height="23" /></i>编辑资料</a> </li>
-                    <li class="cur"><a href="membercard.html"><i>
-                        <img src="images/mony_icon.png" width="24" height="23" /></i>电子会员证</a> </li>
-                    <li><a href="personal_payment.html"><i>
-                        <img src="images/list_icon.png" width="24" height="23" /></i>缴费列表</a> </li>
-                    <li><a href="personal_revise.html"><i>
-                        <img src="images/key_icon.png" width="24" height="23" /></i>修改密码</a> </li>
-                </ul>
-            </div>
-            <div class="per_right">
-                <div class="key">
-                    <h4>我的电子会员证</h4>
-                </div>
-                <div class="notip">
                 </div>
             </div>
         </div>
+        <div class="fot_w2">
+            Copyright © 2009-2018 中国体视学学会 版权所有 京ICP备10033108
+            <br />
+            京公网安备110108007550号<br />
+            技术支持：北京智联软件技术有限公司
+        </div>
     </div>
-    <div class="fot_w2">
-        Copyright © 2009-2018 中国体视学学会 版权所有 京ICP备10033108 
-        <br />
-        京公网安备110108007550号<br />
-        技术支持：北京智联软件技术有限公司
-    </div>
-
+    <template th:include="/layout/layout::layout" id="per_left"></template>
 </body>
+<script th:src="@{/js/jquery-1.7.1.min.js}"></script>
+<script th:src="@{/js/vue.js}"></script>
+<script th:inline="javascript">
+    window.message = [[${member}]];
+</script>
+<script th:src="@{/js/element/index.js}"></script>
+<script th:src="@{/js/components/layout.js}"></script>
+<script th:src="@{/js/src/membercard.js}"></script>
 </html>

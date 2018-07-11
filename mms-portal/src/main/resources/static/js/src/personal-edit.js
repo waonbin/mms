@@ -46,6 +46,20 @@ $(function() {
            }
        },
        methods: {
+           changeTime(time) {
+               var y = time.getFullYear(),
+                   m = time.getMonth()+1,
+                   d = time.getDate();
+
+               if(m < 10) {
+                   m = '0'+m
+               }
+               if(d < 10) {
+                   d = '0'+d
+               }
+               return y+'-'+m+'-'+d
+
+           },
             check: function() {
                 var group = Object.keys(this.required),
                     meilReq = new RegExp("^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*\\.[a-zA-Z0-9]{2,6}$");
@@ -57,6 +71,11 @@ $(function() {
 
                 for (var i=0; i<group.length; i++) {
                     var obj = this.registerValidateForm[group[i]];
+
+                    if(this.registerValidateForm['birthday']) {
+                        var time = this.registerValidateForm['birthday'].toString();
+                        this.registerValidateForm['birthday'] = this.changeTime(new Date(time))
+                    }
 
                     if(!obj || (isNaN(obj) && !obj.length) ) {
                         this.$message.error('请填写必填字段: '+ this.required[group[i]]);

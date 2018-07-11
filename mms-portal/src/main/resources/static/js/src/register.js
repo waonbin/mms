@@ -93,7 +93,6 @@
                    d = '0'+d
                }
                return y+'-'+m+'-'+d
-
            },
            submit: function() {
                var param = {

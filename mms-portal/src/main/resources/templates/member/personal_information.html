@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{{path}/css/new.css(path=${#request.getContextPath()})}" />
     <link rel="stylesheet" type="text/css" th:href="@{{path}/css/base.css(path=${#request.getContextPath()})}" />
     <!-- import CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" th:href="@{/css/element/index.css}" >
 </head>
 
 <body>
