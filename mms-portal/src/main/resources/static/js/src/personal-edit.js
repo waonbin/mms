@@ -26,7 +26,7 @@ $(function() {
                required:{
                    name:"会员姓名",
                    gender:"会员性别",
-                   school:"学校",
+                   school:"毕业学校",
                    partisan:"党派信息",
                    company:"工作单位",
                    title:"职称",
@@ -42,7 +42,8 @@ $(function() {
                    zipcode:"邮编",
                    email:"邮箱",
                    reference:"推荐单位"
-               }
+               },
+               params:{}
            }
        },
        methods: {
@@ -80,7 +81,11 @@ $(function() {
                     if(!obj || (isNaN(obj) && !obj.length) ) {
                         this.$message.error('请填写必填字段: '+ this.required[group[i]]);
                         break;
-                    } else if(i === group.length-1 ) {
+                    } else if(obj) {
+                        this.params[group[i]] = obj
+                    }
+
+                    if(i === group.length-1 ) {
                         this.submit()
                     }
 
@@ -91,11 +96,14 @@ $(function() {
                 $.ajax({
                     url:"./edit",
                     type:"post",
-                    data: this.registerValidateForm
+                    data: this.params
                 }).done(function(){
-
+                    this.$message({
+                        message: '修改成功',
+                        type: 'success'
+                    });
                 }.bind(this)).fail(function(){
-
+                    this.$message.error('提交失败');
                 }.bind(this))
            }
        },
