@@ -3,23 +3,27 @@
 <head>
     <meta charset="utf-8">
     <title>电子会员证-中国体视学学会会员服务系统</title>
-    <link rel="stylesheet" type="text/css" href="css/public.css" />
-    <link rel="stylesheet" type="text/css" href="css/vice.css" />
+    <link rel="stylesheet" type="text/css" th:href="@{css/public.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{css/vice.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{css/new.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{css/base.css}" />
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 </head>
 
 <body>
     <div class="header_top crd_h">
         <div class="header">
             <a href="index.html" class="logo">
-                <img src="images/logo.png" /></a>
+                <img th:src="@{images/logo.png}" /></a>
             <div class="right_f">
                 <p><a href="#">English</a><a href="#">中文版</a></p>
-                <a href="index.html" class="home">首页</a>
+                <a th:href="@{index.html}" class="home">首页</a>
             </div>
         </div>
     </div>
     <div class="banner_c">
-        <img src="images/grzx.png" />
+        <img th:src="@{images/grzx.png}" />
     </div>
     <div class="personal">
         <div class="per">
@@ -27,12 +31,12 @@
                 <div class="p_tit">
                     <div class="tx_img">
                         <i></i>
-                        <img src="images/big.jpg" />
+                        <img th:src="@{images/big.jpg}" />
                     </div>
                     <div class="name_f">
                         <div class="name_c">
                             <h4>张三丰</h4>
-                            <a href="login.html">退出</a>
+                            <a th:href="@{login.html}">退出</a>
                         </div>
                         <b>会员类型：普通会员</b> <b>有效期：2018-01-19</b>
                     </div>
