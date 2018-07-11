@@ -3,27 +3,27 @@
         <div class="p_tit">
             <div class="tx_img">
                 <i></i>
-                <img th:src="@{{path}/images/big.jpg(path=${#request.getContextPath()})}" />
+                <img th:src="@{/images/big.jpg}" />
             </div>
             <div class="name_f">
                 <div class="name_c">
                     <h4>{{name}}</h4>
-                    <a th:href="@{{path}/logout(path=${#request.getContextPath()})}">退出</a>
+                    <a th:href="@{/logout}">退出</a>
                 </div>
                 <b>会员类型：普通会员</b> <b>有效期：2018-01-19</b>
             </div>
         </div>
         <ul>
-            <li class="info-btn"><a href="/member/personal_information"><i>
-                <img th:src="@{{path}/images/gr_icon.png(path=${#request.getContextPath()})}" width="24" height="23" /></i>个人资料</a> </li>
-            <li class="edit-btn"><a href="/member/edit"><i>
-                <img th:src="@{{path}/images/bj_icon.png(path=${#request.getContextPath()})}" width="24" height="23" /></i>编辑资料</a> </li>
-            <li><a href="/member/membercard"><i>
-                <img th:src="@{{path}/images/mony_icon.png(path=${#request.getContextPath()})}" width="24" height="23" /></i>电子会员证</a> </li>
-            <li><a href="personal_payment.html"><i>
-                <img th:src="@{{path}/images/list_icon.png(path=${#request.getContextPath()})}" width="24" height="23" /></i>缴费列表</a> </li>
-            <li class="revise-btn"><a href="/member/revise"><i>
-                <img th:src="@{{path}/images/key_icon.png(path=${#request.getContextPath()})}" width="24" height="23" /></i>修改密码</a> </li>
+            <li class="info-btn"><a tf:href="@{/member/personal_information}"><i>
+                <img th:src="@{/images/gr_icon.png}" width="24" height="23" /></i>个人资料</a> </li>
+            <li class="edit-btn"><a tf:href="@{/member/edit}"><i>
+                <img th:src="@{/images/bj_icon.png}" width="24" height="23" /></i>编辑资料</a> </li>
+            <li><a th:href="@{/member/card}"><i>
+                <img th:src="@{/images/mony_icon.png}" width="24" height="23" /></i>电子会员证</a> </li>
+            <li><a tf:href="@{/payment}"><i>
+                <img th:src="@{/images/list_icon.png}" width="24" height="23" /></i>缴费列表</a> </li>
+            <li class="revise-btn"><a th:href="@{/member/revise}"><i>
+                <img th:src="@{/images/key_icon.png}" width="24" height="23" /></i>修改密码</a> </li>
         </ul>
     </div>
 </div>

@@ -153,6 +153,16 @@ public class MemberController extends BaseController {
     }
 
     /**
+     * GET  /revise : get member card page
+     * @return member card page
+     */
+    @GetMapping("/card")
+    public String card() {
+        return "/member/membercard";
+    }
+
+
+    /**
      * GET  /revise : get revise page
      * @return revise page
      */

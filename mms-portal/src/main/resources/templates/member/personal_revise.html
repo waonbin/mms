@@ -3,12 +3,12 @@
 <head>
     <meta charset="utf-8">
     <title>修改密码-中国体视学学会会员服务系统</title>
-    <link rel="stylesheet" type="text/css" th:href="@{{path}/css/public.css(path=${#request.getContextPath()})}" />
-    <link rel="stylesheet" type="text/css" th:href="@{{path}/css/vice.css(path=${#request.getContextPath()})}" />
-    <link rel="stylesheet" type="text/css" th:href="@{{path}/css/base.css(path=${#request.getContextPath()})}" />
-    <link rel="stylesheet" type="text/css" th:href="@{{path}/css/src/register.css(path=${#request.getContextPath()})}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/public.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/vice.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/base.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/src/register.css}"/>
     <!-- import CSS -->
-    <link rel="stylesheet" th:href="@{{path}/css/element/index.css(path=${#request.getContextPath()})}" >
+    <link rel="stylesheet" th:href="@{/css/element/index.css}" >
     <style>
         .revise-form {
             width: 438px;
@@ -72,13 +72,13 @@
     </div>
     <template th:include="/layout/layout::layout" id="per_left"></template>
 </body>
-<script th:src="@{{path}/js/jquery-1.7.1.min.js(path=${#request.getContextPath()})}"></script>
-<script th:src="@{{path}/js/vue.js(path=${#request.getContextPath()})}"></script>
+<script th:src="@{/js/jquery-1.7.1.min.js}"></script>
+<script th:src="@{/js/vue.js}"></script>
 <script th:inline="javascript">
     window.message = [[${member}]];
 </script>
-<script th:src="@{{path}/js/element/index.js(path=${#request.getContextPath()})}"></script>
-<script th:src="@{{path}/js/components/layout.js(path=${#request.getContextPath()})}"></script>
-<script th:src="@{{path}/js/src/personal-revise.js(path=${#request.getContextPath()})}"></script>
+<script th:src="@{/js/element/index.js}"></script>
+<script th:src="@{/js/components/layout.js}"></script>
+<script th:src="@{/js/src/personal-revise.js}"></script>
 
 </html>

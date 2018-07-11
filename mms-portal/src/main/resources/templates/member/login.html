@@ -3,16 +3,16 @@
 <head>
     <meta charset="utf-8">
     <title>用户登录</title>
-    <link rel="stylesheet" type="text/css" th:href="@{{path}/css/public.css(path=${#request.getContextPath()})}" />
-    <link rel="stylesheet" type="text/css" th:href="@{{path}/css/vice.css(path=${#request.getContextPath()})}" />
-    <link rel="stylesheet" type="text/css" th:href="@{{path}/css/base.css(path=${#request.getContextPath()})}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/public.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/vice.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/base.css}" />
 </head>
 
 <body>
     <div class="header_top crd_h">
         <div class="header">
             <a href="../index.html" class="logo">
-                <img th:src="@{{path}/images/logo.png(path=${#request.getContextPath()})}" /></a>
+                <img th:src="@{/images/logo.png}" /></a>
             <div class="right_f">
                 <p><a href="#">English</a><a href="#">中文版</a></p>
                 <a href="../index.html" class="home">首页</a>
@@ -37,7 +37,7 @@
                     <span class="red" v-show="tip" v-cloak>* {{tipContent}}</span>
                 </p>
 
-                <p><a href="#"><b>忘记密码?去找回</b></a><a href="/member/register"><i>还没有账号,去注册</i></a></p>
+                <p><a href="#"><b>忘记密码?去找回</b></a><a th:href="@{/member/register}"><i>还没有账号,去注册</i></a></p>
                 <a href="javascript:" class="lotin" @click="login">登录</a>
             </div>
         </div>
@@ -49,9 +49,9 @@
         技术支持：北京智联软件技术有限公司
     </div>
 </body>
-<script th:src="@{{path}/js/jquery-1.7.1.min.js(path=${#request.getContextPath()})}"></script>
-<script th:src="@{{path}/js/vue.js(path=${#request.getContextPath()})}"></script>
-<script th:src="@{{path}/plugins/js/verificationCode.js(path=${#request.getContextPath()})}"></script>
-<script th:src="@{{path}/js/src/login.js(path=${#request.getContextPath()})}"></script>
+<script th:src="@{/js/jquery-1.7.1.min.js}"></script>
+<script th:src="@{/js/vue.js}"></script>
+<script th:src="@{/plugins/js/verificationCode.js}"></script>
+<script th:src="@{/js/src/login.js}"></script>
 
 </html>
