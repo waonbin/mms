@@ -197,6 +197,7 @@ public class Member implements Serializable {
     /**
      * 会员有效期
      */
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date expiryDate;
 
     /**
