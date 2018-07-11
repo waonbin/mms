@@ -70,7 +70,7 @@ $(function() {
             },
            submit: function() {
                 $.ajax({
-                    url:"/member/edit",
+                    url:"./edit",
                     type:"post",
                     data: this.registerValidateForm
                 }).done(function(){
