@@ -4,15 +4,18 @@ import com.zlsoft.common.service.PaymentService;
 import com.zlsoft.domain.Member;
 import com.zlsoft.domain.Payment;
 import com.zlsoft.portal.Constants;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
+import javax.persistence.criteria.Predicate;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -39,6 +42,30 @@ public class PaymentController {
         }
 
         return mav;
+    }
+
+    /**
+     * GET  /page/{page} : get payment data by page
+     * @param session the HTTP Session
+     * @param page zero-based page index
+     * @return payment data by page
+     */
+    @GetMapping("/page/{page}")
+    public @ResponseBody Page<Payment> getPayments(HttpSession session, @PathVariable("page") int page){
+
+        Member member = (Member) session.getAttribute(Constants.SESSION_USER);
+
+        Specification<Payment> spec = (root, query, cb) -> {
+            List<Predicate> list = new ArrayList<>();
+            list.add(cb.equal(root.get("memberId").as(Long.class), member.getId()));
+            Predicate[] predicates = new Predicate[list.size()];
+            query.where(cb.and(list.toArray(predicates)));
+            return query.getRestriction();
+        };
+
+        PageRequest pageRequest = PageRequest.of(page, Constants.PAGE_SIZE);
+
+        return this.paymentService.findAll(spec, pageRequest);
     }
 
     /**
