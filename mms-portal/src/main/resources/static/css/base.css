@@ -37,3 +37,23 @@
     background-color: #642b91 !important;
     border-color: #642b91 !important;
 }
+/*分页器*/
+.search-pagination {
+    margin-top: 10px;
+}
+.search-pagination .el-pagination {
+    float: right;
+}
+.el-pagination__sizes .el-input .el-input__inner:hover {
+    border-color: #642b91 !important;
+}
+.el-pagination.is-background .el-pager li:not(.disabled):hover {
+    color: #642b91 !important;
+}
+.el-pagination.is-background .el-pager li.active:hover {
+    color: #fff !important;
+}
+
+.el-pagination.is-background .el-pager li:not(.disabled).active {
+    background-color: #642b91 !important;
+}

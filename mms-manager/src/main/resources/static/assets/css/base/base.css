@@ -74,6 +74,9 @@ body {
 .search-pagination .el-pagination.is-background .el-pager li:not(.disabled).active {
     background-color: #5766dd !important;
 }
+.search-pagination .el-pagination.is-background .el-pager li:not(.disabled).active:hover {
+    color: #fff !important;
+}
 .search-pagination .el-pagination.is-background .el-pager li:not(.disabled):hover {
     color: #5766dd !important;
 }

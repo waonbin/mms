@@ -65,6 +65,7 @@ $(function() {
                 var group = Object.keys(this.required),
                     meilReq = new RegExp("^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*\\.[a-zA-Z0-9]{2,6}$");
 
+                this.params.id = this.registerValidateForm.id;
                 if(this.registerValidateForm['email'] && !meilReq.test(this.registerValidateForm['email'])) {
                     this.$message.error('邮箱格式不正确！');
                     return

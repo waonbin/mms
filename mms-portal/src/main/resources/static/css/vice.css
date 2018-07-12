@@ -309,6 +309,10 @@ border-bottom:#e8e8e8 solid 1px;}
 .key_hf ul li{ margin-bottom:0 !important;}
 .key_hf ul li span{ display:block; float:left; line-height:68px; font-size:14px; border-left:#e8e8e8 solid 1px ;
 border-bottom:#e8e8e8 solid 1px;}
+.key_hf ul li span:nth-last-child(1) {
+  border-right: #e8e8e8 solid 1px;
+}
+.key_hf ul li.tip {border:#e8e8e8 solid 1px; border-top: 0; text-align: center; line-height: 50px }
 .key_hf ul li .dd_1{ width:163px; float:left; line-height:68px; font-size:14px; border-left:#e8e8e8 solid 1px ;
 border-bottom:#e8e8e8 solid 1px; text-align:center;}
 .hu_a .dd_1:hover{ color:#333 !important;}
