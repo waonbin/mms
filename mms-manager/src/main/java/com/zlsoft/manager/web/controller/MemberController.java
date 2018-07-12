@@ -2,8 +2,12 @@ package com.zlsoft.manager.web.controller;
 
 import com.zlsoft.common.service.MemberService;
 import com.zlsoft.domain.Member;
+import com.zlsoft.manager.Constants;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -34,6 +38,19 @@ public class MemberController {
     public @ResponseBody List<Member>
     getIndividualMembers() {
         List<Member> members = this.memberService.findAll();
+        return members;
+    }
+
+    /**
+     * GET  /page/{page} : get data of members by page
+     * @param page zero-based page index
+     * @param memberType member type code
+     * @return data of individual members by page
+     */
+    @GetMapping("/page/{page}")
+    public @ResponseBody Page<Member> getMembers(@PathVariable("page") int page, short memberType) {
+        PageRequest pageRequest = PageRequest.of(page, Constants.PAGE_SIZE);
+        Page<Member> members = this.memberService.findByMemberType(memberType, pageRequest);
         return members;
     }
 

@@ -9,7 +9,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -23,21 +22,11 @@ public class PaymentController {
 
     /**
      * GET  /payment : get payment page
-     * @param session the HTTP Session
      * @return payment page
      */
     @GetMapping
-    public ModelAndView payment(HttpSession session) {
-        ModelAndView mav = new ModelAndView("/member/personal_payment");
-
-        Member member = (Member) session.getAttribute(Constants.SESSION_USER);
-
-        if(member != null) {
-//            List<Payment> payments = this.paymentService.findByMemberId(member.getId());
-//            mav.addObject("payments", payments);
-        }
-
-        return mav;
+    public String payment() {
+        return "/member/personal_payment";
     }
 
     /**

@@ -2,6 +2,8 @@ package com.zlsoft.common.service;
 
 import com.zlsoft.domain.Member;
 import com.zlsoft.utils.service.SimpleService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -20,4 +22,5 @@ public interface MemberService extends SimpleService<Member, Long> {
 
     int changePassword(Long id, String oldPassword, String newPassword);
 
+    Page<Member> findByMemberType(Short memberType, Pageable pageable);
 }

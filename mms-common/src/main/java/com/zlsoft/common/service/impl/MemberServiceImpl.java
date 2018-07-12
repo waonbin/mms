@@ -4,6 +4,8 @@ import com.zlsoft.common.repository.MemberRepository;
 import com.zlsoft.common.service.MemberService;
 import com.zlsoft.domain.Member;
 import com.zlsoft.utils.service.impl.BaseSimpleService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -58,6 +60,11 @@ public class MemberServiceImpl extends BaseSimpleService<Member, Long> implement
             return 1;
         }
         return 0;
+    }
+
+    @Override
+    public Page<Member> findByMemberType(Short memberType, Pageable pageable) {
+        return ((MemberRepository)this.getRepository()).findByMemberType(memberType, pageable);
     }
 
 }
