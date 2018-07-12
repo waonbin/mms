@@ -3,6 +3,7 @@ $(function() {
         el:'#box-content',
         data() {
             return {
+                page:1,
                 show:true,
                 jg:'',
                 zc:'',
@@ -42,12 +43,19 @@ $(function() {
         methods: {
             getData: function() {
                 $.ajax({
-                    url: '/admin/member/register_check/data',
+                    url: '/admin/member/page/'+(this.page-1),
+                    data: {
+                        memberType: 3
+                    }
                 }).done(function(data) {
                     this.tableData = data;
                 }.bind(this)).fail(function() {
                     this.$message.error('获取数据失败,请检查网络');
                 }.bind(this))
+            },
+            changePage: function(val) {
+                this.page = val;
+                this.getData()
             }
         },
         mounted: function() {
