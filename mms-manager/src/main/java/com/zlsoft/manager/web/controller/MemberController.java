@@ -45,7 +45,7 @@ public class MemberController {
      * GET  /page/{page} : get data of members by page
      * @param page zero-based page index
      * @param memberType member type code
-     * @return data of individual members by page
+     * @return data of members by page
      */
     @GetMapping("/page/{page}")
     public @ResponseBody Page<Member> getMembers(@PathVariable("page") int page, short memberType) {
