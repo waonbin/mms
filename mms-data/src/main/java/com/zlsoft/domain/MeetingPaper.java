@@ -56,4 +56,68 @@ public class MeetingPaper implements Serializable {
      * 论文Id
      */
     private Long fileId;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getEnrollmentId() {
+        return enrollmentId;
+    }
+
+    public void setEnrollmentId(Long enrollmentId) {
+        this.enrollmentId = enrollmentId;
+    }
+
+    public Short getIsSpeak() {
+        return isSpeak;
+    }
+
+    public void setIsSpeak(Short isSpeak) {
+        this.isSpeak = isSpeak;
+    }
+
+    public String getPaper() {
+        return paper;
+    }
+
+    public void setPaper(String paper) {
+        this.paper = paper;
+    }
+
+    public Double getWordCount() {
+        return wordCount;
+    }
+
+    public void setWordCount(Double wordCount) {
+        this.wordCount = wordCount;
+    }
+
+    public String getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(String keywords) {
+        this.keywords = keywords;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public Long getFileId() {
+        return fileId;
+    }
+
+    public void setFileId(Long fileId) {
+        this.fileId = fileId;
+    }
 }

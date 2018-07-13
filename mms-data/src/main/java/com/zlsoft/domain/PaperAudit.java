@@ -8,16 +8,7 @@ import java.io.Serializable;
 public class PaperAudit implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE, generator="id_generator")
-    @TableGenerator(name = "id_generator",
-            table="m_id",
-            pkColumnName="pk_name",
-            valueColumnName="pk_value",
-            pkColumnValue="enrollment_pk",
-            initialValue = 10000,
-            allocationSize=1
-    )
-    private Long id;
+    private Long paperId;
 
     /**
      * 论文审核（字典）
@@ -40,4 +31,44 @@ public class PaperAudit implements Serializable {
      */
     @Column(columnDefinition = "TEXT")
     private String speechAudit;
+
+    public Long getPaperId() {
+        return paperId;
+    }
+
+    public void setPaperId(Long paperId) {
+        this.paperId = paperId;
+    }
+
+    public Short getPaperResult() {
+        return paperResult;
+    }
+
+    public void setPaperResult(Short paperResult) {
+        this.paperResult = paperResult;
+    }
+
+    public String getPaperAudit() {
+        return paperAudit;
+    }
+
+    public void setPaperAudit(String paperAudit) {
+        this.paperAudit = paperAudit;
+    }
+
+    public Short getSpeechResult() {
+        return speechResult;
+    }
+
+    public void setSpeechResult(Short speechResult) {
+        this.speechResult = speechResult;
+    }
+
+    public String getSpeechAudit() {
+        return speechAudit;
+    }
+
+    public void setSpeechAudit(String speechAudit) {
+        this.speechAudit = speechAudit;
+    }
 }

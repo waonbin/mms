@@ -51,9 +51,10 @@ public class MeetingController {
      * @return data of meetings by page
      */
     @GetMapping("/page/{page}")
-    public @ResponseBody Page<Meeting> getMeetings(@PathVariable("page") int page){
+    public @ResponseBody ResponseEntity getMeetings(@PathVariable("page") int page){
         PageRequest pageRequest = PageRequest.of(page, Constants.PAGE_SIZE);
-        return this.meetingService.findAll(pageRequest);
+        Page<Meeting> meetings = this.meetingService.findAll(pageRequest);
+        return ResponseEntity.ok(meetings);
     }
 
     /**
@@ -62,8 +63,9 @@ public class MeetingController {
      * @return saved meeting data
      */
     @PostMapping("/save")
-    public @ResponseBody Meeting save(Meeting meeting) {
-        return this.meetingService.save(meeting);
+    public @ResponseBody ResponseEntity save(Meeting meeting) {
+        Meeting savedMeeting = this.meetingService.save(meeting);
+        return ResponseEntity.ok(savedMeeting);
     }
 
     /**

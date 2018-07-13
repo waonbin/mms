@@ -46,7 +46,7 @@ public class EnrollmentController {
     }
 
     /**
-     * GET /detail : get details of meeting enrollment
+     * GET  /detail : get details of meeting enrollment
      * @param id meeting enrollment id
      * @return meeting enrollment data
      */
@@ -54,5 +54,15 @@ public class EnrollmentController {
     public @ResponseBody ResponseEntity getMeetingEnrollment(long id){
         Optional<MeetingEnrollment> enrollment = this.meetingEnrollmentService.findById(id);
         return ResponseEntity.ok(enrollment);
+    }
+
+    /**
+     * POST  /delete : delete meeting enrollment by id
+     * @param id meeting enrollment id
+     * @return HTTP status to figure if operation is successful
+     */
+    public @ResponseBody ResponseEntity delete(long id) {
+        this.meetingEnrollmentService.deleteById(id);
+        return ResponseEntity.ok().build();
     }
 }

@@ -198,6 +198,12 @@ public class MemberController extends BaseController {
         return ResponseEntity.ok().build();
     }
 
+    /**
+     * copy values from right to left if it is not null
+     * @param left left model
+     * @param right right model
+     * @return left model
+     */
     private Member copyFields(Member left, Member right) {
 
         if(!Strings.isNullOrEmpty(right.getEmail())) left.setEmail(right.getEmail());

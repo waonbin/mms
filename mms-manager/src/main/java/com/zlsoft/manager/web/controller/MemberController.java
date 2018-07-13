@@ -5,6 +5,7 @@ import com.zlsoft.domain.Member;
 import com.zlsoft.manager.Constants;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,10 +36,9 @@ public class MemberController {
      * @return data of individual members' list page
      */
     @GetMapping("/individual_members/data")
-    public @ResponseBody List<Member>
-    getIndividualMembers() {
+    public @ResponseBody ResponseEntity getIndividualMembers() {
         List<Member> members = this.memberService.findAll();
-        return members;
+        return ResponseEntity.ok(members);
     }
 
     /**
@@ -48,10 +48,10 @@ public class MemberController {
      * @return data of members by page
      */
     @GetMapping("/page/{page}")
-    public @ResponseBody Page<Member> getMembers(@PathVariable("page") int page, short memberType) {
+    public @ResponseBody ResponseEntity getMembers(@PathVariable("page") int page, short memberType) {
         PageRequest pageRequest = PageRequest.of(page, Constants.PAGE_SIZE);
         Page<Member> members = this.memberService.findByMemberType(memberType, pageRequest);
-        return members;
+        return ResponseEntity.ok(members);
     }
 
     /**
@@ -68,9 +68,9 @@ public class MemberController {
      * @return data of group members' list page
      */
     @GetMapping("/group_members/data")
-    public @ResponseBody List<Member> getGroupMembers() {
+    public @ResponseBody ResponseEntity getGroupMembers() {
         List<Member> members = this.memberService.findAll();
-        return members;
+        return ResponseEntity.ok(members);
     }
 
     /**
@@ -87,8 +87,8 @@ public class MemberController {
      * @return data of group members' list page
      */
     @GetMapping("/register_check/data")
-    public @ResponseBody List<Member> getRegisterCheck() {
+    public @ResponseBody ResponseEntity getRegisterCheck() {
         List<Member> members = this.memberService.findAll();
-        return members;
+        return ResponseEntity.ok(members);
     }
 }
