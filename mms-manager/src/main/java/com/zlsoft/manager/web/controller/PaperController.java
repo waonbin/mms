@@ -15,7 +15,7 @@ import javax.inject.Inject;
 import java.util.Optional;
 
 @Controller("AdminPaperController")
-@RequestMapping("/meeting/paper")
+@RequestMapping("/admin/meeting/paper")
 public class PaperController {
 
     @Inject
@@ -30,7 +30,7 @@ public class PaperController {
      */
     @GetMapping
     public String getPage() {
-        return "/meeting/paper/list";
+        return "/admin/meeting/paper";
     }
 
     /**

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.inject.Inject;
 
 @Controller("AdminMeetingController")
-@RequestMapping("/meeting")
+@RequestMapping("/admin/meeting")
 public class MeetingController {
 
     @Inject
@@ -24,7 +24,7 @@ public class MeetingController {
      */
     @GetMapping
     public String getMeetingPage() {
-        return "/meeting/list";
+        return "/admin/meeting/list";
     }
 
     /**
@@ -33,7 +33,7 @@ public class MeetingController {
      */
     @GetMapping("/add")
     public String getAddMeetingPage() {
-        return "/meeting/add";
+        return "/admin/meeting/add";
     }
 
     /**
@@ -42,7 +42,7 @@ public class MeetingController {
      */
     @GetMapping("/modify")
     public String getModifyMeetingPage() {
-        return "/meeting/modify";
+        return "/admin/meeting/modify";
     }
 
     /**

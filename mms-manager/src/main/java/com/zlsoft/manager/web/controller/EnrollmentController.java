@@ -16,7 +16,7 @@ import javax.inject.Inject;
 import java.util.Optional;
 
 @Controller("AdminEnrollmentController")
-@RequestMapping("/meeting/enroll")
+@RequestMapping("/admin/meeting/enroll")
 public class EnrollmentController {
 
     @Inject
@@ -28,7 +28,7 @@ public class EnrollmentController {
      */
     @GetMapping
     public String getPage() {
-        return "/meeting/enroll/list";
+        return "/admin/meeting/enroll";
     }
 
     /**
