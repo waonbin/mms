@@ -34,7 +34,7 @@ $(function() {
                         type: 'success'
                     });
                 }.bind(this)).fail(function() {
-                    this.$message.error('会议名称不能为空！');
+                    this.$message.error('保存失败！');
                 }.bind(this))
             }
         },
