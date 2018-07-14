@@ -137,7 +137,7 @@
                                         <template>
                                             <el-table
                                                     ref="multipleTable"
-                                                    :data="tableData"
+                                                    :data="tableData.content"
                                                     tooltip-effect="dark"
                                                     style="width: 100%"
                                                     @selection-change="handleSelectionChange"
@@ -257,7 +257,10 @@
                                         <el-pagination
                                                 background
                                                 layout="total, prev, pager, next"
-                                                :total="1000">
+                                                :current-page="page"
+                                                :total="tableData.totalElements"
+                                                @current-change="changePage"
+                                        >
                                         </el-pagination>
                                     </div>
                                 </div>

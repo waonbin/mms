@@ -20,6 +20,8 @@
           th:href="@{{path}/assets/demo/demo12/media/img/logo/favicon.ico(path=${#request.getContextPath()})}"/>
     <link rel="stylesheet" th:href="@{/assets/css/base/meeting-add.css}">
     <script th:src="@{{path}/assets/js/base/jquery-1.7.1.min.js(path=${#request.getContextPath()})}"></script>
+    <link href="http://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
+    <script src="http://cdn.quilljs.com/1.0.0/quill.js"></script>
 </head>
 <!-- end::Head -->
 
@@ -128,6 +130,19 @@
                                                                 <span>提交</span>
                                                             </span>
                                                         </a>
+                                                    </div>
+                                                    <div>
+                                                        <!-- 创建工具栏组件 -->
+                                                        <div id="toolbar">
+                                                            <button class="ql-bold">Bold</button>
+                                                            <button class="ql-italic">Italic</button>
+                                                            <button class="ql-italic">Italic</button>
+                                                        </div>
+
+                                                        <!-- 创建文本编辑器 -->
+                                                        <div id="editor">
+                                                            <p>Hello World!</p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                            </el-tab-pane>

@@ -16,11 +16,26 @@ $(function() {
                 }).done(function(data) {
                     this.tableData = data;
                 }.bind(this)).fail(function() {
-                    this.$message.error('获取数据失败,请检查网络');
+                    this.$message.error('保存失败');
                 }.bind(this))
             },
             handleSelectionChange(val) {
                 this.multipleSelection = val;
+            },
+            changePage: function(val) {
+                this.page = val;
+                this.getData()
+            },
+            del() {
+                this.$alert('确定要删除此条信息？', '提示', {
+                    confirmButtonText: '确定',
+                    callback: action => {
+                        this.$message({
+                            type: 'info',
+                            message: `action: ${ action }`
+                        });
+                    }
+                });
             }
         },
         mounted: function() {

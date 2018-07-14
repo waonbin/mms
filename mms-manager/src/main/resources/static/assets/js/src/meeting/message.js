@@ -49,6 +49,17 @@ $(function() {
             },
             handleSelectionChange(val) {
                 this.multipleSelection = val;
+            },
+            del: function() {
+                this.$alert('确定要删除此条信息？', '提示', {
+                    confirmButtonText: '确定',
+                    callback: action => {
+                        this.$message({
+                            type: 'info',
+                            message: `action: ${ action }`
+                        });
+                    }
+                });
             }
         },
         mounted: function() {
