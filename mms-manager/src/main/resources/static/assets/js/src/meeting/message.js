@@ -36,7 +36,7 @@ $(function() {
         methods: {
             getData: function() {
                 $.ajax({
-                    url: './meeting/page/'+(this.page-1),
+                    url: ctxPath+'/admin/meeting/page/'+(this.page-1),
                 }).done(function(data) {
                     this.tableData = data;
                 }.bind(this)).fail(function() {
@@ -50,14 +50,25 @@ $(function() {
             handleSelectionChange(val) {
                 this.multipleSelection = val;
             },
-            del: function() {
+            del: function(id) {
                 this.$alert('确定要删除此条信息？', '提示', {
                     confirmButtonText: '确定',
                     callback: action => {
-                        this.$message({
-                            type: 'info',
-                            message: `action: ${ action }`
-                        });
+                        $.ajax({
+                            url:ctxPath+'/admin/meeting/delete',
+                            type:'post',
+                            data: {
+                                id: id
+                            }
+                        }).done(function() {
+                            this.$message({
+                                message: '删除成功！',
+                                type: 'success'
+                            });
+                            this.getData()
+                        }.bind(this)).fail(function() {
+                            this.$message.error('操作失败,请检查网络');
+                        }.bind(this))
                     }
                 });
             }

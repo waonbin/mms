@@ -102,7 +102,7 @@
                                                     <div class="base-item clearfix">
                                                         <div class="base-label">形象图: </div>
                                                         <div class="base-content">
-                                                            <el-select v-model.trim="style" placeholder="请选择">
+                                                            <el-select v-model="style" placeholder="请选择">
                                                                 <el-option
                                                                         label="不指定形象图"
                                                                         value=" ">
@@ -119,8 +119,10 @@
                                                     </div>
                                                     <div class="base-item clearfix">
                                                         <div class="base-label">内容: </div>
-                                                        <div class="base-content">
-                                                            <el-input placeholder="请输入会议名称"></el-input>
+                                                        <div class="base-content" style="width: 70%">
+                                                            <div id="editor">
+                                                                <p>Hello World!</p>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="base-item">
@@ -130,19 +132,6 @@
                                                                 <span>提交</span>
                                                             </span>
                                                         </a>
-                                                    </div>
-                                                    <div>
-                                                        <!-- 创建工具栏组件 -->
-                                                        <div id="toolbar">
-                                                            <button class="ql-bold">Bold</button>
-                                                            <button class="ql-italic">Italic</button>
-                                                            <button class="ql-italic">Italic</button>
-                                                        </div>
-
-                                                        <!-- 创建文本编辑器 -->
-                                                        <div id="editor">
-                                                            <p>Hello World!</p>
-                                                        </div>
                                                     </div>
                                                 </div>
                                            </el-tab-pane>

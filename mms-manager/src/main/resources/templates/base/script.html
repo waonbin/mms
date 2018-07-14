@@ -7,4 +7,8 @@
     <script th:src="@{{path}/assets/js/element/index.js(path=${#request.getContextPath()})}"></script>
     <script th:src="@{{path}/assets/js/components/header.js(path=${#request.getContextPath()})}"></script>
     <script th:src="@{{path}/assets/js/components/aside.js(path=${#request.getContextPath()})}"></script>
+    <script type="text/javascript" th:inline="javascript">
+        var ctxPath = [[${#request.getContextPath()}]];
+        window.ctxPath = ctxPath
+    </script>
 </template>
