@@ -1,0 +1,23 @@
+/**
+    添加会议
+ */
+
+/*
+    基本信息
+ */
+.base-item {
+    margin-bottom: 10px;
+}
+.base-label {
+    float: left;
+    width: 90px;
+    line-height: 35px;
+    margin-right: 10px;
+    text-align: right;
+}
+.base-content {
+    float: left;
+}
+.btn-submit {
+    margin-left: 98px;
+}
