@@ -25,7 +25,7 @@ $(function() {
             },
             save(meeting) {
                 $.ajax({
-                    url:'/admin/meeting/save',
+                    url:'./save',
                     type:'post',
                     data:meeting
                 }).done(function() {
