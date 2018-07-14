@@ -136,4 +136,171 @@ public class Meeting implements Serializable {
     @Column(columnDefinition = "TEXT")
     private String contactUs;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Short getMeetingType() {
+        return meetingType;
+    }
+
+    public void setMeetingType(Short meetingType) {
+        this.meetingType = meetingType;
+    }
+
+    public Short getEnrollmentLimit() {
+        return enrollmentLimit;
+    }
+
+    public void setEnrollmentLimit(Short enrollmentLimit) {
+        this.enrollmentLimit = enrollmentLimit;
+    }
+
+    public Double getVipPrice() {
+        return vipPrice;
+    }
+
+    public void setVipPrice(Double vipPrice) {
+        this.vipPrice = vipPrice;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Date getEnrollStartDate() {
+        return enrollStartDate;
+    }
+
+    public void setEnrollStartDate(Date enrollStartDate) {
+        this.enrollStartDate = enrollStartDate;
+    }
+
+    public Date getEnrollEndDate() {
+        return enrollEndDate;
+    }
+
+    public void setEnrollEndDate(Date enrollEndDate) {
+        this.enrollEndDate = enrollEndDate;
+    }
+
+    public Date getCheckinDate() {
+        return checkinDate;
+    }
+
+    public void setCheckinDate(Date checkinDate) {
+        this.checkinDate = checkinDate;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getExhibitionInfo() {
+        return exhibitionInfo;
+    }
+
+    public void setExhibitionInfo(String exhibitionInfo) {
+        this.exhibitionInfo = exhibitionInfo;
+    }
+
+    public String getReportInfo() {
+        return reportInfo;
+    }
+
+    public void setReportInfo(String reportInfo) {
+        this.reportInfo = reportInfo;
+    }
+
+    public String getHotalInfo() {
+        return hotalInfo;
+    }
+
+    public void setHotalInfo(String hotalInfo) {
+        this.hotalInfo = hotalInfo;
+    }
+
+    public String getTrafficInfo() {
+        return trafficInfo;
+    }
+
+    public void setTrafficInfo(String trafficInfo) {
+        this.trafficInfo = trafficInfo;
+    }
+
+    public String getSponsor() {
+        return sponsor;
+    }
+
+    public void setSponsor(String sponsor) {
+        this.sponsor = sponsor;
+    }
+
+    public String getOrganizer() {
+        return organizer;
+    }
+
+    public void setOrganizer(String organizer) {
+        this.organizer = organizer;
+    }
+
+    public String getContactUs() {
+        return contactUs;
+    }
+
+    public void setContactUs(String contactUs) {
+        this.contactUs = contactUs;
+    }
 }

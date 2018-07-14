@@ -36,7 +36,7 @@ $(function() {
         methods: {
             getData: function() {
                 $.ajax({
-                    url: '/admin/meeting/page/'+(this.page-1),
+                    url: './meeting/page/'+(this.page-1),
                 }).done(function(data) {
                     this.tableData = data;
                 }.bind(this)).fail(function() {

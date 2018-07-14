@@ -21,6 +21,7 @@
         <module>mms-manager</module>
         <module>mms-common</module>
         <module>mms-data</module>
+        <!--<module>wxpay-sdk</module>-->
     </modules>
 
 </project>
