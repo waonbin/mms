@@ -95,13 +95,12 @@ public class MemberController {
     /**
      * GET  /register_check/page/{page} : get data of members by page
      * @param page zero-based page index
-     * @param memberType member type code
      * @return data of members by page
      */
     @GetMapping("/register_check/page/{page}")
-    public @ResponseBody ResponseEntity getRegisterCheck(@PathVariable("page") int page, short memberType) {
+    public @ResponseBody ResponseEntity getRegisterCheck(@PathVariable("page") int page) {
         PageRequest pageRequest = PageRequest.of(page, Constants.PAGE_SIZE);
-        Page<Member> members = this.memberService.findByMemberType(memberType, pageRequest);
+        Page<Member> members = this.memberService.findAll(pageRequest);
         return ResponseEntity.ok(members);
     }
 }
