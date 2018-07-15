@@ -21,3 +21,47 @@
 .btn-submit {
     margin-left: 98px;
 }
+#editor {
+    min-height: 300px;
+}
+.form-box {
+    width: 600px;
+}
+.form-box .form-list {
+    margin-bottom: 20px;
+}
+.form-box .form-item {
+    float: left;
+    width: 50%;
+}
+.form-box .form-item.large {
+    width: 100%;
+}
+.form-box .form-item  .el-date-editor.el-input {
+    width: 180px;
+}
+.form-box .form-item.large .content {
+    width: 480px;
+}
+.form-box .form-item.large .el-date-editor.el-input {
+    width: 100%;
+}
+.form-list .form-item .label {
+    width: 80px;
+    text-align: right;
+    margin-right: 10px;
+    line-height: 35px;
+}
+.form-box .form-item .label, .form-box .form-item .content {
+    float: left;
+}
+.form-box .form-submit {
+    margin-left: 80px;
+}
+.form-box .el-input__inner {
+    width: 180px;
+}
+.form-box .form-item.large .contant,
+.form-box .form-item.large .el-input__inner  {
+    width: 360px;
+}

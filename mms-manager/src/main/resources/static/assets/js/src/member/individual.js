@@ -246,7 +246,7 @@ $(function() {
         methods: {
             getData: function() {
                 $.ajax({
-                    url: '/admin/member/page/'+(this.page-1),
+                    url: ctxPath+'/admin/member/page/'+(this.page-1),
                     data: {
                         memberType: 1
                     }

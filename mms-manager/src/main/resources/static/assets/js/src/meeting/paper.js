@@ -12,7 +12,7 @@ $(function() {
         methods: {
             getData: function() {
                 $.ajax({
-                    url: '/admin/meeting/paper/page/'+(this.page-1),
+                    url: ctxPath+'/admin/meeting/paper/page/'+(this.page-1),
                 }).done(function(data) {
                     this.tableData = data;
                 }.bind(this)).fail(function() {

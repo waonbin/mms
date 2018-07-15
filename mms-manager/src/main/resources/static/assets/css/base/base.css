@@ -87,9 +87,12 @@ body {
     color: #5766dd !important;
 }
 .el-tabs__active-bar {
-    background-color: #5766dd !important;;
+    background-color: #5766dd !important;
 }
 .gary {
     color: #aaa;
 }
-
+.el-button--primary {
+    background-color: #5766dd !important;
+    border: #5766dd !important;
+}

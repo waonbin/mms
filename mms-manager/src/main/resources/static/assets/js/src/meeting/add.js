@@ -4,25 +4,75 @@ $(function() {
         data() {
             return {
                 qull:null,
+                hyList:[],
                 activeName: 'first',
+                dialogVisible:false,
                 style:'',
+                dialogImageUrl:'',
+                imageUrl:'',
                 base:{
-                    name:''
+                    name:'',
+                    enrollmentLimit:'',
+                    meetingType:'',
+                    vipPrice:'',
+                    price:'',
+                    enrollStartDate:'',
+                    enrollEndDate:'',
+                    checkinDate:'',
+                    address:''
                 }
             }
         },
+        computed: {
+            scheduled_time_start_time: function(){
+                let endTime = this.base.enrollEndDate;
+                if(endTime){
+                    endTime = new Date(endTime);
+                }
+                return {
+                    disabledDate(date) {
+                        return (endTime && endTime < date);
+                    }
+                };
+            },
+            scheduled_time_end_time: function(){
+                let startTime = this.base.enrollStartDate;
+                if(startTime){
+                    startTime = new Date(startTime);
+                }
+                return {
+                    disabledDate(date) {
+                        return (startTime && startTime > date);
+                    }
+                };
+            }
+        },
         methods: {
+            changeTime(time) {
+                if(!time || time.length <= 0) {
+                    return time
+                }
+                var y = time.getFullYear(),
+                    m = time.getMonth()+1,
+                    d = time.getDate();
+
+                if(m < 10) {
+                    m = '0'+m
+                }
+                if(d < 10) {
+                    d = '0'+d
+                }
+                return y+'-'+m+'-'+d
+            },
             handleClick(tab, event) {
                 console.log(tab, event);
             },
-            baseSubmit() {
-                var meeting = this.base;
-
-                if(this.base.name.length == 0) {
-                    this.$message.error('会议名称不能为空！');
-                    return
-                }
-                this.save(meeting)
+            handleExceed(files, fileList) {
+                this.$message.warning('当前限制选择 1 个文件');
+            },
+            handlePictureCardPreview(file) {
+                this.dialogImageUrl = file.url;
+                this.dialogVisible = true;
             },
             save(meeting) {
                 $.ajax({
@@ -37,6 +87,18 @@ $(function() {
                 }.bind(this)).fail(function() {
                     this.$message.error('保存失败！');
                 }.bind(this))
+            },
+            baseSubmit() {
+                var meeting = this.base;
+                meeting.enrollStartDate = this.changeTime(meeting.enrollStartDate);
+                meeting.enrollEndDate = this.changeTime(meeting.enrollEndDate);
+                meeting.checkinDate = this.changeTime(meeting.checkinDate);
+
+                if(this.base.name.length == 0) {
+                    this.$message.error('会议名称不能为空！');
+                    return
+                }
+                this.save(meeting)
             }
         },
         mounted: function() {

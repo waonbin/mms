@@ -9,6 +9,13 @@ $(function() {
                 tableData: []
             }
         },
+        filters: {
+            limitDate(val) {
+                if(val) {
+                    return val.substr(0,10)
+                }
+            }
+        },
         computed: {
             scheduled_time_start_time: function(){
                 let endTime = this.endTime;
@@ -54,6 +61,9 @@ $(function() {
                 this.$alert('确定要删除此条信息？', '提示', {
                     confirmButtonText: '确定',
                     callback: action => {
+                        if(action == "cancel") {
+                            return
+                        }
                         $.ajax({
                             url:ctxPath+'/admin/meeting/delete',
                             type:'post',

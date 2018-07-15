@@ -118,7 +118,7 @@
                                     <template>
                                         <el-table
                                                 ref="multipleTable"
-                                                :data="tableData3"
+                                                :data="tableData.content"
                                                 tooltip-effect="dark"
                                                 style="width: 100%"
                                                 @selection-change="handleSelectionChange">
@@ -131,48 +131,47 @@
                                             <el-table-column
                                                     header-align="center"
                                                     align="center"
-                                                    label="序号"
-                                                    type="index"
-                                                    width="50">
-                                            </el-table-column>
-                                            <el-table-column
-                                                    header-align="center"
-                                                    align="center"
-                                                    prop="name"
+                                                    prop="id"
                                                     label="申请ID"
                                                     width="120">
                                             </el-table-column>
                                             <el-table-column
                                                     header-align="center"
                                                     align="center"
-                                                    prop="address"
+                                                    prop="name"
                                                     label="会员名称"
                                                     show-overflow-tooltip>
                                             </el-table-column>
                                             <el-table-column
                                                     header-align="center"
                                                     align="center"
-                                                    prop="name"
+                                                    prop="memberType"
                                                     label="会员类型"
                                                     width="120">
                                                 <template slot-scope="scope">
-                                                    <span class="m-badge m-badge--brand m-badge--wide">普通会员</span>
+                                                    <span class="m-badge m-badge--brand m-badge--wide"
+                                                        v-if="scope.row.memberType == 1">普通会员</span>
+                                                    <span class="m-badge m-badge--warning m-badge--wide"
+                                                        v-if="scope.row.memberType == 2">学生会员</span>
+                                                    <span class="m-badge m-badge--success m-badge--wide"
+                                                        v-if="scope.row.memberType == 3">团体会员</span>
                                                 </template>
                                             </el-table-column>
                                             <el-table-column
                                                     header-align="center"
                                                     align="center"
-                                                    prop="address"
+                                                    prop="reference"
                                                     label="推荐机构"
                                                     show-overflow-tooltip>
                                                 <template slot-scope="scope">
-                                                    <p>CT理论及应用分会</p>
+                                                    <p v-if="scope.row.reference == 1">CT理论及应用分会</p>
+                                                    <p v-if="scope.row.reference == 2">材料科学分会</p>
                                                 </template>
                                             </el-table-column>
                                             <el-table-column
                                                     header-align="center"
                                                     align="center"
-                                                    prop="name"
+                                                    prop=" "
                                                     label="组册时间"
                                                     width="120">
                                             </el-table-column>
@@ -183,7 +182,7 @@
                                                     label="审核状态"
                                                     show-overflow-tooltip>
                                                 <template slot-scope="scope">
-                                                    <span class="m-badge m-badge--warning m-badge--wide">未审核</span>
+                                                    <!--<span class="m-badge m-badge&#45;&#45;warning m-badge&#45;&#45;wide">未审核</span>-->
                                                 </template>
                                             </el-table-column>
                                             <el-table-column
@@ -193,11 +192,9 @@
                                                     align="center"
                                             >
                                                 <template  slot-scope="scope">
-                                                    <a href="javascript:"
-                                                       class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill"
-                                                       title="审核">
-                                                        <i class="la flaticon-interface-1"></i>
-                                                    </a>
+                                                    <el-button type="text" size="small" @click="examine(scope.row.id)">
+                                                        审核
+                                                    </el-button>
                                                 </template>
                                             </el-table-column>
                                         </el-table>
@@ -207,7 +204,10 @@
                                     <el-pagination
                                             background
                                             layout="total, prev, pager, next"
-                                            :total="1000">
+                                            :current-page="page"
+                                            :total="tableData.totalElements"
+                                            @current-change="changePage"
+                                    >
                                     </el-pagination>
                                 </div>
                             </div>
