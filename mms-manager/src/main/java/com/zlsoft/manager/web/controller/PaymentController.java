@@ -2,13 +2,17 @@ package com.zlsoft.manager.web.controller;
 
 import com.zlsoft.common.service.PaymentService;
 import com.zlsoft.domain.Payment;
+import com.zlsoft.manager.Constants;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.inject.Inject;
-import java.util.List;
 
 @Controller("AdminPaymentController")
 @RequestMapping("/admin/payment")
@@ -22,13 +26,21 @@ public class PaymentController {
      * @return payment check page
      */
     @GetMapping("/payment_check")
-    public ModelAndView paymentCheck() {
+    public String paymentCheck() {
+        return "/admin/finance/payment_check";
+    }
 
-        List<Payment> payments = this.paymentService.findAll();
-        ModelAndView mav = new ModelAndView("/admin/finance/payment_check");
-        mav.addObject("payments", payments);
-
-        return mav;
+    /**
+     * GET  /payment_check/page/{page} : get data of payment check by page
+     * @param page zero-based page index
+     * @return data of payment check by page
+     */
+    @GetMapping("/payment_check/page/{page}")
+    public @ResponseBody
+    ResponseEntity getPaymentChecks(@PathVariable("page") int page) {
+        PageRequest pageRequest = PageRequest.of(page, Constants.PAGE_SIZE);
+        Page<Payment> members = this.paymentService.findAll(pageRequest);
+        return ResponseEntity.ok(members);
     }
 
     /**
@@ -36,12 +48,20 @@ public class PaymentController {
      * @return members' payments page
      */
     @GetMapping("/member_payments")
-    public ModelAndView memberPayments() {
+    public String memberPayments() {
+        return "/admin/finance/member_payments";
+    }
 
-        List<Payment> payments = this.paymentService.findAll();
-        ModelAndView mav = new ModelAndView("/admin/finance/member_payments");
-        mav.addObject("payments", payments);
-
-        return mav;
+    /**
+     * GET  /member_payments/page/{page} : get data of member payment by page
+     * @param page zero-based page index
+     * @return data of member payment by page
+     */
+    @GetMapping("/member_payments/page/{page}")
+    public @ResponseBody
+    ResponseEntity getMemberPayments(@PathVariable("page") int page) {
+        PageRequest pageRequest = PageRequest.of(page, Constants.PAGE_SIZE);
+        Page<Payment> members = this.paymentService.findAll(pageRequest);
+        return ResponseEntity.ok(members);
     }
 }
