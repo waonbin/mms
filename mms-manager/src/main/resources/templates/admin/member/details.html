@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- begin::Head -->
+<head>
+    <meta charset="utf-8"/>
+    <title>会议信息管理</title>
+    <meta name="description" content="Latest updates and statistic charts">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <link th:href="@{/assets/css/element/index.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets/css/base/base.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets/vendors/custom/fullcalendar/fullcalendar.bundle.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets/vendors/base/vendors.bundle.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets/demo/demo12/base/style.bundle.css}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/assets/css/base/details.css}">
+    <link rel="shortcut icon" th:href="@{/assets/demo/demo12/media/img/logo/favicon.ico}"/>
+</head>
+<!-- end::Head -->
+
+<!-- begin::Body -->
+<body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
+
+    <!-- begin:: Page -->
+    <div class="m-grid m-grid--hor m-grid--root m-page" id="box">
+
+        <!-- BEGIN: Header -->
+        <header id="m_header" class="m-grid__item  m-header " m-minimize-offset="200" m-minimize-mobile-offset="200"
+                th:include="/base/header::header" >
+        </header>
+        <!-- END: Header -->
+
+        <!-- begin::Body -->
+        <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
+
+            <!-- BEGIN: Left Aside -->
+            <button class="m-aside-left-close  m-aside-left-close--skin-dark " id="m_aside_left_close_btn">
+                <i class="la la-close"></i>
+            </button>
+            <div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-dark "
+                 th:include="/base/aside::aside">
+
+            </div>
+            <!-- END: Left Aside -->
+            <div class="m-grid__item m-grid__item--fluid m-wrapper">
+                <!-- BEGIN: Subheader -->
+                <div class="m-subheader ">
+                    <div class="d-flex align-items-center">
+                        <div class="mr-auto">
+                            <h3 class="m-subheader__title m-subheader__title--separator">会议详情</h3>
+                            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                                <li class="m-nav__item m-nav__item--home">
+                                    <a href="#" class="m-nav__link m-nav__link--icon">
+                                        <i class="m-nav__link-icon la la-home"></i>
+                                    </a>
+                                </li>
+                                <li class="m-nav__separator">-</li>
+                                <li class="m-nav__item">
+                                    <a href="javascript:" class="m-nav__link">
+                                        <span class="m-nav__link-text">会议管理</span>
+                                    </a>
+                                </li>
+                                <li class="m-nav__separator">-</li>
+                                <li class="m-nav__item">
+                                    <a href="javascript:" class="m-nav__link">
+                                        <span class="m-nav__link-text">会议信息管理</span>
+                                    </a>
+                                </li>
+                                <li class="m-nav__separator">-</li>
+                                <li class="m-nav__item">
+                                    <a href="javascript:" class="m-nav__link">
+                                        <span class="m-nav__link-text">会议详情</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- END: Subheader -->
+                <div class="m-content" id="box-content" v-cloak>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="m-portlet">
+                                <div class="m-portlet__body">
+                                    <div class="details-box">
+                                        <div class="detail-list">
+                                            <h3>
+                                                <i class="flaticon-profile"></i>
+                                                会员基本信息
+                                            </h3>
+                                            <div class="detail-list-content clearfix">
+                                                <div class="detail-item clearfix">
+                                                    <div class="label">
+                                                        会员名称:
+                                                    </div>
+                                                    <div class="content">
+                                                        {{list.name}}
+                                                    </div>
+                                                </div>
+                                                <div class="detail-item clearfix">
+                                                    <div class="label">
+                                                        会员类型:
+                                                    </div>
+                                                    <div class="content">
+                                                        <span v-if="list.memberType == 1">个人会员</span>
+                                                        <span v-else-if="list.memberType == 2">学生会员</span>
+                                                        <span v-else="list.memberType == 3">团体会员</span>
+                                                    </div>
+                                                </div>
+                                                <div class="detail-item clearfix">
+                                                    <div class="label">
+                                                        推荐人类型:
+                                                    </div>
+                                                    <div class="content">
+
+                                                    </div>
+                                                </div>
+                                                <div class="detail-item clearfix">
+                                                    <div class="label">
+                                                        推荐机构:
+                                                    </div>
+                                                    <div class="content">
+                                                       <span v-if="list.reference == 1">CT理论及应用分会</span>
+                                                       <span v-else-if="list.reference == 2">材料科学分会</span>
+                                                    </div>
+                                                </div>
+                                                <div class="detail-item clearfix">
+                                                    <div class="label">
+                                                        会员号:
+                                                    </div>
+                                                    <div class="content">
+                                                        {{list.memberNo}}
+                                                    </div>
+                                                </div>
+                                                <div class="detail-item clearfix">
+                                                    <div class="label">
+                                                        首次成为会员时间:
+                                                    </div>
+                                                    <div class="content">
+
+                                                    </div>
+                                                </div>
+                                                <div class="detail-item clearfix">
+                                                    <div class="label">
+                                                        有效期:
+                                                    </div>
+                                                    <div class="content">
+                                                        {{list.expiryDate | limitDate}}
+                                                    </div>
+                                                </div>
+                                                <div class="detail-item clearfix">
+                                                    <div class="label">
+                                                        注册时间:
+                                                    </div>
+                                                    <div class="content">
+
+                                                    </div>
+                                                </div>
+                                                <div class="detail-item clearfix">
+                                                    <div class="label">
+                                                        性别:
+                                                    </div>
+                                                    <div class="content">
+                                                        <span v-if="list.gender == 1">男</span>
+                                                        <span v-else>女</span>
+                                                    </div>
+                                                </div>
+                                                <div class="detail-item clearfix">
+                                                    <div class="label">
+                                                        出生年月:
+                                                    </div>
+                                                    <div class="content">
+                                                        {{list.birthday | limitDate}}
+                                                    </div>
+                                                </div>
+                                                <div class="detail-item clearfix">
+                                                    <div class="label">
+                                                        毕业学校:
+                                                    </div>
+                                                    <div class="content">
+                                                        {{list.school}}
+                                                    </div>
+                                                </div>
+                                                <div class="detail-item clearfix">
+                                                    <div class="label">
+                                                        所学专业:
+                                                    </div>
+                                                    <div class="content">
+                                                        {{list.major}}
+                                                    </div>
+                                                </div>
+                                                <div class="detail-item clearfix">
+                                                    <div class="label">
+                                                        工作单位:
+                                                    </div>
+                                                    <div class="content">
+                                                        {{list.company}}
+                                                    </div>
+                                                </div>
+                                                <div class="detail-item clearfix">
+                                                    <div class="label">
+                                                        党派信息:
+                                                    </div>
+                                                    <div class="content">
+                                                        <span v-if="list.partisan == 1">中共党员</span>
+                                                        <span v-else>群众</span>
+                                                    </div>
+                                                </div>
+                                                <div class="detail-item clearfix">
+                                                    <div class="label">
+                                                        从事工作性质:
+                                                    </div>
+                                                    <div class="content">
+
+                                                    </div>
+                                                </div>
+                                                <div class="detail-item clearfix">
+                                                    <div class="label">
+                                                        从事工作专业:
+                                                    </div>
+                                                    <div class="content">
+                                                        {{list.workajor}}
+                                                    </div>
+                                                </div>
+                                                <div class="detail-item clearfix">
+                                                    <div class="label">
+                                                        职称/等级:
+                                                    </div>
+                                                    <div class="content">
+                                                        {{list.title}}
+                                                    </div>
+                                                </div>
+                                                <div class="detail-item clearfix">
+                                                    <div class="label">
+                                                        学历:
+                                                    </div>
+                                                    <div class="content">
+                                                        {{list.education}}
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix">
+                                                    <div class="detail-item clearfix">
+                                                        <div class="label">
+                                                            科协会员号:
+                                                        </div>
+                                                        <div class="content">
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="detail-item clearfix">
+                                                        <div class="label">
+                                                            证明材料:
+                                                        </div>
+                                                        <div class="content">
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="detail-item clearfix">
+                                                        <div class="label">
+                                                            地址:
+                                                        </div>
+                                                        <div class="content">
+                                                            {{list.address}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="detail-item clearfix">
+                                                    <div class="label">
+                                                        办公电话:
+                                                    </div>
+                                                    <div class="content">
+                                                        {{list.telephone}}
+                                                    </div>
+                                                </div>
+                                                <div class="detail-item clearfix">
+                                                    <div class="label">
+                                                        手机号:
+                                                    </div>
+                                                    <div class="content">
+                                                        {{list.mobile}}
+                                                    </div>
+                                                </div>
+                                                <div class="detail-item clearfix">
+                                                    <div class="label">
+                                                        QQ号码:
+                                                    </div>
+                                                    <div class="content">
+                                                        {{list.oicq}}
+                                                    </div>
+                                                </div>
+                                                <div class="detail-item clearfix">
+                                                    <div class="label">
+                                                        微信号码:
+                                                    </div>
+                                                    <div class="content">
+                                                        {{list.wechat}}
+                                                    </div>
+                                                </div>
+                                                <div class="detail-item clearfix">
+                                                    <div class="label">
+                                                        邮箱:
+                                                    </div>
+                                                    <div class="content">
+                                                        {{list.email}}
+                                                    </div>
+                                                </div>
+                                                <div class="detail-item clearfix">
+                                                    <div class="label">
+                                                        传真号:
+                                                    </div>
+                                                    <div class="content">
+                                                        {{list.fax}}
+                                                    </div>
+                                                </div>
+                                                <div class="detail-item clearfix">
+                                                    <div class="label">
+                                                        邮编:
+                                                    </div>
+                                                    <div class="content">
+                                                        {{list.zipcode}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end:: Body -->
+
+
+        <!-- begin::Footer -->
+        <div th:include="/base/footer::footer"></div>
+        <!-- end::Footer -->
+    </div>
+    <!-- end:: Page -->
+
+    <!-- begin::Scroll Top -->
+    <div id="m_scroll_top" class="m-scroll-top">
+        <i class="la la-arrow-up"></i>
+    </div>
+
+    <!--组件-->
+    <script th:src="@{/assets/js/base/jquery-1.7.1.min.js}"></script>
+    <script>
+        $(function() {
+            $("#meeting_menu").addClass("m-menu__item--open m-menu__item--expanded");
+            $("#hy_message_member").addClass("m-menu__item--active");
+        })
+    </script>
+    <div th:include="/base/script::script"></div>
+    <script th:src="@{/assets/js/src/member/details.js}"></script>
+</body>
+<!-- end::Body -->
+</html>

@@ -6,19 +6,13 @@
     <title>会议信息管理</title>
     <meta name="description" content="Latest updates and statistic charts">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-    <link th:href="@{{path}/assets/css/element/index.css(path=${#request.getContextPath()})}" rel="stylesheet"
-          type="text/css"/>
-    <link th:href="@{{path}/assets/css/base/base.css(path=${#request.getContextPath()})}" rel="stylesheet"
-          type="text/css"/>
-    <link th:href="@{{path}/assets/vendors/custom/fullcalendar/fullcalendar.bundle.css(path=${#request.getContextPath()})}"
-          rel="stylesheet" type="text/css"/>
-    <link th:href="@{{path}/assets/vendors/base/vendors.bundle.css(path=${#request.getContextPath()})}" rel="stylesheet"
-          type="text/css"/>
-    <link th:href="@{{path}/assets/demo/demo12/base/style.bundle.css(path=${#request.getContextPath()})}"
-          rel="stylesheet" type="text/css"/>
-    <link rel="shortcut icon"
-          th:href="@{{path}/assets/demo/demo12/media/img/logo/favicon.ico(path=${#request.getContextPath()})}"/>
-    <script th:src="@{{path}/assets/js/base/jquery-1.7.1.min.js(path=${#request.getContextPath()})}"></script>
+    <link th:href="@{/assets/css/element/index.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets/css/base/base.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets/vendors/custom/fullcalendar/fullcalendar.bundle.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets/vendors/base/vendors.bundle.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets/demo/demo12/base/style.bundle.css}" rel="stylesheet" type="text/css"/>
+    <link rel="shortcut icon" th:href="@{/assets/demo/demo12/media/img/logo/favicon.ico}"/>
+    <script th:src="@{/assets/js/base/jquery-1.7.1.min.js}"></script>
 </head>
 <!-- end::Head -->
 
@@ -29,7 +23,7 @@
     <div class="m-grid m-grid--hor m-grid--root m-page" id="box">
 
         <!-- BEGIN: Header -->
-        <header id="m_header" class="m-grid__item    m-header " m-minimize-offset="200" m-minimize-mobile-offset="200"
+        <header id="m_header" class="m-grid__item  m-header " m-minimize-offset="200" m-minimize-mobile-offset="200"
                 th:include="/base/header::header" >
         </header>
         <!-- END: Header -->

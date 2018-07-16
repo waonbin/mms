@@ -9,6 +9,13 @@
     <script th:src="@{{path}/assets/js/components/aside.js(path=${#request.getContextPath()})}"></script>
     <script type="text/javascript" th:inline="javascript">
         var ctxPath = [[${#request.getContextPath()}]];
-        window.ctxPath = ctxPath
+        window.ctxPath = ctxPath;
+
+        function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]);
+            return null;
+        }
     </script>
 </template>

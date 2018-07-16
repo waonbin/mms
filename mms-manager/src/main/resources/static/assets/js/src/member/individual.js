@@ -256,6 +256,9 @@ $(function() {
                     this.$message.error('获取数据失败,请检查网络');
                 }.bind(this))
             },
+            detail: function(id) {
+              location.href=ctxPath+"/admin/member/details?id="+id
+            },
             changePage: function(val) {
                 this.page = val;
                 this.getData()

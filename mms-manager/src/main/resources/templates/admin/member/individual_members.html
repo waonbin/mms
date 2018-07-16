@@ -311,7 +311,8 @@
                                                     align="center"
                                             >
                                                 <template  slot-scope="scope">
-                                                    <el-button type="text" size="small">
+                                                    <el-button type="text" size="small"
+                                                        @click="detail(scope.row.id)">
                                                         详情
                                                     </el-button>
                                                 </template>
