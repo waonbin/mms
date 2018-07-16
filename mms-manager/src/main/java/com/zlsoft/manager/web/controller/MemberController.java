@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.inject.Inject;
 import java.util.List;
+import java.util.Optional;
 
 @Controller(value = "AdminMemberController")
 @RequestMapping("/admin/member")
@@ -61,6 +62,30 @@ public class MemberController {
     @GetMapping("/group_members")
     public String groupMembers() {
         return "/admin/member/group_members";
+    }
+
+    /**
+     * GET  /details : get group member' details info
+     * @return group member' details info
+     */
+    @GetMapping("/details/{id}")
+    public ResponseEntity details(@PathVariable("id") long id) {
+        Optional<Member> member = this.memberService.findById(id);
+
+        if(member.isPresent()){
+            return ResponseEntity.ok(member.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    /**
+     * GET  /details : get group member' details info page
+     * @return group member' details info page
+     */
+    @GetMapping("/details")
+    public String details() {
+        return "/admin/member/details";
     }
 
     /**
