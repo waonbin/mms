@@ -32,9 +32,9 @@ $(function() {
 
             if(isExamine) {
                 this.isExamine = true;
-                $("#register_member").addClass("m-menu__item--active");
+                $("#payment_finance").addClass("m-menu__item--active");
             } else {
-                $("#person_member").addClass("m-menu__item--active");
+                $("#member_finance").addClass("m-menu__item--active");
             }
         }
     })

@@ -234,11 +234,10 @@
                                                     align="center"
                                             >
                                                 <template  slot-scope="scope">
-                                                    <a href="javascript:"
-                                                       class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill"
-                                                       title="审核">
-                                                        <i class="la flaticon-interface-1"></i>
-                                                    </a>
+                                                    <el-button type="text" size="small"
+                                                               @click="detail(scope.row.id)">
+                                                        详细
+                                                    </el-button>
                                                 </template>
                                             </el-table-column>
                                         </el-table>

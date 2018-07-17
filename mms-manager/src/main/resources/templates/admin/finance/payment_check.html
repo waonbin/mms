@@ -161,7 +161,7 @@
                                                     label="缴费时间"
                                                     show-overflow-tooltip>
                                                 <template slot-scope="scope">
-                                                    span`2018-05-06
+
                                                 </template>
                                             </el-table-column>
                                             <el-table-column
@@ -181,11 +181,10 @@
                                                     align="center"
                                             >
                                                 <template  slot-scope="scope">
-                                                    <a href="javascript:"
-                                                       class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill"
-                                                       title="审核">
-                                                        <i class="la flaticon-interface-1"></i>
-                                                    </a>
+                                                    <el-button type="text" size="small"
+                                                               @click="examine(scope.row.id)">
+                                                        审核
+                                                    </el-button>
                                                 </template>
                                             </el-table-column>
                                         </el-table>

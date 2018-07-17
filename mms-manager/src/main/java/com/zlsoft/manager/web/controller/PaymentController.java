@@ -1,6 +1,7 @@
 package com.zlsoft.manager.web.controller;
 
 import com.zlsoft.common.service.PaymentService;
+import com.zlsoft.domain.Member;
 import com.zlsoft.domain.Payment;
 import com.zlsoft.manager.Constants;
 import org.springframework.data.domain.Page;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.inject.Inject;
+import java.util.Optional;
 
 @Controller("AdminPaymentController")
 @RequestMapping("/admin/payment")
@@ -63,5 +65,15 @@ public class PaymentController {
         PageRequest pageRequest = PageRequest.of(page, Constants.PAGE_SIZE);
         Page<Payment> members = this.paymentService.findAll(pageRequest);
         return ResponseEntity.ok(members);
+    }
+
+
+    /**
+     * GET  /details : get group payment' details info page
+     * @return group member' details info page
+     */
+    @GetMapping("/details")
+    public String details() {
+        return "/admin/finance/details";
     }
 }

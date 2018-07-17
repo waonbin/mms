@@ -26,7 +26,7 @@ $(function() {
                 this.getData()
             },
             examine: function(id) {
-
+                location.href=ctxPath+"/admin/member/details?id="+id+"&examine=true"
             },
             handleSelectionChange: function(val) {
                 this.multipleSelection = val;

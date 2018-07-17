@@ -3,7 +3,7 @@
 <!-- begin::Head -->
 <head>
     <meta charset="utf-8"/>
-    <title>会员信息管理</title>
+    <title>财务管理</title>
     <meta name="description" content="Latest updates and statistic charts">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <link th:href="@{/assets/css/element/index.css}" rel="stylesheet" type="text/css"/>
@@ -13,6 +13,12 @@
     <link th:href="@{/assets/demo/demo12/base/style.bundle.css}" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" th:href="@{/assets/css/base/details.css}">
     <link rel="shortcut icon" th:href="@{/assets/demo/demo12/media/img/logo/favicon.ico}"/>
+    <style>
+
+        [v-cloak] {
+            display: none;
+        }
+    </style>
 </head>
 <!-- end::Head -->
 
@@ -37,15 +43,14 @@
             </button>
             <div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-dark "
                  th:include="/base/aside::aside">
-
             </div>
             <!-- END: Left Aside -->
-            <div class="m-grid__item m-grid__item--fluid m-wrapper" id="box-content" v-cloak>
+            <div class="m-grid__item m-grid__item--fluid m-wrapper" id="box-content">
                 <!-- BEGIN: Subheader -->
                 <div class="m-subheader ">
                     <div class="d-flex align-items-center">
                         <div class="mr-auto">
-                            <h3 class="m-subheader__title m-subheader__title--separator">{{isExamine?"会员审核":"会员详情"}}</h3>
+                            <h3 class="m-subheader__title m-subheader__title--separator" v-cloak>{{isExamine?"审核":"详情"}}</h3>
                             <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
                                 <li class="m-nav__item m-nav__item--home">
                                     <a href="#" class="m-nav__link m-nav__link--icon">
@@ -55,19 +60,19 @@
                                 <li class="m-nav__separator">-</li>
                                 <li class="m-nav__item">
                                     <a href="javascript:" class="m-nav__link">
-                                        <span class="m-nav__link-text">员信息管理</span>
+                                        <span class="m-nav__link-text">财务审核管理</span>
                                     </a>
                                 </li>
                                 <li class="m-nav__separator">-</li>
                                 <li class="m-nav__item">
                                     <a href="javascript:" class="m-nav__link">
-                                        <span class="m-nav__link-text">{{isExamine?"审核管理":"会员管理"}}</span>
+                                        <span class="m-nav__link-text" v-cloak>{{isExamine?"会员缴费审核管理":"会员缴费信息管理"}}</span>
                                     </a>
                                 </li>
                                 <li class="m-nav__separator">-</li>
                                 <li class="m-nav__item">
                                     <a href="javascript:" class="m-nav__link">
-                                        <span class="m-nav__link-text">{{isExamine?"会员审核":"会员详情"}}</span>
+                                        <span class="m-nav__link-text">{{isExamine?"审核":"详情"}}</span>
                                     </a>
                                 </li>
                             </ul>
@@ -75,7 +80,7 @@
                     </div>
                 </div>
                 <!-- END: Subheader -->
-                <div class="m-content">
+                <div class="m-content" v-cloak>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="m-portlet">
@@ -84,8 +89,8 @@
                                         <!--基本信息-->
                                         <div class="detail-list">
                                             <h3>
-                                                <i class="flaticon-profile"></i>
-                                                会员基本信息
+                                                <i class="flaticon-interface-6"></i>
+                                                缴费详细信息
                                             </h3>
                                             <div class="detail-list-content clearfix">
                                                 <div class="detail-item clearfix">
@@ -157,57 +162,7 @@
                                                 </div>
                                                 <div class="detail-item clearfix">
                                                     <div class="label">
-                                                        性别:
-                                                    </div>
-                                                    <div class="content">
-                                                        <span v-if="list.gender == 1">男</span>
-                                                        <span v-else>女</span>
-                                                    </div>
-                                                </div>
-                                                <div class="detail-item clearfix">
-                                                    <div class="label">
-                                                        出生年月:
-                                                    </div>
-                                                    <div class="content">
-                                                        {{list.birthday | limitDate}}
-                                                    </div>
-                                                </div>
-                                                <div class="detail-item clearfix">
-                                                    <div class="label">
-                                                        毕业学校:
-                                                    </div>
-                                                    <div class="content">
-                                                        {{list.school}}
-                                                    </div>
-                                                </div>
-                                                <div class="detail-item clearfix">
-                                                    <div class="label">
-                                                        所学专业:
-                                                    </div>
-                                                    <div class="content">
-                                                        {{list.major}}
-                                                    </div>
-                                                </div>
-                                                <div class="detail-item clearfix">
-                                                    <div class="label">
-                                                        工作单位:
-                                                    </div>
-                                                    <div class="content">
-                                                        {{list.company}}
-                                                    </div>
-                                                </div>
-                                                <div class="detail-item clearfix">
-                                                    <div class="label">
-                                                        党派信息:
-                                                    </div>
-                                                    <div class="content">
-                                                        <span v-if="list.partisan == 1">中共党员</span>
-                                                        <span v-else>群众</span>
-                                                    </div>
-                                                </div>
-                                                <div class="detail-item clearfix">
-                                                    <div class="label">
-                                                        从事工作性质:
+                                                        订单类型:
                                                     </div>
                                                     <div class="content">
 
@@ -215,108 +170,42 @@
                                                 </div>
                                                 <div class="detail-item clearfix">
                                                     <div class="label">
-                                                        从事工作专业:
+                                                        支付类型:
                                                     </div>
                                                     <div class="content">
-                                                        {{list.workajor}}
-                                                    </div>
-                                                </div>
-                                                <div class="detail-item clearfix">
-                                                    <div class="label">
-                                                        职称/等级:
-                                                    </div>
-                                                    <div class="content">
-                                                        {{list.title}}
-                                                    </div>
-                                                </div>
-                                                <div class="detail-item clearfix">
-                                                    <div class="label">
-                                                        学历:
-                                                    </div>
-                                                    <div class="content">
-                                                        {{list.education}}
-                                                    </div>
-                                                </div>
-                                                <div class="clearfix">
-                                                    <div class="detail-item clearfix">
-                                                        <div class="label">
-                                                            科协会员号:
-                                                        </div>
-                                                        <div class="content">
 
-                                                        </div>
                                                     </div>
-                                                    <div class="detail-item clearfix">
-                                                        <div class="label">
-                                                            证明材料:
-                                                        </div>
-                                                        <div class="content">
+                                                </div>
+                                                <div class="detail-item clearfix">
+                                                    <div class="label">
+                                                        支付现金数:
+                                                    </div>
+                                                    <div class="content">
 
-                                                        </div>
-                                                    </div>
-                                                    <div class="detail-item clearfix">
-                                                        <div class="label">
-                                                            地址:
-                                                        </div>
-                                                        <div class="content">
-                                                            {{list.address}}
-                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="detail-item clearfix">
                                                     <div class="label">
-                                                        办公电话:
+                                                        是否会员:
                                                     </div>
                                                     <div class="content">
-                                                        {{list.telephone}}
+
                                                     </div>
                                                 </div>
                                                 <div class="detail-item clearfix">
                                                     <div class="label">
-                                                        手机号:
+                                                        科协会员号:
                                                     </div>
                                                     <div class="content">
-                                                        {{list.mobile}}
+
                                                     </div>
                                                 </div>
                                                 <div class="detail-item clearfix">
                                                     <div class="label">
-                                                        QQ号码:
+                                                        支付积分数:
                                                     </div>
                                                     <div class="content">
-                                                        {{list.oicq}}
-                                                    </div>
-                                                </div>
-                                                <div class="detail-item clearfix">
-                                                    <div class="label">
-                                                        微信号码:
-                                                    </div>
-                                                    <div class="content">
-                                                        {{list.wechat}}
-                                                    </div>
-                                                </div>
-                                                <div class="detail-item clearfix">
-                                                    <div class="label">
-                                                        邮箱:
-                                                    </div>
-                                                    <div class="content">
-                                                        {{list.email}}
-                                                    </div>
-                                                </div>
-                                                <div class="detail-item clearfix">
-                                                    <div class="label">
-                                                        传真号:
-                                                    </div>
-                                                    <div class="content">
-                                                        {{list.fax}}
-                                                    </div>
-                                                </div>
-                                                <div class="detail-item clearfix">
-                                                    <div class="label">
-                                                        邮编:
-                                                    </div>
-                                                    <div class="content">
-                                                        {{list.zipcode}}
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -330,15 +219,25 @@
                                             </h3>
                                             <div class="examine-box">
                                                 <div class="examine-item clearfix">
-                                                    <div class="label">会员ID:</div>
-                                                    <div class="content">{{list.id}}</div>
+                                                    <div class="label">支付账单号:</div>
+                                                    <div class="content">
+                                                        <el-input  placeholder="请输入内容"></el-input>
+                                                    </div>
                                                 </div>
                                                 <div class="examine-item clearfix">
-                                                    <div class="label">上次退回修改原因:</div>
-                                                    <div class="content">退回修改</div>
+                                                    <div class="label">支付现金数:</div>
+                                                    <div class="content">
+                                                        <el-input  disabled="true" placeholder="请输入内容"></el-input>
+                                                    </div>
                                                 </div>
                                                 <div class="examine-item clearfix">
-                                                    <div class="label">审核状态:</div>
+                                                    <div class="label">实收金额:</div>
+                                                    <div class="content">
+                                                        <el-input  placeholder="请输入内容"></el-input>
+                                                    </div>
+                                                </div>
+                                                <div class="examine-item clearfix">
+                                                    <div class="label">审核意见:</div>
                                                     <div class="content">
                                                         <el-select v-model="examineState" placeholder="请选择">
                                                             <el-option
@@ -403,11 +302,11 @@
     <script th:src="@{/assets/js/base/jquery-1.7.1.min.js}"></script>
     <script>
         $(function () {
-            $("#member_menu").addClass("m-menu__item--open m-menu__item--expanded");
+            $("#finance_menu").addClass("m-menu__item--open m-menu__item--expanded");
         })
     </script>
     <div th:include="/base/script::script"></div>
-    <script th:src="@{/assets/js/src/member/details.js}"></script>
+    <script th:src="@{/assets/js/src/finance/details.js}"></script>
 </body>
 <!-- end::Body -->
 </html>

@@ -164,8 +164,8 @@
                                                     label="推荐机构"
                                                     show-overflow-tooltip>
                                                 <template slot-scope="scope">
-                                                    <p v-if="scope.row.reference == 1">CT理论及应用分会</p>
-                                                    <p v-if="scope.row.reference == 2">材料科学分会</p>
+                                                    <span v-if="scope.row.reference == 1">CT理论及应用分会</span>
+                                                    <span v-if="scope.row.reference == 2">材料科学分会</span>
                                                 </template>
                                             </el-table-column>
                                             <el-table-column
@@ -192,7 +192,8 @@
                                                     align="center"
                                             >
                                                 <template  slot-scope="scope">
-                                                    <el-button type="text" size="small" @click="examine(scope.row.id)">
+                                                    <el-button type="text" size="small"
+                                                               @click="examine(scope.row.id)">
                                                         审核
                                                     </el-button>
                                                 </template>

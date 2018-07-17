@@ -27,6 +27,9 @@ $(function() {
             },
             handleSelectionChange(val) {
                 this.multipleSelection = val;
+            },
+            examine: function(id) {
+                location.href=ctxPath+"/admin/finance/details?id="+id+"&examine=true"
             }
         },
         mounted: function() {

@@ -96,3 +96,6 @@ body {
     background-color: #5766dd !important;
     border: #5766dd !important;
 }
+.m-body .m-content {
+    min-width: 1050px;
+}
