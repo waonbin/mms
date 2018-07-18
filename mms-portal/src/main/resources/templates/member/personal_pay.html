@@ -2,446 +2,422 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>会员缴费-中国体视学学会会员服务系统</title>
-    <link rel="stylesheet" type="text/css" href="css/public.css" />
-    <link rel="stylesheet" type="text/css" href="css/vice.css" />
-    <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+    <title>续费列表-中国体视学学会会员服务系统</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/public.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/vice.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/base.css}"/>
+    <!-- import CSS -->
+    <link rel="stylesheet" th:href="@{/css/element/index.css}">
+    <script th:src="@{/js/jquery-1.7.1.min.js}"></script>
 </head>
 
 <body>
-    <div class="header_top crd_h">
-        <div class="header">
-            <a href="index.html" class="logo">
-                <img src="images/logo.png" /></a>
-            <div class="right_f">
-                <p><a href="#">English</a><a href="#">中文版</a></p>
-                <a href="index.html" class="home">首页</a>
-            </div>
-        </div>
-    </div>
-    <div class="banner_c">
-        <img src="images/grzx.png" />
-    </div>
-    <div class="personal">
-        <div class="per">
-            <div class="per_left">
-                <div class="p_tit">
-                    <div class="tx_img">
-                        <i></i>
-                        <img src="images/big.jpg" />
-                    </div>
-                    <div class="name_f">
-                        <div class="name_c">
-                            <h4>张三丰</h4>
-                            <a href="login.html">退出</a>
-                        </div>
-                        <b>会员类型：普通会员</b> <b>有效期：2018-01-19</b>
-                    </div>
-                </div>
-                <ul>
-                    <li><a href="personal_information.html"><i>
-                        <img src="images/gr_icon.png" width="24" height="23" /></i>个人资料</a> </li>
-                    <li><a href="personal_edit.html"><i>
-                        <img src="images/bj_icon.png" width="24" height="23" /></i>编辑资料</a> </li>
-                    <li class="cur"><a href="membercard.html"><i>
-                        <img src="images/mony_icon.png" width="24" height="23" /></i>电子会员证</a> </li>
-                    <li><a href="personal_payment.html"><i>
-                        <img src="images/list_icon.png" width="24" height="23" /></i>缴费列表</a> </li>
-                    <li><a href="personal_revise.html"><i>
-                        <img src="images/key_icon.png" width="24" height="23" /></i>修改密码</a> </li>
-                </ul>
-            </div>
-            <div class="per_right">
-                <div id="step1" class="bg_blocka">
-                    <img src="images/j_1.png" />
-                    <div class="inc_b cea">
-                        <h4>会费金额</h4>
-                        <ul>
-                            <li><font class="fontl">会员类型：</font>
-                                <span>普通会员
+ <div id="pay-content">
+     <div th:include="/layout/header::header"></div>
+     <div class="personal">
+         <div class="per">
+             <layout :name="message.name"></layout>
+             <div class="per_right">
+                 <div id="step1" class="bg_blocka">
+                     <img th:src="@{/images/j_1.png}"/>
+                     <div class="inc_b cea">
+                         <h4>会费金额</h4>
+                         <ul>
+                             <li><font class="fontl">会员类型：</font>
+                                 <span>普通会员
                                 </span>
-                            </li>
-                            <li><font class="fontl">会费金额：</font>
-                                <span>100.00元/年*4年=400.00元<br />
-                                    （注意：此处需计算本届任期年限，一次交费最长至本届任期结束,<br />
+                             </li>
+                             <li><font class="fontl">会费金额：</font>
+                                 <span>100.00元/年*4年=400.00元<br/>
+                                    （注意：此处需计算本届任期年限，一次交费最长至本届任期结束,<br/>
                                     开始时此处提示不显示） </span>
-                            </li>
-                            <li class="chbox">
-                                <font class="fontl">是否开票：<i>*</i></font>
-                                <label class="item">
-                                    <input type="radio" value="0" id="kaipiao_no" name="kaipiao" class="radio" checked="checked">
-                                    <span>否</span></label>
-                                &nbsp;&nbsp;
+                             </li>
+                             <li class="chbox">
+                                 <font class="fontl">是否开票：<i>*</i></font>
+                                 <label class="item">
+                                     <input type="radio" value="0" id="kaipiao_no" name="kaipiao" class="radio"
+                                            checked="checked">
+                                     <span>否</span></label>
+                                 &nbsp;&nbsp;
                                  <label class="item">
                                      <input type="radio" value="1" id="kaipiao_yes" name="kaipiao" class="radio">
                                      <span>是</span></label>
-                            </li>
-                        </ul>
-                    </div>
-                    <div id="kaipiaoarea" class="inc_b cea di_n">
-                        <h4>开票信息</h4>
-                        <script>
-                            $(document).ready(function () {
-                                $("#kaipiao_yes").click(function () {
-                                    $("#kaipiaoarea").css("display", "block");
+                             </li>
+                         </ul>
+                     </div>
+                     <div id="kaipiaoarea" class="inc_b cea di_n">
+                         <h4>开票信息</h4>
+                         <ul class="">
+                             <li class="chbox"><font class="fontl">抬头类型：<i>*</i></font>
+                                 <label class="item">
+                                     <input type="radio" value="1" name="kaipiaotype" id="kaipiaotype_geren" class="radio"
+                                            checked="checked">
+                                     <span>个人</span></label>
+                                 <label class="item">
+                                     <input type="radio" value="0" name="kaipiaotype" id="kaipiaotype_unit" class="radio">
+                                     <span>单位</span></label>
+                             </li>
+                             <li><font class="fontl">发票类型：<i>*</i></font>
+                                 <select id="tickettype">
+                                     <option value="会费">会费</option>
+                                 </select>
+                             </li>
+                             <li><font class="fontl">发票抬头：<i>*</i></font>
+                                 <input type="text" id="txt_TicketName"/>
+                             </li>
+                             <li id="shuihaoarea" style="display: none"><font class="fontl">纳税人识别号：<i>*</i></font>
+                                 <input type="text" id="txtTicketFaxNo" class="mui-input-clear"/>
+                             </li>
+                             <li class="chbox"><font class="fontl">取票方式：<i>*</i></font>
+                                 <label class="item">
+                                     <input type="radio" value="0" name="qupiaotype" id="qupiaotype_ziqu" class="radio"
+                                            checked="checked">
+                                     <span>自&nbsp;&nbsp;&nbsp;&nbsp;取</span></label>
+                                 <label class="item">
+                                     <input type="radio" value="1" name="qupiaotype" id="qupiaotype_guahao" class="radio">
+                                     <span>挂号邮寄</span></label>
+                                 <label class="item">
+                                     <input type="radio" value="2" name="qupiaotype" id="qupiaotype_kuaidi" class="radio">
+                                     <span>快递邮寄（到付，费用自理）</span></label>
+                             </li>
 
-                                });
-                                $("#kaipiao_no").click(function () {
-                                    $("#kaipiaoarea").css("display", "none");
-                                });
-
-                                $("#kaipiaotype_unit").click(function () {
-                                    $("#shuihaoarea").css("display", "block");
-                                });
-                                $("#kaipiaotype_geren").click(function () {
-                                    $("#shuihaoarea").css("display", "none");
-                                });
-
-                                $("#qupiaotype_guahao").click(function () {
-                                    $("#postarea").css("display", "block");
-
-                                });
-                                $("#qupiaotype_kuaidi").click(function () {
-                                    $(".shdz_k").css("display", "none");
-                                    $("#postarea").css("display", "block");
-                                });
-                                $("#qupiaotype_ziqu").click(function () {
-                                    $("#postarea").css("display", "none");
-                                });
-                            });
-                        </script>
-
-                        <ul class="">
-                            <li class="chbox"><font class="fontl">抬头类型：<i>*</i></font>
-                                <label class="item">
-                                    <input type="radio" value="1" name="kaipiaotype" id="kaipiaotype_geren" class="radio" checked="checked">
-                                    <span>个人</span></label>
-                                <label class="item">
-                                    <input type="radio" value="0" name="kaipiaotype" id="kaipiaotype_unit" class="radio">
-                                    <span>单位</span></label>
-                            </li>
-                            <li><font class="fontl">发票类型：<i>*</i></font>
-                                <select id="tickettype">
-                                    <option value="会费">会费</option>
-                                </select>
-                            </li>
-                            <li><font class="fontl">发票抬头：<i>*</i></font>
-                                <input type="text" id="txt_TicketName" />
-                            </li>
-                            <li id="shuihaoarea" style="display: none"><font class="fontl">纳税人识别号：<i>*</i></font>
-                                <input type="text" id="txtTicketFaxNo" class="mui-input-clear" />
-                            </li>
-                            <li class="chbox"><font class="fontl">取票方式：<i>*</i></font>
-                                <label class="item">
-                                    <input type="radio" value="0" name="qupiaotype" id="qupiaotype_ziqu" class="radio" checked="checked">
-                                    <span>自&nbsp;&nbsp;&nbsp;&nbsp;取</span></label>
-                                <label class="item">
-                                    <input type="radio" value="1" name="qupiaotype" id="qupiaotype_guahao" class="radio">
-                                    <span>挂号邮寄</span></label>
-                                <label class="item">
-                                    <input type="radio" value="2" name="qupiaotype" id="qupiaotype_kuaidi" class="radio">
-                                    <span>快递邮寄（到付，费用自理）</span></label>
-                            </li>
-
-                        </ul>
-                        <div id="postarea" class="inc_b cea di_n">
-                            <h4>邮寄信息</h4>
-                            <ul>
-                                <li><font class="fontl">收件人姓名<i>*</i></font>
-                                    <input type="text" id="txtreceivename" placeholder="长度不超过25个字符" />
-                                </li>
-                                <li><font class="fontl">手机号码<i>*</i></font>
-                                    <input type="text" id="txtmobilephone" placeholder="请填写手机号码" />
-                                </li>
-                                <li class="chbox ded">
-                                    <font class="fontl">所在地区 <i>*</i></font>
-                                    <select name="ddl_provlist" id="ddl_provlist" style="width: 130px !important; display: inline; margin-left: 5px;">
-                                        <option value="">请选择省份</option>
-                                        <option value="1">北京市</option>
-                                        <option value="2">天津市</option>
-                                        <option value="3">河北省</option>
-                                        <option value="4">山西省</option>
-                                        <option value="5">内蒙古自治区</option>
-                                        <option value="6">辽宁省</option>
-                                        <option value="7">吉林省</option>
-                                        <option value="8">黑龙江省</option>
-                                        <option value="9">上海市</option>
-                                        <option value="10">江苏省</option>
-                                        <option value="11">浙江省</option>
-                                        <option value="12">安徽省</option>
-                                        <option value="13">福建省</option>
-                                        <option value="14">江西省</option>
-                                        <option value="15">山东省</option>
-                                        <option value="16">河南省</option>
-                                        <option value="17">湖北省</option>
-                                        <option value="18">湖南省</option>
-                                        <option value="19">广东省</option>
-                                        <option value="20">广西壮族自治区</option>
-                                        <option value="21">海南省</option>
-                                        <option value="22">重庆市</option>
-                                        <option value="23">四川省</option>
-                                        <option value="24">贵州省</option>
-                                        <option value="25">云南省</option>
-                                        <option value="26">西藏自治区</option>
-                                        <option value="27">陕西省</option>
-                                        <option value="28">甘肃省</option>
-                                        <option value="29">青海省</option>
-                                        <option value="30">宁夏回族自治区</option>
-                                        <option value="31">新疆维吾尔自治区</option>
-                                        <option value="32">香港特别行政区</option>
-                                        <option value="33">澳门特别行政区</option>
-                                        <option value="34">台湾省</option>
-                                    </select>
-                                    <select name="ddl_citylist" id="ddl_citylist" style="width: 130px !important; display: inline; margin-left: 5px;">
-                                    </select>
-                                </li>
-                                <li><font class="fontl">详细地址<i>*</i></font>
-                                    <textarea class="edr" id="txtAddress"></textarea>
-                                </li>
-                                <li><font class="fontl"><span>邮政编码</span><i>*</i></font>
-                                    <input type="text" id="txtpostcode" placeholder="如您不清楚邮编，请填写000000" />
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                         </ul>
+                         <div id="postarea" class="inc_b cea di_n">
+                             <h4>邮寄信息</h4>
+                             <ul>
+                                 <li><font class="fontl">收件人姓名<i>*</i></font>
+                                     <input type="text" id="txtreceivename" placeholder="长度不超过25个字符"/>
+                                 </li>
+                                 <li><font class="fontl">手机号码<i>*</i></font>
+                                     <input type="text" id="txtmobilephone" placeholder="请填写手机号码"/>
+                                 </li>
+                                 <li class="chbox ded">
+                                     <font class="fontl">所在地区 <i>*</i></font>
+                                     <select name="ddl_provlist" id="ddl_provlist"
+                                             style="width: 130px !important; display: inline; margin-left: 5px;">
+                                         <option value="">请选择省份</option>
+                                         <option value="1">北京市</option>
+                                         <option value="2">天津市</option>
+                                         <option value="3">河北省</option>
+                                         <option value="4">山西省</option>
+                                         <option value="5">内蒙古自治区</option>
+                                         <option value="6">辽宁省</option>
+                                         <option value="7">吉林省</option>
+                                         <option value="8">黑龙江省</option>
+                                         <option value="9">上海市</option>
+                                         <option value="10">江苏省</option>
+                                         <option value="11">浙江省</option>
+                                         <option value="12">安徽省</option>
+                                         <option value="13">福建省</option>
+                                         <option value="14">江西省</option>
+                                         <option value="15">山东省</option>
+                                         <option value="16">河南省</option>
+                                         <option value="17">湖北省</option>
+                                         <option value="18">湖南省</option>
+                                         <option value="19">广东省</option>
+                                         <option value="20">广西壮族自治区</option>
+                                         <option value="21">海南省</option>
+                                         <option value="22">重庆市</option>
+                                         <option value="23">四川省</option>
+                                         <option value="24">贵州省</option>
+                                         <option value="25">云南省</option>
+                                         <option value="26">西藏自治区</option>
+                                         <option value="27">陕西省</option>
+                                         <option value="28">甘肃省</option>
+                                         <option value="29">青海省</option>
+                                         <option value="30">宁夏回族自治区</option>
+                                         <option value="31">新疆维吾尔自治区</option>
+                                         <option value="32">香港特别行政区</option>
+                                         <option value="33">澳门特别行政区</option>
+                                         <option value="34">台湾省</option>
+                                     </select>
+                                     <select name="ddl_citylist" id="ddl_citylist"
+                                             style="width: 130px !important; display: inline; margin-left: 5px;">
+                                     </select>
+                                 </li>
+                                 <li><font class="fontl">详细地址<i>*</i></font>
+                                     <textarea class="edr" id="txtAddress"></textarea>
+                                 </li>
+                                 <li><font class="fontl"><span>邮政编码</span><i>*</i></font>
+                                     <input type="text" id="txtpostcode" placeholder="如您不清楚邮编，请填写000000"/>
+                                 </li>
+                             </ul>
+                         </div>
+                     </div>
 
 
+                     <br/>
+                     <br/>
+                     <div class="su_icon"><a href="javascript:checkstepone();" class="sua">下一步</a></div>
+
+                     <script type="text/javascript">
+                         var iskaipiao, kaipiaotype, ticketname, ticketfaxno, ispost, receivername, receivermobile, provid,
+                             cityid, receiveraddress, receiverpostcode, zhifutype, imgData;
+                         var orderno = '';
+
+                         function checkstepone() {
+
+                             $("#step1").hide();
+                             $("#step2").show();
+
+                             return true;
+                         }
 
 
-                    <br />
-                    <br />
-                    <div class="su_icon"><a href="javascript:checkstepone();" class="sua">下一步</a></div>
-
-                    <script type="text/javascript">
-                        var iskaipiao, kaipiaotype, ticketname, ticketfaxno, ispost, receivername, receivermobile, provid, cityid, receiveraddress, receiverpostcode, zhifutype, imgData;
-                        var orderno = '';
-                        function checkstepone() {
-
-                            $("#step1").hide();
-                            $("#step2").show();
-
-                            return true;
-                        }
+                     </script>
 
 
-                    </script>
+                 </div>
 
-
-                </div>
-
-                <div id="step2" class="bg_blocka" style="display: none">
-                    <div class="inc_b cea">
-                        <img src="images/j_2.png" />
-                        <h4>选择支付方式</h4>
-                        <ul>
-                            <li class="chbox"><font>支付类型：<i>*</i></font>
-                                <label class="item">
-                                    <input type="radio" value="0" id="rbtnpayonline" name="zhifutype" class="radio" checked="checked">
-                                    <span>线上支付</span></label>
-                                &nbsp;&nbsp;
+                 <div id="step2" class="bg_blocka" style="display: none">
+                     <div class="inc_b cea">
+                         <img th:src="@{/images/j_2.png}"/>
+                         <h4>选择支付方式</h4>
+                         <ul>
+                             <li class="chbox"><font>支付类型：<i>*</i></font>
+                                 <label class="item">
+                                     <input type="radio" value="0" id="rbtnpayonline" name="zhifutype" class="radio"
+                                            checked="checked">
+                                     <span>线上支付</span></label>
+                                 &nbsp;&nbsp;
                                  <label class="item">
                                      <input type="radio" value="1" id="rbtnpayoffline" name="zhifutype" class="radio">
                                      <span>线下支付（需上传缴费凭证）</span></label>
-                            </li>
-                        </ul>
+                             </li>
+                         </ul>
 
 
-                        <div id="offline" style="display: none">
-                            <ul class="">
-                                <li><font>支付凭证：<i>*</i></font>
-                                    <input type="text" id="txtSecondNoticeFile" name="noticefile" style="width: 200px" />
+                         <div id="offline" style="display: none">
+                             <ul class="">
+                                 <li><font>支付凭证：<i>*</i></font>
+                                     <input type="text" id="txtSecondNoticeFile" name="noticefile" style="width: 200px"/>
 
 
-                                </li>
-                                <li><font>  &nbsp;</font>
-                                    <span style="color: red" id="iUpInfo_msg_txtSecondNoticeFile"><strong>选择支付凭证后请点击后面的上传按钮</strong></span>
+                                 </li>
+                                 <li><font> &nbsp;</font>
+                                     <span style="color: red"
+                                           id="iUpInfo_msg_txtSecondNoticeFile"><strong>选择支付凭证后请点击后面的上传按钮</strong></span>
 
-                                <li><font>  &nbsp;</font>
-                                    <span>
-                                        <br />
-                                        中国体视学学会线下缴费账号：<br />
-                                        账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：中国体视学学会<br />
-                                        开户银行：中国工商银行股份有限公司北京成府路支行<br />
+                                 <li><font> &nbsp;</font>
+                                     <span>
+                                        <br/>
+                                        中国体视学学会线下缴费账号：<br/>
+                                        账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：中国体视学学会<br/>
+                                        开户银行：中国工商银行股份有限公司北京成府路支行<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;或：工商银行北京中关村支行成府路分理处
-                                        <br />
+                                        <br/>
                                         开户行号：0200095709200034877
                                     </span>
-                            </ul>
-                            <div class="su_icon"><a href="javascript:payoffsbumit();" id="btn_submitoffline" class="sue">提交</a></div>
-                        </div>
-                        <div id="online">
-                            <ul class="">
-                                <li><font>线上类型：<i>*</i></font>
+                             </ul>
+                             <div class="su_icon"><a href="javascript:payoffsbumit();" id="btn_submitoffline"
+                                                     class="sue">提交</a></div>
+                         </div>
+                         <div id="online">
+                             <ul class="">
+                                 <li><font>线上类型：<i>*</i></font>
 
-                                    <ul class="tabbtn">
-                                        <li id="lialipay" class="current"><a onclick="javascript:changpaytype('alipay');">
-                                            <img src="images/zfb.png" /></a></li>
-                                        <li id="liweixinpay"><a onclick="javascript:changpaytype('weixinpay');">
-                                            <img src="images/wx.png" /></a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <input type="hidden" id="hf_paytype" value="2" />
-                            <div class="su_icon"><a href="javascript:openpaypage();" id="btm_GoToPay" class="sue">去支付</a></div>
-                        </div>
-                    </div>
-                    <br />
+                                     <ul class="tabbtn">
+                                         <li id="lialipay" class="current"><a onclick="javascript:changpaytype('alipay');">
+                                             <img th:src="@{/images/zfb.png}"/></a></li>
+                                         <li id="liweixinpay"><a onclick="javascript:changpaytype('weixinpay');">
+                                             <img th:src="@{/images/wx.png}"/></a></li>
+                                     </ul>
+                                 </li>
+                             </ul>
+                             <input type="hidden" id="hf_paytype" value="2"/>
+                             <div class="su_icon"><a href="javascript:openpaypage();" id="btm_GoToPay" class="sue">去支付</a>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
 
+                 <div id="step3" class="bg_blocka" style="display: none">
+                     <img th:src="@{/images/j_3.png}"/>
+                     <div class="cee_c">
+                         <img th:src="@{/images/cheg.png}"/>
+                         <h4>缴费成功</h4>
+                         <p>恭喜您成为学会正式会员！</p>
+                         <a href="./personal_information.html">进入我的个人中心</a>
+                         <br/>
+                         <a href="/">返回中国体视学学会官网首页</a>
 
-                    <script type="text/javascript">
-                        $(document).ready(function () {
-                            $("#rbtnpayonline").click(function () {
-                                $("#offline").hide();
-                                $("#online").show();
-                                $("#liweixinpay").removeClass("current");
-                                $("#lialipay").addClass("current");
-                                $("#hf_paytype").val(2); //线上
-                            });
-                            $("#rbtnpayoffline").click(function () {
-                                $("#offline").show();
-                                $("#online").hide();
-                                $("#hf_paytype").val(4); //线下
-                            });
+                     </div>
+                 </div>
+                 <div id="step4" class="bg_blocka" style="display: none">
+                     <img th:src="@{/images/j_3.png}"/>
+                     <div class="cee_c">
+                         <img th:src="@{/images/cheg.png}"/>
+                         <h4>线下缴费提交成功！</h4>
+                         <p>缴费审核通过后将成为正式会员，请耐心等待...</p>
+                         <a href="personal_information.html">进入我的个人中心</a>
+                         <br/>
+                         <a href="/">返回中国体视学学会官网首页</a>
+                     </div>
+                 </div>
 
-                            $("#ddl_provlist").change(function () {
-                                var provId = $("#ddl_provlist").val();
-                                if (provId != 0) {
+             </div>
+         </div>
+     </div>
+     <div class="fot_w2">
+         Copyright © 2009-2018 中国体视学学会 版权所有 京ICP备10033108
+         <br/>
+         京公网安备110108007550号<br/>
+         技术支持：北京智联软件技术有限公司
+     </div>
+ </div>
 
-                                    $.ajax({
-                                        type: "get",//使用get方法访问后台
-
-                                        dataType: "json",//返回json格式的数据
-                                        url: "./Ajax/GetCityListByProvId.ashx?provid=" + provId,//要访问的后台地址
-                                        success: function (data) {//msg为返回的数据，在这里做数据绑定
-
-                                            if (data.status == "ok") {
-                                                $("#ddl_citylist option").remove();
-                                                $("#ddl_citylist").append("<option value=''>请选择市区</option>");
-                                                $.each(data.datamap, function (index, item) {
-                                                    var id = data.datamap[index].id;
-                                                    var text = data.datamap[index].name;
-                                                    $("#ddl_citylist").append("<option value='" + id + "'>" + text + "</option>");
-                                                });
-                                            } else {
-                                                alert(data.reason);
-                                            }
-                                        }
-                                    });
-
-                                }
-                            });
-                        });
-
-                        //线下支付提交
-                        function payoffsbumit() {
-
-
-                            meetingpaydo();
-                            return true;
-                        }
-
-                        function openpaypage() {
-
-
-                            meetingpaydo();
-                            //显示等待框  同时启动定时刷新获得订单状态定时器  一旦支付成功，跳转到支付成功显示信息.
-                            return true;
-                        }
-
-
-                        var timeID;
-                        var isweixin = false;
-                        var getting = {
-                            type: "post",
-                            url: '../paycenter/Ajax/CheckOrderStatus.ashx?orderno=' + orderno,
-                            success: function (data) {
-                                var json = eval('(' + data + ')');
-                                if (json.chkres == "sucess") {
-                                    window.clearInterval(timeID);
-                                    //支付成功
-                                    $("#step2").hide();
-                                    $("#step3").show();
-                                } else {
-                                    if (isweixin) {
-                                        alert("关闭刷新状态");
-                                        window.clearInterval(timeID); //微信只返回一次
-                                    }
-                                }
-                            }
-                        };
-
-                        function meetingpaydo() {
-
-
-                            //支付成功
-                            $("#step2").hide();
-                            $("#step4").show();
-
-
-                        }
-
-                        //线上支付提交
-                        function changpaytype(type) {
-                            if (type == "alipay") {
-                                $("#liweixinpay").removeClass("current");
-                                $("#lialipay").addClass("current");
-                                $("#hf_paytype").val(2); //微信1 支付宝2
-                            } else if (type == "weixinpay") {
-                                $("#lialipay").removeClass("current");
-                                $("#liweixinpay").addClass("current");
-                                $("#hf_paytype").val(1); //微信1 支付宝2
-                            }
-                        }
-
-
-                        function newWin(url, id) {
-                            var a = document.createElement('a');
-                            a.setAttribute('href', url);
-                            a.setAttribute('target', '_blank');
-                            a.setAttribute('id', id);
-                            // 防止反复添加
-                            if (!document.getElementById(id)) {
-                                document.body.appendChild(a);
-                            }
-                            a.click();
-                        }
-                    </script>
-                    <br />
-                </div>
-
-                <div id="step3" class="bg_blocka" style="display: none">
-                    <img src="images/j_3.png" />
-                    <div class="cee_c">
-                        <img src="images/cheg.png" />
-                        <h4>缴费成功</h4>
-                        <p>恭喜您成为学会正式会员！</p>
-                        <a href="./personal_information.html">进入我的个人中心</a>
-                        <br />
-                        <a href="/">返回中国体视学学会官网首页</a>
-
-                    </div>
-                </div>
-                <div id="step4" class="bg_blocka" style="display: none">
-                    <img src="images/j_3.png" />
-                    <div class="cee_c">
-                        <img src="images/cheg.png" />
-                        <h4>线下缴费提交成功！</h4>
-                        <p>缴费审核通过后将成为正式会员，请耐心等待...</p>
-                        <a href="personal_information.html">进入我的个人中心</a>
-                        <br />
-                        <a href="/">返回中国体视学学会官网首页</a>
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <div class="fot_w2">
-        Copyright © 2009-2018 中国体视学学会 版权所有 京ICP备10033108 
-        <br />
-        京公网安备110108007550号<br />
-        技术支持：北京智联软件技术有限公司
-    </div>
+<template th:include="/layout/layout::layout" id="per_left"></template>
 </body>
+<script th:src="@{/js/vue.js}"></script>
+<script th:inline="javascript">
+    window.message = [[${member}]];
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#rbtnpayonline").click(function () {
+            $("#offline").hide();
+            $("#online").show();
+            $("#liweixinpay").removeClass("current");
+            $("#lialipay").addClass("current");
+            $("#hf_paytype").val(2); //线上
+        });
+        $("#rbtnpayoffline").click(function () {
+            $("#offline").show();
+            $("#online").hide();
+            $("#hf_paytype").val(4); //线下
+        });
+
+        $("#ddl_provlist").change(function () {
+            var provId = $("#ddl_provlist").val();
+            if (provId != 0) {
+
+                $.ajax({
+                    type: "get",//使用get方法访问后台
+
+                    dataType: "json",//返回json格式的数据
+                    url: "./Ajax/GetCityListByProvId.ashx?provid=" + provId,//要访问的后台地址
+                    success: function (data) {//msg为返回的数据，在这里做数据绑定
+
+                        if (data.status == "ok") {
+                            $("#ddl_citylist option").remove();
+                            $("#ddl_citylist").append("<option value=''>请选择市区</option>");
+                            $.each(data.datamap, function (index, item) {
+                                var id = data.datamap[index].id;
+                                var text = data.datamap[index].name;
+                                $("#ddl_citylist").append("<option value='" + id + "'>" + text + "</option>");
+                            });
+                        } else {
+                            alert(data.reason);
+                        }
+                    }
+                });
+
+            }
+        });
+
+        //开票信息
+        $("#kaipiao_yes").click(function () {
+            $("#kaipiaoarea").css("display", "block");
+
+        });
+        $("#kaipiao_no").click(function () {
+            $("#kaipiaoarea").css("display", "none");
+        });
+
+        $("#kaipiaotype_unit").click(function () {
+            $("#shuihaoarea").css("display", "block");
+        });
+        $("#kaipiaotype_geren").click(function () {
+            $("#shuihaoarea").css("display", "none");
+        });
+
+        $("#qupiaotype_guahao").click(function () {
+            $("#postarea").css("display", "block");
+
+        });
+        $("#qupiaotype_kuaidi").click(function () {
+            $(".shdz_k").css("display", "none");
+            $("#postarea").css("display", "block");
+        });
+        $("#qupiaotype_ziqu").click(function () {
+            $("#postarea").css("display", "none");
+        });
+    });
+
+    //线下支付提交
+    function payoffsbumit() {
+
+
+        meetingpaydo();
+        return true;
+    }
+
+    function openpaypage() {
+
+
+        meetingpaydo();
+        //显示等待框  同时启动定时刷新获得订单状态定时器  一旦支付成功，跳转到支付成功显示信息.
+        return true;
+    }
+
+
+    var timeID;
+    var isweixin = false;
+    var getting = {
+        type: "post",
+        url: '../paycenter/Ajax/CheckOrderStatus.ashx?orderno=' + orderno,
+        success: function (data) {
+            var json = eval('(' + data + ')');
+            if (json.chkres == "sucess") {
+                window.clearInterval(timeID);
+                //支付成功
+                $("#step2").hide();
+                $("#step3").show();
+            } else {
+                if (isweixin) {
+                    alert("关闭刷新状态");
+                    window.clearInterval(timeID); //微信只返回一次
+                }
+            }
+        }
+    };
+
+    function meetingpaydo() {
+
+        //支付成功
+        $("#step2").hide();
+        $("#step4").show();
+
+
+    }
+
+    //线上支付提交
+    function changpaytype(type) {
+        if (type == "alipay") {
+            $("#liweixinpay").removeClass("current");
+            $("#lialipay").addClass("current");
+            $("#hf_paytype").val(2); //微信1 支付宝2
+        } else if (type == "weixinpay") {
+            $("#lialipay").removeClass("current");
+            $("#liweixinpay").addClass("current");
+            $("#hf_paytype").val(1); //微信1 支付宝2
+        }
+    }
+
+
+    function newWin(url, id) {
+        var a = document.createElement('a');
+        a.setAttribute('href', url);
+        a.setAttribute('target', '_blank');
+        a.setAttribute('id', id);
+        // 防止反复添加
+        if (!document.getElementById(id)) {
+            document.body.appendChild(a);
+        }
+        a.click();
+    }
+</script>
+<script th:src="@{/js/element/index.js}"></script>
+<script th:src="@{/js/components/layout.js}"></script>
+<script th:src="@{/js/src/pay.js}"></script>
 </html>
