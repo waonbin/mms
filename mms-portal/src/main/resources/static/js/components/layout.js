@@ -5,6 +5,13 @@ $(function() {
             name:{
                 type: String,
                 default: '无'
+            },
+            message:{
+                type: Object,
+                default: {
+                    name: '--',
+                    memberType: 1
+                }
             }
         },
         data: function () {

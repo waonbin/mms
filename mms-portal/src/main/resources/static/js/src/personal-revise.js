@@ -93,13 +93,22 @@ $(function () {
                     }
                 });
             },
+            getMessage: function () {
+                $.ajax({
+                    url: '/login/user'
+                }).done(function (date) {
+                    this.message = date;
+                }.bind(this)).fail(function () {
+                    this.$message.error('获取用户信息失败！');
+                }.bind(this))
+            },
             resetForm(formName) {
                 this.$refs[formName].resetFields();
             }
         },
         mounted: function() {
             $(".revise-btn").addClass('cur');
-            this.message = message || {name:'---'};
+            this.getMessage();
         }
     })
 })

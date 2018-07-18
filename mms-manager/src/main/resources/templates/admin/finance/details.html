@@ -268,13 +268,17 @@
                                                         </el-input>
                                                     </div>
                                                 </div>
-                                                <div class="m-separator m-separator--dashed"></div>
-                                                <div class="clearfix">
-                                                    <button type="button" class="btn m-btn--square  btn-warning m-btn m-btn--custom examine-btn">
-                                                        审核
-                                                    </button>
-                                                </div>
+                                                <el-button type="primary" class="examine-btn">
+                                                    审核
+                                                </el-button>
                                             </div>
+                                        </div>
+                                        <div class="m-separator m-separator--dashed"></div>
+                                        <div class="clearfix">
+                                            <el-button type="success" class="return-btn"
+                                                       @click="returnList">
+                                                返回
+                                            </el-button>
                                         </div>
                                     </div>
                                 </div>

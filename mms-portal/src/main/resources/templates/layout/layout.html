@@ -7,10 +7,16 @@
             </div>
             <div class="name_f">
                 <div class="name_c">
-                    <h4>{{name}}</h4>
+                    <h4>{{message.name}}</h4>
                     <a th:href="@{/logout}">退出</a>
                 </div>
-                <b>会员类型：普通会员</b> <b>有效期：2018-01-19</b>
+                <b>
+                    会员类型：
+                    <span v-if="message.memberType == 1">普通会员</span>
+                    <span v-if="message.memberType == 2">学生会员</span>
+                    <span v-if="message.memberType == 3">团体会员</span>
+                </b>
+                <b>有效期：2018-01-19</b>
             </div>
         </div>
         <ul>

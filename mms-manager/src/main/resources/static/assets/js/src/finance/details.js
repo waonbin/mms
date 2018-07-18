@@ -24,6 +24,9 @@ $(function() {
                 }.bind(this)).fail(function() {
                     this.$message.error('获取数据失败,请检查网络');
                 }.bind(this))
+            },
+            returnList: function() {
+                history.go(-1)
             }
         },
         mounted: function() {

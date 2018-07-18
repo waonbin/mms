@@ -19,6 +19,15 @@ $(function() {
                   this.$message.error('提交失败');
               }.bind(this))
           },
+          getMessage: function() {
+              $.ajax({
+                  url:'/login/user'
+              }).done(function(date) {
+                  this.message = date;
+              }.bind(this)).fail(function() {
+                  this.$message.error('获取用户信息失败！');
+              }.bind(this))
+          },
           changePage: function(val) {
               this.page = val;
               this.getDate()
@@ -26,7 +35,7 @@ $(function() {
         },
         mounted: function() {
             $(".payment-btn").addClass('cur');
-            this.message = message || {name:'---'};
+            this.getMessage();
             this.getDate();
         }
     })
