@@ -71,4 +71,14 @@ public class LoginController {
         session.removeAttribute(Constants.SESSION_USER);
         return "/member/login";
     }
+
+    /**
+     * GET  /login/user : get login user info
+     * @param session the HTTP Session
+     * @return login user info
+     */
+    @GetMapping("/login/user")
+    public ResponseEntity getLoginUser(HttpSession session){
+        return ResponseEntity.ok(session.getAttribute(Constants.SESSION_USER));
+    }
 }
