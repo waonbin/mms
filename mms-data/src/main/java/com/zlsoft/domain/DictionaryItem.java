@@ -3,30 +3,31 @@ package com.zlsoft.domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "m_administrative_division")
-public class AdministrativeDivision {
+@Table(name = "m_dictionary_item")
+public class DictionaryItem {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE, generator="division_id_generator")
-    @TableGenerator(name = "division_id_generator",
+    @GeneratedValue(strategy = GenerationType.TABLE, generator="dictionary_item_id_generator")
+    @TableGenerator(name = "dictionary_item_id_generator",
             table="m_id",
             pkColumnName="pk_name",
             valueColumnName="pk_value",
-            pkColumnValue="division_pk",
+            pkColumnValue="dictionary_item_pk",
             initialValue = 10000,
             allocationSize=1
     )
     private Long id;
 
     /**
-     * 父ID（树形结构）
+     * 字典ID
      */
-    private Long parentId;
+    private Long dictionaryId;
 
     /**
      * 编码
      */
-    private Short code;
+    @Column(length = 64)
+    private String code;
 
     /**
      * 名称
@@ -35,14 +36,14 @@ public class AdministrativeDivision {
     private String name;
 
     /**
+     * 字典项的值
+     */
+    private Short value;
+
+    /**
      * 序号
      */
     private Integer seq;
-
-    /**
-     * 层级
-     */
-    private Integer level;
 
     /**
      * 描述
@@ -58,19 +59,19 @@ public class AdministrativeDivision {
         this.id = id;
     }
 
-    public Long getParentId() {
-        return parentId;
+    public Long getDictionaryId() {
+        return dictionaryId;
     }
 
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
+    public void setDictionaryId(Long dictionaryId) {
+        this.dictionaryId = dictionaryId;
     }
 
-    public Short getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(Short code) {
+    public void setCode(String code) {
         this.code = code;
     }
 
@@ -82,20 +83,20 @@ public class AdministrativeDivision {
         this.name = name;
     }
 
+    public Short getValue() {
+        return value;
+    }
+
+    public void setValue(Short value) {
+        this.value = value;
+    }
+
     public Integer getSeq() {
         return seq;
     }
 
     public void setSeq(Integer seq) {
         this.seq = seq;
-    }
-
-    public Integer getLevel() {
-        return level;
-    }
-
-    public void setLevel(Integer level) {
-        this.level = level;
     }
 
     public String getDescription() {
