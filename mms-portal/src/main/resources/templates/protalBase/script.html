@@ -1,0 +1,11 @@
+<template th:fragment="protalScript">
+    <script th:src="@{{path}/js/jquery-1.7.1.min.js(path=${#request.getContextPath()})}"></script>
+    <script th:inline="javascript">
+        window.message = [[${member}]];
+        var ctxPath = [[${#request.getContextPath()}]];
+        window.ctxPath = ctxPath;
+    </script>
+    <script th:src="@{{path}/js/vue.js(path=${#request.getContextPath()})}"></script>
+    <script th:src="@{{path}/js/components/layout.js(path=${#request.getContextPath()})}"></script>
+    <script th:src="@{{path}/js/element/index.js(path=${#request.getContextPath()})}"></script>
+</template>
