@@ -20,7 +20,6 @@
           rel="stylesheet" type="text/css"/>
     <link rel="shortcut icon"
           th:href="@{{path}/assets/demo/demo12/media/img/logo/favicon.ico(path=${#request.getContextPath()})}"/>
-    <script th:src="@{{path}/assets/js/base/jquery-1.7.1.min.js(path=${#request.getContextPath()})}"></script>
 </head>
 <!-- end::Head -->
 
@@ -102,7 +101,11 @@
                                     </div>
                                     <div class="search-item clearfix">
                                         <div class="label">推荐机构</div>
-                                        <el-select v-model="jg" filterable placeholder="请选择">
+                                        <el-select
+                                                v-model="jg"
+                                                clearable
+                                                filterable
+                                                placeholder="请选择">
                                             <el-option
                                                     v-for="item in jgGroup"
                                                     :key="item.value"
@@ -113,7 +116,10 @@
                                     </div>
                                     <div class="search-item clearfix">
                                         <div class="label">职称</div>
-                                        <el-select v-model="zc" placeholder="请选择">
+                                        <el-select
+                                                clearable
+                                                v-model="zc"
+                                                placeholder="请选择">
                                             <el-option
                                                     v-for="item in zcGroup"
                                                     :key="item.value"
@@ -124,7 +130,9 @@
                                     </div>
                                     <div class="search-item clearfix">
                                         <div class="label">党派类型</div>
-                                        <el-select v-model="partisan">
+                                        <el-select
+                                                clearable
+                                                v-model="partisan">
                                             <el-option
                                                     v-for="item in partisanGroup"
                                                     :key="item.value"
@@ -135,7 +143,10 @@
                                     </div>
                                     <div class="search-item clearfix">
                                         <div class="label">会员类型</div>
-                                        <el-select v-model="memberType" placeholder="请选择会员类型">
+                                        <el-select
+                                                clearable
+                                                v-model="memberType"
+                                                placeholder="请选择会员类型">
                                             <el-option
                                                     v-for="item in memberTypeGroup"
                                                     :key="item.value"
@@ -146,7 +157,9 @@
                                     </div>
                                     <div class="search-item clearfix">
                                         <div class="label">学历</div>
-                                        <el-select v-model="education">
+                                        <el-select
+                                                clearable
+                                                v-model="education">
                                             <el-option
                                                     v-for="item in educationGroup"
                                                     :key="item.value"
@@ -201,12 +214,14 @@
                                     </div>
                                     <div class="search-item clearfix">
                                         <div class="label">省份</div>
-                                        <el-select v-model="province">
+                                        <el-select
+                                                clearable
+                                                v-model="province">
                                             <el-option
                                                     v-for="item in provinceGroup"
-                                                    :key="item.value"
-                                                    :label="item.label"
-                                                    :value="item.value"
+                                                    :key="item.id"
+                                                    :label="item.name"
+                                                    :value="item.code"
                                             >
                                             </el-option>
                                         </el-select>

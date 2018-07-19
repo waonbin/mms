@@ -19,9 +19,12 @@ $(function() {
                    name: "",
                    nationality: "",
                    partisan: null,
-                   reference: "",
+                   reference: " ",
                    researchField: "",
-                   title: ""
+                   title: "",
+                   province:"",
+                   city:"",
+                   address:""
                },
                required:{
                    name:"会员姓名",
@@ -41,9 +44,60 @@ $(function() {
                    mobile:"手机号",
                    zipcode:"邮编",
                    email:"邮箱",
-                   reference:"推荐单位"
+                   reference:"推荐单位",
+                   province:"省份",
+                   city:"市"
                },
-               params:{}
+               params:{},
+               cityList:[],
+               dictionaryList:[]
+           }
+       },
+       computed:{
+           provinceList: function() {
+               return this.cityList.filter(function(item) {
+                   return item.parentId === 0
+               })
+           },
+           citiesList: function() {
+               return this.cityList.filter(function(item) {
+                   return item.parentId === this.registerValidateForm.province
+               }.bind(this))
+           },
+           genderList: function() {
+               return this.dictionaryList.filter(function(item) {
+                   return item.dictionaryId === 1
+               })
+           },
+           memberList: function() {
+               return this.dictionaryList.filter(function(item) {
+                   return item.dictionaryId === 2
+               })
+           },
+           partisanList: function() {
+               return this.dictionaryList.filter(function(item) {
+                   return item.dictionaryId === 3
+               })
+           },
+           workNatureList: function() {
+               return this.dictionaryList.filter(function(item) {
+                   return item.dictionaryId === 4
+               })
+           },
+           educationList: function() {
+               return this.dictionaryList.filter(function(item) {
+                   return item.dictionaryId === 5
+               })
+           },
+           levelList: function() {
+               return this.dictionaryList.filter(function(item) {
+                   return item.dictionaryId === 6
+               })
+           },
+           referenceList: function() {
+               return this.dictionaryList.filter(function(item) {
+                   return item.dictionaryId === 7
+               })
            }
        },
        methods: {
@@ -62,13 +116,22 @@ $(function() {
 
            },
             check: function() {
-                var group = Object.keys(this.required),
+                var allGroup = Object.keys(this.registerValidateForm),
+                    group = Object.keys(this.required),
                     meilReq = new RegExp("^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*\\.[a-zA-Z0-9]{2,6}$");
 
                 this.params.id = this.registerValidateForm.id;
                 if(this.registerValidateForm['email'] && !meilReq.test(this.registerValidateForm['email'])) {
                     this.$message.error('邮箱格式不正确！');
                     return
+                }
+
+                for(var i=0; i<allGroup.length; i++) {
+                    var obj = this.registerValidateForm[allGroup[i]];
+
+                    if(obj) {
+                        this.params[allGroup[i]] = obj;
+                    }
                 }
 
                 for (var i=0; i<group.length; i++) {
@@ -78,21 +141,31 @@ $(function() {
                         var time = this.registerValidateForm['birthday'].toString();
                         this.registerValidateForm['birthday'] = this.changeTime(new Date(time))
                     }
-
                     if(!obj || (isNaN(obj) && !obj.length) ) {
                         this.$message.error('请填写必填字段: '+ this.required[group[i]]);
                         break;
                     } else if(obj) {
                         this.params[group[i]] = obj
                     }
-
                     if(i === group.length-1 ) {
                         this.submit()
                     }
-
                 }
-
             },
+           getCity: function() {
+               $.ajax({
+                   url:ctxPath+'/division/data'
+               }).done(function(data) {
+                   this.cityList = data;
+               }.bind(this))
+           },
+           getDictionary: function() {
+               $.ajax({
+                   url:ctxPath+'/dictionary'
+               }).done(function(data) {
+                   this.dictionaryList = data;
+               }.bind(this))
+           },
            submit: function() {
                 $.ajax({
                     url:"./edit",
@@ -109,11 +182,15 @@ $(function() {
            }
        },
        mounted: function() {
+           this.getCity();
+           this.getDictionary();
            $(".edit-btn").addClass('cur');
            message.gender = message.gender.toString();
            message.memberType = message.memberType.toString();
            message.partisan= message.partisan.toString();
            message.birthday= (new Date(message.birthday)).toString();
+           message.province = message.province || "";
+           message.city = message.city || "";
            this.registerValidateForm = message;
        }
    })

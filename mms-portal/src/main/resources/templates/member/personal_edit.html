@@ -41,18 +41,15 @@
                                    placeholder="请输入会员姓名"/>
                         </li>
                         <li class="sex"><font>性别<i>*</i></font>
-                            <label class="item" for="rbtn_sex_woman">
-                                <span>女</span>
-                                <input value="2" name="rbtnmembersex" type="radio" id="rbtn_sex_woman"
-                                       v-model="registerValidateForm.gender"
-                                       class="radio"/>
+                           <template v-for="item in genderList">
+                               <label class="item">
+                                   <span>{{item.name}}</span>
+                                   <input :value="item.value" name="rbtnmembersex" type="radio"
+                                          v-model="registerValidateForm.gender"
+                                          class="radio"/>
 
-                            </label>
-                            <label class="item" for="rbtn_sex_man">
-                                <span>男</span>
-                                <input value="1" name="rbtnmembersex" type="radio" id="rbtn_sex_man"
-                                       tabindex="4" class="radio" checked="checked" v-model="registerValidateForm.gender"/>
-                            </label>
+                               </label>
+                           </template>
                         </li>
                         <li><font>毕业学校<i>*</i></font>
                             <input name="txt_SchoolName" type="text" v-model="registerValidateForm.school"
@@ -63,16 +60,9 @@
                             <select name="ddl_PartyList" id="ddl_PartyList" tabindex="7"
                                 v-model="registerValidateForm.partisan">
                                 <option value="">请选择</option>
-                                <option selected="selected" value="1">中共党员</option>
-                                <option value="2">中国国民党革命委员会</option>
-                                <option value="3">中国民主同盟</option>
-                                <option value="4">中国民主建国会</option>
-                                <option value="5">中国民主促进会</option>
-                                <option value="6">中国农工民主党</option>
-                                <option value="7">中国致公党</option>
-                                <option value="8">九三学社</option>
-                                <option value="9">台湾民主自治同盟</option>
-                                <option value="10">无党派</option>
+                                <template v-for="item in partisanList">
+                                    <option :value="item.value">{{item.name}}</option>
+                                </template>
                             </select>
                         </li>
                         <li><font>工作单位<i>*</i></font>
@@ -90,12 +80,9 @@
                             <select name="ddl_ProfessionalLevel" id="ddl_ProfessionalLevel" tabindex="12"
                                     v-model.trim="registerValidateForm.level"
                             >
-                                <option value="">请选择</option>
-                                <option value="1">初级</option>
-                                <option value="2">中级</option>
-                                <option value="3">副高级</option>
-                                <option value="4">正高级</option>
-                                <option value="5">无</option>
+                                <template v-for="item in levelList">
+                                    <option :value="item.value">{{item.name}}</option>
+                                </template>
                             </select>
                         </li>
 
@@ -106,10 +93,9 @@
                         <li class="selarea"><font>会员类型<i>* </i></font>
                             <select name="ddl_memerType" id="ddl_memerType" style="width: 120px;" tabindex="2"
                                     v-model.trim="registerValidateForm.memberType" disabled="disabled">
-                                <option value="">请选择</option>
-                                <option value="1">普通会员</option>
-                                <option value="2">学生会员</option>
-                                <option value="3">团体会员</option>
+                                <template v-for="item in memberList">
+                                    <option :value="item.value">{{item.name}}</option>
+                                </template>
                             </select>
                         </li>
                         <li><font>出生日期<i>*</i></font>
@@ -130,12 +116,9 @@
                             <select name="ddl_WorkNature" id="ddl_WorkNature"
                                     v-model.trim="registerValidateForm.workNature" tabindex="9">
                                 <option value="">请选择</option>
-                                <option value="1">管理</option>
-                                <option value="2">科学研究</option>
-                                <option value="3">技术应用与服务</option>
-                                <option value="4">生产</option>
-                                <option value="5">其他</option>
-                                <option value="6">在读学生</option>
+                                <template v-for="item in workNatureList">
+                                    <option :value="item.value">{{item.name}}</option>
+                                </template>
                             </select>
                         </li>
                         <li><font>工作专业<i>*</i></font>
@@ -147,20 +130,18 @@
                         <li class="selarea"><font>学历<i>*</i></font>
                             <select name="ddl_EducationDegrees" id="ddl_EducationDegrees"
                                     v-model.trim="registerValidateForm.education" tabindex="13">
-                                <option value="">请选择</option>
-                                <option value="1">博士</option>
-                                <option value="2">硕士</option>
-                                <option value="3">本科</option>
-                                <option value="4">专科</option>
-                                <option value="5">其他</option>
+                                <template v-for="item in educationList">
+                                    <option :value="item.value">{{item.name}}</option>
+                                </template>
                             </select>
                         </li>
                         <li class="selarea"><font>推荐单位<i>* </i></font>
                             <select style="width: 120px;" tabindex="2"
                                     v-model.trim="registerValidateForm.reference">
                                 <option value="">请选择</option>
-                                <option value="1">CT理论及应用分会</option>
-                                <option value="2">材料科学分会</option>
+                                <template v-for="item in referenceList">
+                                    <option :value="item.value">{{item.name}}</option>
+                                </template>
                             </select>
                         </li>
 
@@ -194,46 +175,13 @@
                         </li>
                         <li class="selarea"><font>通讯地址<i>*</i></font>
                             <select name="ddl_provlist" id="ddl_provlist" tabindex="22"
-                                    v-model="registerValidateForm.province" >
-                                <option value="">请选择省份</option>
-                                <option value="1">北京市</option>
-                                <option value="2">天津市</option>
-                                <option value="3">河北省</option>
-                                <option value="4">山西省</option>
-                                <option value="5">内蒙古自治区</option>
-                                <option value="6">辽宁省</option>
-                                <option value="7">吉林省</option>
-                                <option value="8">黑龙江省</option>
-                                <option value="9">上海市</option>
-                                <option value="10">江苏省</option>
-                                <option value="11">浙江省</option>
-                                <option value="12">安徽省</option>
-                                <option value="13">福建省</option>
-                                <option value="14">江西省</option>
-                                <option value="15">山东省</option>
-                                <option value="16">河南省</option>
-                                <option value="17">湖北省</option>
-                                <option value="18">湖南省</option>
-                                <option value="19">广东省</option>
-                                <option value="20">广西壮族自治区</option>
-                                <option value="21">海南省</option>
-                                <option value="22">重庆市</option>
-                                <option value="23">四川省</option>
-                                <option value="24">贵州省</option>
-                                <option value="25">云南省</option>
-                                <option value="26">西藏自治区</option>
-                                <option value="27">陕西省</option>
-                                <option value="28">甘肃省</option>
-                                <option value="29">青海省</option>
-                                <option value="30">宁夏回族自治区</option>
-                                <option value="31">新疆维吾尔自治区</option>
-                                <option value="32">香港特别行政区</option>
-                                <option value="33">澳门特别行政区</option>
-                                <option value="34">台湾省</option>
+                                    v-model="registerValidateForm.province">
+                                <option value="">省</option>
+                                <template v-for="n in provinceList">
+                                    <option :value="n.code">{{n.name}}</option>
+                                </template>
                             </select>
                         </li>
-
-
                     </ul>
                 </div>
                 <div class="l_inp">
@@ -258,19 +206,10 @@
                             <font>&nbsp;<i></i></font>
                             <select name="ddl_citylist" id="ddl_citylist" tabindex="23"
                                     v-model.trim="registerValidateForm.city">
-                                <option value="">请选择市区</option>
-                                <option value="25">呼和浩特市</option>
-                                <option value="26">包头市</option>
-                                <option value="27">乌海市</option>
-                                <option value="28">赤峰市</option>
-                                <option value="29">通辽市</option>
-                                <option value="30">鄂尔多斯市</option>
-                                <option value="31">呼伦贝尔市</option>
-                                <option value="32">巴彦淖尔市</option>
-                                <option value="33">乌兰察布市</option>
-                                <option value="34">兴安盟</option>
-                                <option value="35">锡林郭勒盟</option>
-                                <option value="36">阿拉善盟</option>
+                                <option value="">市</option>
+                                <template v-for="n in citiesList">
+                                    <option :value="n.code">{{n.name}}</option>
+                                </template>
                             </select>
                         </li>
                     </ul>
@@ -297,13 +236,7 @@
 </div>
 <template th:include="/layout/layout::layout" id="per_left"></template>
 </body>
-<script th:src="@{{path}/js/jquery-1.7.1.min.js(path=${#request.getContextPath()})}"></script>
-<script th:src="@{{path}/js/vue.js(path=${#request.getContextPath()})}"></script>
-<script th:inline="javascript">
-    window.message = [[${member}]];
-</script>
-<script th:src="@{{path}/js/components/layout.js(path=${#request.getContextPath()})}"></script>
-<script th:src="@{{path}/js/element/index.js(path=${#request.getContextPath()})}"></script>
+<div th:include="/protalBase/script::protalScript"></div>
 <script th:src="@{{path}/js/src/personal-edit.js(path=${#request.getContextPath()})}"></script>
 
 </html>
