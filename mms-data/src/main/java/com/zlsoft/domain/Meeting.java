@@ -11,8 +11,8 @@ import java.util.Date;
 public class Meeting implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE, generator="id_generator")
-    @TableGenerator(name = "id_generator",
+    @GeneratedValue(strategy = GenerationType.TABLE, generator="meeting_id_generator")
+    @TableGenerator(name = "meeting_id_generator",
             table="m_id",
             pkColumnName="pk_name",
             valueColumnName="pk_value",

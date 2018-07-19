@@ -8,12 +8,12 @@ import java.io.Serializable;
 public class MeetingPaper implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE, generator="id_generator")
-    @TableGenerator(name = "id_generator",
+    @GeneratedValue(strategy = GenerationType.TABLE, generator="paper_id_generator")
+    @TableGenerator(name = "paper_id_generator",
             table="m_id",
             pkColumnName="pk_name",
             valueColumnName="pk_value",
-            pkColumnValue="enrollment_pk",
+            pkColumnValue="paper_pk",
             initialValue = 10000,
             allocationSize=1
     )
