@@ -127,7 +127,7 @@ $(function() {
                 param.birthdayEnd = this.changeTime(this.endBirstTime);
 
                 $.ajax({
-                    url: ctxPath+'/admin/member/page/'+(this.page-1),
+                    url: ctxPath+'/admin/member/query/'+(this.page-1),
                     data: param
                 }).done(function(data) {
                     this.tableData = data;

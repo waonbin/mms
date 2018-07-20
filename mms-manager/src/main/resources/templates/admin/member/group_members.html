@@ -95,24 +95,31 @@
                                 <div class="system-search clearfix">
                                     <div class="search-item clearfix">
                                         <div class="label">会员名称</div>
-                                        <el-input placeholder="请输入会员名称" class="el-input"/>
+                                        <el-input placeholder="请输入会员名称"
+                                                  v-model="param.name" class="el-input"/>
                                     </div>
                                     <div class="search-item clearfix">
                                         <div class="label">会员号</div>
-                                        <el-input placeholder="请输入会员号" class="el-input"/>
+                                        <el-input placeholder="请输入会员号"
+                                                  v-model="param.memberNo" class="el-input"/>
                                     </div>
                                     <div class="search-item clearfix">
                                         <div class="label">推荐机构</div>
-                                        <el-select v-model="jg" filterable placeholder="请选择">
+                                        <el-select
+                                                v-model="param.reference"
+                                                clearable
+                                                filterable
+                                                placeholder="请选择">
                                             <el-option
-                                                    v-for="item in jgGroup"
+                                                    v-for="item in referenceList"
                                                     :key="item.value"
-                                                    :label="item.label"
+                                                    :label="item.name"
                                                     :value="item.value">
                                             </el-option>
                                         </el-select>
                                     </div>
-                                    <a href="javascript:" class="btn btn-primary m-btn m-btn--icon">
+                                    <a href="javascript:" class="btn btn-primary m-btn m-btn--icon"
+                                        @click="search">
                                          <span>
                                              <i class="la flaticon-search-magnifier-interface-symbol"></i>
                                              <span>搜索</span>
@@ -200,8 +207,7 @@
                                                     label="推荐机构">
                                                 <template slot-scope="scope">
                                                     <div class="ellipsis">
-                                                        <span v-if="scope.row.reference == 1">CT理论及应用分会</span>
-                                                        <span v-if="scope.row.reference == 2">材料科学分会</span>
+                                                        <span>{{getReference(scope.row.reference)}}</span>
                                                     </div>
                                                 </template>
                                             </el-table-column>
