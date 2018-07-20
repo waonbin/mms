@@ -107,9 +107,9 @@
                                                 filterable
                                                 placeholder="请选择">
                                             <el-option
-                                                    v-for="item in jgGroup"
+                                                    v-for="item in referenceList"
                                                     :key="item.value"
-                                                    :label="item.label"
+                                                    :label="item.name"
                                                     :value="item.value">
                                             </el-option>
                                         </el-select>
@@ -121,9 +121,9 @@
                                                 v-model="zc"
                                                 placeholder="请选择">
                                             <el-option
-                                                    v-for="item in zcGroup"
+                                                    v-for="item in levelList"
                                                     :key="item.value"
-                                                    :label="item.label"
+                                                    :label="item.name"
                                                     :value="item.value">
                                             </el-option>
                                         </el-select>
@@ -134,9 +134,9 @@
                                                 clearable
                                                 v-model="partisan">
                                             <el-option
-                                                    v-for="item in partisanGroup"
+                                                    v-for="item in partisanList"
                                                     :key="item.value"
-                                                    :label="item.label"
+                                                    :label="item.name"
                                                     :value="item.value">
                                             </el-option>
                                         </el-select>
@@ -148,9 +148,9 @@
                                                 v-model="memberType"
                                                 placeholder="请选择会员类型">
                                             <el-option
-                                                    v-for="item in memberTypeGroup"
+                                                    v-for="item in memberList"
                                                     :key="item.value"
-                                                    :label="item.label"
+                                                    :label="item.name"
                                                     :value="item.value">
                                             </el-option>
                                         </el-select>
@@ -161,9 +161,9 @@
                                                 clearable
                                                 v-model="education">
                                             <el-option
-                                                    v-for="item in educationGroup"
+                                                    v-for="item in educationList"
                                                     :key="item.value"
-                                                    :label="item.label"
+                                                    :label="item.name"
                                                     :value="item.value">
                                             </el-option>
                                         </el-select>

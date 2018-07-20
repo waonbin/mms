@@ -15,6 +15,7 @@ $(function() {
                 province:'',
                 memberType:'',
                 education:'',
+                dictionaryList: [],
                 jgGroup: [
                     {
                         value: '1',
@@ -135,6 +136,31 @@ $(function() {
                         return (endTime && endTime < date);
                     }
                 };
+            },
+            partisanList: function() {
+                return this.dictionaryList.filter(function(item) {
+                    return item.dictionaryId === 3
+                })
+            },
+            memberList: function() {
+                return this.dictionaryList.filter(function(item) {
+                    return item.dictionaryId === 2
+                })
+            },
+            educationList: function() {
+                return this.dictionaryList.filter(function(item) {
+                    return item.dictionaryId === 5
+                })
+            },
+            levelList: function() {
+                return this.dictionaryList.filter(function(item) {
+                    return item.dictionaryId === 6
+                })
+            },
+            referenceList: function() {
+                return this.dictionaryList.filter(function(item) {
+                    return item.dictionaryId === 7
+                })
             }
         },
         methods: {
@@ -164,14 +190,22 @@ $(function() {
                     }
                 }.bind(this))
             },
+            getDictionary: function() {
+                $.ajax({
+                    url:ctxPath+'/admin/dictionary'
+                }).done(function(data) {
+                    this.dictionaryList = data;
+                }.bind(this))
+            },
             changePage: function(val) {
                 this.page = val;
                 this.getData()
-            }
+            },
         },
         mounted: function() {
             this.getData();
             this.getProvince();
+            this.getDictionary();
         }
     });
 
