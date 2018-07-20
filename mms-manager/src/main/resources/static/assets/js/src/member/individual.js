@@ -3,18 +3,28 @@ $(function() {
         el:'#box-content',
         data() {
             return {
+                param: {
+                    memberType: 1,
+                    name: '',
+                    reference: '',
+                    level: '',
+                    partisan: '',
+                    // memberType: '',
+                    education: '',
+                    school: '',
+                    memberNo: '',
+                    admitDateStart: '',
+                    admitDateEnd: '',
+                    birthdayStart: '',
+                    birthdayEnd: '',
+                    province: ''
+                },
                 page:1,
                 show:true,
                 startTime: '',
                 endTime:'',
-                jg:'',
-                zc:'',
                 starBirstTime:'',
                 endBirstTime:'',
-                partisan:'',
-                province:'',
-                memberType:'',
-                education:'',
                 dictionaryList: [],
                 provinceGroup: [],
                 tableData: [],
@@ -93,12 +103,32 @@ $(function() {
             }
         },
         methods: {
+            changeTime(time) {
+                if(!time) return '';
+
+                var y = time.getFullYear(),
+                    m = time.getMonth()+1,
+                    d = time.getDate();
+
+                if(m < 10) {
+                    m = '0'+m
+                }
+                if(d < 10) {
+                    d = '0'+d
+                }
+                return y+'-'+m+'-'+d
+            },
             getData: function() {
+                var param = this.param;
+
+                param.admitDateStart = this.changeTime(this.startTime);
+                param.admitDateEnd = this.changeTime(this.endTime);
+                param.birthdayStart = this.changeTime(this.starBirstTime);
+                param.birthdayEnd = this.changeTime(this.endBirstTime);
+
                 $.ajax({
                     url: ctxPath+'/admin/member/page/'+(this.page-1),
-                    data: {
-                        memberType: 1
-                    }
+                    data: param
                 }).done(function(data) {
                     this.tableData = data;
                 }.bind(this)).fail(function() {
@@ -130,6 +160,10 @@ $(function() {
                 this.page = val;
                 this.getData()
             },
+            search: function() {
+                this.page = 1;
+                this.getData();
+            }
         },
         mounted: function() {
             this.getData();

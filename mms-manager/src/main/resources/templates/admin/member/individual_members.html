@@ -97,12 +97,13 @@
                                 <div class="system-search clearfix">
                                     <div class="search-item clearfix">
                                         <div class="label">会员名称</div>
-                                        <el-input placeholder="请输入会员名称" class="el-input"/>
+                                        <el-input placeholder="请输入会员名称"
+                                                  v-model="param.name" class="el-input"/>
                                     </div>
                                     <div class="search-item clearfix">
                                         <div class="label">推荐机构</div>
                                         <el-select
-                                                v-model="jg"
+                                                v-model="param.reference"
                                                 clearable
                                                 filterable
                                                 placeholder="请选择">
@@ -118,7 +119,7 @@
                                         <div class="label">职称</div>
                                         <el-select
                                                 clearable
-                                                v-model="zc"
+                                                v-model="param.level"
                                                 placeholder="请选择">
                                             <el-option
                                                     v-for="item in levelList"
@@ -132,7 +133,7 @@
                                         <div class="label">党派类型</div>
                                         <el-select
                                                 clearable
-                                                v-model="partisan">
+                                                v-model="param.partisan">
                                             <el-option
                                                     v-for="item in partisanList"
                                                     :key="item.value"
@@ -145,7 +146,7 @@
                                         <div class="label">会员类型</div>
                                         <el-select
                                                 clearable
-                                                v-model="memberType"
+                                                v-model="param.memberType"
                                                 placeholder="请选择会员类型">
                                             <el-option
                                                     v-for="item in memberList"
@@ -159,7 +160,7 @@
                                         <div class="label">学历</div>
                                         <el-select
                                                 clearable
-                                                v-model="education">
+                                                v-model="param.education">
                                             <el-option
                                                     v-for="item in educationList"
                                                     :key="item.value"
@@ -170,11 +171,13 @@
                                     </div>
                                     <div class="search-item clearfix">
                                         <div class="label">毕业院校</div>
-                                        <el-input placeholder="请选择毕业院校" class="el-input"/>
+                                        <el-input placeholder="请选择毕业院校"
+                                                  v-model="param.school" class="el-input"/>
                                     </div>
                                     <div class="search-item clearfix">
                                         <div class="label">会员号</div>
-                                        <el-input placeholder="请输入会员号" class="el-input"/>
+                                        <el-input placeholder="请输入会员号"
+                                                  v-model="param.memberNo" class="el-input"/>
                                     </div>
                                     <div class="search-item calendar">
                                         <div class="label">入会时间</div>
@@ -216,7 +219,7 @@
                                         <div class="label">省份</div>
                                         <el-select
                                                 clearable
-                                                v-model="province">
+                                                v-model="param.province">
                                             <el-option
                                                     v-for="item in provinceGroup"
                                                     :key="item.id"
@@ -226,7 +229,8 @@
                                             </el-option>
                                         </el-select>
                                     </div>
-                                    <a href="javascript:" class="btn btn-primary m-btn m-btn--icon">
+                                    <a href="javascript:" class="btn btn-primary m-btn m-btn--icon"
+                                        @click="search">
                                         <span>
                                             <i class="la flaticon-search-magnifier-interface-symbol"></i>
                                             <span>搜索</span>
