@@ -70,9 +70,9 @@
                             ]"
                 >
                     <el-radio-group v-model="registerValidateForm.memberType">
-                        <el-radio label="1">普通会员</el-radio>
-                        <el-radio label="2">学生会员</el-radio>
-                        <el-radio label="3">团体会员</el-radio>
+                        <template v-for="item in memberList">
+                            <el-radio :label="item.value">{{item.name}}</el-radio>
+                        </template>
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item
@@ -90,8 +90,9 @@
                             ]"
                 >
                     <el-select v-model="registerValidateForm.reference" placeholder="请选择推荐单位">
-                        <el-option label="CT理论及应用分会" value="1"></el-option>
-                        <el-option label="材料科学分会" value="2"></el-option>
+                        <template v-for="item in referenceList">
+                            <el-option :label="item.name" :value="item.value"></el-option>
+                        </template>
                     </el-select>
                 </el-form-item>
                 <el-form-item
@@ -102,8 +103,9 @@
                             ]"
                 >
                     <el-radio-group v-model="registerValidateForm.gender">
-                        <el-radio label="1">男</el-radio>
-                        <el-radio label="2">女</el-radio>
+                        <template v-for="item in genderList">
+                            <el-radio :label="item.value">{{item.name}}</el-radio>
+                        </template>
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item
@@ -161,10 +163,11 @@
                             { required: true, message: '请选择党派', trigger: 'change' }
                             ]"
                 >
-                    <el-radio-group v-model="registerValidateForm.partisan">
-                        <el-radio label="1">中共党员</el-radio>
-                        <el-radio label="2">群众</el-radio>
-                    </el-radio-group>
+                    <el-select v-model="registerValidateForm.partisan" placeholder="请选择您的党派">
+                        <template v-for="item in partisanList">
+                            <el-option :label="item.name" :value="item.value"></el-option>
+                        </template>
+                    </el-select>
                 </el-form-item>
                 <el-form-item
                         label="专业"
@@ -183,8 +186,11 @@
                             { required: true, message: '请输入您的学历', trigger: 'change' }
                             ]"
                 >
-                    <el-input type="text" placeholder="请输入您的学历" v-model.trim="registerValidateForm.education"
-                              auto-complete="off"></el-input>
+                    <el-select v-model="registerValidateForm.education" placeholder="请选择您的学历">
+                        <template v-for="item in educationList">
+                            <el-option :label="item.name" :value="item.value"></el-option>
+                        </template>
+                    </el-select>
                 </el-form-item>
                 <el-form-item
                         label="研究领域"
@@ -216,6 +222,10 @@
     技术支持：北京智联软件技术有限公司
 </div>
 </body>
+<script th:inline="javascript">
+    var ctxPath = [[${#request.getContextPath()}]];
+    window.ctxPath = ctxPath;
+</script>
 <script th:src="@{{path}/js/jquery-1.7.1.min.js(path=${#request.getContextPath()})}"></script>
 <script th:src="@{{path}/js/vue.js(path=${#request.getContextPath()})}"></script>
 <script th:src="@{{path}/js/element/index.js(path=${#request.getContextPath()})}"></script>

@@ -39,21 +39,21 @@
                    pass:'',
                    checkPass:'',
                    name:'',
-                   memberType:'1',
+                   memberType:1,
                    phone:'',
                    reference:'',
-                   gender:'1',
+                   gender:1,
                    born:'',
                    company:'',
                    zc:'',
                    nationality:'',
-                   partisan:'1',
+                   partisan:'',
                    major:'',
                    education:'',
                    researchField:'',
                    memberNo:''
                },
-
+               dictionaryList: [],
 
                rules: {
                    pass: [
@@ -66,6 +66,53 @@
                        { required: true, validator: validatePhone, trigger: 'change' }
                    ]
                }
+           }
+       },
+       computed:{
+           provinceList: function() {
+               return this.cityList.filter(function(item) {
+                   return item.parentId === 0
+               })
+           },
+           citiesList: function() {
+               return this.cityList.filter(function(item) {
+                   return item.parentId === this.registerValidateForm.province
+               }.bind(this))
+           },
+           genderList: function() {
+               return this.dictionaryList.filter(function(item) {
+                   return item.dictionaryId === 1
+               })
+           },
+           memberList: function() {
+               return this.dictionaryList.filter(function(item) {
+                   return item.dictionaryId === 2
+               })
+           },
+           partisanList: function() {
+               return this.dictionaryList.filter(function(item) {
+                   return item.dictionaryId === 3
+               })
+           },
+           workNatureList: function() {
+               return this.dictionaryList.filter(function(item) {
+                   return item.dictionaryId === 4
+               })
+           },
+           educationList: function() {
+               return this.dictionaryList.filter(function(item) {
+                   return item.dictionaryId === 5
+               })
+           },
+           levelList: function() {
+               return this.dictionaryList.filter(function(item) {
+                   return item.dictionaryId === 6
+               })
+           },
+           referenceList: function() {
+               return this.dictionaryList.filter(function(item) {
+                   return item.dictionaryId === 7
+               })
            }
        },
        methods: {
@@ -93,6 +140,13 @@
                    d = '0'+d
                }
                return y+'-'+m+'-'+d
+           },
+           getDictionary: function() {
+               $.ajax({
+                   url:ctxPath+'/dictionary'
+               }).done(function(data) {
+                   this.dictionaryList = data;
+               }.bind(this))
            },
            submit: function() {
                var param = {
@@ -128,5 +182,8 @@
            resetForm: function(formName) {
                this.$refs[formName].resetFields();
            }
+       },
+       mounted: function() {
+           this.getDictionary();
        }
    })
