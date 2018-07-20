@@ -216,7 +216,7 @@ public class MemberController extends BaseController {
         if(right.getPartisan() != null) left.setPartisan(right.getPartisan());
         if(!Strings.isNullOrEmpty(right.getMajor())) left.setMajor(right.getMajor());
         if(!Strings.isNullOrEmpty(right.getWorkajor())) left.setWorkajor(right.getWorkajor());
-        if(!Strings.isNullOrEmpty(right.getEducation())) left.setEducation(right.getEducation());
+        if(right.getEducation() != null) left.setEducation(right.getEducation());
         if(right.getLevel() != null) left.setLevel(right.getLevel());
         if(!Strings.isNullOrEmpty(right.getWechat())) left.setWechat(right.getWechat());
         if(!Strings.isNullOrEmpty(right.getOicq())) left.setOicq(right.getOicq());

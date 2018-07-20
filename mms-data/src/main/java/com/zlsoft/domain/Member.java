@@ -105,8 +105,7 @@ public class Member implements Serializable {
     /**
      * 学历
      */
-    @Column(length = 64)
-    private String education;
+    private Short education;
 
     /**
      * 等级
@@ -332,11 +331,11 @@ public class Member implements Serializable {
         this.workajor = workajor;
     }
 
-    public String getEducation() {
+    public Short getEducation() {
         return education;
     }
 
-    public void setEducation(String education) {
+    public void setEducation(Short education) {
         this.education = education;
     }
 
