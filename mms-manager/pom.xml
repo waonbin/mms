@@ -80,82 +80,76 @@
       <version>1</version>
     </dependency>
 
-    <dependency>
-      <groupId>org.webjars</groupId>
-      <artifactId>bootstrap</artifactId>
-      <version>3.3.7-1</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.webjars</groupId>-->
+      <!--<artifactId>bootstrap</artifactId>-->
+      <!--<version>3.3.7-1</version>-->
+    <!--</dependency>-->
 
-    <dependency>
-      <groupId>org.webjars</groupId>
-      <artifactId>jquery</artifactId>
-      <version>3.1.1-1</version>
-    </dependency>
-    <dependency>
-      <groupId>org.webjars</groupId>
-      <artifactId>jquery-mobile</artifactId>
-      <version>1.4.5</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.webjars</groupId>-->
+      <!--<artifactId>jquery</artifactId>-->
+      <!--<version>3.1.1-1</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>org.webjars</groupId>-->
+      <!--<artifactId>jquery-mobile</artifactId>-->
+      <!--<version>1.4.5</version>-->
+    <!--</dependency>-->
 
-    <dependency>
-      <groupId>org.webjars</groupId>
-      <artifactId>bootbox</artifactId>
-      <version>4.4.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.webjars</groupId>
-      <artifactId>vue</artifactId>
-      <version>1.0.24</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.webjars</groupId>-->
+      <!--<artifactId>bootbox</artifactId>-->
+      <!--<version>4.4.0</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>org.webjars</groupId>-->
+      <!--<artifactId>vue</artifactId>-->
+      <!--<version>1.0.24</version>-->
+    <!--</dependency>-->
 
-    <dependency>
-      <groupId>org.webjars</groupId>
-      <artifactId>webjars-locator</artifactId>
-      <version>0.32</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.webjars</groupId>-->
+      <!--<artifactId>webjars-locator</artifactId>-->
+      <!--<version>0.32</version>-->
+    <!--</dependency>-->
 
-    <dependency>
-      <groupId>joda-time</groupId>
-      <artifactId>joda-time</artifactId>
-      <version>2.9.4</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>joda-time</groupId>-->
+      <!--<artifactId>joda-time</artifactId>-->
+      <!--<version>2.9.4</version>-->
+    <!--</dependency>-->
 
-    <dependency>
-      <groupId>org.dbunit</groupId>
-      <artifactId>dbunit</artifactId>
-      <version>2.5.1</version>
-      <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>junit</artifactId>
-          <groupId>junit</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.dbunit</groupId>-->
+      <!--<artifactId>dbunit</artifactId>-->
+      <!--<version>2.5.1</version>-->
+      <!--<scope>test</scope>-->
+      <!--<exclusions>-->
+        <!--<exclusion>-->
+          <!--<artifactId>junit</artifactId>-->
+          <!--<groupId>junit</groupId>-->
+        <!--</exclusion>-->
+      <!--</exclusions>-->
+    <!--</dependency>-->
 
-    <dependency>
-      <groupId>com.github.springtestdbunit</groupId>
-      <artifactId>spring-test-dbunit</artifactId>
-      <version>1.2.1</version>
-      <scope>test</scope>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>com.github.springtestdbunit</groupId>-->
+      <!--<artifactId>spring-test-dbunit</artifactId>-->
+      <!--<version>1.2.1</version>-->
+      <!--<scope>test</scope>-->
+    <!--</dependency>-->
 
-    <dependency>
-      <groupId>commons-codec</groupId>
-      <artifactId>commons-codec</artifactId>
-      <version>1.10</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-web</artifactId>
-      <version>5.0.4.RELEASE</version>
-    </dependency>
-      <dependency>
-          <groupId>com.zlsoft.mms</groupId>
-          <artifactId>mms-utils</artifactId>
-          <version>1.0.0-SNAPSHOT</version>
-          <scope>compile</scope>
-      </dependency>
+    <!--<dependency>-->
+      <!--<groupId>commons-codec</groupId>-->
+      <!--<artifactId>commons-codec</artifactId>-->
+      <!--<version>1.10</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>org.springframework</groupId>-->
+      <!--<artifactId>spring-web</artifactId>-->
+      <!--<version>5.0.4.RELEASE</version>-->
+    <!--</dependency>-->
 
   </dependencies>
 

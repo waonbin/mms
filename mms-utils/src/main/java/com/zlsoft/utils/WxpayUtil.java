@@ -1,7 +1,6 @@
 package com.zlsoft.utils;
 
 import com.github.wxpay.sdk.WXPay;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -50,7 +49,5 @@ public class WxpayUtil {
                 "   <sign>0CB01533B8C1EF103065174F50BCA001</sign>\n" +
                 "</xml>";
 
-        RestTemplate template = new RestTemplate();
-        template.postForObject("https://api.mch.weixin.qq.com/pay/unifiedorder", "", String.class);
     }
 }

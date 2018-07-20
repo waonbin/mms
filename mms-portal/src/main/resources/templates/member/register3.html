@@ -30,7 +30,7 @@
             <div class="fonts">
                 <img th:src="@{{path}/images/cheg.png(path=${#request.getContextPath()})}" />
                 <h4>注册成功</h4>
-                <a href="personal_pay.html" class="xuf">立即缴费成为学会会员</a>
+                <a th:href="@{/payment/pay}" class="xuf">立即缴费成为学会会员</a>
                 <a href="/" class="homes">返回首页</a>
             </div>
         </div>

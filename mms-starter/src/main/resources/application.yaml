@@ -52,3 +52,6 @@ wxpay:
     subAppId:
     subMchId:
     keyPath:
+
+mms:
+  store_home: .
