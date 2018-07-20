@@ -139,22 +139,28 @@ $(function() {
               location.href=ctxPath+"/admin/member/details?id="+id
             },
             getProvince: function() {
-                $.ajax({
-                    url:ctxPath+'/admin/division/data'
-                }).done(function(data) {
-                    if(data.length) {
-                        this.provinceGroup = data.filter(function(item) {
-                            return item.parentId === 0
-                        })
-                    }
-                }.bind(this))
+                return new Promise((resolve, reject) => {
+                    $.ajax({
+                        url:ctxPath+'/admin/division/data'
+                    }).done(function(data) {
+                        if(data.length) {
+                            this.provinceGroup = data.filter(function(item) {
+                                return item.parentId === 0
+                            });
+                        }
+                        resolve('返回值');
+                    }.bind(this))
+                });
             },
             getDictionary: function() {
-                $.ajax({
-                    url:ctxPath+'/admin/dictionary'
-                }).done(function(data) {
-                    this.dictionaryList = data;
-                }.bind(this))
+                return new Promise((resolve, reject) => {
+                    $.ajax({
+                        url:ctxPath+'/admin/dictionary'
+                    }).done(function(data) {
+                        this.dictionaryList = data;
+                        resolve('啦啦啦')
+                    }.bind(this))
+                });
             },
             changePage: function(val) {
                 this.page = val;
@@ -166,9 +172,11 @@ $(function() {
             }
         },
         mounted: function() {
-            this.getData();
-            this.getProvince();
-            this.getDictionary();
+            this.getProvince()
+                .then(this.getDictionary())
+                .then(function(){
+                    this.getData()
+                }.bind(this))
         }
     });
 
