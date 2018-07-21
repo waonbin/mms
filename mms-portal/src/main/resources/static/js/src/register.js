@@ -169,7 +169,7 @@
                };
 
                $.ajax({
-                   url:'/member/register',
+                   url:ctxPath+'/member/register',
                    type:'post',
                    data:param
                }).done(function(data, status, xhr) {

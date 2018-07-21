@@ -52,6 +52,10 @@
 <script th:src="@{/js/jquery-1.7.1.min.js}"></script>
 <script th:src="@{/js/vue.js}"></script>
 <script th:src="@{/plugins/js/verificationCode.js}"></script>
+<script type="text/javascript" th:inline="javascript">
+    var ctxPath = [[${#request.getContextPath()}]];
+    window.ctxPath = ctxPath;
+</script>
 <script th:src="@{/js/src/login.js}"></script>
 
 </html>

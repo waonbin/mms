@@ -56,7 +56,7 @@ $(function () {
                };
 
               $.ajax({
-                  url:"/member/check/password",
+                  url:ctxPath+"/member/check/password",
                   data: params
               }).done(function() {
                   this.submit();
@@ -70,7 +70,7 @@ $(function () {
                 };
 
                 $.ajax({
-                    url:"/member/check/name",
+                    url:ctxPath+"/member/check/name",
                     data: params
                 }).done(function() {
                     this.$message({
@@ -95,7 +95,7 @@ $(function () {
             },
             getMessage: function () {
                 $.ajax({
-                    url: '/login/user'
+                    url: ctxPath+'/login/user'
                 }).done(function (date) {
                     this.message = date;
                 }.bind(this)).fail(function () {

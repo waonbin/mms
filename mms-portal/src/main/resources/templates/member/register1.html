@@ -29,7 +29,7 @@
 <div class="r_cen" id="register">
     <div class="reg_c">
         <h4>会员注册</h4>
-        <h5>已有账号？<a href="/login">立即登录</a></h5>
+        <h5>已有账号？<a th:href="@{/login}">立即登录</a></h5>
 
         <div class="register-form">
             <el-form :model="registerValidateForm" :rules="rules" ref="registerValidateForm" label-width="100px"
@@ -222,13 +222,7 @@
     技术支持：北京智联软件技术有限公司
 </div>
 </body>
-<script th:inline="javascript">
-    var ctxPath = [[${#request.getContextPath()}]];
-    window.ctxPath = ctxPath;
-</script>
-<script th:src="@{{path}/js/jquery-1.7.1.min.js(path=${#request.getContextPath()})}"></script>
-<script th:src="@{{path}/js/vue.js(path=${#request.getContextPath()})}"></script>
-<script th:src="@{{path}/js/element/index.js(path=${#request.getContextPath()})}"></script>
+<div th:include="/protalBase/script::protalScript"></div>
 <script th:src="@{{path}/js/src/register.js(path=${#request.getContextPath()})}"></script>
 
 </html>

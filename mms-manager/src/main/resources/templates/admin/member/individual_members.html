@@ -374,14 +374,14 @@
     <i class="la la-arrow-up"></i>
 </div>
 
-<script th:src="@{{path}/assets/js/base/jquery-1.7.1.min.js(path=${#request.getContextPath()})}"></script>
+<div th:include="/base/script::script"></div>
 <script>
     $(function () {
         $("#member_menu").addClass("m-menu__item--open m-menu__item--expanded");
         $("#person_member").addClass("m-menu__item--active");
     })
 </script>
-<div th:include="/base/script::script"></div>
+
 <script th:src="@{{path}/assets/js/src/member/individual.js(path=${#request.getContextPath()})}"></script>
 </body>
 <!-- end::Body -->

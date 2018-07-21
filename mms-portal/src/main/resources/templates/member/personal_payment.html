@@ -18,7 +18,7 @@
                 <layout :message="message"></layout>
                 <div class="per_right">
                     <div class="jnhf">
-                        <a href="/payment/pay" class="jnhf_icon">缴纳会费</a> <a href="#" class="bg_icon">确认变更</a>
+                        <a th:href="@{/payment/pay}" class="jnhf_icon">缴纳会费</a> <a href="#" class="bg_icon">确认变更</a>
                         <p class="rad">
                             <span>变更会员类型：</span>
                             <input type="radio" />
@@ -68,12 +68,6 @@
     </div>
     <template th:include="/layout/layout::layout" id="per_left"></template>
 </body>
-<script th:src="@{/js/jquery-1.7.1.min.js}"></script>
-<script th:src="@{/js/vue.js}"></script>
-<script th:inline="javascript">
-    window.message = [[${member}]];
-</script>
-<script th:src="@{/js/element/index.js}"></script>
-<script th:src="@{/js/components/layout.js}"></script>
+<div th:include="/protalBase/script::protalScript"></div>
 <script th:src="@{/js/src/payment.js}"></script>
 </html>

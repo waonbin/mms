@@ -168,7 +168,7 @@ $(function() {
            },
            submit: function() {
                 $.ajax({
-                    url:"./edit",
+                    url:ctxPath+"/member/edit",
                     type:"post",
                     data: this.params
                 }).done(function(){

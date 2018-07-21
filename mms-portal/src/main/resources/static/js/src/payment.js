@@ -12,7 +12,7 @@ $(function () {
         methods: {
             getDate: function () {
                 $.ajax({
-                    url: '/payment/page/' + (this.page - 1)
+                    url: ctxPath+'/payment/page/' + (this.page - 1)
                 }).done(function (date) {
                     this.list = date;
                 }.bind(this)).fail(function () {
@@ -21,7 +21,7 @@ $(function () {
             },
             getMessage: function () {
                 $.ajax({
-                    url: '/login/user'
+                    url: ctxPath+'/login/user'
                 }).done(function (date) {
                     this.message = date;
                 }.bind(this)).fail(function () {

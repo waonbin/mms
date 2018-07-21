@@ -25,7 +25,7 @@ $(function() {
                     confirmButtonText: '确定',
                     callback: action => {
                         $.ajax({
-                            url:'/logout'
+                            url:ctxPath+'/logout'
                         }).done(function(data, status, xhr) {
                             location.href='/logout'
                             // var url = xhr.getResponseHeader('Location');

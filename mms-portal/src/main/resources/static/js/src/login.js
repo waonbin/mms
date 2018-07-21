@@ -23,7 +23,7 @@
               };
 
               $.ajax({
-                  url:'login',
+                  url:ctxPath+'/login',
                   type:'post',
                   data: param
               }).done(function(data, status, xhr) {

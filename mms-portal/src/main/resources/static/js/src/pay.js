@@ -24,18 +24,9 @@ $(function() {
           handExceed: function(file) {
               this.$message.error('最多只能上传1个文件！');
           },
-          getDate: function() {
-              $.ajax({
-                  url:'/payment/page/'+(this.page-1)
-              }).done(function(date) {
-                this.list = date;
-              }.bind(this)).fail(function() {
-                  this.$message.error('提交失败');
-              }.bind(this))
-          },
           getMessage: function() {
               $.ajax({
-                  url:'/login/user'
+                  url:ctxPath+'/login/user'
               }).done(function(date) {
                   this.message = date;
               }.bind(this)).fail(function() {
@@ -50,7 +41,7 @@ $(function() {
                 let fd = new FormData();
                 fd.append('file',file);//传文件;
                 $.ajax({
-                    url:'/file/upload',
+                    url:ctxPath+'/file/upload',
                     type:"post",
                     contentType: false,
                     processData: false,
@@ -90,7 +81,6 @@ $(function() {
         mounted: function() {
             $(".payment-btn").addClass('cur');
             this.getMessage();
-            this.getDate();
         }
     })
 });

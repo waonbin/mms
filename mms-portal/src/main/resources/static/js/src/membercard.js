@@ -10,7 +10,7 @@ $(function() {
         methods: {
             getMessage: function () {
                 $.ajax({
-                    url: '/login/user'
+                    url: ctxPath+'/login/user'
                 }).done(function (date) {
                     this.message = date;
                 }.bind(this)).fail(function () {
