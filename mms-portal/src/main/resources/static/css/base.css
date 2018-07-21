@@ -23,9 +23,15 @@
 
 .el-button--primary.submitBtn {
     width: 195px;
+    color: #fff !important;
+    background-color: #642b91 !important;
+    border-color: #642b91 !important;
+}
+
+.el-button--primary {
     color: #fff;
-    background-color: #642b91;
-    border-color: #642b91;
+    background-color: #642b91 !important;
+    border-color: #642b91 !important;
 }
 
 .el-button--primary:focus,.el-button--primary:hover {
