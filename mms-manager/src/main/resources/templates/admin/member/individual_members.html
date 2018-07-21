@@ -289,6 +289,9 @@
                                                     <span v-if="scope.row.memberType == 1" class="m-badge m-badge--brand m-badge--wide">普通会员</span>
                                                     <span v-if="scope.row.memberType == 2" class="m-badge m-badge--warning m-badge--wide">学生会员</span>
                                                     <span v-if="scope.row.memberType == 3" class="m-badge m-badge--info m-badge--wide">团体会员</span>
+                                                    <span v-else class="m-badge m-badge--success m-badge--wide">
+                                                        {{getMemberType(scope.row.memberType)}}
+                                                    </span>
                                                 </template>
                                             </el-table-column>
                                             <el-table-column
@@ -318,8 +321,7 @@
                                                     label="推荐机构">
                                                 <template slot-scope="scope">
                                                     <div class="ellipsis">
-                                                        <span v-if="scope.row.reference == 1">CT理论及应用分会</span>
-                                                        <span v-if="scope.row.reference == 2">材料科学分会</span>
+                                                        <span>{{getReference(scope.row.reference)}}</span>
                                                     </div>
                                                 </template>
                                             </el-table-column>

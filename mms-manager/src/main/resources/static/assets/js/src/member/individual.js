@@ -158,7 +158,7 @@ $(function() {
                         url:ctxPath+'/admin/dictionary'
                     }).done(function(data) {
                         this.dictionaryList = data;
-                        resolve('啦啦啦')
+                        resolve()
                     }.bind(this))
                 });
             },
@@ -169,6 +169,24 @@ $(function() {
             search: function() {
                 this.page = 1;
                 this.getData();
+            },
+            //获取单挑数据-推荐机构
+            getReference: function(val) {
+                var obj = this.referenceList.filter(function(item) {
+                    return item.value === val
+                });
+
+                if(!obj.length) return;
+                return obj[0].name
+            },
+            //获取单挑数据-会员类型
+            getMemberType: function(val) {
+                var obj = this.memberList.filter(function(item) {
+                    return item.value === val
+                });
+
+                if(!obj.length) return;
+                return obj[0].name
             }
         },
         mounted: function() {
