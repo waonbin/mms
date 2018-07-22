@@ -45,12 +45,12 @@
                  th:include="/base/aside::aside">
             </div>
             <!-- END: Left Aside -->
-            <div class="m-grid__item m-grid__item--fluid m-wrapper" id="box-content">
+            <div class="m-grid__item m-grid__item--fluid m-wrapper" id="box-content" v-cloak>
                 <!-- BEGIN: Subheader -->
                 <div class="m-subheader ">
                     <div class="d-flex align-items-center">
                         <div class="mr-auto">
-                            <h3 class="m-subheader__title m-subheader__title--separator" v-cloak>{{isExamine?"审核":"详情"}}</h3>
+                            <h3 class="m-subheader__title m-subheader__title--separator">{{isExamine?"审核":"详情"}}</h3>
                             <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
                                 <li class="m-nav__item m-nav__item--home">
                                     <a href="#" class="m-nav__link m-nav__link--icon">
@@ -80,7 +80,7 @@
                     </div>
                 </div>
                 <!-- END: Subheader -->
-                <div class="m-content" v-cloak>
+                <div class="m-content">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="m-portlet">
@@ -136,14 +136,7 @@
                                                         {{list.memberNo}}
                                                     </div>
                                                 </div>
-                                                <div class="detail-item clearfix">
-                                                    <div class="label">
-                                                        首次成为会员时间:
-                                                    </div>
-                                                    <div class="content">
 
-                                                    </div>
-                                                </div>
                                                 <div class="detail-item clearfix">
                                                     <div class="label">
                                                         有效期:
@@ -186,22 +179,6 @@
                                                 </div>
                                                 <div class="detail-item clearfix">
                                                     <div class="label">
-                                                        是否会员:
-                                                    </div>
-                                                    <div class="content">
-
-                                                    </div>
-                                                </div>
-                                                <div class="detail-item clearfix">
-                                                    <div class="label">
-                                                        科协会员号:
-                                                    </div>
-                                                    <div class="content">
-
-                                                    </div>
-                                                </div>
-                                                <div class="detail-item clearfix">
-                                                    <div class="label">
                                                         支付积分数:
                                                     </div>
                                                     <div class="content">
@@ -210,7 +187,20 @@
                                                 </div>
                                             </div>
                                         </div>
-
+                                        <!--缴费凭证-->
+                                        <div class="detail-list">
+                                            <h3>
+                                                <i class="flaticon-list-1"></i>
+                                                审核信息
+                                            </h3>
+                                            <div class="examine-box">
+                                                <div class="examine-item clearfix">
+                                                    <div class="content">
+                                                        <img :src="PZUrl" style="max-width: 200px">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <!--审核信息-->
                                         <div class="detail-list" v-if="isExamine">
                                             <h3>

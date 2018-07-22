@@ -72,7 +72,7 @@ $(function() {
                 this.multipleSelection = val;
             },
             examine: function(id) {
-                location.href=ctxPath+"/admin/member/details?id="+id
+                location.href=ctxPath+"/admin/payment/details?id="+id
             }
         },
         mounted: function() {
