@@ -54,17 +54,6 @@ public class PaymentController {
     }
 
     /**
-     * POST  /pay : submit payment info
-     * @param payment payment info
-     * @return payment result with HTTP Status
-     */
-    @PostMapping("/pay")
-    public @ResponseBody ResponseEntity pay(Payment payment) {
-        payment = this.paymentService.save(payment);
-        return ResponseEntity.ok(payment);
-    }
-
-    /**
      * POST  /order : create order
      * @param payment order information
      * @return HTTP Status with payment information
