@@ -8,6 +8,7 @@ $(function() {
                 name:''
             },
             payType: '1',
+            isKaipiao: '1',
             uploadUrl: ctxPath+'/file/upload',
             step:1,
             //上传文件返回的id;
@@ -74,7 +75,7 @@ $(function() {
                   orderNo: '',
                   memberId: '',
                   orderType: '',
-                  orderAmount: '',
+                  orderAmount: '100',
                   payStatus: '',
                   payType: this.payType,
                   onlineType: '',
