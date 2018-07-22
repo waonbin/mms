@@ -1,9 +1,11 @@
 package com.zlsoft.manager.web.controller;
 
+import com.zlsoft.common.service.MemberService;
 import com.zlsoft.common.service.PaymentService;
 import com.zlsoft.domain.Member;
 import com.zlsoft.domain.Payment;
 import com.zlsoft.manager.Constants;
+import com.zlsoft.manager.web.vm.OrderVM;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +24,9 @@ public class PaymentController {
 
     @Inject
     private PaymentService paymentService;
+
+    @Inject
+    private MemberService memberService;
 
     /**
      * GET  /payment : get payment check page
@@ -87,7 +92,8 @@ public class PaymentController {
         Optional<Payment> payment = this.paymentService.findById(id);
 
         if(payment.isPresent()) {
-            return ResponseEntity.ok(payment.get());
+            Optional<Member> member = this.memberService.findById(payment.get().getMemberId());
+            return ResponseEntity.ok(new OrderVM(payment.get(), member.get()));
         } else {
             return ResponseEntity.notFound().build();
         }
