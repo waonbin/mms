@@ -59,7 +59,7 @@ public class PaymentController {
      * @return HTTP Status with payment information
      */
     @PostMapping("/order")
-    public ResponseEntity order(Payment payment) {
+    public @ResponseBody ResponseEntity order(Payment payment) {
         payment = this.paymentService.save(payment);
         return ResponseEntity.ok(payment);
     }
@@ -70,7 +70,7 @@ public class PaymentController {
      * @return HTTP Status with payment information
      */
     @PostMapping("/pay/type")
-    public ResponseEntity ChoosePay(Payment payment) {
+    public @ResponseBody ResponseEntity ChoosePay(Payment payment) {
         payment = this.paymentService.save(payment);
         return ResponseEntity.ok(payment);
     }
@@ -81,8 +81,28 @@ public class PaymentController {
      * @return HTTP Status with payment information
      */
     @PostMapping("/pay")
-    public ResponseEntity Pay(Payment payment) {
+    public @ResponseBody ResponseEntity Pay(Payment payment) {
         payment = this.paymentService.save(payment);
         return ResponseEntity.ok(payment);
+    }
+
+    /**
+     * GET  /dues : get the member's dues
+     * @return dues
+     */
+    @GetMapping("/dues")
+    public @ResponseBody ResponseEntity getDues() {
+        double price = 100.00d;
+        return ResponseEntity.ok(price);
+    }
+
+    /**
+     * GET  /duration : get the duration
+     * @return duration
+     */
+    @GetMapping("/duration")
+    public @ResponseBody ResponseEntity getDuration() {
+        int duration = 4;
+        return ResponseEntity.ok(duration);
     }
 }

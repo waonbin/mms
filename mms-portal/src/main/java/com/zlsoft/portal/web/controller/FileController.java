@@ -88,6 +88,7 @@ public class FileController {
             fileMetadata.setFilePath(relativePath);
             fileMetadata.setFileSize(size);
             fileMetadata.setMd5Code(md5);
+            fileMetadata.setAvailable((short)0);
 
             //save file metadata into db
             fileMetadata = this.fileMetadataService.save(fileMetadata);

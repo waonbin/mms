@@ -47,6 +47,11 @@ public class FileMetadata {
     @Column(length = 32)
     private String md5Code;
 
+    /**
+     * 文件是否有效
+     */
+    private Short available;
+
     public Long getId() {
         return id;
     }
@@ -93,5 +98,13 @@ public class FileMetadata {
 
     public void setMd5Code(String md5Code) {
         this.md5Code = md5Code;
+    }
+
+    public Short getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(Short available) {
+        this.available = available;
     }
 }
