@@ -21,7 +21,7 @@ public class FileMetadata {
     /**
      * 文件名称
      */
-    @Column(length = 64)
+    @Column(length = 128)
     private String fileName;
 
     /**
