@@ -37,7 +37,7 @@ public class FileController {
     /**
      * POST  /upload : upload single file
      * @param file uploaded file
-     * @return HTTP Status to figure if upload is successful
+     * @return file information with HTTP Status
      */
     @PostMapping("/upload")
     public @ResponseBody ResponseEntity upload(@RequestParam("file") MultipartFile file) {
@@ -90,13 +90,13 @@ public class FileController {
             fileMetadata.setMd5Code(md5);
 
             //save file metadata into db
-            this.fileMetadataService.save(fileMetadata);
+            fileMetadata = this.fileMetadataService.save(fileMetadata);
+
+            return ResponseEntity.ok(fileMetadata);
         } catch (IOException e) {
             logger.error("FILE UPLOAD FAILED.", e);
             return ResponseEntity.badRequest().build();
         }
-
-        return ResponseEntity.ok().build();
     }
 
     /**
@@ -169,6 +169,17 @@ public class FileController {
         //save file metadata into db
         this.fileMetadataService.saveAll(fileMetadatas);
 
+        return ResponseEntity.ok().build();
+    }
+
+    /**
+     * POST  /delete : delete file by id
+     * @param id file id
+     * @return HTTP Status to figure if upload is successful
+     */
+    @PostMapping("/delete")
+    public @ResponseBody ResponseEntity delete(long id) {
+        this.fileMetadataService.deleteById(id);
         return ResponseEntity.ok().build();
     }
 

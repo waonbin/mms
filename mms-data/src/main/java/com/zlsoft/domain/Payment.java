@@ -59,10 +59,9 @@ public class Payment implements Serializable {
     private Short onlineType;
 
     /**
-     * 线下支付凭证（上传文件）
+     * 线下支付凭证（上传文件ID）
      */
-    @Column(length = 512)
-    private String offlineVoucher;
+    private Long offlineVoucher;
 
     /**
      * 支付时间
@@ -134,11 +133,11 @@ public class Payment implements Serializable {
         this.onlineType = onlineType;
     }
 
-    public String getOfflineVoucher() {
+    public Long getOfflineVoucher() {
         return offlineVoucher;
     }
 
-    public void setOfflineVoucher(String offlineVoucher) {
+    public void setOfflineVoucher(Long offlineVoucher) {
         this.offlineVoucher = offlineVoucher;
     }
 

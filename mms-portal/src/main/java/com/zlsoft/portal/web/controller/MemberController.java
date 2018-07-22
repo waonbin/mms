@@ -45,10 +45,11 @@ public class MemberController extends BaseController {
      * @throws URISyntaxException
      */
     @PostMapping("/register")
-    public ResponseEntity register(Member member) throws URISyntaxException {
+    public ResponseEntity register(HttpSession session, Member member) throws URISyntaxException {
         String password = MD5Util.getMD5WithBase64(member.getPassword());
         member.setPassword(password);
         member = this.memberService.save(member);
+        session.setAttribute(Constants.SESSION_USER, member);
         return ResponseEntity.created(new URI("/member/register3")).body(member);
     }
 
