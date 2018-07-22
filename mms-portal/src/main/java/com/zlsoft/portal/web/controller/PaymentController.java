@@ -1,6 +1,7 @@
 package com.zlsoft.portal.web.controller;
 
 import com.zlsoft.common.service.PaymentService;
+import com.zlsoft.domain.Invoice;
 import com.zlsoft.domain.Member;
 import com.zlsoft.domain.Payment;
 import com.zlsoft.portal.Constants;
@@ -104,5 +105,17 @@ public class PaymentController {
     public @ResponseBody ResponseEntity getDuration() {
         int duration = 4;
         return ResponseEntity.ok(duration);
+    }
+
+    /**
+     * POST  /order : create order
+     * @param payment payment information
+     * @param invoice invoice information
+     * @return order information
+     */
+    @PostMapping("/order")
+    public @ResponseBody ResponseEntity order(Payment payment, Invoice invoice) {
+        payment = this.paymentService.save(payment, invoice);
+        return ResponseEntity.ok(payment);
     }
 }

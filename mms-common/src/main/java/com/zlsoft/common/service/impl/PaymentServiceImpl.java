@@ -2,9 +2,11 @@ package com.zlsoft.common.service.impl;
 
 import com.zlsoft.common.repository.PaymentRepository;
 import com.zlsoft.common.service.FileMetadataService;
+import com.zlsoft.common.service.InvoiceService;
 import com.zlsoft.common.service.MemberService;
 import com.zlsoft.common.service.PaymentService;
 import com.zlsoft.domain.FileMetadata;
+import com.zlsoft.domain.Invoice;
 import com.zlsoft.domain.Member;
 import com.zlsoft.domain.Payment;
 import com.zlsoft.utils.service.impl.BaseSimpleService;
@@ -25,6 +27,9 @@ public class PaymentServiceImpl extends BaseSimpleService<Payment, Long> impleme
     @Inject
     private FileMetadataService fileMetadataService;
 
+    @Inject
+    private InvoiceService invoiceService;
+
     @Transactional(readOnly = true)
     @Override
     public Page<Payment> findByMemberId(Long memberId, Pageable pageable) {
@@ -35,6 +40,12 @@ public class PaymentServiceImpl extends BaseSimpleService<Payment, Long> impleme
     public Payment save(Payment payment, Member member, FileMetadata fileMetadata) {
         this.memberService.save(member);
         this.fileMetadataService.save(fileMetadata);
+        return this.save(payment);
+    }
+
+    @Override
+    public Payment save(Payment payment, Invoice invoice) {
+        this.invoiceService.save(invoice);
         return this.save(payment);
     }
 }
