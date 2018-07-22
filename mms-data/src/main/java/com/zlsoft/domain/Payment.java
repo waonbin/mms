@@ -64,6 +64,11 @@ public class Payment implements Serializable {
     private Long offlineVoucher;
 
     /**
+     * 发票信息
+     */
+    private Long invoiceId;
+
+    /**
      * 支付时间
      */
     @DateTimeFormat(pattern="yyyy-MM-dd")
@@ -147,5 +152,13 @@ public class Payment implements Serializable {
 
     public void setPayTime(Date payTime) {
         this.payTime = payTime;
+    }
+
+    public Long getInvoiceId() {
+        return invoiceId;
+    }
+
+    public void setInvoiceId(Long invoiceId) {
+        this.invoiceId = invoiceId;
     }
 }
