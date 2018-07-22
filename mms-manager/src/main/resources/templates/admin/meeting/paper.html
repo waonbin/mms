@@ -285,14 +285,13 @@
     </div>
 
     <!--组件-->
-    <script th:src="@{/assets/js/base/jquery-1.7.1.min.js}"></script>
+    <div th:include="/base/scripts::scripts"></div>
     <script>
         $(function() {
             $("#meeting_menu").addClass("m-menu__item--open m-menu__item--expanded");
             $("#hy_paper_member").addClass("m-menu__item--active");
         })
     </script>
-    <div th:include="/base/script::script"></div>
     <script th:src="@{/assets/js/src/meeting/paper.js}"></script>
 </body>
 <!-- end::Body -->

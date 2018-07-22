@@ -377,7 +377,7 @@
     </div>
 
     <!--组件-->
-    <script th:src="@{/assets/js/base/jquery-1.7.1.min.js}"></script>
+    <div th:include="/base/scripts::scripts"></div>
     <script src="http://cdn.quilljs.com/1.0.0/quill.js"></script>
     <script>
         $(function() {
@@ -385,7 +385,6 @@
             $("#hy_message_member").addClass("m-menu__item--active");
         })
     </script>
-    <div th:include="/base/script::script"></div>
     <script th:src="@{/assets/js/src/meeting/add.js}"></script>
 </body>
 <!-- end::Body -->

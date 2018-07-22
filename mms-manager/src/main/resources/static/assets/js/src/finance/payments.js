@@ -52,9 +52,6 @@ $(function() {
                         return (startTime && startTime > date);
                     }
                 };
-            },
-            examine: function(id) {
-                location.href=ctxPath+"/admin/member/details?id="+id
             }
         },
         methods: {
@@ -73,6 +70,9 @@ $(function() {
             },
             handleSelectionChange(val) {
                 this.multipleSelection = val;
+            },
+            examine: function(id) {
+                location.href=ctxPath+"/admin/member/details?id="+id
             }
         },
         mounted: function() {

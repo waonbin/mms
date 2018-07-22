@@ -220,14 +220,13 @@
 <div id="m_scroll_top" class="m-scroll-top">
     <i class="la la-arrow-up"></i>
 </div>
-
+<div th:include="/base/scripts::scripts"></div>
 <script>
     $(function() {
         $("#finance_menu").addClass("m-menu__item--open m-menu__item--expanded");
         $("#payment_finance").addClass("m-menu__item--active");
     })
 </script>
-<div th:include="/base/script::script"></div>
 <script th:src="@{{path}/assets/js/src/finance/check.js(path=${#request.getContextPath()})}"></script>
 </body>
 <!-- end::Body -->

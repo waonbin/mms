@@ -26,7 +26,7 @@
 <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
 
     <!-- begin:: Page -->
-    <div class="m-grid m-grid--hor m-grid--root m-page" id="box">
+    <div class="m-grid m-grid--hor m-grid--root m-page" id="box" v-cloak>
 
         <!-- BEGIN: Header -->
         <header id="m_header" class="m-grid__item  m-header " m-minimize-offset="200" m-minimize-mobile-offset="200"
@@ -227,7 +227,7 @@
                                                 <div class="examine-item clearfix">
                                                     <div class="label">支付现金数:</div>
                                                     <div class="content">
-                                                        <el-input  disabled="true" placeholder="请输入内容"></el-input>
+                                                        <el-input  :disabled="true" placeholder="请输入内容"></el-input>
                                                     </div>
                                                 </div>
                                                 <div class="examine-item clearfix">
@@ -303,13 +303,12 @@
     </div>
 
     <!--组件-->
-    <script th:src="@{/assets/js/base/jquery-1.7.1.min.js}"></script>
+    <div th:include="/base/scripts::scripts"></div>
     <script>
         $(function () {
             $("#finance_menu").addClass("m-menu__item--open m-menu__item--expanded");
         })
     </script>
-    <div th:include="/base/script::script"></div>
     <script th:src="@{/assets/js/src/finance/details.js}"></script>
 </body>
 <!-- end::Body -->

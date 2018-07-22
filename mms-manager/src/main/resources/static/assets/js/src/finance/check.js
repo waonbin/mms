@@ -29,7 +29,7 @@ $(function() {
                 this.multipleSelection = val;
             },
             examine: function(id) {
-                location.href=ctxPath+"/admin/finance/details?id="+id+"&examine=true"
+                location.href=ctxPath+"/admin/payment/details?id="+id+"&examine=true"
             }
         },
         mounted: function() {

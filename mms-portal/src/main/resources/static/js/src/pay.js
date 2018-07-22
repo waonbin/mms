@@ -8,7 +8,11 @@ $(function() {
                 name:''
             },
             payType: '1',
+            uploadUrl: ctxPath+'/file/upload',
             step:1,
+            //上传文件返回的id;
+            uploadFileId:0,
+            typeList: [],
             list:{}
         },
         methods:{
@@ -18,8 +22,31 @@ $(function() {
           handlePreview: function() {
 
           },
-          handleRemove: function() {
-
+          handleRemove: function(file, fileList) {
+            console.log(file);
+              $.ajax({
+                  url:ctxPath+'/file/delete',
+                  type:'post',
+                  data: {
+                      id: this.uploadFileId
+                  }
+              }).done(function() {
+                  this.uploadFileId = '';
+                  this.$message({
+                      message: '删除成功',
+                      type: 'success'
+                  });
+              }.bind(this))
+          },
+          handSuccess: function(data) {
+            this.uploadFileId = data.id;
+            this.$message({
+                message: '上传成功',
+                type: 'success'
+            });
+          },
+          handError: function() {
+              this.$message.error('上传失败');
           },
           handExceed: function(file) {
               this.$message.error('最多只能上传1个文件！');
@@ -33,54 +60,50 @@ $(function() {
                   this.$message.error('获取用户信息失败！');
               }.bind(this))
           },
+          getPayType: function() {
+            $.ajax({
+                url: ctxPath+'/payment/pay/type'
+            }).done(function(data) {
+                this.typeList = data
+            }.bind(this))
+          },
           changePage: function(val) {
               this.page = val;
               this.getDate()
           },
-            beforeUpload(file){
-                let fd = new FormData();
-                fd.append('file',file);//传文件;
-                $.ajax({
-                    url:ctxPath+'/file/upload',
-                    type:"post",
-                    contentType: false,
-                    processData: false,
-                    data:fd
-                })
-                return false
-            },
+          beforeUpload(file){
+
+          },
           //线下提交
           underLineSubmit: function() {
-              this.$refs.upload.submit()
-              // this.$refs.upload.submit()
-              // var file = this.$refs.upload.uploadFiles;
-              //
-              // if(file.length === 0) {
-              //     this.$message({
-              //         showClose: true,
-              //         message: '请选择要提交的文件',
-              //         type: 'warning'
-              //     });
-              //     return;
-              // }
-              // var formData = new FormData();
-              // formData.append('file', file[0]);
-              // $.ajax({
-              //     url:'/file/upload',
-              //     type:'post',
-              //     contentType: false,
-              //     processData: false,
-              //     data:formData
-              // }).done(function() {
-              //
-              // }.bind(this)).fail(function() {
-              //     this.$message.error('提交失败！');
-              // }.bind(this))
+              var params = {
+                  id: this.message.id,
+                  orderNo: '',
+                  memberId: '',
+                  orderType: '',
+                  orderAmount: '',
+                  payStatus: '',
+                  payType: '',
+                  onlineType: '',
+                  offlineVoucher: this.uploadFileId,
+                  payTime: ''
+              };
+
+              $.ajax({
+                  url: ctxPath+'/payment/pay',
+                  type: 'post',
+                  data: params
+              }).done(function() {
+                  this.step = 3;
+              }.bind(this)).fail(function() {
+                  this.$message.error('提交失败');
+              })
           }
         },
         mounted: function() {
             $(".payment-btn").addClass('cur');
             this.getMessage();
+            this.getPayType();
         }
     })
 });
