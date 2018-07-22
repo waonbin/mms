@@ -74,6 +74,10 @@ public class FileController {
         }
 
         try {
+
+            //calculate md5 code
+            String md5 = md5Hex(file.getInputStream());
+
             //save file
             file.transferTo(dest);
 
@@ -83,7 +87,7 @@ public class FileController {
             fileMetadata.setSuffix(suffix);
             fileMetadata.setFilePath(relativePath);
             fileMetadata.setFileSize(size);
-            fileMetadata.setMd5Code(md5Hex(file.getInputStream()));
+            fileMetadata.setMd5Code(md5);
 
             //save file metadata into db
             this.fileMetadataService.save(fileMetadata);
