@@ -76,4 +76,20 @@ public class PaymentController {
     public String details() {
         return "/admin/finance/details";
     }
+
+    /**
+     * GET  /details : get member' order info
+     * @param id order id
+     * @return member' order info
+     */
+    @GetMapping("/details/{id}")
+    public @ResponseBody ResponseEntity details(@PathVariable long id) {
+        Optional<Payment> payment = this.paymentService.findById(id);
+
+        if(payment.isPresent()) {
+            return ResponseEntity.ok(payment.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
