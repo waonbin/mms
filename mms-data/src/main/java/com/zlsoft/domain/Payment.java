@@ -64,15 +64,55 @@ public class Payment implements Serializable {
     private Long offlineVoucher;
 
     /**
+     * 支付时间
+     */
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date payTime;
+
+    /**
      * 发票信息
      */
     private Long invoiceId;
 
     /**
-     * 支付时间
+     * （收件人）姓名
      */
-    @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date payTime;
+    @Column(length = 64)
+    private String recipients;
+
+    /**
+     * （收件人）手机号码
+     */
+    @Column(length = 11)
+    private String recipientsMobile;
+
+    /**
+     * （收件人）省（字典）
+     */
+    private Short recipientsProvince;
+
+    /**
+     * （收件人）市（字典）
+     */
+    private Short recipientsCity;
+
+    /**
+     * （收件人）地址
+     */
+    @Column(length = 128)
+    private String recipientsAddress;
+
+    /**
+     * （收件人）地址
+     */
+    @Column(length = 256)
+    private String recipientsFullAddress;
+
+    /**
+     * （收件人）邮编
+     */
+    @Column(length = 6)
+    private String recipientsZipcode;
 
     public Long getId() {
         return id;
@@ -160,5 +200,61 @@ public class Payment implements Serializable {
 
     public void setInvoiceId(Long invoiceId) {
         this.invoiceId = invoiceId;
+    }
+
+    public String getRecipients() {
+        return recipients;
+    }
+
+    public void setRecipients(String recipients) {
+        this.recipients = recipients;
+    }
+
+    public String getRecipientsMobile() {
+        return recipientsMobile;
+    }
+
+    public void setRecipientsMobile(String recipientsMobile) {
+        this.recipientsMobile = recipientsMobile;
+    }
+
+    public Short getRecipientsProvince() {
+        return recipientsProvince;
+    }
+
+    public void setRecipientsProvince(Short recipientsProvince) {
+        this.recipientsProvince = recipientsProvince;
+    }
+
+    public Short getRecipientsCity() {
+        return recipientsCity;
+    }
+
+    public void setRecipientsCity(Short recipientsCity) {
+        this.recipientsCity = recipientsCity;
+    }
+
+    public String getRecipientsAddress() {
+        return recipientsAddress;
+    }
+
+    public void setRecipientsAddress(String recipientsAddress) {
+        this.recipientsAddress = recipientsAddress;
+    }
+
+    public String getRecipientsFullAddress() {
+        return recipientsFullAddress;
+    }
+
+    public void setRecipientsFullAddress(String recipientsFullAddress) {
+        this.recipientsFullAddress = recipientsFullAddress;
+    }
+
+    public String getRecipientsZipcode() {
+        return recipientsZipcode;
+    }
+
+    public void setRecipientsZipcode(String recipientsZipcode) {
+        this.recipientsZipcode = recipientsZipcode;
     }
 }
