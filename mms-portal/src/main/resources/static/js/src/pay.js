@@ -60,13 +60,6 @@ $(function() {
                   this.$message.error('获取用户信息失败！');
               }.bind(this))
           },
-          getPayType: function() {
-            $.ajax({
-                url: ctxPath+'/payment/pay/type'
-            }).done(function(data) {
-                this.typeList = data
-            }.bind(this))
-          },
           changePage: function(val) {
               this.page = val;
               this.getDate()
@@ -83,7 +76,7 @@ $(function() {
                   orderType: '',
                   orderAmount: '',
                   payStatus: '',
-                  payType: '',
+                  payType: this.payType,
                   onlineType: '',
                   offlineVoucher: this.uploadFileId,
                   payTime: ''
@@ -103,7 +96,6 @@ $(function() {
         mounted: function() {
             $(".payment-btn").addClass('cur');
             this.getMessage();
-            this.getPayType();
         }
     })
 });
