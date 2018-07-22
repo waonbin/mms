@@ -7,6 +7,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +31,9 @@ public class FileController {
 
     @Inject
     private FileMetadataService fileMetadataService;
+
+    @Inject
+    private ResourceLoader resourceLoader;
 
     @Value("${mms.store_home}")
     private String storeHome;
@@ -235,7 +239,24 @@ public class FileController {
                 return ResponseEntity.badRequest().build();
             }
         } else {
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    /**
+     * GET  /display : display file by id
+     * @param id file id
+     * @return file
+     */
+    @GetMapping("/display")
+    public @ResponseBody ResponseEntity display(long id) {
+        Optional<FileMetadata> fileMetadata = this.fileMetadataService.findById(id);
+
+        if(fileMetadata.isPresent()) {
+            String filePath = fileMetadata.get().getFilePath();
+            return ResponseEntity.ok(resourceLoader.getResource("file://" + Paths.get(storeHome, filePath).toAbsolutePath().toString()));
+        } else {
+            return ResponseEntity.notFound().build();
         }
     }
 
