@@ -11,14 +11,55 @@ $(function() {
             isKaipiao: '1',
             uploadUrl: ctxPath+'/file/upload',
             step:1,
+            dues:'', //会费金额-每年
+            duration: '', //会费金额-年
             //上传文件返回的id;
             uploadFileId:0,
             typeList: [],
+            cityList:[],
+            order: {
+                deliveryType: '1',
+                invoiceType: '1',
+                titleType: '1',
+                province: '',
+                city: ''
+            },
             list:{}
+        },
+        computed: {
+            provinceList: function() {
+                return this.cityList.filter(function(item) {
+                    return item.parentId === 0
+                })
+            },
+            citiesList: function() {
+                return this.cityList.filter(function(item) {
+                    return item.parentId === this.order.province
+                }.bind(this))
+            }
         },
         methods:{
           onStep: function(page) {
+              if(page === 2) {
+                this.submitPost()
+              }
               this.step = Number(page)
+          },
+          submitPost: function() {
+              var parms = this.order;
+
+              if(this.order.titleType == 1) {
+                  parms.taitleType = null
+              }
+              if(this.dues && this.duration) {
+                  parms.amount = Number(this.dues)*Number(this.duration)
+              }
+              $.ajax({
+                  url: ctxPath+'/payment/order',
+                  type: 'post',
+                  data: parms
+              })
+
           },
           handlePreview: function() {
 
@@ -61,6 +102,27 @@ $(function() {
                   this.$message.error('获取用户信息失败！');
               }.bind(this))
           },
+          getDues: function() {
+              $.ajax({
+                  url:ctxPath+'/payment/dues'
+              }).done(function(date) {
+                  this.dues = date;
+              }.bind(this))
+          },
+          getDuration: function() {
+              $.ajax({
+                  url:ctxPath+'/payment/duration'
+              }).done(function(date) {
+                  this.duration = date;
+              }.bind(this))
+          },
+          getCity: function() {
+              $.ajax({
+                  url:ctxPath+'/division/data'
+              }).done(function(data) {
+                  this.cityList = data;
+              }.bind(this))
+           },
           changePage: function(val) {
               this.page = val;
               this.getDate()
@@ -97,6 +159,9 @@ $(function() {
         mounted: function() {
             $(".payment-btn").addClass('cur');
             this.getMessage();
+            this.getDues();
+            this.getDuration();
+            this.getCity();
         }
     })
 });
