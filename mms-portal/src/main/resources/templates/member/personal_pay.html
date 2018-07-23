@@ -88,10 +88,10 @@
                                 </select>
                             </li>
                             <li v-if="order.titleType != 1"><font class="fontl">发票抬头：<i>*</i></font>
-                                <input type="text" v-model="order.taitleType" id="txt_TicketName"/>
+                                <input type="text" v-model.trim="order.invoiceId" id="txt_TicketName"/>
                             </li>
-                            <li id="shuihaoarea" style="display: none"><font class="fontl">纳税人识别号：<i>*</i></font>
-                                <input type="text" id="txtTicketFaxNo" class="mui-input-clear"/>
+                            <li v-if="order.titleType != 1"><font class="fontl">纳税人识别号：<i>*</i></font>
+                                <input type="text" v-model.trim="order.tin" id="txtTicketFaxNo" class="mui-input-clear"/>
                             </li>
                             <li class="chbox"><font class="fontl">取票方式：<i>*</i></font>
                                 <label class="item">
@@ -113,10 +113,12 @@
                             <h4>邮寄信息</h4>
                             <ul>
                                 <li><font class="fontl">收件人姓名<i>*</i></font>
-                                    <input type="text" id="txtreceivename" placeholder="长度不超过25个字符"/>
+                                    <input type="text" id="txtreceivename" placeholder="长度不超过25个字符"
+                                           v-model="order.recipients"/>
                                 </li>
                                 <li><font class="fontl">手机号码<i>*</i></font>
-                                    <input type="text" id="txtmobilephone" placeholder="请填写手机号码"/>
+                                    <input type="text" id="txtmobilephone" placeholder="请填写手机号码"
+                                           v-model.trim="order.recipientsMobile"/>
                                 </li>
                                 <li class="chbox ded">
                                     <font class="fontl">所在地区 <i>*</i></font>
@@ -136,10 +138,12 @@
                                     </select>
                                 </li>
                                 <li><font class="fontl">详细地址<i>*</i></font>
-                                    <textarea class="edr" id="txtAddress"></textarea>
+                                    <textarea class="edr" id="txtAddress"
+                                              v-model="order.recipientsAddress"></textarea>
                                 </li>
                                 <li><font class="fontl"><span>邮政编码</span><i>*</i></font>
-                                    <input type="text" id="txtpostcode" placeholder="如您不清楚邮编，请填写000000"/>
+                                    <input type="text" id="txtpostcode" placeholder="如您不清楚邮编，请填写000000"
+                                           v-model.trim="order.recipientsZipcode"/>
                                 </li>
                             </ul>
                         </div>
