@@ -1,5 +1,6 @@
 package com.zlsoft.manager.web.controller;
 
+import com.google.common.base.Strings;
 import com.zlsoft.common.service.MemberService;
 import com.zlsoft.common.service.PaymentService;
 import com.zlsoft.domain.Member;
@@ -92,8 +93,14 @@ public class PaymentController {
         Optional<Payment> payment = this.paymentService.findById(id);
 
         if(payment.isPresent()) {
-            Optional<Member> member = this.memberService.findById(payment.get().getMemberId());
-            return ResponseEntity.ok(new OrderVM(payment.get(), member.get()));
+
+            if(payment.get().getMemberId() != null) {
+                Optional<Member> member = this.memberService.findById(payment.get().getMemberId());
+                return ResponseEntity.ok(new OrderVM(payment.get(), member.get()));
+            } else {
+                return ResponseEntity.ok(new OrderVM(payment.get(), null));
+            }
+
         } else {
             return ResponseEntity.notFound().build();
         }
