@@ -32,14 +32,6 @@ $(function() {
                 var url = ctxPath+'/admin/file/display?id='+this.list.offlineVoucher;
 
                 this.PZUrl = url;
-                $.ajax({
-                    url: ctxPath+'/admin/file/display',
-                    data: {
-                        id: offlineVoucher
-                    }
-                }).done(function(data) {
-
-                })
             },
             returnList: function() {
                 history.go(-1)

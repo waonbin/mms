@@ -209,7 +209,7 @@
                                             :visible.sync="dialogVisible"
                                     >
                                         <div class="PH-img-box">
-                                            <img :src="PZUrl" style="max-width: 200px">
+                                            <img :src="PZUrl">
                                         </div>
                                         <span slot="footer" class="dialog-footer">
                                             <el-button @click="dialogVisible = false">取 消</el-button>
@@ -260,7 +260,7 @@
                                                     </el-select>
                                                 </div>
                                             </div>
-                                            <div class="examine-item clearfix">
+                                            <div class="examine-item clearfix" >
                                                 <div class="label">审核建议:</div>
                                                 <div class="content">
                                                     <el-input
@@ -272,16 +272,17 @@
                                                     </el-input>
                                                 </div>
                                             </div>
-                                            <el-button type="primary" class="examine-btn">
-                                                审核
-                                            </el-button>
                                         </div>
                                     </div>
                                     <div class="m-separator m-separator--dashed"></div>
-                                    <div class="clearfix">
+                                    <div class="clearfix btn-box">
+                                        <el-button type="primary" class="examine-btn"
+                                                   v-if="isExamine">
+                                            确定
+                                        </el-button>
                                         <el-button type="success" class="return-btn"
                                                    @click="returnList">
-                                            返回
+                                            关闭
                                         </el-button>
                                     </div>
 

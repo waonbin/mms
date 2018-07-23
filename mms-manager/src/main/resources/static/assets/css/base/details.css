@@ -50,9 +50,6 @@
 .examine-item .content textarea {
     height: 115px;
 }
-.examine-btn {
-    margin-left: 395px;
-}
 .SH-img {
     max-width: 200px;
 }
@@ -60,4 +57,10 @@
     display: block;
     width: 500px;
     margin: 0 auto;
+}
+.btn-box {
+    text-align: center;
+}
+.btn-box button + button {
+    margin-left: 10px;
 }

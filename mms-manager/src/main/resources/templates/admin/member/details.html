@@ -369,16 +369,17 @@
                                                         </el-input>
                                                     </div>
                                                 </div>
-                                                <el-button type="primary" class="examine-btn">
-                                                    审核
-                                                </el-button>
                                             </div>
                                         </div>
                                         <div class="m-separator m-separator--dashed"></div>
-                                        <div class="clearfix">
+                                        <div class="clearfix btn-box">
+                                            <el-button type="primary" class="examine-btn"
+                                                       v-if="isExamine">
+                                                确定
+                                            </el-button>
                                             <el-button type="success" class="return-btn"
                                                        @click="returnList">
-                                                返回
+                                                关闭
                                             </el-button>
                                         </div>
                                     </div>
