@@ -53,3 +53,11 @@
 .examine-btn {
     margin-left: 395px;
 }
+.SH-img {
+    max-width: 200px;
+}
+.PH-img-box img {
+    display: block;
+    width: 500px;
+    margin: 0 auto;
+}

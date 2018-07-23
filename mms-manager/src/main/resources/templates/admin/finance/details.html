@@ -25,252 +25,267 @@
 <!-- begin::Body -->
 <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
 
-    <!-- begin:: Page -->
-    <div class="m-grid m-grid--hor m-grid--root m-page" id="box" v-cloak>
+<!-- begin:: Page -->
+<div class="m-grid m-grid--hor m-grid--root m-page" id="box" v-cloak>
 
-        <!-- BEGIN: Header -->
-        <header id="m_header" class="m-grid__item  m-header " m-minimize-offset="200" m-minimize-mobile-offset="200"
-                th:include="/base/header::header" >
-        </header>
-        <!-- END: Header -->
+    <!-- BEGIN: Header -->
+    <header id="m_header" class="m-grid__item  m-header " m-minimize-offset="200" m-minimize-mobile-offset="200"
+            th:include="/base/header::header">
+    </header>
+    <!-- END: Header -->
 
-        <!-- begin::Body -->
-        <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
+    <!-- begin::Body -->
+    <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
 
-            <!-- BEGIN: Left Aside -->
-            <button class="m-aside-left-close  m-aside-left-close--skin-dark " id="m_aside_left_close_btn">
-                <i class="la la-close"></i>
-            </button>
-            <div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-dark "
-                 th:include="/base/aside::aside">
-            </div>
-            <!-- END: Left Aside -->
-            <div class="m-grid__item m-grid__item--fluid m-wrapper" id="box-content" v-cloak>
-                <!-- BEGIN: Subheader -->
-                <div class="m-subheader ">
-                    <div class="d-flex align-items-center">
-                        <div class="mr-auto">
-                            <h3 class="m-subheader__title m-subheader__title--separator">{{isExamine?"审核":"详情"}}</h3>
-                            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
-                                <li class="m-nav__item m-nav__item--home">
-                                    <a href="#" class="m-nav__link m-nav__link--icon">
-                                        <i class="m-nav__link-icon la la-home"></i>
-                                    </a>
-                                </li>
-                                <li class="m-nav__separator">-</li>
-                                <li class="m-nav__item">
-                                    <a href="javascript:" class="m-nav__link">
-                                        <span class="m-nav__link-text">财务审核管理</span>
-                                    </a>
-                                </li>
-                                <li class="m-nav__separator">-</li>
-                                <li class="m-nav__item">
-                                    <a href="javascript:" class="m-nav__link">
-                                        <span class="m-nav__link-text" v-cloak>{{isExamine?"会员缴费审核管理":"会员缴费信息管理"}}</span>
-                                    </a>
-                                </li>
-                                <li class="m-nav__separator">-</li>
-                                <li class="m-nav__item">
-                                    <a href="javascript:" class="m-nav__link">
-                                        <span class="m-nav__link-text">{{isExamine?"审核":"详情"}}</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+        <!-- BEGIN: Left Aside -->
+        <button class="m-aside-left-close  m-aside-left-close--skin-dark " id="m_aside_left_close_btn">
+            <i class="la la-close"></i>
+        </button>
+        <div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-dark "
+             th:include="/base/aside::aside">
+        </div>
+        <!-- END: Left Aside -->
+        <div class="m-grid__item m-grid__item--fluid m-wrapper" id="box-content" v-cloak>
+            <!-- BEGIN: Subheader -->
+            <div class="m-subheader ">
+                <div class="d-flex align-items-center">
+                    <div class="mr-auto">
+                        <h3 class="m-subheader__title m-subheader__title--separator">{{isExamine?"审核":"详情"}}</h3>
+                        <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                            <li class="m-nav__item m-nav__item--home">
+                                <a href="#" class="m-nav__link m-nav__link--icon">
+                                    <i class="m-nav__link-icon la la-home"></i>
+                                </a>
+                            </li>
+                            <li class="m-nav__separator">-</li>
+                            <li class="m-nav__item">
+                                <a href="javascript:" class="m-nav__link">
+                                    <span class="m-nav__link-text">财务审核管理</span>
+                                </a>
+                            </li>
+                            <li class="m-nav__separator">-</li>
+                            <li class="m-nav__item">
+                                <a href="javascript:" class="m-nav__link">
+                                    <span class="m-nav__link-text" v-cloak>{{isExamine?"会员缴费审核管理":"会员缴费信息管理"}}</span>
+                                </a>
+                            </li>
+                            <li class="m-nav__separator">-</li>
+                            <li class="m-nav__item">
+                                <a href="javascript:" class="m-nav__link">
+                                    <span class="m-nav__link-text">{{isExamine?"审核":"详情"}}</span>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <!-- END: Subheader -->
-                <div class="m-content">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="m-portlet">
-                                <div class="m-portlet__body">
-                                    <div class="details-box">
-                                        <!--基本信息-->
-                                        <div class="detail-list">
-                                            <h3>
-                                                <i class="flaticon-interface-6"></i>
-                                                缴费详细信息
-                                            </h3>
-                                            <div class="detail-list-content clearfix">
-                                                <div class="detail-item clearfix">
-                                                    <div class="label">
-                                                        会员名称:
-                                                    </div>
-                                                    <div class="content">
-                                                        {{list.name}}
-                                                    </div>
+            </div>
+            <!-- END: Subheader -->
+            <div class="m-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="m-portlet">
+                            <div class="m-portlet__body">
+                                <div class="details-box">
+                                    <!--基本信息-->
+                                    <div class="detail-list">
+                                        <h3>
+                                            <i class="flaticon-interface-6"></i>
+                                            缴费详细信息
+                                        </h3>
+                                        <div class="detail-list-content clearfix">
+                                            <div class="detail-item clearfix">
+                                                <div class="label">
+                                                    会员名称:
                                                 </div>
-                                                <div class="detail-item clearfix">
-                                                    <div class="label">
-                                                        会员类型:
-                                                    </div>
-                                                    <div class="content">
-                                                        <span v-if="list.memberType == 1">个人会员</span>
-                                                        <span v-else-if="list.memberType == 2">学生会员</span>
-                                                        <span v-else="list.memberType == 3">团体会员</span>
-                                                    </div>
+                                                <div class="content">
+                                                    {{list.name}}
                                                 </div>
-                                                <div class="detail-item clearfix">
-                                                    <div class="label">
-                                                        推荐人类型:
-                                                    </div>
-                                                    <div class="content">
+                                            </div>
+                                            <div class="detail-item clearfix">
+                                                <div class="label">
+                                                    会员类型:
+                                                </div>
+                                                <div class="content">
+                                                    <span v-if="list.memberType == 1">个人会员</span>
+                                                    <span v-else-if="list.memberType == 2">学生会员</span>
+                                                    <span v-else="list.memberType == 3">团体会员</span>
+                                                </div>
+                                            </div>
+                                            <div class="detail-item clearfix">
+                                                <div class="label">
+                                                    推荐人类型:
+                                                </div>
+                                                <div class="content">
 
-                                                    </div>
                                                 </div>
-                                                <div class="detail-item clearfix">
-                                                    <div class="label">
-                                                        推荐机构:
-                                                    </div>
-                                                    <div class="content">
-                                                       <span v-if="list.reference == 1">CT理论及应用分会</span>
-                                                       <span v-else-if="list.reference == 2">材料科学分会</span>
-                                                    </div>
+                                            </div>
+                                            <div class="detail-item clearfix">
+                                                <div class="label">
+                                                    推荐机构:
                                                 </div>
-                                                <div class="detail-item clearfix">
-                                                    <div class="label">
-                                                        会员号:
-                                                    </div>
-                                                    <div class="content">
-                                                        {{list.memberNo}}
-                                                    </div>
+                                                <div class="content">
+                                                    <span v-if="list.reference == 1">CT理论及应用分会</span>
+                                                    <span v-else-if="list.reference == 2">材料科学分会</span>
                                                 </div>
+                                            </div>
+                                            <div class="detail-item clearfix">
+                                                <div class="label">
+                                                    会员号:
+                                                </div>
+                                                <div class="content">
+                                                    {{list.memberNo}}
+                                                </div>
+                                            </div>
 
-                                                <div class="detail-item clearfix">
-                                                    <div class="label">
-                                                        有效期:
-                                                    </div>
-                                                    <div class="content">
-                                                        {{list.expiryDate | limitDate}}
-                                                    </div>
+                                            <div class="detail-item clearfix">
+                                                <div class="label">
+                                                    有效期:
                                                 </div>
-                                                <div class="detail-item clearfix">
-                                                    <div class="label">
-                                                        注册时间:
-                                                    </div>
-                                                    <div class="content">
-
-                                                    </div>
+                                                <div class="content">
+                                                    {{list.expiryDate | limitDate}}
                                                 </div>
-                                                <div class="detail-item clearfix">
-                                                    <div class="label">
-                                                        订单类型:
-                                                    </div>
-                                                    <div class="content">
-
-                                                    </div>
+                                            </div>
+                                            <div class="detail-item clearfix">
+                                                <div class="label">
+                                                    注册时间:
                                                 </div>
-                                                <div class="detail-item clearfix">
-                                                    <div class="label">
-                                                        支付类型:
-                                                    </div>
-                                                    <div class="content">
+                                                <div class="content">
 
-                                                    </div>
                                                 </div>
-                                                <div class="detail-item clearfix">
-                                                    <div class="label">
-                                                        支付现金数:
-                                                    </div>
-                                                    <div class="content">
-
-                                                    </div>
+                                            </div>
+                                            <div class="detail-item clearfix">
+                                                <div class="label">
+                                                    订单类型:
                                                 </div>
-                                                <div class="detail-item clearfix">
-                                                    <div class="label">
-                                                        支付积分数:
-                                                    </div>
-                                                    <div class="content">
+                                                <div class="content">
 
-                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="detail-item clearfix">
+                                                <div class="label">
+                                                    支付类型:
+                                                </div>
+                                                <div class="content">
+
+                                                </div>
+                                            </div>
+                                            <div class="detail-item clearfix">
+                                                <div class="label">
+                                                    支付现金数:
+                                                </div>
+                                                <div class="content">
+
+                                                </div>
+                                            </div>
+                                            <div class="detail-item clearfix">
+                                                <div class="label">
+                                                    支付积分数:
+                                                </div>
+                                                <div class="content">
+
                                                 </div>
                                             </div>
                                         </div>
-                                        <!--缴费凭证-->
-                                        <div class="detail-list">
-                                            <h3>
-                                                <i class="flaticon-list-1"></i>
-                                                审核信息
-                                            </h3>
-                                            <div class="examine-box">
-                                                <div class="examine-item clearfix">
-                                                    <div class="content">
-                                                        <img :src="PZUrl" style="max-width: 200px">
-                                                    </div>
+                                    </div>
+                                    <!--缴费凭证-->
+                                    <div class="detail-list">
+                                        <h3>
+                                            <i class="flaticon-list-1"></i>
+                                            审核信息
+                                        </h3>
+                                        <div class="examine-box">
+                                            <div class="examine-item clearfix">
+                                                <div class="content">
+                                                    <img :src="PZUrl" class="SH-img"
+                                                         @click="dialogVisible = true">
                                                 </div>
                                             </div>
                                         </div>
-                                        <!--审核信息-->
-                                        <div class="detail-list" v-if="isExamine">
-                                            <h3>
-                                                <i class="flaticon-list"></i>
-                                                审核信息
-                                            </h3>
-                                            <div class="examine-box">
-                                                <div class="examine-item clearfix">
-                                                    <div class="label">支付账单号:</div>
-                                                    <div class="content">
-                                                        <el-input  placeholder="请输入内容"></el-input>
-                                                    </div>
+                                    </div>
+
+                                    <!--审核弹窗-->
+                                    <el-dialog
+                                            title="审核凭证"
+                                            :visible.sync="dialogVisible"
+                                    >
+                                        <div class="PH-img-box">
+                                            <img :src="PZUrl" style="max-width: 200px">
+                                        </div>
+                                        <span slot="footer" class="dialog-footer">
+                                            <el-button @click="dialogVisible = false">取 消</el-button>
+                                        </span>
+                                    </el-dialog>
+                                    <!--审核框-->
+                                    <div class="detail-list" v-if="isExamine">
+                                        <h3>
+                                            <i class="flaticon-list"></i>
+                                            审核信息
+                                        </h3>
+                                        <div class="examine-box">
+                                            <div class="examine-item clearfix">
+                                                <div class="label">支付账单号:</div>
+                                                <div class="content">
+                                                    <el-input placeholder="请输入内容"></el-input>
                                                 </div>
-                                                <div class="examine-item clearfix">
-                                                    <div class="label">支付现金数:</div>
-                                                    <div class="content">
-                                                        <el-input  :disabled="true" placeholder="请输入内容"></el-input>
-                                                    </div>
+                                            </div>
+                                            <div class="examine-item clearfix">
+                                                <div class="label">支付现金数:</div>
+                                                <div class="content">
+                                                    <el-input :disabled="true" placeholder="请输入内容"></el-input>
                                                 </div>
-                                                <div class="examine-item clearfix">
-                                                    <div class="label">实收金额:</div>
-                                                    <div class="content">
-                                                        <el-input  placeholder="请输入内容"></el-input>
-                                                    </div>
+                                            </div>
+                                            <div class="examine-item clearfix">
+                                                <div class="label">实收金额:</div>
+                                                <div class="content">
+                                                    <el-input placeholder="请输入内容"></el-input>
                                                 </div>
-                                                <div class="examine-item clearfix">
-                                                    <div class="label">审核意见:</div>
-                                                    <div class="content">
-                                                        <el-select v-model="examineState" placeholder="请选择">
-                                                            <el-option
-                                                                    label="审核通过"
-                                                                    value="1">
-                                                            </el-option>
-                                                            <el-option
-                                                                    label="审核不通过"
-                                                                    value="2">
-                                                            </el-option>
-                                                            <el-option
-                                                                    label="退回修改"
-                                                                    value="3"
-                                                            >
-                                                            </el-option>
-                                                        </el-select>
-                                                    </div>
-                                                </div>
-                                                <div class="examine-item clearfix">
-                                                    <div class="label">审核建议:</div>
-                                                    <div class="content">
-                                                        <el-input
-                                                                type="textarea"
-                                                                :rows="4"
-                                                                resize="none"
-                                                                placeholder="请输入内容"
+                                            </div>
+                                            <div class="examine-item clearfix">
+                                                <div class="label">审核意见:</div>
+                                                <div class="content">
+                                                    <el-select v-model="examineState" placeholder="请选择">
+                                                        <el-option
+                                                                label="审核通过"
+                                                                value="1">
+                                                        </el-option>
+                                                        <el-option
+                                                                label="审核不通过"
+                                                                value="2">
+                                                        </el-option>
+                                                        <el-option
+                                                                label="退回修改"
+                                                                value="3"
                                                         >
-                                                        </el-input>
-                                                    </div>
+                                                        </el-option>
+                                                    </el-select>
                                                 </div>
-                                                <el-button type="primary" class="examine-btn">
-                                                    审核
-                                                </el-button>
                                             </div>
-                                        </div>
-                                        <div class="m-separator m-separator--dashed"></div>
-                                        <div class="clearfix">
-                                            <el-button type="success" class="return-btn"
-                                                       @click="returnList">
-                                                返回
+                                            <div class="examine-item clearfix">
+                                                <div class="label">审核建议:</div>
+                                                <div class="content">
+                                                    <el-input
+                                                            type="textarea"
+                                                            :rows="4"
+                                                            resize="none"
+                                                            placeholder="请输入内容"
+                                                    >
+                                                    </el-input>
+                                                </div>
+                                            </div>
+                                            <el-button type="primary" class="examine-btn">
+                                                审核
                                             </el-button>
                                         </div>
                                     </div>
+                                    <div class="m-separator m-separator--dashed"></div>
+                                    <div class="clearfix">
+                                        <el-button type="success" class="return-btn"
+                                                   @click="returnList">
+                                            返回
+                                        </el-button>
+                                    </div>
+
+
                                 </div>
                             </div>
                         </div>
@@ -278,28 +293,29 @@
                 </div>
             </div>
         </div>
-        <!-- end:: Body -->
-
-
-        <!-- begin::Footer -->
-        <div th:include="/base/footer::footer"></div>
-        <!-- end::Footer -->
     </div>
-    <!-- end:: Page -->
+    <!-- end:: Body -->
 
-    <!-- begin::Scroll Top -->
-    <div id="m_scroll_top" class="m-scroll-top">
-        <i class="la la-arrow-up"></i>
-    </div>
 
-    <!--组件-->
-    <div th:include="/base/scripts::scripts"></div>
-    <script>
-        $(function () {
-            $("#finance_menu").addClass("m-menu__item--open m-menu__item--expanded");
-        })
-    </script>
-    <script th:src="@{/assets/js/src/finance/details.js}"></script>
+    <!-- begin::Footer -->
+    <div th:include="/base/footer::footer"></div>
+    <!-- end::Footer -->
+</div>
+<!-- end:: Page -->
+
+<!-- begin::Scroll Top -->
+<div id="m_scroll_top" class="m-scroll-top">
+    <i class="la la-arrow-up"></i>
+</div>
+
+<!--组件-->
+<div th:include="/base/scripts::scripts"></div>
+<script>
+    $(function () {
+        $("#finance_menu").addClass("m-menu__item--open m-menu__item--expanded");
+    })
+</script>
+<script th:src="@{/assets/js/src/finance/details.js}"></script>
 </body>
 <!-- end::Body -->
 </html>

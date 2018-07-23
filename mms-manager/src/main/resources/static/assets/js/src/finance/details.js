@@ -5,7 +5,8 @@ $(function() {
             isExamine: false,
             examineState:'1',
             PZUrl:'',
-            list:{}
+            list:{},
+            dialogVisible: false
         },
         filters: {
             limitDate(val) {
