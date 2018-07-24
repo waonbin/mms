@@ -60,22 +60,28 @@ public class MemberServiceImpl extends BaseSimpleService<Member, Long> implement
     @Override
     public Member save(Member member) {
 
-        User user = new User();
+        User user = null;
 
-        user.setLogin(member.getName());
-        user.setPassword(passwordEncoder.encode(member.getPassword()));
-        user.setFirstName(member.getName());
+        if(member.getUserId() == null) {
+            user = new User();
+
+            user.setLogin(member.getName());
+            user.setPassword(passwordEncoder.encode(member.getPassword()));
+            user.setFirstName(member.getName());
 //        user.setFirstName(userDTO.getFirstName());
 //        user.setLastName(userDTO.getLastName());
-        user.setEmail(member.getEmail());
+            user.setEmail(member.getEmail());
 //        user.setImageUrl(userDTO.getImageUrl());
 //        user.setLangKey(userDTO.getLangKey());
-        user.setActivated(false);
-        user.setActivationKey(RandomUtil.generateActivationKey());
+            user.setActivated(false);
+            user.setActivationKey(RandomUtil.generateActivationKey());
 
-        user = this.userRepository.save(user);
+            user = this.userRepository.save(user);
+        }
 
-        member.setUserId(user.getId());
+        if(user != null) {
+            member.setUserId(user.getId());
+        }
         member.setPassword(passwordEncoder.encode(member.getPassword()));
 
         return this.getRepository().save(member);
