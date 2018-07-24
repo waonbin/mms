@@ -35,10 +35,13 @@
 
            return {
                registerValidateForm: {
+                   login:'',
                    email:'',
                    pass:'',
                    checkPass:'',
                    name:'',
+                   first_name:'',
+                   last_name:'',
                    memberType:1,
                    phone:'',
                    reference:'',
@@ -64,7 +67,13 @@
                    ],
                    phone: [
                        { required: true, validator: validatePhone, trigger: 'change' }
-                   ]
+                   ],
+                   first_name: [
+                       {required: true, message: '请输入姓', trigger: 'blur' }
+                   ],
+                   last_name: [
+                       { required: true, message: '请输入名', trigger: 'blur' }
+                   ],
                }
            }
        },
@@ -150,9 +159,11 @@
            },
            submit: function() {
                var param = {
+                   login: this.registerValidateForm.login,
                    email: this.registerValidateForm.email,
                    password: this.registerValidateForm.pass,
-                   name: this.registerValidateForm.name,
+                   first_name: this.registerValidateForm.first_name,
+                   last_name: this.registerValidateForm.last_name,
                    memberType: this.registerValidateForm.memberType,
                    mobile: this.registerValidateForm.phone,
                    reference: this.registerValidateForm.reference,

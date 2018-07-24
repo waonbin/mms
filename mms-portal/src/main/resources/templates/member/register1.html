@@ -35,6 +35,15 @@
             <el-form :model="registerValidateForm" :rules="rules" ref="registerValidateForm" label-width="100px"
                      class="demo-ruleForm">
                 <el-form-item
+                        prop="email"
+                        label="邮箱"
+                        :rules="[
+                            { required: true, message: '请输入登录名', trigger: 'blur' }
+                        ]"
+                >
+                    <el-input placeholder="请输入您的登录名" v-model.trim="registerValidateForm.login"></el-input>
+                </el-form-item>
+                <el-form-item
                     prop="email"
                     label="邮箱"
                     :rules="[
@@ -55,12 +64,22 @@
                 <el-form-item
                         label="会员名称"
                         prop="name"
-                        :rules="[
-                            { required: true, message: '请输入会员名称', trigger: 'change' }
-                        ]"
                 >
-                    <el-input type="age" placeholder="请输入会员名称" v-model.trim="registerValidateForm.name"
-                              auto-complete="off"></el-input>
+                    <el-col :span="11">
+                        <el-form-item prop="first_name">
+                            <el-input placeholder="姓" v-model.trim="registerValidateForm.first_name"
+                                      auto-complete="off"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="11" :offset="2">
+                        <el-form-item prop="last_name">
+                            <el-input placeholder="名" v-model.trim="registerValidateForm.last_name"
+                                      auto-complete="off"></el-input>
+                        </el-form-item>
+                    </el-col>
+
+                    <!--<el-input type="age" placeholder="请输入会员名称" v-model.trim="registerValidateForm.name"-->
+                              <!--auto-complete="off"></el-input>-->
                 </el-form-item>
                 <el-form-item
                         label="会员类型"
