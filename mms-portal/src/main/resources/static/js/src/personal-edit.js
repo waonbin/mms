@@ -49,8 +49,8 @@ $(function() {
                    reference:"推荐单位",
                    province:"省份",
                    city:"市",
-                   first_name:"姓",
-                   last_name:"名"
+                   first_name:"名",
+                   last_name:"姓"
                },
                params:{},
                cityList:[],

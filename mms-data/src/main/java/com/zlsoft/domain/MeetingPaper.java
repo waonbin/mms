@@ -1,10 +1,13 @@
 package com.zlsoft.domain;
 
+import com.zlsoft.utils.domain.AbstractBaseEntity;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "d_meeting_report")
-public class MeetingPaper {
+public class MeetingPaper extends AbstractBaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator="paper_id_generator")

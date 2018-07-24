@@ -13,11 +13,9 @@ import java.time.LocalDate;
 
 /**
  * Persistent tokens are used by Spring Security to automatically log in users.
- *
- * @see com.mycompany.myapp.security.PersistentTokenRememberMeServices
  */
 @Entity
-@Table(name = "jhi_persistent_token")
+@Table(name = "m_persistent_token")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class PersistentToken implements Serializable {
 

@@ -1,5 +1,6 @@
 package com.zlsoft.common.service;
 
+import com.zlsoft.common.web.vm.MemberVM;
 import com.zlsoft.domain.Member;
 import com.zlsoft.utils.service.SimpleService;
 import org.springframework.data.domain.Page;
@@ -18,9 +19,11 @@ public interface MemberService extends SimpleService<Member, Long> {
 
     List<Member> findByNameOrEmail(String name, String email);
 
-    List<Member> findByNameAndPassword(String name, String password);
-
     Page<Member> findByMemberType(Short memberType, Pageable pageable);
 
-    Member findByLogin(String login);
+    MemberVM findByLogin(String login);
+
+    MemberVM findVMById(Long id);
+
+    MemberVM save(MemberVM member);
 }

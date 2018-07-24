@@ -1,10 +1,13 @@
 package com.zlsoft.domain;
 
+import com.zlsoft.utils.domain.AbstractBaseEntity;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "d_invoice")
-public class Invoice {
+public class Invoice extends AbstractBaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator="invoice_id_generator")

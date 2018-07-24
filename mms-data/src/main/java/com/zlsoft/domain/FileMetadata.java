@@ -1,10 +1,13 @@
 package com.zlsoft.domain;
 
+import com.zlsoft.utils.domain.AbstractBaseEntity;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "d_file_metadata")
-public class FileMetadata {
+public class FileMetadata extends AbstractBaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator="file_id_generator")

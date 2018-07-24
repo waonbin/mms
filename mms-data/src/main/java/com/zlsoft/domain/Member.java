@@ -1,13 +1,15 @@
 package com.zlsoft.domain;
 
+import com.zlsoft.utils.domain.AbstractBaseEntity;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "m_member")
-public class Member {
+@Table(name = "d_member")
+public class Member extends AbstractBaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator="member_id_generator")
@@ -31,12 +33,6 @@ public class Member {
      */
     @Column(length = 64)
     private String email;
-
-    /**
-     * 密码
-     */
-    @Column(length = 64)
-    private String password;
 
     /**
      * 会员名称
@@ -175,10 +171,16 @@ public class Member {
     private String researchField;
 
     /**
-     * 已有会员号
+     * 会员号
      */
     @Column(length = 64)
     private String memberNo;
+
+    /**
+     * 已有会员号
+     */
+    @Column(length = 64)
+    private String existMemberNo;
 
     /**
      * 毕业学校
@@ -237,14 +239,6 @@ public class Member {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getName() {
@@ -445,6 +439,14 @@ public class Member {
 
     public void setMemberNo(String memberNo) {
         this.memberNo = memberNo;
+    }
+
+    public String getExistMemberNo() {
+        return existMemberNo;
+    }
+
+    public void setExistMemberNo(String existMemberNo) {
+        this.existMemberNo = existMemberNo;
     }
 
     public String getSchool() {
