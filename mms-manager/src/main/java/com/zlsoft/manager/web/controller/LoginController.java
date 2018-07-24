@@ -1,8 +1,9 @@
 package com.zlsoft.manager.web.controller;
 
+import com.zlsoft.common.CommonConstants;
 import com.zlsoft.common.service.MemberService;
+import com.zlsoft.common.web.controller.BaseController;
 import com.zlsoft.domain.Member;
-import com.zlsoft.manager.Constants;
 import com.zlsoft.utils.MD5Util;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ import java.util.List;
 
 @Controller(value = "AdminLoginController")
 @RequestMapping("/admin")
-public class LoginController {
+public class LoginController extends BaseController {
 
     @Inject
     private MemberService memberService;
@@ -56,7 +57,7 @@ public class LoginController {
             if(!memberInDB.getPassword().equals(password)){
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("您所输入的密码错误！");
             } else {
-                session.setAttribute(Constants.SESSION_USER, memberInDB);
+                session.setAttribute(CommonConstants.SESSION_USER, memberInDB);
                 return ResponseEntity.created(new URI("/admin/personal_information")).body(memberInDB);
             }
 
@@ -70,7 +71,7 @@ public class LoginController {
      */
     @GetMapping("/logout")
     public String logout(HttpSession session){
-        session.removeAttribute(Constants.SESSION_USER);
+        session.removeAttribute(CommonConstants.SESSION_USER);
         return "/admin/login";
     }
 
@@ -81,6 +82,13 @@ public class LoginController {
      */
     @GetMapping("/login/user")
     public ResponseEntity getLoginUser(HttpSession session){
-        return ResponseEntity.ok(session.getAttribute(Constants.SESSION_USER));
+
+        Member member = this.getCurrentUser(session);
+
+        if(member == null) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        return ResponseEntity.ok(member);
     }
 }

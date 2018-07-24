@@ -2,6 +2,7 @@ package com.zlsoft.manager.web.controller;
 
 import com.google.common.base.Strings;
 import com.zlsoft.common.service.FileMetadataService;
+import com.zlsoft.common.web.controller.BaseController;
 import com.zlsoft.domain.FileMetadata;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
@@ -25,7 +26,7 @@ import java.util.Optional;
 
 @Controller("AdminFileController")
 @RequestMapping("/admin/file")
-public class FileController {
+public class FileController extends BaseController {
 
     private final Logger logger = LoggerFactory.getLogger(FileController.class);
 

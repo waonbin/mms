@@ -1,6 +1,7 @@
 package com.zlsoft.portal.web.controller;
 
 import com.zlsoft.common.service.PaymentService;
+import com.zlsoft.common.web.controller.BaseController;
 import com.zlsoft.domain.Invoice;
 import com.zlsoft.domain.Member;
 import com.zlsoft.domain.Payment;
@@ -16,7 +17,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/payment")
-public class PaymentController {
+public class PaymentController extends BaseController {
 
     @Inject
     private PaymentService paymentService;
@@ -37,12 +38,19 @@ public class PaymentController {
      * @return payment data by page
      */
     @GetMapping("/page/{page}")
-    public @ResponseBody Page<Payment> getPayments(HttpSession session, @PathVariable("page") int page){
+    public @ResponseBody ResponseEntity getPayments(HttpSession session, @PathVariable("page") int page){
 
-        Member member = (Member) session.getAttribute(Constants.SESSION_USER);
+        Member member = this.getCurrentUser(session);
+
+        if(member == null) {
+            return ResponseEntity.badRequest().build();
+        }
+
         PageRequest pageRequest = PageRequest.of(page, Constants.PAGE_SIZE);
 
-        return this.paymentService.findByMemberId(member.getId(), pageRequest);
+        Page<Payment> payments = this.paymentService.findByMemberId(member.getId(), pageRequest);
+
+        return ResponseEntity.ok(payments);
     }
 
     /**

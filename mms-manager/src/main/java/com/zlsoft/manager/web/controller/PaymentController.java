@@ -1,8 +1,8 @@
 package com.zlsoft.manager.web.controller;
 
-import com.google.common.base.Strings;
 import com.zlsoft.common.service.MemberService;
 import com.zlsoft.common.service.PaymentService;
+import com.zlsoft.common.web.controller.BaseController;
 import com.zlsoft.domain.Member;
 import com.zlsoft.domain.Payment;
 import com.zlsoft.manager.Constants;
@@ -21,7 +21,7 @@ import java.util.Optional;
 
 @Controller("AdminPaymentController")
 @RequestMapping("/admin/payment")
-public class PaymentController {
+public class PaymentController extends BaseController {
 
     @Inject
     private PaymentService paymentService;

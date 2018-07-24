@@ -10,7 +10,7 @@ spring:
     prefix: classpath:/templates/
 
   datasource:
-    url: jdbc:mysql://118.89.182.118:3306/ecunp?useUnicode=true&amp;characterEncoding=UTF-8&allowMultiQueries=true
+    url: jdbc:mysql://118.89.182.118:3306/ecunp?useUnicode=true&amp;characterEncoding=UTF-8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull
     username: game
     password: 123
     driver-class-username: com.mysql.jdbc.Driver

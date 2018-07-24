@@ -2,6 +2,7 @@ package com.zlsoft.manager.web.controller;
 
 import com.google.common.base.Strings;
 import com.zlsoft.common.service.MemberService;
+import com.zlsoft.common.web.controller.BaseController;
 import com.zlsoft.domain.Member;
 import com.zlsoft.manager.Constants;
 import com.zlsoft.manager.web.vm.MemberVM;
@@ -24,7 +25,7 @@ import java.util.Optional;
 
 @Controller(value = "AdminMemberController")
 @RequestMapping("/admin/member")
-public class MemberController {
+public class MemberController extends BaseController {
 
     @Inject
     private MemberService memberService;

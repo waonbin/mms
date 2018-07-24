@@ -1,6 +1,7 @@
 package com.zlsoft.manager.web.controller;
 
 import com.zlsoft.common.service.AdministrativeDivisionService;
+import com.zlsoft.common.web.controller.BaseController;
 import com.zlsoft.domain.AdministrativeDivision;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @Controller("AdminDivisionController")
 @RequestMapping("/admin/division")
-public class DivisionController {
+public class DivisionController extends BaseController {
 
     @Inject
     private AdministrativeDivisionService administrativeDivisionService;

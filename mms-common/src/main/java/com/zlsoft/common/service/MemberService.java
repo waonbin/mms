@@ -20,7 +20,7 @@ public interface MemberService extends SimpleService<Member, Long> {
 
     List<Member> findByNameAndPassword(String name, String password);
 
-    int changePassword(Long id, String oldPassword, String newPassword);
-
     Page<Member> findByMemberType(Short memberType, Pageable pageable);
+
+    Member findByLogin(String login);
 }

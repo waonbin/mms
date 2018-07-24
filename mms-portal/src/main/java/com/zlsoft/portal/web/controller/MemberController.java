@@ -1,13 +1,13 @@
 package com.zlsoft.portal.web.controller;
 
 import com.google.common.base.Strings;
+import com.zlsoft.common.CommonConstants;
 import com.zlsoft.common.service.MemberService;
+import com.zlsoft.common.web.controller.BaseController;
 import com.zlsoft.domain.Member;
-import com.zlsoft.portal.Constants;
-import com.zlsoft.utils.MD5Util;
-import com.zlsoft.utils.web.controller.BaseController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,6 +29,9 @@ public class MemberController extends BaseController {
     @Inject
     private MemberService memberService;
 
+    @Inject
+    private PasswordEncoder passwordEncoder;
+
     /**
      * GET  /register : get register page
      * @return register page
@@ -46,10 +49,10 @@ public class MemberController extends BaseController {
      */
     @PostMapping("/register")
     public ResponseEntity register(HttpSession session, Member member) throws URISyntaxException {
-        String password = MD5Util.getMD5WithBase64(member.getPassword());
-        member.setPassword(password);
+//        String password = MD5Util.getMD5WithBase64(member.getPassword());
+//        member.setPassword(password);
         member = this.memberService.save(member);
-        session.setAttribute(Constants.SESSION_USER, member);
+        session.setAttribute(CommonConstants.SESSION_USER, member);
         return ResponseEntity.created(new URI("/member/register3")).body(member);
     }
 
@@ -104,8 +107,13 @@ public class MemberController extends BaseController {
     @GetMapping("/check/password")
     public @ResponseBody
     ResponseEntity checkPassword(HttpSession session, String password){
-        Member member = (Member) session.getAttribute(Constants.SESSION_USER);
-        String passwordEncoded = MD5Util.getMD5WithBase64(password);
+        Member member = this.getCurrentUser(session);
+
+        if(member == null) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        String passwordEncoded = passwordEncoder.encode(password);
 
         if(!member.getPassword().equals(passwordEncoded)){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("密码错误！");
@@ -121,7 +129,7 @@ public class MemberController extends BaseController {
      */
     @GetMapping("/personal_information")
     public ModelAndView info(HttpSession session) {
-        Member member = (Member) session.getAttribute(Constants.SESSION_USER);
+        Member member = this.getCurrentUser(session);
         ModelAndView mav = new ModelAndView("/member/personal_information");
         mav.addObject("member", member);
         return mav;
@@ -135,7 +143,7 @@ public class MemberController extends BaseController {
      */
     @GetMapping("/edit")
     public ModelAndView edit(HttpSession session) {
-        Member member = (Member) session.getAttribute(Constants.SESSION_USER);
+        Member member = this.getCurrentUser(session);
         ModelAndView mav = new ModelAndView("/member/personal_edit");
         mav.addObject("member", member);
         return mav;
@@ -154,7 +162,7 @@ public class MemberController extends BaseController {
 
         if(memberInDB.isPresent()) {
             member = this.memberService.save(copyFields(memberInDB.get(), member));
-            session.setAttribute(Constants.SESSION_USER, member);
+            session.setAttribute(CommonConstants.SESSION_USER, member);
             return ResponseEntity.ok(member);
         } else {
             return ResponseEntity.badRequest().build();
@@ -189,12 +197,16 @@ public class MemberController extends BaseController {
      */
     @PostMapping("/password")
     public ResponseEntity changePassword(HttpSession session, String newPassword){
-        Member member = (Member) session.getAttribute(Constants.SESSION_USER);
-        String passwordEncoded = MD5Util.getMD5WithBase64(newPassword);
+        Member member = this.getCurrentUser(session);
+
+        if(member == null) {
+            return ResponseEntity.badRequest().build();
+        }
+        String passwordEncoded = this.passwordEncoder.encode(newPassword);
         member.setPassword(passwordEncoded);
 
         this.memberService.save(member);
-        session.setAttribute(Constants.SESSION_USER, member);
+        session.setAttribute(CommonConstants.SESSION_USER, member);
 
         return ResponseEntity.ok().build();
     }

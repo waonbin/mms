@@ -2,6 +2,7 @@ package com.zlsoft.manager.web.controller;
 
 import com.zlsoft.common.service.MeetingPaperService;
 import com.zlsoft.common.service.PaperAuditService;
+import com.zlsoft.common.web.controller.BaseController;
 import com.zlsoft.domain.MeetingPaper;
 import com.zlsoft.domain.PaperAudit;
 import com.zlsoft.manager.Constants;
@@ -16,7 +17,7 @@ import java.util.Optional;
 
 @Controller("AdminPaperController")
 @RequestMapping("/admin/meeting/paper")
-public class PaperController {
+public class PaperController extends BaseController {
 
     @Inject
     private MeetingPaperService meetingPaperService;

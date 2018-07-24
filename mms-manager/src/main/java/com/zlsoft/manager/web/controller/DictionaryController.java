@@ -1,6 +1,7 @@
 package com.zlsoft.manager.web.controller;
 
 import com.zlsoft.common.service.DictionaryItemService;
+import com.zlsoft.common.web.controller.BaseController;
 import com.zlsoft.domain.DictionaryItem;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,7 @@ import java.util.List;
 
 @Controller("AdminDictionaryController")
 @RequestMapping("/admin/dictionary")
-public class DictionaryController {
+public class DictionaryController extends BaseController {
 
     @Inject
     private DictionaryItemService dictionaryItemService;

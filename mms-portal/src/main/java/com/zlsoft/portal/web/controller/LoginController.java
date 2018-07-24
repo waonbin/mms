@@ -1,6 +1,8 @@
 package com.zlsoft.portal.web.controller;
 
+import com.zlsoft.common.CommonConstants;
 import com.zlsoft.common.service.MemberService;
+import com.zlsoft.common.web.controller.BaseController;
 import com.zlsoft.domain.Member;
 import com.zlsoft.portal.Constants;
 import com.zlsoft.utils.MD5Util;
@@ -17,7 +19,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 @Controller
-public class LoginController {
+public class LoginController extends BaseController {
 
     @Inject
     private MemberService memberService;
@@ -38,28 +40,28 @@ public class LoginController {
      * @return if login successfully redirect to personal information page; otherwise output error information
      * @throws URISyntaxException
      */
-    @PostMapping("login")
-    public ResponseEntity login(HttpSession session, Member member) throws URISyntaxException {
-
-        List<Member> members = memberService.findByNameOrEmail(member.getName(), member.getName());
-
-        if(members.size() == 0)
-        {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("您所输入的用户名不存在！");
-        }
-        else {
-            Member memberInDB = members.get(0);
-            String password = MD5Util.getMD5WithBase64(member.getPassword());
-
-            if(!memberInDB.getPassword().equals(password)){
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("您所输入的密码错误！");
-            } else {
-                session.setAttribute(Constants.SESSION_USER, memberInDB);
-                return ResponseEntity.created(new URI("/member/personal_information")).body(memberInDB);
-            }
-
-        }
-    }
+//    @PostMapping("login")
+//    public ResponseEntity login(HttpSession session, Member member) throws URISyntaxException {
+//
+//        List<Member> members = memberService.findByNameOrEmail(member.getName(), member.getName());
+//
+//        if(members.size() == 0)
+//        {
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("您所输入的用户名不存在！");
+//        }
+//        else {
+//            Member memberInDB = members.get(0);
+//            String password = MD5Util.getMD5WithBase64(member.getPassword());
+//
+//            if(!memberInDB.getPassword().equals(password)){
+//                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("您所输入的密码错误！");
+//            } else {
+//                session.setAttribute(Constants.SESSION_USER, memberInDB);
+//                return ResponseEntity.created(new URI("/member/personal_information")).body(memberInDB);
+//            }
+//
+//        }
+//    }
 
     /**
      * GET  /logout : user logout
@@ -68,7 +70,7 @@ public class LoginController {
      */
     @GetMapping("logout")
     public String logout(HttpSession session){
-        session.removeAttribute(Constants.SESSION_USER);
+        session.removeAttribute(CommonConstants.SESSION_USER);
         return "/member/login";
     }
 
@@ -79,6 +81,13 @@ public class LoginController {
      */
     @GetMapping("/login/user")
     public ResponseEntity getLoginUser(HttpSession session){
-        return ResponseEntity.ok(session.getAttribute(Constants.SESSION_USER));
+
+        Member member = this.getCurrentUser(session);
+
+        if(member == null) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        return ResponseEntity.ok(member);
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by huangping on 03/11/2016.
@@ -28,5 +29,7 @@ public interface MemberRepository extends JpaRepository<Member, Long>,
 
     @Query(value = "select m from Member m where m.memberType=:memberType")
     Page<Member> findByMemberType(@Param("memberType") Short memberType, Pageable pageable);
+
+    Optional<Member> findOneByUserId(Long userId);
 
 }

@@ -3,12 +3,11 @@ package com.zlsoft.domain;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "m_member")
-public class Member implements Serializable {
+public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator="member_id_generator")
@@ -21,6 +20,11 @@ public class Member implements Serializable {
             allocationSize=1
     )
     private Long id;
+
+    /**
+     * 用户id
+     */
+    private Long userId;
 
     /**
      * 邮箱
@@ -217,6 +221,14 @@ public class Member implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getEmail() {

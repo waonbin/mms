@@ -1,6 +1,7 @@
 package com.zlsoft.manager.web.controller;
 
 import com.zlsoft.common.service.MeetingService;
+import com.zlsoft.common.web.controller.BaseController;
 import com.zlsoft.domain.Meeting;
 import com.zlsoft.manager.Constants;
 import org.springframework.data.domain.Page;
@@ -13,7 +14,7 @@ import javax.inject.Inject;
 
 @Controller("AdminMeetingController")
 @RequestMapping("/admin/meeting")
-public class MeetingController {
+public class MeetingController extends BaseController {
 
     @Inject
     private MeetingService meetingService;

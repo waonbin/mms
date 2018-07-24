@@ -18,17 +18,18 @@
           },
           submit: function() {
               var param = {
-                  name: this.name,
-                  password: this.password
+                  j_username: this.name,
+                  j_password: this.password
               };
 
               $.ajax({
-                  url:ctxPath+'/login',
+                  url:ctxPath+'/j_spring_security_check',
                   type:'post',
                   data: param
               }).done(function(data, status, xhr) {
-                  var url = xhr.getResponseHeader('Location');
-                  document.location = '.' + url;
+                  // var url = xhr.getResponseHeader('Location');
+                  // document.location = '.' + url;
+                  document.location = ctxPath + '/member/personal_information';
               }.bind(this)).fail(function(data,statue) {
                   draw('canvas');
                   this.tip = true;

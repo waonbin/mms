@@ -3,12 +3,17 @@ package com.zlsoft.common.service.impl;
 import com.zlsoft.common.repository.MemberRepository;
 import com.zlsoft.common.service.MemberService;
 import com.zlsoft.domain.Member;
+import com.zlsoft.security.domain.User;
+import com.zlsoft.security.repository.UserRepository;
+import com.zlsoft.utils.RandomUtil;
 import com.zlsoft.utils.service.impl.BaseSimpleService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.inject.Inject;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +23,12 @@ import java.util.Optional;
 @Transactional
 @Service("memberService")
 public class MemberServiceImpl extends BaseSimpleService<Member, Long> implements MemberService {
+
+    @Inject
+    private PasswordEncoder passwordEncoder;
+
+    @Inject
+    private UserRepository userRepository;
 
     @Transactional(readOnly = true)
     @Override
@@ -42,29 +53,48 @@ public class MemberServiceImpl extends BaseSimpleService<Member, Long> implement
     }
 
     @Override
-    public int changePassword(Long id, String oldPassword, String newPassword) {
-
-        Optional<Member> member = this.findById(id);
-
-        if(!member.isPresent()) {
-            return -2;
-        }
-
-        if(!member.get().getPassword().equals(oldPassword)) {
-            return -3;
-        }
-
-        member.get().setPassword(newPassword);
-
-        if(this.save(member.get())!=null){
-            return 1;
-        }
-        return 0;
+    public Page<Member> findByMemberType(Short memberType, Pageable pageable) {
+        return ((MemberRepository)this.getRepository()).findByMemberType(memberType, pageable);
     }
 
     @Override
-    public Page<Member> findByMemberType(Short memberType, Pageable pageable) {
-        return ((MemberRepository)this.getRepository()).findByMemberType(memberType, pageable);
+    public Member save(Member member) {
+
+        User user = new User();
+
+        user.setLogin(member.getName());
+        user.setPassword(passwordEncoder.encode(member.getPassword()));
+        user.setFirstName(member.getName());
+//        user.setFirstName(userDTO.getFirstName());
+//        user.setLastName(userDTO.getLastName());
+        user.setEmail(member.getEmail());
+//        user.setImageUrl(userDTO.getImageUrl());
+//        user.setLangKey(userDTO.getLangKey());
+        user.setActivated(false);
+        user.setActivationKey(RandomUtil.generateActivationKey());
+
+        user = this.userRepository.save(user);
+
+        member.setUserId(user.getId());
+        member.setPassword(passwordEncoder.encode(member.getPassword()));
+
+        return this.getRepository().save(member);
+    }
+
+    public Member findByLogin(String login) {
+        Optional<User> user = this.userRepository.findOneByLogin(login);
+
+        if(user.isPresent()) {
+            Optional<Member> member = ((MemberRepository)this.getRepository()).findOneByUserId(user.get().getId());
+
+            if(member.isPresent()) {
+                return member.get();
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
     }
 
 }

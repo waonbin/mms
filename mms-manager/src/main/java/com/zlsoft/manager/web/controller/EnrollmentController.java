@@ -1,6 +1,7 @@
 package com.zlsoft.manager.web.controller;
 
 import com.zlsoft.common.service.MeetingEnrollmentService;
+import com.zlsoft.common.web.controller.BaseController;
 import com.zlsoft.domain.MeetingEnrollment;
 import com.zlsoft.manager.Constants;
 import org.springframework.data.domain.Page;
@@ -17,7 +18,7 @@ import java.util.Optional;
 
 @Controller("AdminEnrollmentController")
 @RequestMapping("/admin/meeting/enroll")
-public class EnrollmentController {
+public class EnrollmentController extends BaseController {
 
     @Inject
     private MeetingEnrollmentService meetingEnrollmentService;

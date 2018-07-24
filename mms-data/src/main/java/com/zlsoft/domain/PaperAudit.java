@@ -1,11 +1,13 @@
 package com.zlsoft.domain;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "d_paper_audit")
-public class PaperAudit implements Serializable {
+public class PaperAudit {
 
     @Id
     private Long paperId;

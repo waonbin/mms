@@ -3,12 +3,11 @@ package com.zlsoft.domain;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "d_meeting")
-public class Meeting implements Serializable {
+public class Meeting {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator="meeting_id_generator")

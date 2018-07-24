@@ -15,6 +15,7 @@
     <version>1.0.0-SNAPSHOT</version>
     <modules>
         <module>mms-starter</module>
+        <module>mms-security</module>
         <module>mms-core</module>
         <module>mms-portal</module>
         <module>mms-utils</module>
