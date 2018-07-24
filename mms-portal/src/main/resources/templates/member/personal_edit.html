@@ -35,10 +35,20 @@
                 </div>
                 <div class="l_inp">
                     <ul>
-                        <li><font>会员姓名<i>*</i></font>
+                        <li><font>登录名<i>*</i></font>
                             <input name="txt_MemberName" type="text" id="txt_MemberName" tabindex="1"
                                    v-model.trim="registerValidateForm.name"
-                                   placeholder="请输入会员姓名"/>
+                                   disabled placeholder="请输入会员姓"
+                                   style="background: #dfdfdf"
+                            />
+                        </li>
+                        <li class="member_name"><font>会员名称<i>*</i></font>
+                            <input name="txt_MemberName" type="text" tabindex="1"
+                                   v-model.trim="registerValidateForm.first_name"
+                                   placeholder="姓" />
+                            <input name="txt_MemberName" type="text" tabindex="1"
+                                   v-model.trim="registerValidateForm.last_name"
+                                   placeholder="名"/>
                         </li>
                         <li class="sex"><font>性别<i>*</i></font>
                            <template v-for="item in genderList">
@@ -50,11 +60,6 @@
 
                                </label>
                            </template>
-                        </li>
-                        <li><font>毕业学校<i>*</i></font>
-                            <input name="txt_SchoolName" type="text" v-model="registerValidateForm.school"
-                                   id="txt_SchoolName" tabindex="6"
-                                   placeholder="请输入毕业学校"/>
                         </li>
                         <li class="selarea"><font>党派信息<i>*</i></font>
                             <select name="ddl_PartyList" id="ddl_PartyList" tabindex="7"
@@ -134,6 +139,11 @@
                                     <option :value="item.value">{{item.name}}</option>
                                 </template>
                             </select>
+                        </li>
+                        <li><font>毕业学校<i>*</i></font>
+                            <input name="txt_SchoolName" type="text" v-model="registerValidateForm.school"
+                                   id="txt_SchoolName" tabindex="6"
+                                   placeholder="请输入毕业学校"/>
                         </li>
                         <li class="selarea"><font>推荐单位<i>* </i></font>
                             <select style="width: 120px;" tabindex="2"

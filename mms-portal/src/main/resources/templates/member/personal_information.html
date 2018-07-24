@@ -26,10 +26,19 @@
                     <div class="l_inp">
                         <ul>
                             <li>
-                                <font>会员名称：</font>
-                                <em v-cloak>{{message.name}}
+                                <font>登入名称：</font>
+                                <em v-cloak>{{message.login}}
                                 </em>
                             </li>
+
+                            <li>
+                                <font>会员名称：</font>
+                                <em v-cloak>
+                                    {{message.first_name}}
+                                    {{message.last_name}}
+                                </em>
+                            </li>
+
                             <li>
                                 <font>会员编号：</font>
                                 <em v-cloak>{{message.memberNo}}
@@ -85,7 +94,12 @@
                                 </em>
                             </li>
                             <li><font>有效期至：</font>
-                                <em>
+                                <em class="red"
+                                    v-if="message.expiryDate">
+                                    未激活
+                                </em>
+                                <em v-else>
+                                    {{message.expiryDate}}
                                 </em>
                             </li>
                             <li>

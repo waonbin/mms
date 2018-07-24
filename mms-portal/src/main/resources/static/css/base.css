@@ -63,3 +63,11 @@
 .el-pagination.is-background .el-pager li:not(.disabled).active {
     background-color: #642b91 !important;
 }
+.member_name input {
+    float: left !important;
+    width: 90px !important;
+    margin-left: 5px !important;
+}
+.member_name input+input {
+    margin-left: 10px;
+}

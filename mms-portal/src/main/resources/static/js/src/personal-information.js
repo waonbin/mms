@@ -18,7 +18,13 @@ $(function() {
 
         methods: {
             getDate: function() {
-                this.message = message || {};
+                $.ajax({
+                    url: ctxPath + '/login/user'
+                }).done(function (date) {
+                    this.message = date;
+                }.bind(this)).fail(function () {
+                    this.$message.error('获取用户信息失败！');
+                }.bind(this))
             },
             logout: function() {
                 this.$alert('确定退出？', '提示', {
@@ -36,7 +42,7 @@ $(function() {
             }
         },
         mounted: function () {
-            this.getDate()
+            this.getDate();
             $(".info-btn").addClass('cur');
         }
     })

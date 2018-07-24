@@ -24,7 +24,9 @@ $(function() {
                    title: "",
                    province:"",
                    city:"",
-                   address:""
+                   address:"",
+                   first_name:"",
+                   last_name:""
                },
                required:{
                    name:"会员姓名",
@@ -46,7 +48,9 @@ $(function() {
                    email:"邮箱",
                    reference:"推荐单位",
                    province:"省份",
-                   city:"市"
+                   city:"市",
+                   first_name:"姓",
+                   last_name:"名"
                },
                params:{},
                cityList:[],
@@ -152,6 +156,22 @@ $(function() {
                     }
                 }
             },
+           getDate: function() {
+               $.ajax({
+                   url: ctxPath + '/login/user'
+               }).done(function (message) {
+                   message.gender = message.gender.toString();
+                   message.memberType = message.memberType.toString();
+                   message.partisan= message.partisan.toString();
+                   message.birthday= (new Date(message.birthday)).toString();
+                   message.province = message.province || "";
+                   message.city = message.city || "";
+
+                   this.registerValidateForm = message;
+               }.bind(this)).fail(function () {
+                   this.$message.error('获取用户信息失败！');
+               }.bind(this))
+           },
            getCity: function() {
                $.ajax({
                    url:ctxPath+'/division/data'
@@ -184,14 +204,8 @@ $(function() {
        mounted: function() {
            this.getCity();
            this.getDictionary();
+           this.getDate();
            $(".edit-btn").addClass('cur');
-           message.gender = message.gender.toString();
-           message.memberType = message.memberType.toString();
-           message.partisan= message.partisan.toString();
-           message.birthday= (new Date(message.birthday)).toString();
-           message.province = message.province || "";
-           message.city = message.city || "";
-           this.registerValidateForm = message;
        }
    })
 });
