@@ -69,10 +69,10 @@
                        { required: true, validator: validatePhone, trigger: 'change' }
                    ],
                    first_name: [
-                       {required: true, message: '请输入姓', trigger: 'blur' }
+                       {required: true, message: '请输入名', trigger: 'blur' }
                    ],
                    last_name: [
-                       { required: true, message: '请输入名', trigger: 'blur' }
+                       { required: true, message: '请输入姓', trigger: 'blur' }
                    ],
                }
            }
