@@ -4,6 +4,7 @@ import com.google.common.base.Strings;
 import com.zlsoft.common.CommonConstants;
 import com.zlsoft.common.service.MemberService;
 import com.zlsoft.common.web.controller.BaseController;
+import com.zlsoft.common.web.vm.MemberVM;
 import com.zlsoft.domain.Member;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -48,9 +49,7 @@ public class MemberController extends BaseController {
      * @throws URISyntaxException
      */
     @PostMapping("/register")
-    public ResponseEntity register(HttpSession session, Member member) throws URISyntaxException {
-//        String password = MD5Util.getMD5WithBase64(member.getPassword());
-//        member.setPassword(password);
+    public ResponseEntity register(HttpSession session, MemberVM member) throws URISyntaxException {
         member = this.memberService.save(member);
         session.setAttribute(CommonConstants.SESSION_USER, member);
         return ResponseEntity.created(new URI("/member/register3")).body(member);
@@ -107,7 +106,7 @@ public class MemberController extends BaseController {
     @GetMapping("/check/password")
     public @ResponseBody
     ResponseEntity checkPassword(HttpSession session, String password){
-        Member member = this.getCurrentUser(session);
+        MemberVM member = this.getCurrentUser(session);
 
         if(member == null) {
             return ResponseEntity.badRequest().build();
@@ -129,7 +128,7 @@ public class MemberController extends BaseController {
      */
     @GetMapping("/personal_information")
     public ModelAndView info(HttpSession session) {
-        Member member = this.getCurrentUser(session);
+        MemberVM member = this.getCurrentUser(session);
         ModelAndView mav = new ModelAndView("/member/personal_information");
         mav.addObject("member", member);
         return mav;
@@ -143,7 +142,7 @@ public class MemberController extends BaseController {
      */
     @GetMapping("/edit")
     public ModelAndView edit(HttpSession session) {
-        Member member = this.getCurrentUser(session);
+        MemberVM member = this.getCurrentUser(session);
         ModelAndView mav = new ModelAndView("/member/personal_edit");
         mav.addObject("member", member);
         return mav;
@@ -157,11 +156,11 @@ public class MemberController extends BaseController {
      * @throws URISyntaxException
      */
     @PostMapping("/edit")
-    public ResponseEntity edit(HttpSession session, Member member) {
-        Optional<Member> memberInDB = this.memberService.findById(member.getId());
+    public ResponseEntity edit(HttpSession session, MemberVM member) {
+        MemberVM memberVM = this.memberService.findVMById(member.getId());
 
-        if(memberInDB.isPresent()) {
-            member = this.memberService.save(copyFields(memberInDB.get(), member));
+        if(memberVM != null) {
+            member = this.memberService.save(copyFields(memberVM, member));
             session.setAttribute(CommonConstants.SESSION_USER, member);
             return ResponseEntity.ok(member);
         } else {
@@ -197,7 +196,7 @@ public class MemberController extends BaseController {
      */
     @PostMapping("/password")
     public ResponseEntity changePassword(HttpSession session, String newPassword){
-        Member member = this.getCurrentUser(session);
+        MemberVM member = this.getCurrentUser(session);
 
         if(member == null) {
             return ResponseEntity.badRequest().build();
@@ -217,7 +216,7 @@ public class MemberController extends BaseController {
      * @param right right model
      * @return left model
      */
-    private Member copyFields(Member left, Member right) {
+    private MemberVM copyFields(MemberVM left, MemberVM right) {
 
         if(!Strings.isNullOrEmpty(right.getEmail())) left.setEmail(right.getEmail());
         if(!Strings.isNullOrEmpty(right.getName())) left.setName(right.getName());
@@ -242,6 +241,7 @@ public class MemberController extends BaseController {
         if(!Strings.isNullOrEmpty(right.getFullAddress())) left.setFullAddress(right.getFullAddress());
         if(!Strings.isNullOrEmpty(right.getResearchField())) left.setResearchField(right.getResearchField());
         if(!Strings.isNullOrEmpty(right.getMemberNo())) left.setMemberNo(right.getMemberNo());
+        if(!Strings.isNullOrEmpty(right.getExistMemberNo())) left.setExistMemberNo(right.getExistMemberNo());
         if(!Strings.isNullOrEmpty(right.getSchool())) left.setSchool(right.getSchool());
         if(right.getWorkNature() != null) left.setWorkNature(right.getWorkNature());
         if(!Strings.isNullOrEmpty(right.getJobPerformance())) left.setJobPerformance(right.getJobPerformance());

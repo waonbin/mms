@@ -2,6 +2,7 @@ package com.zlsoft.portal.web.controller;
 
 import com.zlsoft.common.service.PaymentService;
 import com.zlsoft.common.web.controller.BaseController;
+import com.zlsoft.common.web.vm.MemberVM;
 import com.zlsoft.domain.Invoice;
 import com.zlsoft.domain.Member;
 import com.zlsoft.domain.Payment;
@@ -40,7 +41,7 @@ public class PaymentController extends BaseController {
     @GetMapping("/page/{page}")
     public @ResponseBody ResponseEntity getPayments(HttpSession session, @PathVariable("page") int page){
 
-        Member member = this.getCurrentUser(session);
+        MemberVM member = this.getCurrentUser(session);
 
         if(member == null) {
             return ResponseEntity.badRequest().build();

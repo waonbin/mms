@@ -25,8 +25,6 @@ public interface MemberRepository extends JpaRepository<Member, Long>,
 
     List<Member> findByNameOrEmail(String name, String email);
 
-    List<Member> findByNameAndPassword(String name, String password);
-
     @Query(value = "select m from Member m where m.memberType=:memberType")
     Page<Member> findByMemberType(@Param("memberType") Short memberType, Pageable pageable);
 

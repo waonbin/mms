@@ -1,4 +1,4 @@
-package com.zlsoft.security.domain;
+package com.zlsoft.utils.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.envers.Audited;

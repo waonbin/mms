@@ -184,8 +184,9 @@
                    type:'post',
                    data:param
                }).done(function(data, status, xhr) {
-                   var url = xhr.getResponseHeader('Location');
-                   document.location = url;
+                   // var url = xhr.getResponseHeader('Location');
+                   // document.location = url;
+                   document.location = ctxPath + '/member/register3';
                }.bind(this)).fail(function() {
                    this.$message.error('提交失败');
                }.bind(this))

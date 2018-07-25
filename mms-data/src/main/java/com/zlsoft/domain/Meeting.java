@@ -1,13 +1,15 @@
 package com.zlsoft.domain;
 
+import com.zlsoft.utils.domain.AbstractBaseEntity;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "d_meeting")
-public class Meeting {
+public class Meeting extends AbstractBaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator="meeting_id_generator")
