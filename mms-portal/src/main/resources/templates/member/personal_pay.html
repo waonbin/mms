@@ -84,7 +84,9 @@
                             </li>
                             <li><font class="fontl">发票类型：<i>*</i></font>
                                 <select id="tickettype" v-model="order.invoiceType" >
-                                    <option value="1">会费</option>
+                                    <template v-for="item in invoiceList">
+                                        <option :value="item.value">{{item.name}}</option>
+                                    </template>
                                 </select>
                             </li>
                             <li v-if="order.titleType != 1"><font class="fontl">发票抬头：<i>*</i></font>

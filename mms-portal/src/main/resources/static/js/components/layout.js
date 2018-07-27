@@ -31,8 +31,9 @@ $(function() {
                 })
             },
             memberType: function() {
+                var memberType = this.message.memberType;
                 var memberObj =  this.memberList.filter(function(item) {
-                   return item.value == this.message.memberType
+                   return item.value == memberType
                 });
 
                 if(memberObj.length) {

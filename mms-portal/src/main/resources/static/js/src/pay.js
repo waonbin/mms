@@ -17,6 +17,7 @@ $(function () {
             uploadFileId: 0,
             typeList: [],
             cityList: [],
+            dictionaryList: [],
             order: {
                 recipients: '',
                 recipientsMobile: '',
@@ -36,6 +37,11 @@ $(function () {
             provinceList: function () {
                 return this.cityList.filter(function (item) {
                     return item.parentId === 0
+                })
+            },
+            invoiceList: function () {
+                return this.dictionaryList.filter(function(item) {
+                    return item.dictionaryId === 13
                 })
             },
             citiesList: function () {
@@ -71,6 +77,10 @@ $(function () {
 
                     if(!order.recipients.length) {
                         this.$message.error('请输入收件人姓名！');
+                        return false;
+                    }
+                    if(!order.recipientsMobile.length) {
+                        this.$message.error('请输入手机号码！');
                         return false;
                     }
                     if(!order.recipientsMobile.length) {
@@ -121,15 +131,31 @@ $(function () {
                     parms.recipientsAddress = null;
                     parms.recipientsZipcode = null;
                 }
+
+                var keys = Object.keys(parms),data={};
+
+                keys.forEach(function(item) {
+                   if(parms[item]) {
+                       data[item] = parms[item]
+                   }
+                });
+                console.log(data)
                 $.ajax({
                     url: ctxPath + '/payment/order',
                     type: 'post',
-                    data: parms
+                    data: data
                 })
 
             },
             handlePreview: function () {
 
+            },
+            getDictionary: function() {
+                $.ajax({
+                    url:ctxPath+'/dictionary'
+                }).done(function(data) {
+                    this.dictionaryList = data;
+                }.bind(this))
             },
             handleRemove: function (file, fileList) {
                 console.log(file);
@@ -227,6 +253,7 @@ $(function () {
             $(".payment-btn").addClass('cur');
             this.getMessage();
             this.getDues();
+            this.getDictionary();
             this.getDuration();
             this.getCity();
         }

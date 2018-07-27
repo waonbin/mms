@@ -26,10 +26,9 @@ $(function() {
                    city:"",
                    address:"",
                    first_name:"",
-                   last_name:""
+                   lastName:""
                },
                required:{
-                   name:"会员姓名",
                    gender:"会员性别",
                    school:"毕业学校",
                    partisan:"党派信息",
@@ -49,8 +48,8 @@ $(function() {
                    reference:"推荐单位",
                    province:"省份",
                    city:"市",
-                   first_name:"名",
-                   last_name:"姓"
+                   firstName:"名",
+                   lastName:"姓"
                },
                params:{},
                cityList:[],
