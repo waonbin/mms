@@ -35,13 +35,13 @@
             <el-form :model="registerValidateForm" :rules="rules" ref="registerValidateForm" label-width="100px"
                      class="demo-ruleForm">
                 <el-form-item
-                        prop="email"
-                        label="邮箱"
+                        prop="login"
+                        label="登录名"
                         :rules="[
                             { required: true, message: '请输入登录名', trigger: 'blur' }
                         ]"
                 >
-                    <el-input placeholder="请输入您的登录名" v-model.trim="registerValidateForm.login"></el-input>
+                    <el-input placeholder="请输入登录名" v-model.trim="registerValidateForm.login"></el-input>
                 </el-form-item>
                 <el-form-item
                     prop="email"
