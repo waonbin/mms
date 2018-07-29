@@ -84,16 +84,19 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="m-portlet">
-                                <div class="m-portlet__body">
-                                    <div class="system-search clearfix">
-                                        <a href="javascript:" class="btn btn-primary m-btn m-btn--icon"
-                                           @click="baseSubmit">
-                                            <span>
-                                                <i class="la flaticon-folder-4"></i>
-                                                <span>提交</span>
-                                            </span>
-                                        </a>
+                                <div class="m-portlet__head">
+                                    <div class="m-portlet__head-caption">
+                                        <div class="m-portlet__head-title">
+												<span class="m-portlet__head-icon m--hide">
+													<i class="la la-gear"></i>
+												</span>
+                                            <h3 class="m-portlet__head-text">
+                                                会议发布
+                                            </h3>
+                                        </div>
                                     </div>
+                                </div>
+                                <div class="m-portlet__body">
                                    <div id="base-box">
                                        <div class="steps">
                                            <el-steps :active="step" align-center finish-status="success">
