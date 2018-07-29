@@ -19,8 +19,6 @@
     <link rel="shortcut icon"
           th:href="@{{path}/assets/demo/demo12/media/img/logo/favicon.ico(path=${#request.getContextPath()})}"/>
     <link rel="stylesheet" th:href="@{/assets/css/base/meeting-add.css}">
-    <script th:src="@{{path}/assets/js/base/jquery-1.7.1.min.js(path=${#request.getContextPath()})}"></script>
-    <link href="http://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
 </head>
 <!-- end::Head -->
 
@@ -45,7 +43,6 @@
             </button>
             <div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-dark "
                  th:include="/base/aside::aside">
-
             </div>
             <!-- END: Left Aside -->
             <div class="m-grid__item m-grid__item--fluid m-wrapper">
@@ -53,7 +50,7 @@
                 <div class="m-subheader ">
                     <div class="d-flex align-items-center">
                         <div class="mr-auto">
-                            <h3 class="m-subheader__title m-subheader__title--separator">添加会议</h3>
+                            <h3 class="m-subheader__title m-subheader__title--separator">会议发布</h3>
                             <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
                                 <li class="m-nav__item m-nav__item--home">
                                     <a href="#" class="m-nav__link m-nav__link--icon">
@@ -75,7 +72,7 @@
                                 <li class="m-nav__separator">-</li>
                                 <li class="m-nav__item">
                                     <a href="javascript:" class="m-nav__link">
-                                        <span class="m-nav__link-text">添加会议</span>
+                                        <span class="m-nav__link-text">会议发布</span>
                                     </a>
                                 </li>
                             </ul>
@@ -91,269 +88,155 @@
                                     <div class="system-search clearfix">
                                         <a href="javascript:" class="btn btn-primary m-btn m-btn--icon"
                                            @click="baseSubmit">
-                                        <span>
-                                            <i class="la flaticon-folder-4"></i>
-                                            <span>提交</span>
-                                        </span>
+                                            <span>
+                                                <i class="la flaticon-folder-4"></i>
+                                                <span>提交</span>
+                                            </span>
                                         </a>
                                     </div>
                                    <div id="base-box">
-                                       <el-tabs v-model="activeName" @tab-click="handleClick">
-                                           <!--基本信息-->
-                                           <el-tab-pane label="基本信息" name="first">
-                                                <div>
-                                                    <div class="base-item clearfix">
-                                                        <div class="base-label">会议名称: </div>
-                                                        <div class="base-content">
-                                                            <el-input v-model="base.name" placeholder="请输入会议名称"></el-input>
-                                                        </div>
-                                                    </div>
-                                                    <div class="base-item clearfix">
-                                                        <div class="base-label">形象图: </div>
-                                                        <div class="base-content">
-                                                            <el-upload
-                                                                    action="https://jsonplaceholder.typicode.com/posts/"
-                                                                    list-type="picture-card"
-                                                                    :limit="1"
-                                                                    :auto-upload="false"
-                                                                    :on-exceed="handleExceed"
-                                                                    :on-preview="handlePictureCardPreview"
-                                                            >
-                                                                <i class="el-icon-plus"></i>
-                                                            </el-upload>
-                                                            <el-dialog :visible.sync="dialogVisible">
-                                                                <img width="100%" :src="dialogImageUrl" alt="">
-                                                            </el-dialog>
-                                                        </div>
-                                                    </div>
-                                                    <div class="base-item clearfix">
-                                                        <div class="base-label">描述/简介: </div>
-                                                        <div class="base-content">
-                                                            <el-checkbox >自动编辑描述</el-checkbox>
-                                                        </div>
-                                                    </div>
-                                                    <div class="base-item clearfix">
-                                                        <div class="base-label">内容: </div>
-                                                        <div class="base-content" style="width: 70%">
-                                                            <div id="editor">
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                           </el-tab-pane>
-                                           <!--费用信息-->
-                                           <el-tab-pane label="费用信息" name="second">
-                                               <div class="form-box clearfix">
-                                                   <div class="form-list clearfix">
-                                                       <div class="form-item">
-                                                           <div class="label">
-                                                               会议类型
-                                                           </div>
-                                                           <div class="content">
-                                                               <el-select v-model="base.meetingType" placeholder="请选择">
-                                                                   <el-option
-                                                                           v-for="item in hyList"
-                                                                           :key="item.value"
-                                                                           :label="item.label"
-                                                                           :value="item.value">
-                                                                   </el-option>
-                                                               </el-select>
-                                                           </div>
-                                                       </div>
-                                                       <div class="form-item">
-                                                           <div class="label">
-                                                               报名人数限制
-                                                           </div>
-                                                           <div class="content">
-                                                               <el-input v-model="base.enrollmentLimit" placeholder="请输入报名人数限制"></el-input>
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                                   <div class="form-list clearfix">
-                                                       <div class="form-item">
-                                                           <div class="label">
-                                                               会员价
-                                                           </div>
-                                                           <div class="content">
-                                                               <el-input v-model="base.vipPrice" type="number" placeholder="请输入会员价"></el-input>
-                                                           </div>
-                                                       </div>
-                                                       <div class="form-item">
-                                                           <div class="label">
-                                                               非会员价
-                                                           </div>
-                                                           <div class="content">
-                                                               <el-input v-model="base.price" type="number" placeholder="请输入非会员价"></el-input>
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                                   <div class="form-list clearfix">
-                                                       <div class="form-item">
-                                                           <div class="label">
-                                                               报名起始日期
-                                                           </div>
-                                                           <div class="content">
-                                                               <el-date-picker
-                                                                       v-model="base.enrollStartDate"
-                                                                       type="date"
-                                                                       placeholder="选择日期"
-                                                                       :picker-options="scheduled_time_start_time"
-                                                               ></el-date-picker>
-                                                           </div>
-                                                       </div>
-                                                       <div class="form-item">
-                                                           <div class="label">
-                                                               报名结束日期
-                                                           </div>
-                                                           <div class="content">
-                                                               <el-date-picker
-                                                                       v-model="base.enrollEndDate"
-                                                                       type="date"
-                                                                       placeholder="选择日期"
-                                                                       :picker-options="scheduled_time_end_time"
-                                                               ></el-date-picker>
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                                   <div class="form-list clearfix">
-                                                       <div class="form-item">
-                                                           <div class="label">
-                                                               报道日期
-                                                           </div>
-                                                           <div class="content">
-                                                               <el-date-picker
-                                                                       v-model="base.checkinDate"
-                                                                       type="date"
-                                                                       placeholder="选择日期">
-                                                               </el-date-picker>
-                                                           </div>
-                                                       </div>
-                                                       <div class="form-item clearfix">
-                                                           <div class="label">
-                                                               地址坐标
-                                                           </div>
-                                                           <div class="content">
-                                                               <el-input v-model="base.address" placeholder="请输入地址坐标"></el-input>
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                                   <div class="form-list clearfix">
-                                                       <div class="form-item large">
-                                                           <div class="label">
-                                                               会议地址
-                                                           </div>
-                                                           <div class="content">
-                                                               <el-input type="textarea" v-model="base.address" placeholder="请输入会议地址"></el-input>
-                                                           </div>
+                                       <div class="steps">
+                                           <el-steps :active="step" align-center finish-status="success">
+                                               <el-step title="基本信息"></el-step>
+                                               <el-step title="会务设置"></el-step>
+                                               <el-step title="报名设置"></el-step>
+                                               <el-step title="完成发布"></el-step>
+                                           </el-steps>
+                                       </div>
+                                       <div class="signUp-box clearfix" v-if="step === 2">
+                                           <div style="float: left">
+                                               <el-button type="primary">导入报名模版</el-button>
+                                           </div>
+                                           <div style="width: 450px; float: right">
+                                               <el-button type="primary">报名费用</el-button>
+                                               <el-button type="primary">分会场</el-button>
+                                               <el-button type="primary">酒店预订</el-button>
+                                               <el-button type="primary">参观路线</el-button>
+                                           </div>
+                                       </div>
+                                       <div class="form-box">
+                                           <div v-if="step == 0">
+                                               <div class="form-list clearfix">
+                                                   <div class="form-item">
+                                                       <div class="base-label">会议名称:</div>
+                                                       <div class="base-content">
+                                                           <el-input v-model="base.name" placeholder="请输入会议名称"></el-input>
                                                        </div>
                                                    </div>
                                                </div>
-                                           </el-tab-pane>
-                                           <!--拓展属性-->
-                                           <el-tab-pane label="拓展属性" name="third">
-                                               <div class="form-box clearfix">
-                                                   <div class="form-list clearfix">
-                                                       <div class="form-item">
-                                                           <div class="label">
-                                                               标题颜色
-                                                           </div>
-                                                           <div class="content">
-                                                               <el-select v-model="base.meetingType" placeholder="请选择标题颜色">
-                                                                   <el-option
-                                                                           v-for="item in hyList"
-                                                                           :key="item.value"
-                                                                           :label="item.label"
-                                                                           :value="item.value">
-                                                                   </el-option>
-                                                               </el-select>
-                                                           </div>
+                                               <div class="form-list clearfix">
+                                                   <div class="form-item">
+                                                       <div class="label">
+                                                           举办开始时间
                                                        </div>
-                                                       <div class="form-item">
-                                                           <div class="label">
-                                                               标题样式
-                                                           </div>
-                                                           <div class="content">
-                                                               <el-select v-model="base.meetingType" placeholder="请选择标题样式">
-                                                                   <el-option
-                                                                           v-for="item in hyList"
-                                                                           :key="item.value"
-                                                                           :label="item.label"
-                                                                           :value="item.value">
-                                                                   </el-option>
-                                                               </el-select>
-                                                           </div>
+                                                       <div class="content">
+                                                           <el-date-picker
+                                                                   v-model="base.enrollStartDate"
+                                                                   type="date"
+                                                                   placeholder="选择日期"
+                                                                   :picker-options="scheduled_time_start_time"
+                                                           ></el-date-picker>
                                                        </div>
                                                    </div>
-                                                   <div class="form-list clearfix">
-                                                       <div class="form-item">
-                                                           <div class="label">
-                                                               作者
-                                                           </div>
-                                                           <div class="content">
-                                                               <el-input v-model="base.vipPrice" type="number" placeholder="请输入作者"></el-input>
-                                                           </div>
+                                                   <div class="form-item">
+                                                       <div class="label">
+                                                           举办结束时间
                                                        </div>
-                                                       <div class="form-item">
-                                                           <div class="label">
-                                                               来源
-                                                           </div>
-                                                           <div class="content">
-                                                               <el-input v-model="base.price" type="number" placeholder="请输入来源"></el-input>
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                                   <div class="form-list clearfix">
-                                                       <div class="form-item large">
-                                                           <div class="label">
-                                                               关键字
-                                                           </div>
-                                                           <div class="content">
-                                                               <el-input v-model="base.price" type="number" placeholder="请输入关键字"></el-input>
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                                   <div class="form-list clearfix">
-                                                       <div class="form-item large">
-                                                           <div class="label">
-                                                               跳转地址
-                                                           </div>
-                                                           <div class="content">
-                                                               <el-input v-model="base.price" type="number" placeholder="请输入跳转地址"></el-input>
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                                   <div class="form-list clearfix">
-                                                       <div class="form-item large">
-                                                           <div class="label">
-                                                               修改时间
-                                                           </div>
-                                                           <div class="content">
-                                                               <el-date-picker
-                                                                       v-model="base.checkinDate"
-                                                                       type="date"
-                                                                       placeholder="选择日期">
-                                                               </el-date-picker>
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                                   <div class="form-list clearfix">
-                                                       <div class="form-item large">
-                                                           <div class="label">
-                                                               创建时间
-                                                           </div>
-                                                           <div class="content">
-                                                               <el-date-picker
-                                                                       v-model="base.checkinDate"
-                                                                       type="date"
-                                                                       placeholder="选择日期">
-                                                               </el-date-picker>
-                                                           </div>
+                                                       <div class="content">
+                                                           <el-date-picker
+                                                                   v-model="base.enrollEndDate"
+                                                                   type="date"
+                                                                   placeholder="选择日期"
+                                                                   :picker-options="scheduled_time_end_time"
+                                                           ></el-date-picker>
                                                        </div>
                                                    </div>
                                                </div>
-                                           </el-tab-pane>
-                                       </el-tabs>
+                                               <div class="form-list clearfix">
+                                                   <div class="form-item">
+                                                       <div class="base-label">主办单位:</div>
+                                                       <div class="base-content">
+                                                           <el-input v-model="base.name" placeholder="请输入主办单位"></el-input>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                               <div class="form-list clearfix">
+                                                   <div class="form-item">
+                                                       <div class="base-label">承办单位:</div>
+                                                       <div class="base-content">
+                                                           <el-input type="textarea" placeholder="请输入承办单位"></el-input>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                               <div class="form-list clearfix">
+                                                   <div class="form-item">
+                                                       <div class="base-label">举办地点:</div>
+                                                       <div class="base-content">
+                                                           <el-input v-model="base.address" placeholder="请输入举办地点"></el-input>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                               <div class="form-list clearfix">
+                                                   <div class="form-item">
+                                                       <div class="label">
+                                                           会议类型
+                                                       </div>
+                                                       <div class="content">
+                                                           <el-select v-model="base.type" placeholder="请选择">
+                                                               <el-option label="免费" value="1"></el-option>
+                                                               <el-option label="收费" value="2"></el-option>
+                                                           </el-select>
+                                                       </div>
+                                                   </div>
+                                                   <div class="form-item">
+                                                       <div class="label">
+                                                           是否在系统收费
+                                                       </div>
+                                                       <div class="content">
+                                                           <el-select v-model="base.isSF" placeholder="请选择">
+                                                               <el-option label="是" value="1"></el-option>
+                                                               <el-option label="否" value="2"></el-option>
+                                                           </el-select>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                           <div v-if="step == 1">
+                                               <el-transfer
+                                                       filterable
+                                                       :filter-method="filterMethod"
+                                                       filter-placeholder="请输入城市"
+                                                       v-model="generateValue"
+                                                       :data="generateData">
+                                                   <el-button class="transfer-footer" slot="left-footer" size="small">操作</el-button>
+                                                   <el-button class="transfer-footer" slot="right-footer" size="small">操作</el-button>
+                                               </el-transfer>
+                                           </div>
+                                           <div v-if="step == 2">
+                                               <el-transfer
+                                                       filterable
+                                                       :filter-method="filterMethod"
+                                                       filter-placeholder="请输入模版信息"
+                                                       v-model="modelValue"
+                                                       :data="modelData">
+                                               </el-transfer>
+                                           </div>
+                                           <div v-if="step == 3">
+                                               <div class="stepTip">
+                                                   <h3>
+                                                       恭喜您！会议信息添加完成。
+                                                   </h3>
+                                                   <p>
+                                                       会议组织过程中如有信息变更，可在会议发布列表点击修改该会议信息。
+                                                       会议组织很辛苦，请注意劳逸结合。
+                                                   </p>
+                                               </div>
+                                           </div>
+                                       </div>
+                                       <div class="form-btn">
+                                           <el-button type="primary" v-if="step === 3">确认发布</el-button>
+                                           <el-button type="primary" v-else @click="next">下一步</el-button>
+                                       </div>
                                    </div>
                                 </div>
                             </div>
@@ -378,7 +261,6 @@
 
     <!--组件-->
     <div th:include="/base/scripts::scripts"></div>
-    <script src="http://cdn.quilljs.com/1.0.0/quill.js"></script>
     <script>
         $(function() {
             $("#meeting_menu").addClass("m-menu__item--open m-menu__item--expanded");

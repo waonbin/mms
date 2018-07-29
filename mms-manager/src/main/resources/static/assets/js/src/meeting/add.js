@@ -2,10 +2,34 @@ $(function() {
     new Vue({
         el:'#box-content',
         data() {
+            //穿梭框
+            const generateData = _ => {
+                const data = [];
+                const cities = ['上海', '北京', '广州', '深圳', '南京', '西安', '成都'];
+                cities.forEach((city, index) => {
+                    data.push({
+                        label: city,
+                        key: index
+                    });
+                });
+                return data;
+            };
+
+            const  modelData = _=> {
+                const data = [];
+                const cities = ['模版1', '模版2', '模版3', '模版4', '模版5'];
+                cities.forEach((city, index) => {
+                    data.push({
+                        label: city,
+                        key: index
+                    });
+                });
+                return data;
+            };
+
             return {
                 qull:null,
-                hyList:[],
-                activeName: 'first',
+                step: 0,
                 dialogVisible:false,
                 style:'',
                 dialogImageUrl:'',
@@ -19,7 +43,17 @@ $(function() {
                     enrollStartDate:'',
                     enrollEndDate:'',
                     checkinDate:'',
-                    address:''
+                    address:'',
+                    type:'1',
+                    isSF:'1'
+                },
+                //穿梭框
+                generateData: generateData(),
+                generateValue: [],
+                modelData: modelData(),
+                modelValue: [],
+                filterMethod(query, item) {
+                    return item.label.indexOf(query) > -1;
                 }
             }
         },
@@ -64,6 +98,9 @@ $(function() {
                 }
                 return y+'-'+m+'-'+d
             },
+            next() {
+              this.step++
+            },
             handleClick(tab, event) {
                 console.log(tab, event);
             },
@@ -102,33 +139,7 @@ $(function() {
             }
         },
         mounted: function() {
-            var toolbarOptions = [
-                ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-                ['blockquote', 'code-block'],
 
-                [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-                [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-                [{ 'direction': 'rtl' }],                         // text direction
-
-                [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-                [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-
-                [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-                [{ 'font': [] }],
-                [{ 'align': [] }],
-
-                ['clean'],
-                ['image', 'code-block']
-            ];
-
-            this.quill = new Quill('#editor', {
-                modules: {
-                    toolbar: toolbarOptions
-                },
-                theme: 'snow'
-            });
         }
     });
 

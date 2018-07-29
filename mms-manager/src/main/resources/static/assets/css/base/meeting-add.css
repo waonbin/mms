@@ -2,6 +2,18 @@
     添加会议
  */
 
+/*步骤条*/
+.steps {
+    margin: 20px auto;
+}
+.el-step__title.is-process {
+    color: #5766dd;
+}
+.el-step__head.is-process {
+    color: #5766dd;
+    border-color: #5766dd;
+}
+
 /*
     基本信息
  */
@@ -26,6 +38,7 @@
 }
 .form-box {
     width: 600px;
+    margin: 0 auto;
 }
 .form-box .form-list {
     margin-bottom: 20px;
@@ -47,7 +60,7 @@
     width: 100%;
 }
 .form-list .form-item .label {
-    width: 80px;
+    width: 91px;
     text-align: right;
     margin-right: 10px;
     line-height: 35px;
@@ -64,4 +77,37 @@
 .form-box .form-item.large .contant,
 .form-box .form-item.large .el-input__inner  {
     width: 360px;
+}
+.form-btn {
+    text-align: center;
+    margin: 10px;
+}
+.form-box .el-button--primary {
+    background-color: #5867dd !important;
+    border-color: #5867dd !important;
+}
+.form-box .el-button--primary:hover {
+    background-color: #5867dd !important;
+    border-color: #5867dd !important;
+}
+.signUp-box {
+    margin: 20px auto;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e6e7e7;
+}
+.el-transfer-panel__footer button {
+    padding: 6px 5px;
+    margin-left: 5px;
+}
+.stepTip {
+    width: 500px;
+    margin: 50px auto 30px;
+}
+.stepTip h3 {
+    margin-top: 30px;
+}
+.stepTip p {
+    color: #999999;
+    margin-top: 20px;
+    line-height: 1.5;
 }
