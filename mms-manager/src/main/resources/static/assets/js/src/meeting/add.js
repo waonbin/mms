@@ -54,7 +54,9 @@ $(function() {
                 modelValue: [],
                 filterMethod(query, item) {
                     return item.label.indexOf(query) > -1;
-                }
+                },
+                //报名设置-状态
+                settingState:'commond'
             }
         },
         computed: {
@@ -82,6 +84,9 @@ $(function() {
             }
         },
         methods: {
+            stateSwitch(stateName) {
+                this.settingState = stateName;
+            },
             changeTime(time) {
                 if(!time || time.length <= 0) {
                     return time
