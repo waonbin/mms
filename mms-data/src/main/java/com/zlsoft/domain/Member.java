@@ -159,7 +159,7 @@ public class Member extends AbstractBaseEntity implements Serializable {
     private String address;
 
     /**
-     * 地址
+     * 通讯地址
      */
     @Column(length = 256)
     private String fullAddress;
