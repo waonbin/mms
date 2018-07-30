@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Date;
 
 @Entity
@@ -30,54 +31,33 @@ public class Meeting extends AbstractBaseEntity implements Serializable {
     private String name;
 
     /**
-     * 会议内容
+     * 举办开始时间
      */
-    @Column(columnDefinition = "TEXT")
-    private String content;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Instant startDate;
 
     /**
-     * 会议简介
+     * 举办结束时间
      */
-    @Column(columnDefinition = "TEXT")
-    private String description;
-
-    /**
-     * 会议类型（字典）
-     */
-    private Short meetingType;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Instant endDate;
 
     /**
      * 报名人数限制
      */
-    private Short enrollmentLimit;
+    private Short peopleLimit;
 
     /**
-     * 会员价
+     * 主办单位
      */
-    private Double vipPrice;
+    @Column(length = 64)
+    private String sponsor;
 
     /**
-     * 非会员价
+     * 承办单位
      */
-    private Double price;
-
-    /**
-     * 报名开始时间
-     */
-    @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date enrollStartDate;
-
-    /**
-     * 报名结束时间
-     */
-    @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date enrollEndDate;
-
-    /**
-     * 报到日期
-     */
-    @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date checkinDate;
+    @Column(length = 64)
+    private String organizer;
 
     /**
      * 会议地址
@@ -86,7 +66,7 @@ public class Meeting extends AbstractBaseEntity implements Serializable {
     private String address;
 
     /**
-     * 精度（地址坐标）
+     * 经度（地址坐标）
      */
     private Double longitude;
 
@@ -96,46 +76,20 @@ public class Meeting extends AbstractBaseEntity implements Serializable {
     private Double latitude;
 
     /**
-     * 会议展览
+     * 会议费用类型（字典）
      */
-    @Column(columnDefinition = "TEXT")
-    private String exhibitionInfo;
+    private Short duesType;
 
     /**
-     * 会议报告
+     * 是否在系统中收费
      */
-    @Column(columnDefinition = "TEXT")
-    private String reportInfo;
+    private Boolean chargeInSystem;
 
     /**
-     * 酒店信息
+     * 报到日期
      */
-    @Column(columnDefinition = "TEXT")
-    private String hotalInfo;
-
-    /**
-     * 交通信息
-     */
-    @Column(columnDefinition = "TEXT")
-    private String trafficInfo;
-
-    /**
-     * 赞助单位
-     */
-    @Column(columnDefinition = "TEXT")
-    private String sponsor;
-
-    /**
-     * 承办单位
-     */
-    @Column(columnDefinition = "TEXT")
-    private String organizer;
-
-    /**
-     * 联系我们
-     */
-    @Column(columnDefinition = "TEXT")
-    private String contactUs;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Instant checkinDate;
 
     public Long getId() {
         return id;
@@ -153,76 +107,44 @@ public class Meeting extends AbstractBaseEntity implements Serializable {
         this.name = name;
     }
 
-    public String getContent() {
-        return content;
+    public Instant getStartDate() {
+        return startDate;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setStartDate(Instant startDate) {
+        this.startDate = startDate;
     }
 
-    public String getDescription() {
-        return description;
+    public Instant getEndDate() {
+        return endDate;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setEndDate(Instant endDate) {
+        this.endDate = endDate;
     }
 
-    public Short getMeetingType() {
-        return meetingType;
+    public Short getPeopleLimit() {
+        return peopleLimit;
     }
 
-    public void setMeetingType(Short meetingType) {
-        this.meetingType = meetingType;
+    public void setPeopleLimit(Short peopleLimit) {
+        this.peopleLimit = peopleLimit;
     }
 
-    public Short getEnrollmentLimit() {
-        return enrollmentLimit;
+    public String getSponsor() {
+        return sponsor;
     }
 
-    public void setEnrollmentLimit(Short enrollmentLimit) {
-        this.enrollmentLimit = enrollmentLimit;
+    public void setSponsor(String sponsor) {
+        this.sponsor = sponsor;
     }
 
-    public Double getVipPrice() {
-        return vipPrice;
+    public String getOrganizer() {
+        return organizer;
     }
 
-    public void setVipPrice(Double vipPrice) {
-        this.vipPrice = vipPrice;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public Date getEnrollStartDate() {
-        return enrollStartDate;
-    }
-
-    public void setEnrollStartDate(Date enrollStartDate) {
-        this.enrollStartDate = enrollStartDate;
-    }
-
-    public Date getEnrollEndDate() {
-        return enrollEndDate;
-    }
-
-    public void setEnrollEndDate(Date enrollEndDate) {
-        this.enrollEndDate = enrollEndDate;
-    }
-
-    public Date getCheckinDate() {
-        return checkinDate;
-    }
-
-    public void setCheckinDate(Date checkinDate) {
-        this.checkinDate = checkinDate;
+    public void setOrganizer(String organizer) {
+        this.organizer = organizer;
     }
 
     public String getAddress() {
@@ -249,59 +171,27 @@ public class Meeting extends AbstractBaseEntity implements Serializable {
         this.latitude = latitude;
     }
 
-    public String getExhibitionInfo() {
-        return exhibitionInfo;
+    public Short getDuesType() {
+        return duesType;
     }
 
-    public void setExhibitionInfo(String exhibitionInfo) {
-        this.exhibitionInfo = exhibitionInfo;
+    public void setDuesType(Short duesType) {
+        this.duesType = duesType;
     }
 
-    public String getReportInfo() {
-        return reportInfo;
+    public Boolean getChargeInSystem() {
+        return chargeInSystem;
     }
 
-    public void setReportInfo(String reportInfo) {
-        this.reportInfo = reportInfo;
+    public void setChargeInSystem(Boolean chargeInSystem) {
+        this.chargeInSystem = chargeInSystem;
     }
 
-    public String getHotalInfo() {
-        return hotalInfo;
+    public Instant getCheckinDate() {
+        return checkinDate;
     }
 
-    public void setHotalInfo(String hotalInfo) {
-        this.hotalInfo = hotalInfo;
-    }
-
-    public String getTrafficInfo() {
-        return trafficInfo;
-    }
-
-    public void setTrafficInfo(String trafficInfo) {
-        this.trafficInfo = trafficInfo;
-    }
-
-    public String getSponsor() {
-        return sponsor;
-    }
-
-    public void setSponsor(String sponsor) {
-        this.sponsor = sponsor;
-    }
-
-    public String getOrganizer() {
-        return organizer;
-    }
-
-    public void setOrganizer(String organizer) {
-        this.organizer = organizer;
-    }
-
-    public String getContactUs() {
-        return contactUs;
-    }
-
-    public void setContactUs(String contactUs) {
-        this.contactUs = contactUs;
+    public void setCheckinDate(Instant checkinDate) {
+        this.checkinDate = checkinDate;
     }
 }

@@ -76,7 +76,7 @@ public class MemberServiceImpl extends BaseSimpleService<Member, Long> implement
             }
         }
 
-        user.setLogin(memberVM.getName());
+        user.setLogin(memberVM.getLogin());
         user.setPassword(passwordEncoder.encode(memberVM.getPassword()));
         user.setFirstName(memberVM.getFirstName());
         user.setLastName(memberVM.getLastName());
