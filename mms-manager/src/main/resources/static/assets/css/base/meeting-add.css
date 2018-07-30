@@ -40,6 +40,9 @@
     width: 600px;
     margin: 0 auto;
 }
+.form-box.max {
+    width: auto;
+}
 .form-box .form-list {
     margin-bottom: 20px;
 }
@@ -110,4 +113,9 @@
     color: #999999;
     margin-top: 20px;
     line-height: 1.5;
+}
+.border-bottom {
+    border-bottom: 1px solid #dee2e6!important;
+    padding: 20px 0;
+    margin: 10px 0;
 }

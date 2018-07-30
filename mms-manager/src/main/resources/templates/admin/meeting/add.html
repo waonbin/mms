@@ -87,9 +87,9 @@
                                 <div class="m-portlet__head">
                                     <div class="m-portlet__head-caption">
                                         <div class="m-portlet__head-title">
-												<span class="m-portlet__head-icon m--hide">
-													<i class="la la-gear"></i>
-												</span>
+											<span class="m-portlet__head-icon m--hide">
+                                                <i class="la la-gear"></i>
+                                            </span>
                                             <h3 class="m-portlet__head-text">
                                                 会议发布
                                             </h3>
@@ -106,18 +106,18 @@
                                                <el-step title="完成发布"></el-step>
                                            </el-steps>
                                        </div>
-                                       <div class="signUp-box clearfix" v-if="step === 2">
+                                       <div class="signUp-box clearfix" v-if="step === 2 && settingState === 'commond'">
                                            <div style="float: left">
                                                <el-button type="primary">导入报名模版</el-button>
                                            </div>
                                            <div style="width: 450px; float: right">
-                                               <el-button type="primary">报名费用</el-button>
-                                               <el-button type="primary">分会场</el-button>
-                                               <el-button type="primary">酒店预订</el-button>
-                                               <el-button type="primary">参观路线</el-button>
+                                               <el-button type="primary" @click="stateSwitch('money')">报名费用</el-button>
+                                               <el-button type="primary" @click="stateSwitch('FHC')">分会场</el-button>
+                                               <el-button type="primary" @click="stateSwitch('hotelOrder')">酒店预订</el-button>
+                                               <el-button type="primary" @click="stateSwitch('route')">参观路线</el-button>
                                            </div>
                                        </div>
-                                       <div class="form-box">
+                                       <div class="form-box" v-bind:class="(step === 2 && settingState !== 'commond')?'max':''">
                                            <div v-if="step == 0">
                                                <div class="form-list clearfix">
                                                    <div class="form-item">
@@ -211,18 +211,39 @@
                                                        filter-placeholder="请输入城市"
                                                        v-model="generateValue"
                                                        :data="generateData">
-                                                   <el-button class="transfer-footer" slot="left-footer" size="small">操作</el-button>
-                                                   <el-button class="transfer-footer" slot="right-footer" size="small">操作</el-button>
                                                </el-transfer>
                                            </div>
                                            <div v-if="step == 2">
-                                               <el-transfer
-                                                       filterable
-                                                       :filter-method="filterMethod"
-                                                       filter-placeholder="请输入模版信息"
-                                                       v-model="modelValue"
-                                                       :data="modelData">
-                                               </el-transfer>
+                                               <div class="border-bottom" v-if="settingState !== 'commond'">
+                                                   <el-button type="primary" @click="stateSwitch('commond')">关闭</el-button>
+                                               </div>
+                                               <template v-if="settingState == 'commond'">
+                                                   <el-transfer
+                                                           filterable
+                                                           :filter-method="filterMethod"
+                                                           filter-placeholder="请输入模版信息"
+                                                           v-model="modelValue"
+                                                           :data="modelData">
+                                                       <el-button class="transfer-footer" slot="left-footer" size="small">操作</el-button>
+                                                       <el-button class="transfer-footer" slot="right-footer" size="small">操作</el-button>
+                                                   </el-transfer>
+                                               </template>
+                                               <!--报名费用-->
+                                               <template v-if="settingState == 'money'">
+                                                   <registration-fee></registration-fee>
+                                               </template>
+                                               <!--分会场-->
+                                               <template v-if="settingState == 'FHC'">
+                                                   <parallel-sessions></parallel-sessions>
+                                               </template>
+                                               <!--酒店预订-->
+                                               <template v-if="settingState == 'hotelOrder'">
+                                                   <hotel-order></hotel-order>
+                                               </template>
+                                               <!--参观路线-->
+                                               <template v-if="settingState == 'route'">
+                                                   <visitor-route></visitor-route>
+                                               </template>
                                            </div>
                                            <div v-if="step == 3">
                                                <div class="stepTip">
@@ -238,7 +259,7 @@
                                        </div>
                                        <div class="form-btn">
                                            <el-button type="primary" v-if="step === 3">确认发布</el-button>
-                                           <el-button type="primary" v-else @click="next">下一步</el-button>
+                                           <el-button type="primary" v-if="step !== 3 && settingState === 'commond'" @click="next">下一步</el-button>
                                        </div>
                                    </div>
                                 </div>
@@ -254,6 +275,7 @@
         <!-- begin::Footer -->
         <div th:include="/base/footer::footer"></div>
         <!-- end::Footer -->
+        <div th:include="/HYcomponents/bmfy::bmfy"></div>
     </div>
     <!-- end:: Page -->
 
@@ -264,12 +286,19 @@
 
     <!--组件-->
     <div th:include="/base/scripts::scripts"></div>
+    <!--报名设置组件-->
+    <template th:include="/HYcomponents/bmfy::bmfy"></template>
+
     <script>
         $(function() {
             $("#meeting_menu").addClass("m-menu__item--open m-menu__item--expanded");
             $("#hy_message_member").addClass("m-menu__item--active");
         })
     </script>
+    <script th:src="@{/assets/js/components/bmfy.js}"></script>
+    <script th:src="@{/assets/js/components/fhc.js}"></script>
+    <script th:src="@{/assets/js/components/jdyd.js}"></script>
+    <script th:src="@{/assets/js/components/cglx.js}"></script>
     <script th:src="@{/assets/js/src/meeting/add.js}"></script>
 </body>
 <!-- end::Body -->
