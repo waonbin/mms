@@ -11,21 +11,7 @@ import java.time.Instant;
 public class MeetingRegisterExt extends AbstractBaseEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE, generator="mtg_register_ext_id_generator")
-    @TableGenerator(name = "mtg_register_ext_id_generator",
-            table="m_id",
-            pkColumnName="pk_name",
-            valueColumnName="pk_value",
-            pkColumnValue="mtg_register_ext_pk",
-            initialValue = 10000,
-            allocationSize=1
-    )
     private Long id;
-
-    /**
-     * 会议id
-     */
-    private Long meetingId;
 
     /**
      * 字符串扩展字段1
@@ -217,20 +203,37 @@ public class MeetingRegisterExt extends AbstractBaseEntity implements Serializab
      */
     private Instant date4;
 
+    /**
+     * 布尔型扩展字段1
+     */
+    private Boolean bool0;
+
+    /**
+     * 布尔型扩展字段2
+     */
+    private Boolean bool1;
+
+    /**
+     * 布尔型扩展字段3
+     */
+    private Boolean bool2;
+
+    /**
+     * 布尔型扩展字段4
+     */
+    private Boolean bool3;
+
+    /**
+     * 布尔型扩展字段5
+     */
+    private Boolean bool4;
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getMeetingId() {
-        return meetingId;
-    }
-
-    public void setMeetingId(Long meetingId) {
-        this.meetingId = meetingId;
     }
 
     public String getString0() {
@@ -511,5 +514,45 @@ public class MeetingRegisterExt extends AbstractBaseEntity implements Serializab
 
     public void setDate4(Instant date4) {
         this.date4 = date4;
+    }
+
+    public Boolean getBool0() {
+        return bool0;
+    }
+
+    public void setBool0(Boolean bool0) {
+        this.bool0 = bool0;
+    }
+
+    public Boolean getBool1() {
+        return bool1;
+    }
+
+    public void setBool1(Boolean bool1) {
+        this.bool1 = bool1;
+    }
+
+    public Boolean getBool2() {
+        return bool2;
+    }
+
+    public void setBool2(Boolean bool2) {
+        this.bool2 = bool2;
+    }
+
+    public Boolean getBool3() {
+        return bool3;
+    }
+
+    public void setBool3(Boolean bool3) {
+        this.bool3 = bool3;
+    }
+
+    public Boolean getBool4() {
+        return bool4;
+    }
+
+    public void setBool4(Boolean bool4) {
+        this.bool4 = bool4;
     }
 }
