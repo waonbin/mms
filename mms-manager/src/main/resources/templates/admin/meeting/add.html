@@ -134,7 +134,7 @@
                                                        </div>
                                                        <div class="content">
                                                            <el-date-picker
-                                                                   v-model="base.enrollStartDate"
+                                                                   v-model="base.startDate"
                                                                    type="date"
                                                                    placeholder="选择日期"
                                                                    :picker-options="scheduled_time_start_time"
@@ -147,7 +147,7 @@
                                                        </div>
                                                        <div class="content">
                                                            <el-date-picker
-                                                                   v-model="base.enrollEndDate"
+                                                                   v-model="base.endDate"
                                                                    type="date"
                                                                    placeholder="选择日期"
                                                                    :picker-options="scheduled_time_end_time"
@@ -159,7 +159,7 @@
                                                    <div class="form-item">
                                                        <div class="base-label">主办单位:</div>
                                                        <div class="base-content">
-                                                           <el-input v-model="base.name" placeholder="请输入主办单位"></el-input>
+                                                           <el-input v-model="base.sponsor" placeholder="请输入主办单位"></el-input>
                                                        </div>
                                                    </div>
                                                </div>
@@ -167,7 +167,7 @@
                                                    <div class="form-item">
                                                        <div class="base-label">承办单位:</div>
                                                        <div class="base-content">
-                                                           <el-input type="textarea" placeholder="请输入承办单位"></el-input>
+                                                           <el-input type="textarea" v-model="base.organizer" placeholder="请输入承办单位"></el-input>
                                                        </div>
                                                    </div>
                                                </div>
@@ -185,7 +185,7 @@
                                                            会议类型
                                                        </div>
                                                        <div class="content">
-                                                           <el-select v-model="base.type" placeholder="请选择">
+                                                           <el-select v-model="base.duesType" placeholder="请选择">
                                                                <el-option label="免费" value="1"></el-option>
                                                                <el-option label="收费" value="2"></el-option>
                                                            </el-select>
@@ -196,7 +196,7 @@
                                                            是否在系统收费
                                                        </div>
                                                        <div class="content">
-                                                           <el-select v-model="base.isSF" placeholder="请选择">
+                                                           <el-select v-model="base.chargeInSystem" placeholder="请选择">
                                                                <el-option label="是" value="1"></el-option>
                                                                <el-option label="否" value="2"></el-option>
                                                            </el-select>

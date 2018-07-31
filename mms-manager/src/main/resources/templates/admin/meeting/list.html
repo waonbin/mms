@@ -18,7 +18,6 @@
           rel="stylesheet" type="text/css"/>
     <link rel="shortcut icon"
           th:href="@{{path}/assets/demo/demo12/media/img/logo/favicon.ico(path=${#request.getContextPath()})}"/>
-    <script th:src="@{{path}/assets/js/base/jquery-1.7.1.min.js(path=${#request.getContextPath()})}"></script>
 </head>
 <!-- end::Head -->
 
@@ -150,7 +149,7 @@
                                                         header-align="center"
                                                         align="center"
                                                         prop="enrollStartDate"
-                                                        label="报名开始时间"
+                                                        label="举办开始时间"
                                                         width="150"
                                                         show-overflow-tooltip
                                                 >
@@ -162,7 +161,7 @@
                                                         header-align="center"
                                                         align="center"
                                                         prop="enrollEndDate"
-                                                        label="报名结束时间"
+                                                        label="浏览人数"
                                                         width="150"
                                                         show-overflow-tooltip
                                                 >
@@ -174,10 +173,39 @@
                                                         header-align="center"
                                                         align="center"
                                                         prop="enrollmentLimit"
-                                                        label="报名人数限制"
+                                                        label="报名总数"
                                                 >
                                                 </el-table-column>
                                                 <el-table-column
+                                                        header-align="center"
+                                                        align="center"
+                                                        prop="enrollmentLimit"
+                                                        label="报名审核"
+                                                >
+                                                </el-table-column>
+                                                <el-table-column
+                                                        header-align="center"
+                                                        align="center"
+                                                        prop="enrollmentLimit"
+                                                        label="交费总额"
+                                                >
+                                                </el-table-column>
+                                                <el-table-column
+                                                        header-align="center"
+                                                        align="center"
+                                                        prop="enrollmentLimit"
+                                                        label="交费审核"
+                                                >
+                                                </el-table-column>
+                                                <el-table-column
+                                                        header-align="center"
+                                                        align="center"
+                                                        prop="enrollmentLimit"
+                                                        label="签到人数"
+                                                >
+                                                </el-table-column>
+                                                <el-table-column
+                                                        fixed="right"
                                                         header-align="center"
                                                         label="操作"
                                                         align="center"
@@ -185,7 +213,8 @@
                                                     <template  slot-scope="scope">
                                                         <el-button type="text" size="small">编辑</el-button>
                                                         <el-button type="text" size="small" @click="del(scope.row.id)">删除</el-button>
-                                                        <el-button type="text" size="small">下载二维码</el-button>
+                                                        <el-button type="text" size="small">分享通知</el-button>
+                                                        <el-button type="text" size="small">签到二维码</el-button>
                                                     </template>
                                                 </el-table-column>
                                             </el-table>

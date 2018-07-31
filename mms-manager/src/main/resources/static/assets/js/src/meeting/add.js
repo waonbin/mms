@@ -34,19 +34,17 @@ $(function() {
                 style:'',
                 dialogImageUrl:'',
                 imageUrl:'',
-                base:{
+                base: {
                     name:'',
-                    enrollmentLimit:'',
-                    meetingType:'',
-                    vipPrice:'',
-                    price:'',
-                    enrollStartDate:'',
-                    enrollEndDate:'',
-                    checkinDate:'',
+                    startDate:'',
+                    endDate:'',
+                    sponsor:'',
+                    organizer:'',
                     address:'',
-                    type:'1',
-                    isSF:'1'
+                    duesType:'1',
+                    chargeInSystem:'1'
                 },
+                baseTip: ['会议名称','举办开始时间','举办结束时间','主办单位','承办单位','举办地点'],
                 //穿梭框
                 generateData: generateData(),
                 generateValue: [],
@@ -61,7 +59,7 @@ $(function() {
         },
         computed: {
             scheduled_time_start_time: function(){
-                let endTime = this.base.enrollEndDate;
+                let endTime = this.base.endDate;
                 if(endTime){
                     endTime = new Date(endTime);
                 }
@@ -72,7 +70,7 @@ $(function() {
                 };
             },
             scheduled_time_end_time: function(){
-                let startTime = this.base.enrollStartDate;
+                let startTime = this.base.startDate;
                 if(startTime){
                     startTime = new Date(startTime);
                 }
@@ -103,18 +101,28 @@ $(function() {
                 }
                 return y+'-'+m+'-'+d
             },
+            checkBase() {
+                var keys = Object.keys(this.base);
+
+                for (let i=0; i<keys.length; i++) {
+                    if(!this.base[keys[i]]) {
+                        this.$message.warning(this.baseTip[i]+'不能为空！');
+                        break;
+                    }
+
+                    if (i === keys.length-1) {
+                        this.baseSubmit()
+                    }
+                }
+            },
             next() {
-              this.step++
-            },
-            handleClick(tab, event) {
-                console.log(tab, event);
-            },
-            handleExceed(files, fileList) {
-                this.$message.warning('当前限制选择 1 个文件');
-            },
-            handlePictureCardPreview(file) {
-                this.dialogImageUrl = file.url;
-                this.dialogVisible = true;
+                if (this.step == 0) {
+                    this.checkBase()
+                } else if(this.step == 2){
+
+                } else {
+                    this.step++
+                }
             },
             save(meeting) {
                 $.ajax({
@@ -126,15 +134,15 @@ $(function() {
                         message: '保存成功！',
                         type: 'success'
                     });
+                    this.step = 1
                 }.bind(this)).fail(function() {
                     this.$message.error('保存失败！');
                 }.bind(this))
             },
             baseSubmit() {
                 var meeting = this.base;
-                meeting.enrollStartDate = this.changeTime(meeting.enrollStartDate);
-                meeting.enrollEndDate = this.changeTime(meeting.enrollEndDate);
-                meeting.checkinDate = this.changeTime(meeting.checkinDate);
+                meeting.startDate = this.changeTime(meeting.startDate);
+                meeting.endDate = this.changeTime(meeting.endDate);
 
                 if(this.base.name.length == 0) {
                     this.$message.error('会议名称不能为空！');
