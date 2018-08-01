@@ -8,6 +8,7 @@ spring:
   thymeleaf:
     suffix: .html
     prefix: classpath:/templates/
+    cache: false
 
   datasource:
     url: jdbc:mysql://118.89.182.118:3306/mms?useUnicode=true&amp;characterEncoding=UTF-8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull
