@@ -19,6 +19,7 @@
     <link rel="shortcut icon"
           th:href="@{{path}/assets/demo/demo12/media/img/logo/favicon.ico(path=${#request.getContextPath()})}"/>
     <link rel="stylesheet" th:href="@{/assets/css/base/meeting-add.css}">
+    <link href="http://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
 </head>
 <!-- end::Head -->
 
@@ -205,13 +206,18 @@
                                                </div>
                                            </div>
                                            <div v-if="step == 1">
-                                               <el-transfer
-                                                       filterable
-                                                       :filter-method="filterMethod"
-                                                       filter-placeholder="请输入城市"
-                                                       v-model="generateValue"
-                                                       :data="generateData">
-                                               </el-transfer>
+                                               <template v-if="!hwState">
+                                                   <hy-group></hy-group>
+                                               </template>
+                                               <template v-if="hwState">
+                                                   <el-transfer
+                                                           filterable
+                                                           :filter-method="filterMethod"
+                                                           filter-placeholder="请输入城市"
+                                                           v-model="generateValue"
+                                                           :data="generateData">
+                                                   </el-transfer>
+                                               </template>
                                            </div>
                                            <div v-if="step == 2">
                                                <div class="border-bottom" v-if="settingState !== 'commond'">
@@ -259,7 +265,9 @@
                                        </div>
                                        <div class="form-btn">
                                            <el-button type="primary" v-if="step === 3">确认发布</el-button>
-                                           <el-button type="primary" v-if="step !== 3 && settingState === 'commond'" @click="next">下一步</el-button>
+                                           <el-button type="primary" v-if="step === 1 && !hwState">保存</el-button>
+                                           <el-button type="primary" v-if="step !== 3 && !hwState && settingState === 'commond'" @click="next">下一步</el-button>
+                                           <el-button type="primary" v-if="step === 1 && hwState" @click="hwStateEdit">确定</el-button>
                                        </div>
                                    </div>
                                 </div>
@@ -275,7 +283,7 @@
         <!-- begin::Footer -->
         <div th:include="/base/footer::footer"></div>
         <!-- end::Footer -->
-        <div th:include="/HYcomponents/bmfy::bmfy"></div>
+
     </div>
     <!-- end:: Page -->
 
@@ -286,8 +294,9 @@
 
     <!--组件-->
     <div th:include="/base/scripts::scripts"></div>
+    <script src="http://cdn.quilljs.com/1.0.0/quill.js"></script>
     <!--报名设置组件-->
-    <template th:include="/HYcomponents/bmfy::bmfy"></template>
+    <template th:include="/HYcomponents/hy::hy"></template>
 
     <script>
         $(function() {
@@ -296,6 +305,7 @@
         })
     </script>
     <script th:src="@{/assets/js/components/bmfy.js}"></script>
+    <script th:src="@{/assets/js/components/hy.js}"></script>
     <script th:src="@{/assets/js/components/fhc.js}"></script>
     <script th:src="@{/assets/js/components/jdyd.js}"></script>
     <script th:src="@{/assets/js/components/cglx.js}"></script>

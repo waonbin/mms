@@ -29,11 +29,13 @@ $(function() {
 
             return {
                 qull:null,
-                step: 0,
+                step: 1,
                 dialogVisible:false,
                 style:'',
                 dialogImageUrl:'',
                 imageUrl:'',
+                //会务设置状态： 0-编辑，1-设置
+                hwState: 1,
                 base: {
                     name:'',
                     startDate:'',
@@ -114,6 +116,10 @@ $(function() {
                         this.baseSubmit()
                     }
                 }
+            },
+            //会务状态调整为富文本
+            hwStateEdit() {
+              this.hwState = 0
             },
             next() {
                 if (this.step == 0) {

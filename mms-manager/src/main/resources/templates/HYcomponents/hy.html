@@ -1,5 +1,12 @@
-<template th:fragment="bmfy">
-    <!--组件-报名费用-->
+<template th:fragment="hy">
+    <!--会务富文本-->
+    <template id="hw">
+        <template v-for="item in List">
+            <div class="editor-box" id="editor"></div>
+        </template>
+    </template>
+
+    <!--报名费用-->
     <template id="bmfy">
         <div>
             <el-table
