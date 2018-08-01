@@ -5,7 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.Instant;
+import java.util.Date;
 
 @Entity
 @Table(name = "d_meeting_register")
@@ -43,7 +43,7 @@ public class MeetingRegister extends AbstractBaseEntity implements Serializable 
      * 出生日期
      */
     @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Instant birthday;
+    private Date birthday;
 
     /**
      * 职务/职称
@@ -108,13 +108,13 @@ public class MeetingRegister extends AbstractBaseEntity implements Serializable 
      * 抵达时间
      */
     @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Instant arrivalDate;
+    private Date arrivalDate;
 
     /**
      * 离开时间
      */
     @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Instant departureDate;
+    private Date departureDate;
 
     /**
      * 会场选择
@@ -173,11 +173,11 @@ public class MeetingRegister extends AbstractBaseEntity implements Serializable 
         this.gender = gender;
     }
 
-    public Instant getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Instant birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 
@@ -261,19 +261,19 @@ public class MeetingRegister extends AbstractBaseEntity implements Serializable 
         this.zipcode = zipcode;
     }
 
-    public Instant getArrivalDate() {
+    public Date getArrivalDate() {
         return arrivalDate;
     }
 
-    public void setArrivalDate(Instant arrivalDate) {
+    public void setArrivalDate(Date arrivalDate) {
         this.arrivalDate = arrivalDate;
     }
 
-    public Instant getDepartureDate() {
+    public Date getDepartureDate() {
         return departureDate;
     }
 
-    public void setDepartureDate(Instant departureDate) {
+    public void setDepartureDate(Date departureDate) {
         this.departureDate = departureDate;
     }
 

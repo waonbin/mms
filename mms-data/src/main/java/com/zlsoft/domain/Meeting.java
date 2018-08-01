@@ -34,13 +34,13 @@ public class Meeting extends AbstractBaseEntity implements Serializable {
      * 举办开始时间
      */
     @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Instant startDate;
+    private Date startDate;
 
     /**
      * 举办结束时间
      */
     @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Instant endDate;
+    private Date endDate;
 
     /**
      * 报名人数限制
@@ -107,19 +107,19 @@ public class Meeting extends AbstractBaseEntity implements Serializable {
         this.name = name;
     }
 
-    public Instant getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Instant startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public Instant getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Instant endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 

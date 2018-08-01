@@ -2,7 +2,9 @@ package com.zlsoft.domain;
 
 import com.zlsoft.utils.domain.AbstractBaseEntity;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 /**

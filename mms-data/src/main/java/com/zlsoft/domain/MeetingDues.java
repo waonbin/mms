@@ -6,7 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.Instant;
+import java.util.Date;
 
 /**
  * 会议报名费用
@@ -41,13 +41,13 @@ public class MeetingDues extends AbstractBaseEntity implements Serializable {
      * 开始时间
      */
     @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Instant startDate;
+    private Date startDate;
 
     /**
      * 结束时间
      */
     @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Instant endDate;
+    private Date endDate;
 
     /**
      * 会议费用
@@ -79,19 +79,19 @@ public class MeetingDues extends AbstractBaseEntity implements Serializable {
         this.memberType = memberType;
     }
 
-    public Instant getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Instant startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public Instant getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Instant endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
