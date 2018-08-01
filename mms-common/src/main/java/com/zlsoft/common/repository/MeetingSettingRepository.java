@@ -8,6 +8,4 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 public interface MeetingSettingRepository extends JpaRepository<MeetingSetting, Long>,
         JpaSpecificationExecutor<MeetingSetting>,
         BaseRepository<MeetingSetting, Long> {
-
-    void deleteByMeetingId(Long meetingId);
 }

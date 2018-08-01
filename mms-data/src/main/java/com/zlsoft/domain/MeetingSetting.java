@@ -12,27 +12,16 @@ import java.io.Serializable;
 @Table(name = "d_meeting_setting")
 public class MeetingSetting extends AbstractBaseEntity implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.TABLE, generator="mtg_setting_id_generator")
-    @TableGenerator(name = "mtg_setting_id_generator",
-            table="m_id",
-            pkColumnName="pk_name",
-            valueColumnName="pk_value",
-            pkColumnValue="mtg_setting_pk",
-            initialValue = 10000,
-            allocationSize=1
-    )
-    private Long id;
-
     /**
      * 会议id
      */
-    private Long meetingId;
+    @Id
+    private Long id;
 
     /**
      * 会议展览
      */
-    private Boolean exihibition;
+    private Boolean exhibition;
 
     /**
      * 会议报告
@@ -92,20 +81,12 @@ public class MeetingSetting extends AbstractBaseEntity implements Serializable {
         this.id = id;
     }
 
-    public Long getMeetingId() {
-        return meetingId;
+    public Boolean getExhibition() {
+        return exhibition;
     }
 
-    public void setMeetingId(Long meetingId) {
-        this.meetingId = meetingId;
-    }
-
-    public Boolean getExihibition() {
-        return exihibition;
-    }
-
-    public void setExihibition(Boolean exihibition) {
-        this.exihibition = exihibition;
+    public void setExhibition(Boolean exhibition) {
+        this.exhibition = exhibition;
     }
 
     public Boolean getReport() {

@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/admin/meeting")
@@ -70,6 +72,22 @@ public class MeetingResource {
     }
 
     /**
+     * GET  /setting/info : get meeting settings by meeting id
+     * @param meetingId meeting id
+     * @return The HTTP Status with meeting settings' data
+     */
+    @GetMapping("/setting/info")
+    public ResponseEntity getSettings(long meetingId) {
+        Optional<MeetingSetting> optionalMeetingSetting = this.meetingSettingService.findById(meetingId);
+
+        if(optionalMeetingSetting.isPresent()) {
+            return ResponseEntity.ok(optionalMeetingSetting.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    /**
      * POST  /setting/save : save meeting setting data
      * @param setting meeting setting data to be saved
      * @return saved meeting setting data
@@ -87,8 +105,35 @@ public class MeetingResource {
      */
     @PostMapping("/setting/delete")
     public ResponseEntity deleteSetting(long id) {
-        this.meetingSettingService.deleteByMeetingId(id);
+        this.meetingSettingService.deleteById(id);
         return ResponseEntity.ok().build();
+    }
+
+    /**
+     * GET  /affair/info : get meeting affairs by meeting id
+     * @param meetingId meeting id
+     * @return The HTTP Status with meeting affairs' data
+     */
+    @GetMapping("/affair/info")
+    public ResponseEntity getAffairs(long meetingId) {
+        List<MeetingAffair> meetingAffairs = this.meetingAffairService.findByMeetingId(meetingId);
+        return ResponseEntity.ok(meetingAffairs);
+    }
+
+    /**
+     * GET  /affair/details : get meeting affair's details by meeting affair id
+     * @param id meeting affair id
+     * @return The HTTP Status with meeting affair's details info
+     */
+    @GetMapping("/affair/details")
+    public ResponseEntity getAffairDetails(long id) {
+        Optional<MeetingAffair> optionalMeetingAffair = this.meetingAffairService.findById(id);
+
+        if(optionalMeetingAffair.isPresent()) {
+            return ResponseEntity.ok(optionalMeetingAffair.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     /**
@@ -111,6 +156,33 @@ public class MeetingResource {
     public ResponseEntity deleteAffair(long id) {
         this.meetingAffairService.deleteByMeetingId(id);
         return ResponseEntity.ok().build();
+    }
+
+    /**
+     * GET  /dues/info : get meeting dues by meeting id
+     * @param meetingId meeting id
+     * @return The HTTP Status with meeting dues' data
+     */
+    @GetMapping("/dues/info")
+    public ResponseEntity getDues(long meetingId) {
+        List<MeetingDues> meetingDues = this.meetingDuesService.findByMeetingId(meetingId);
+        return ResponseEntity.ok(meetingDues);
+    }
+
+    /**
+     * GET  /dues/details : get meeting dues's details by meeting dues id
+     * @param id meeting dues id
+     * @return The HTTP Status with meeting dues's details info
+     */
+    @GetMapping("/dues/details")
+    public ResponseEntity getDuesDetails(long id) {
+        Optional<MeetingDues> optionalMeetingDues = this.meetingDuesService.findById(id);
+
+        if(optionalMeetingDues.isPresent()) {
+            return ResponseEntity.ok(optionalMeetingDues.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     /**
@@ -147,6 +219,33 @@ public class MeetingResource {
     }
 
     /**
+     * GET  /hotel/info : get meeting hotel by meeting id
+     * @param meetingId meeting id
+     * @return The HTTP Status with meeting hotels' data
+     */
+    @GetMapping("/hotel/info")
+    public ResponseEntity getHotels(long meetingId) {
+        List<MeetingHotel> meetingDues = this.meetingHotelService.findByMeetingId(meetingId);
+        return ResponseEntity.ok(meetingDues);
+    }
+
+    /**
+     * GET  /hotel/details : get meeting hotels' details by meeting hotel id
+     * @param id meeting hotel id
+     * @return The HTTP Status with meeting hotels' details info
+     */
+    @GetMapping("/hotel/details")
+    public ResponseEntity getHotelDetails(long id) {
+        Optional<MeetingHotel> optionalMeetingHotel = this.meetingHotelService.findById(id);
+
+        if(optionalMeetingHotel.isPresent()) {
+            return ResponseEntity.ok(optionalMeetingHotel.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    /**
      * POST  /hotel/save : save meeting hotel data
      * @param hotel meeting hotel data to be saved
      * @return saved meeting hotel data
@@ -180,6 +279,33 @@ public class MeetingResource {
     }
 
     /**
+     * GET  /place/info : get meeting place by meeting id
+     * @param meetingId meeting id
+     * @return The HTTP Status with meeting places' data
+     */
+    @GetMapping("/place/info")
+    public ResponseEntity getPlaces(long meetingId) {
+        List<MeetingPlace> meetingPlaces = this.meetingPlaceService.findByMeetingId(meetingId);
+        return ResponseEntity.ok(meetingPlaces);
+    }
+
+    /**
+     * GET  /place/details : get meeting hotels' details by meeting place id
+     * @param id meeting place id
+     * @return The HTTP Status with meeting places' details info
+     */
+    @GetMapping("/place/details")
+    public ResponseEntity getPlaceDetails(long id) {
+        Optional<MeetingPlace> optionalMeetingPlace = this.meetingPlaceService.findById(id);
+
+        if(optionalMeetingPlace.isPresent()) {
+            return ResponseEntity.ok(optionalMeetingPlace.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    /**
      * POST  /place/save : save meeting place data
      * @param place meeting place data to be saved
      * @return saved meeting place data
@@ -210,6 +336,33 @@ public class MeetingResource {
     public ResponseEntity deletePlaceById(@PathVariable long id) {
         this.meetingPlaceService.deleteById(id);
         return ResponseEntity.ok().build();
+    }
+
+    /**
+     * GET  /route/info : get meeting route by meeting id
+     * @param meetingId meeting id
+     * @return The HTTP Status with meeting routes' data
+     */
+    @GetMapping("/route/info")
+    public ResponseEntity getRoutes(long meetingId) {
+        List<MeetingVisitorRoute> meetingVisitorRoutes = this.meetingVisitorRouteService.findByMeetingId(meetingId);
+        return ResponseEntity.ok(meetingVisitorRoutes);
+    }
+
+    /**
+     * GET  /route/details : get meeting routes' details by meeting route id
+     * @param id meeting route id
+     * @return The HTTP Status with meeting routes' details info
+     */
+    @GetMapping("/route/details")
+    public ResponseEntity getRouteDetails(long id) {
+        Optional<MeetingVisitorRoute> optionalMeetingVisitorRoute = this.meetingVisitorRouteService.findById(id);
+
+        if(optionalMeetingVisitorRoute.isPresent()) {
+            return ResponseEntity.ok(optionalMeetingVisitorRoute.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     /**

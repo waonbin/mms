@@ -7,9 +7,17 @@ import com.zlsoft.utils.service.impl.BaseSimpleService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Transactional
 @Service("meetingAffairService")
 public class MeetingAffairServiceImpl extends BaseSimpleService<MeetingAffair, Long> implements MeetingAffairService {
+
+    @Override
+    public List<MeetingAffair> findByMeetingId(Long meetingId) {
+        return ((MeetingAffairRepository)this.getRepository()).findByMeetingId(meetingId);
+    }
+
     @Override
     public void deleteByMeetingId(Long meetingId) {
         ((MeetingAffairRepository)this.getRepository()).deleteByMeetingId(meetingId);
