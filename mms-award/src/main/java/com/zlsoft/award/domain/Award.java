@@ -5,7 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.Instant;
+import java.util.Date;
 
 /**
  * 奖项基本信息
@@ -42,19 +42,19 @@ public class Award extends AbstractBaseEntity implements Serializable {
      * 申报时间
      */
     @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Instant declareDate;
+    private Date declareDate;
 
     /**
      * 初审时间
      */
     @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Instant firstTrialDate;
+    private Date firstTrialDate;
 
     /**
      * 复审时间
      */
     @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Instant retrialDate;
+    private Date retrialDate;
 
     /**
      * 奖项类别
@@ -86,27 +86,27 @@ public class Award extends AbstractBaseEntity implements Serializable {
         this.content = content;
     }
 
-    public Instant getDeclareDate() {
+    public Date getDeclareDate() {
         return declareDate;
     }
 
-    public void setDeclareDate(Instant declareDate) {
+    public void setDeclareDate(Date declareDate) {
         this.declareDate = declareDate;
     }
 
-    public Instant getFirstTrialDate() {
+    public Date getFirstTrialDate() {
         return firstTrialDate;
     }
 
-    public void setFirstTrialDate(Instant firstTrialDate) {
+    public void setFirstTrialDate(Date firstTrialDate) {
         this.firstTrialDate = firstTrialDate;
     }
 
-    public Instant getRetrialDate() {
+    public Date getRetrialDate() {
         return retrialDate;
     }
 
-    public void setRetrialDate(Instant retrialDate) {
+    public void setRetrialDate(Date retrialDate) {
         this.retrialDate = retrialDate;
     }
 
