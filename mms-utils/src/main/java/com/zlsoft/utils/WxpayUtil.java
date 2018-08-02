@@ -5,49 +5,100 @@ import com.github.wxpay.sdk.WXPay;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WxpayUtil {
+public class WxPayUtil {
 
-    public static void pay() throws Exception {
-
-        com.github.wxpay.sdk.WXPayConfig config = new WXPayConfig();
-        WXPay wxpay = new WXPay(config);
-
-        Map<String, String> data = new HashMap<>();
-        data.put("body", "腾讯充值中心-QQ会员充值");
-        data.put("out_trade_no", "2016090910595900000012");
-        data.put("device_info", "");
-        data.put("fee_type", "CNY");
-        data.put("total_fee", "1");
-        data.put("spbill_create_ip", "123.12.12.123");
-        data.put("notify_url", "http://www.example.com/wxpay/notify");
-        data.put("trade_type", "NATIVE");  // 此处指定为扫码支付
-        data.put("product_id", "12");
+    public static WxPayResult pay() {
 
         try {
-            Map<String, String> resp = wxpay.unifiedOrder(data);
-            System.out.println(resp);
+            WechatPayConfig config = WechatPayConfig.getInstance();
+            WXPay wxPay = new WXPay(config);
+
+            Map<String, String> data = new HashMap<String, String>();
+            data.put("body", "test");
+            data.put("out_trade_no", "2016090910595900000012");
+            data.put("device_info", "");
+            data.put("fee_type", "CNY");
+            data.put("total_fee", "1");
+            data.put("spbill_create_ip", "123.12.12.123");
+            data.put("notify_url", "http://www.example.com/wxpay/notify");
+            data.put("trade_type", "NATIVE");  // 此处指定为扫码支付
+            data.put("product_id", "12");
+
+            Map<String, String> resp = wxPay.unifiedOrder(data);
+
+            return convert(resp);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        return null;
     }
 
-    public static void main(String[] args) throws Exception {
+    /**
+     * 转换支付接口返回结构
+     * @param resp 接口返回值
+     * @return 转换后的值
+     */
+    private static WxPayResult convert(Map<String, String> resp) {
 
-        String parameter = "<xml>\n" +
-                "   <appid>wxa5f7a37b2d85c419</appid>\n" +
-                "   <attach>支付测试</attach>\n" +
-                "   <body>JSAPI支付测试</body>\n" +
-                "   <mch_id>1501344151</mch_id>\n" +
-                "   <detail><![CDATA[{ \"goods_detail\":[ { \"goods_id\":\"iphone6s_16G\", \"wxpay_goods_id\":\"1001\", \"goods_name\":\"iPhone6s 16G\", \"quantity\":1, \"price\":528800, \"goods_category\":\"123456\", \"body\":\"苹果手机\" }, { \"goods_id\":\"iphone6s_32G\", \"wxpay_goods_id\":\"1002\", \"goods_name\":\"iPhone6s 32G\", \"quantity\":1, \"price\":608800, \"goods_category\":\"123789\", \"body\":\"苹果手机\" } ] }]]></detail>\n" +
-                "   <nonce_str>1add1a30ac87aa2db72f57a2375d8fec</nonce_str>\n" +
-                "   <notify_url>http://wxpay.wxutil.com/pub_v2/pay/notify.v2.php</notify_url>\n" +
-                "   <openid>oUpF8uMuAJO_M2pxb1Q9zNjWeS6o</openid>\n" +
-                "   <out_trade_no>1415659990</out_trade_no>\n" +
-                "   <spbill_create_ip>14.23.150.211</spbill_create_ip>\n" +
-                "   <total_fee>0.01</total_fee>\n" +
-                "   <trade_type>JSAPI</trade_type>\n" +
-                "   <sign>0CB01533B8C1EF103065174F50BCA001</sign>\n" +
-                "</xml>";
+        if(resp == null) {
+            return null;
+        }
 
+        WxPayResult result = new WxPayResult();
+
+        if(resp.containsKey("return_code")) {
+            result.setReturnCode(resp.get("return_code"));
+        }
+
+        if(resp.containsKey("return_msg")) {
+            result.setReturnMsg(resp.get("return_msg"));
+        }
+
+        if(resp.containsKey("appid")) {
+            result.setAppid(resp.get("appid"));
+        }
+
+        if(resp.containsKey("mch_id")) {
+            result.setMchId(resp.get("mch_id"));
+        }
+
+        if(resp.containsKey("device_info")) {
+            result.setDeviceInfo(resp.get("device_info"));
+        }
+
+        if(resp.containsKey("nonce_str")) {
+            result.setNonceStr(resp.get("nonce_str"));
+        }
+
+        if(resp.containsKey("sign")) {
+            result.setSign(resp.get("sign"));
+        }
+
+        if(resp.containsKey("result_code")) {
+            result.setResultCode(resp.get("result_code"));
+        }
+
+        if(resp.containsKey("err_code")) {
+            result.setErrorCode(resp.get("err_code"));
+        }
+
+        if(resp.containsKey("err_code_des")) {
+            result.setErrorCodeDes(resp.get("err_code_des"));
+        }
+
+        if(resp.containsKey("trade_type")) {
+            result.setTradeType(resp.get("trade_type"));
+        }
+
+        if(resp.containsKey("prepay_id")) {
+            result.setPrepayId(resp.get("prepay_id"));
+        }
+
+        if(resp.containsKey("code_url")) {
+            result.setPrepayId(resp.get("code_url"));
+        }
+
+        return  result;
     }
 }

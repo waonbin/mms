@@ -8,16 +8,16 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "d_payment")
-public class Payment extends AbstractBaseEntity implements Serializable {
+@Table(name = "d_order")
+public class Order extends AbstractBaseEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE, generator="payment_id_generator")
-    @TableGenerator(name = "payment_id_generator",
+    @GeneratedValue(strategy = GenerationType.TABLE, generator="order_id_generator")
+    @TableGenerator(name = "order_id_generator",
             table="m_id",
             pkColumnName="pk_name",
             valueColumnName="pk_value",
-            pkColumnValue="payment_pk",
+            pkColumnValue="order_pk",
             initialValue = 10000,
             allocationSize=1
     )

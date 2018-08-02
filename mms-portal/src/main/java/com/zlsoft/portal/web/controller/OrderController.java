@@ -1,11 +1,10 @@
 package com.zlsoft.portal.web.controller;
 
-import com.zlsoft.common.service.PaymentService;
+import com.zlsoft.common.service.OrderService;
 import com.zlsoft.common.web.controller.BaseController;
 import com.zlsoft.common.web.vm.MemberVM;
 import com.zlsoft.domain.Invoice;
-import com.zlsoft.domain.Member;
-import com.zlsoft.domain.Payment;
+import com.zlsoft.domain.Order;
 import com.zlsoft.portal.Constants;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,10 +17,10 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/payment")
-public class PaymentController extends BaseController {
+public class OrderController extends BaseController {
 
     @Inject
-    private PaymentService paymentService;
+    private OrderService orderService;
 
     /**
      * GET  /payment : get payment page
@@ -49,7 +48,7 @@ public class PaymentController extends BaseController {
 
         PageRequest pageRequest = PageRequest.of(page, Constants.PAGE_SIZE);
 
-        Page<Payment> payments = this.paymentService.findByMemberId(member.getId(), pageRequest);
+        Page<Order> payments = this.orderService.findByMemberId(member.getId(), pageRequest);
 
         return ResponseEntity.ok(payments);
     }
@@ -69,8 +68,8 @@ public class PaymentController extends BaseController {
      * @return HTTP Status with payment information
      */
     @PostMapping("/pay/type")
-    public @ResponseBody ResponseEntity ChoosePay(Payment payment) {
-        payment = this.paymentService.save(payment);
+    public @ResponseBody ResponseEntity ChoosePay(Order payment) {
+        payment = this.orderService.save(payment);
         return ResponseEntity.ok(payment);
     }
 
@@ -80,8 +79,8 @@ public class PaymentController extends BaseController {
      * @return HTTP Status with payment information
      */
     @PostMapping("/pay")
-    public @ResponseBody ResponseEntity Pay(Payment payment) {
-        payment = this.paymentService.save(payment);
+    public @ResponseBody ResponseEntity Pay(Order payment) {
+        payment = this.orderService.save(payment);
         return ResponseEntity.ok(payment);
     }
 
@@ -112,8 +111,8 @@ public class PaymentController extends BaseController {
      * @return HTTP Status with payment information
      */
     @PostMapping("/order")
-    public @ResponseBody ResponseEntity order(Payment payment, Invoice invoice) {
-        payment = this.paymentService.save(payment, invoice);
+    public @ResponseBody ResponseEntity order(Order payment, Invoice invoice) {
+        payment = this.orderService.save(payment, invoice);
         return ResponseEntity.ok(payment);
     }
 }

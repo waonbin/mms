@@ -6,6 +6,22 @@ import java.io.InputStream;
 
 public class WechatPayConfig extends com.github.wxpay.sdk.WXPayConfig {
 
+    private static WechatPayConfig INSTANCE;
+
+    private WechatPayConfig() {
+    }
+
+    public static WechatPayConfig getInstance() {
+        if (INSTANCE == null) {
+            synchronized (WechatPayConfig.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = new WechatPayConfig();
+                }
+            }
+        }
+        return INSTANCE;
+    }
+
     @Override
     public String getAppID() {
         return "wxa5f7a37b2d85c419";
@@ -18,7 +34,7 @@ public class WechatPayConfig extends com.github.wxpay.sdk.WXPayConfig {
 
     @Override
     public String getKey() {
-        return "f8e4c5603b328bffc729f84a305ff89b";
+        return "C8LaZ3Fq4h3CK8LW2gxPdto7NQ6yTfXD";
     }
 
     @Override
@@ -28,6 +44,6 @@ public class WechatPayConfig extends com.github.wxpay.sdk.WXPayConfig {
 
     @Override
     public IWXPayDomain getWXPayDomain() {
-        return null;
+        return WechatPayDomain.instance();
     }
 }
