@@ -1,9 +1,9 @@
 package com.zlsoft.manager.web.vm;
 
 import com.zlsoft.domain.Member;
-import com.zlsoft.domain.Payment;
+import com.zlsoft.domain.Order;
 
-public class OrderVM extends Payment {
+public class OrderVM extends Order {
 
     /**
      * 会员名称
@@ -20,7 +20,7 @@ public class OrderVM extends Payment {
      */
     private Short reference;
 
-    public OrderVM(Payment payment, Member member) {
+    public OrderVM(Order payment, Member member) {
 
         if(payment != null) {
             this.setId(payment.getId());

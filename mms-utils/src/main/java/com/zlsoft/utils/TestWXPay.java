@@ -8,15 +8,12 @@ import java.util.Map;
 public class TestWXPay {
 
     private WXPay wxpay;
-    private WXPayConfigImpl config;
+    private WechatPayConfig config;
     private String out_trade_no;
     private String total_fee;
 
     public TestWXPay() throws Exception {
-        config = WXPayConfigImpl.getInstance();
-        config.setAppID("wxa5f7a37b2d85c419");//自己的AppID
-        config.setMchID("1501344151");//自己的MchId
-        config.setKey("f8e4c5603b328bffc729f84a305ff89b");//自己的Appkey
+        config = WechatPayConfig.getInstance();
         wxpay = new WXPay(config);
         total_fee = "0.01";
         // out_trade_no = "201701017496748980290321";
@@ -27,24 +24,43 @@ public class TestWXPay {
      * 扫码支付  下单
      */
     public void doUnifiedOrder() {
-        HashMap<String, String> data = new HashMap<String, String>();
-        data.put("body", "充值0.01元");
-        data.put("out_trade_no", out_trade_no);
-        data.put("device_info", "WEB");
+
+        Map<String, String> data = new HashMap<String, String>();
+        data.put("body", "test");
+        data.put("out_trade_no", "2016090910595900000012");
+        data.put("device_info", "");
         data.put("fee_type", "CNY");
-        data.put("total_fee", "0.01");
+        data.put("total_fee", "1");
         data.put("spbill_create_ip", "123.12.12.123");
-        data.put("notify_url", "http://test.letiantian.me/wxpay/notify");
-        data.put("trade_type", "NATIVE");
-        data.put("product_id", "fmwijfief4648584488484848484");
-        // data.put("time_expire", "20170112104120");
+        data.put("notify_url", "http://www.example.com/wxpay/notify");
+        data.put("trade_type", "NATIVE");  // 此处指定为扫码支付
+        data.put("product_id", "12");
 
         try {
-            Map<String, String> r = wxpay.unifiedOrder(data);
-            System.out.println(r);
+            Map<String, String> resp = wxpay.unifiedOrder(data);
+            System.out.println(resp);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+//        HashMap<String, String> data = new HashMap<String, String>();
+//        data.put("body", "充值0.01元");
+//        data.put("out_trade_no", out_trade_no);
+//        data.put("device_info", "WEB");
+//        data.put("fee_type", "CNY");
+//        data.put("total_fee", "0.01");
+//        data.put("spbill_create_ip", "123.12.12.123");
+//        data.put("notify_url", "http://test.letiantian.me/wxpay/notify");
+//        data.put("trade_type", "NATIVE");
+//        data.put("product_id", "fmwijfief4648584488484848484");
+//        // data.put("time_expire", "20170112104120");
+//
+//        try {
+//            Map<String, String> r = wxpay.unifiedOrder(data);
+//            System.out.println(r);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
 

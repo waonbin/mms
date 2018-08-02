@@ -1,10 +1,10 @@
 package com.zlsoft.manager.web.controller;
 
 import com.zlsoft.common.service.MemberService;
-import com.zlsoft.common.service.PaymentService;
+import com.zlsoft.common.service.OrderService;
 import com.zlsoft.common.web.controller.BaseController;
 import com.zlsoft.domain.Member;
-import com.zlsoft.domain.Payment;
+import com.zlsoft.domain.Order;
 import com.zlsoft.manager.Constants;
 import com.zlsoft.manager.web.vm.OrderVM;
 import org.springframework.data.domain.Page;
@@ -21,10 +21,10 @@ import java.util.Optional;
 
 @Controller("AdminPaymentController")
 @RequestMapping("/admin/payment")
-public class PaymentController extends BaseController {
+public class OrderController extends BaseController {
 
     @Inject
-    private PaymentService paymentService;
+    private OrderService orderService;
 
     @Inject
     private MemberService memberService;
@@ -47,7 +47,7 @@ public class PaymentController extends BaseController {
     public @ResponseBody
     ResponseEntity getPaymentChecks(@PathVariable("page") int page) {
         PageRequest pageRequest = PageRequest.of(page, Constants.PAGE_SIZE);
-        Page<Payment> members = this.paymentService.findAll(pageRequest);
+        Page<Order> members = this.orderService.findAll(pageRequest);
         return ResponseEntity.ok(members);
     }
 
@@ -69,7 +69,7 @@ public class PaymentController extends BaseController {
     public @ResponseBody
     ResponseEntity getMemberPayments(@PathVariable("page") int page) {
         PageRequest pageRequest = PageRequest.of(page, Constants.PAGE_SIZE);
-        Page<Payment> members = this.paymentService.findAll(pageRequest);
+        Page<Order> members = this.orderService.findAll(pageRequest);
         return ResponseEntity.ok(members);
     }
 
@@ -90,7 +90,7 @@ public class PaymentController extends BaseController {
      */
     @GetMapping("/details/{id}")
     public @ResponseBody ResponseEntity details(@PathVariable long id) {
-        Optional<Payment> payment = this.paymentService.findById(id);
+        Optional<Order> payment = this.orderService.findById(id);
 
         if(payment.isPresent()) {
 
