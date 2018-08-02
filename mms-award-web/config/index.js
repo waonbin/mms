@@ -10,7 +10,12 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+        // '/award': {
+        //     target: 'http://localhost:8083/mms',// 接口的域名
+        //     //changeOrigin: true,// 如果接口跨域，需要进行这个参数配置
+        // }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

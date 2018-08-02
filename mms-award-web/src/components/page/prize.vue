@@ -128,12 +128,9 @@
                 const url ='/award/awards/page/'+this.page;
 
                 $.ajax({
-                    url: baseUrl + url,
                     crossDomain: true,//标记要跨域请求
-                    dataType: "jsonp",//ajax 跨域这里必须这样填写，jsonp是json的扩展
                     jsonp: "action",//请求处理标注，和jsonpCallback 相对应。
                     jsonpCallback: "asyncAjax",
-                    type: 'get'
                 }).done(function(data) {
                     console.log(data)
                 }.bind(this))
