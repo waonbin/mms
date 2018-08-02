@@ -2,3 +2,7 @@
 *.iml
 /.idea/
 /*/target/
+mms-award-web/.idea
+mms-award-web/node_modules
+mms-award-web/.idea/vcs.xml
+mms-award-web/.idea/vcs.xml
