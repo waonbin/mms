@@ -27,7 +27,7 @@
             </div>
             <div class="table-box">
                 <el-table
-                        :data="tableData3"
+                        :data="tableData"
                         max-height="600"
                         border
                         @selection-change="handleSelectionChange"
@@ -39,14 +39,14 @@
                             width="55">
                     </el-table-column>
                     <el-table-column
-                            prop="date"
+                            prop="name"
                             header-align="center"
                             label="奖项名称"
                             show-overflow-tooltip
                             width="280">
                     </el-table-column>
                     <el-table-column
-                            prop="name"
+                            prop="declareDate"
                             header-align="center"
                             label="起止时间"
                             width="300">
@@ -69,6 +69,8 @@
                             width="100">
                         <template slot-scope="scope">
                             <el-button type="text" size="small">编辑</el-button>
+                            <el-button type="text" size="small"
+                                @click="delet(scope.row.id)">删除</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -77,7 +79,9 @@
                 <el-pagination
                         background
                         layout="prev, pager, next"
-                        :total="1000">
+                        :total="totalElements"
+                        @current-change="handleCurrentChange"
+                >
                 </el-pagination>
             </div>
         </div>
@@ -90,36 +94,9 @@
     export default {
         data() {
             return {
-                page: '1',
-                tableData3: [{
-                    date: '2016-05-03',
-                    name: '挎包',
-                    desc: '产品描述'
-                }, {
-                    date: '2016-05-02',
-                    name: '挎包',
-                    desc: '产品描述'
-                }, {
-                    date: '2016-05-04',
-                    name: '挎包',
-                    desc: '产品描述'
-                }, {
-                    date: '2016-05-01',
-                    name: '挎包',
-                    desc: '产品描述'
-                }, {
-                    date: '2016-05-08',
-                    name: '挎包',
-                    desc: '产品描述'
-                }, {
-                    date: '2016-05-06',
-                    name: '挎包',
-                    desc: '产品描述'
-                }, {
-                    date: '2016-05-07',
-                    name: '挎包',
-                    desc: '产品描述'
-                }],
+                page: '0',
+                totalElements: 0,
+                tableData: [],
                 multipleSelection: []
             }
         },
@@ -128,18 +105,49 @@
                 const url ='/award/awards/page/'+this.page;
 
                 $.ajax({
-                    crossDomain: true,//标记要跨域请求
-                    jsonp: "action",//请求处理标注，和jsonpCallback 相对应。
-                    jsonpCallback: "asyncAjax",
+                    url: baseUrl+url,
                 }).done(function(data) {
-                    console.log(data)
+                    this.tableData = data.content;
+                    this.totalElements = data.totalElements;
+                }.bind(this)).fail(function() {
+                    this.$message.warning("获取数据失败！")
                 }.bind(this))
             },
             addProduct() {
                 this.$router.push({path: '/add-prize'})
             },
+            delet(id) {
+                let url = '/award/awards/delete';
+
+                this.$confirm('确定删除此条数据？', '确认信息', {
+                    distinguishCancelAndClose: true,
+                    confirmButtonText: '保存',
+                    cancelButtonText: '取消'
+                }).then(() => {
+                    $.ajax({
+                        url: baseUrl+url,
+                        type: 'post',
+                        data: {
+                            id: id
+                        }
+                    }).done(function(data) {
+                        this.$message.success("删除成功！");
+                        this.getData();
+                    }.bind(this)).fail(function() {
+                        this.$message.warning("获取数据失败！")
+                    }.bind(this))
+                }).catch(() => {
+
+                });
+            },
             handleClick(row) {
                 console.log(row);
+            },
+            handleCurrentChange(val) {
+                if(this.page != val){
+                    this.page = val;
+                    this.getData();
+                }
             },
             handleSelectionChange(val) {
                 this.multipleSelection = val;

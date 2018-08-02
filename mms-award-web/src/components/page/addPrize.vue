@@ -12,7 +12,7 @@
                 <el-button type="info">
                     取消
                 </el-button>
-                <el-button type="primary">
+                <el-button type="primary" @click="check">
                     发布
                 </el-button>
             </div>
@@ -20,10 +20,11 @@
             <div class="base">
                 <el-form class="base-from" ref="form" label-width="80px">
                     <el-form-item label="奖项名称">
-                        <el-input></el-input>
+                        <el-input v-model.trim="form.name"></el-input>
                     </el-form-item>
                     <el-form-item label="奖项内容">
-                        <el-input type="textarea"></el-input>
+                        <el-input type="textarea"
+                                  v-model.trim="form.content"></el-input>
                     </el-form-item>
                 </el-form>
             </div>
@@ -34,27 +35,27 @@
                         <el-form class="base-from" ref="awardForm" label-width="80px">
                             <el-form-item label="申报时间">
                                 <el-date-picker
-                                        v-model="form.apply"
+                                        v-model="form.declareDate"
                                         type="date"
                                         placeholder="选择日期">
                                 </el-date-picker>
                             </el-form-item>
                             <el-form-item label="初审时间">
                                 <el-date-picker
-                                        v-model="form.firstTrial"
+                                        v-model="form.firstTrialDate"
                                         type="date"
                                         placeholder="选择日期">
                                 </el-date-picker>
                             </el-form-item>
                             <el-form-item label="复查时间">
                                 <el-date-picker
-                                        v-model="form.riview"
+                                        v-model="form.retrialDate"
                                         type="date"
                                         placeholder="选择日期">
                                 </el-date-picker>
                             </el-form-item>
                             <el-form-item label="奖项类别">
-                                <el-input></el-input>
+                                <el-input v-model.trim="form.category"></el-input>
                                 <p class="tip">注：奖项类别以逗号分隔</p>
                             </el-form-item>
                         </el-form>
@@ -62,7 +63,7 @@
                     <el-tab-pane label="推荐设置" name="second">
                         <div class="clearfix">
                             <el-button type="primary" class="unifying-quota-btn"
-                            @click="dialogVisible = true">
+                                       @click="dialogVisible = true">
                                 统一设置名额
                             </el-button>
                         </div>
@@ -145,14 +146,19 @@
 </template>
 
 <script>
+    import baseUrl from 'src/apis/api'
+
     export default ({
         data() {
             return {
                 activeName: 'first',
                 form: {
-                    apply: '',
-                    firstTrial: '',
-                    riview: ''
+                    name: '',
+                    content: '',
+                    declareDate: '',
+                    firstTrialDate: '',
+                    retrialDate: '',
+                    category: ''
                 },
                 tableData: [{
                     date: '2016-05-032016-05-03',
@@ -188,6 +194,70 @@
             }
         },
         methods: {
+            check() {
+                if (!this.form.name.length) {
+                    this.$message.warning("请填写奖项名称！");
+                    return false
+                } else if (!this.form.content.length) {
+                    this.$message.warning("请填写奖项内容！");
+                    return false
+                } else {
+                    this.submit()
+                }
+            },
+            changeTime(time) {
+                if (!time) {
+                    return ""
+                }
+
+                var y = time.getFullYear(),
+                    m = time.getMonth() + 1,
+                    d = time.getDate();
+
+                if (m < 10) {
+                    m = '0' + m
+                }
+                if (d < 10) {
+                    d = '0' + d
+                }
+                return y + '-' + m + '-' + d
+
+            },
+            clear() {
+                this.form = {
+                    name: '',
+                    content: '',
+                    declareDate: '',
+                    firstTrialDate: '',
+                    retrialDate: '',
+                    category: ''
+                }
+            },
+            submit() {
+                let url = '/award/awards/save';
+                let params = {
+                    name: this.form.name,
+                    content: this.form.content
+                };
+
+                if (this.activeName === 'first') {
+                    params.declareDate = this.changeTime(this.form.declareDate);
+                    params.firstTrialDate = this.changeTime(this.form.firstTrialDate);
+                    params.retrialDate = this.changeTime(this.form.retrialDate);
+                    params.category = this.form.category;
+                }
+
+                $.ajax({
+                    url: baseUrl + url,
+                    type: 'post',
+                    data: params
+                }).done(function (data) {
+                    this.$message.success("保存成功！");
+                    this.clear()
+                }.bind(this)).fail(function () {
+                    this.$message.warning("保存失败！")
+                }.bind(this))
+            },
             handleClick(val) {
 
             },
@@ -217,6 +287,7 @@
         float: right;
         margin-bottom: 10px;
     }
+
     .tyszme .el-input {
         width: 150px;
         margin-left: 17px;
