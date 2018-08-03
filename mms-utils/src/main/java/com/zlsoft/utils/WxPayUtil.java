@@ -221,7 +221,7 @@ public class WxPayUtil {
         }
 
         if(resp.containsKey("code_url")) {
-            result.setPrepayId(resp.get("code_url"));
+            result.setCodeUrl(resp.get("code_url"));
         }
 
         return  result;
