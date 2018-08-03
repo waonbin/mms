@@ -156,7 +156,12 @@ $(function () {
             getWXCode: function() {
               $.ajax({
                   url: ctxPath + '/wxpay/membership/pay',
-                  type: 'post'
+                  type: 'post',
+                  data: {
+                      body: '会费',
+                      orderNo: '2016090910595900000012',
+                      totalFee: '0.01'
+                  }
               }).done(function(data) {
                   console.log(data);
               }.bind(this)).fail(function() {
