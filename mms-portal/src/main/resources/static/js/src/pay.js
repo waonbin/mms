@@ -144,7 +144,7 @@ $(function () {
                 });
 
                 $.ajax({
-                    url: ctxPath + '/payment/order',
+                    url: ctxPath + '/order/order',
                     type: 'post',
                     data: data
                 })
@@ -169,7 +169,13 @@ $(function () {
             },
             //获取完微信地址转化为二维码
             changeImgUrl: function (url) {
-                $('#qrcode').qrcode(url);
+                $('#qrcode').qrcode({
+                    render: "canvas", //也可以替换为table
+                    width: 150,
+                    height: 150,
+                    text: url
+                });
+
             },
             getWXCode: function() {
               $.ajax({
