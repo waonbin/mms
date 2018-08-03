@@ -12,20 +12,25 @@
         .payTypeList {
             padding-top: 10px;
         }
+
         .inc_b ul li .payTypeList span {
             margin-right: 0;
             line-height: inherit;
         }
+
         .upload-demo input {
             display: none !important;
         }
+
         .upload-demo span {
             line-height: inherit !important;
         }
+
         .el-upload-list.el-upload-list--picture, .el-upload__tip {
             width: 300px;
             margin-left: 115px;
         }
+
         .inc_b ul li select {
             width: 150px;
             display: inline-block;
@@ -73,17 +78,19 @@
                         <ul class="">
                             <li class="chbox"><font class="fontl">抬头类型：<i>*</i></font>
                                 <label class="item">
-                                    <input type="radio" value="1" v-model="order.titleType" name="kaipiaotype" id="kaipiaotype_geren"
+                                    <input type="radio" value="1" v-model="order.titleType" name="kaipiaotype"
+                                           id="kaipiaotype_geren"
                                            class="radio"
                                            checked="checked">
                                     <span>个人</span></label>
                                 <label class="item">
-                                    <input type="radio" value="2" v-model="order.titleType" name="kaipiaotype" id="kaipiaotype_unit"
+                                    <input type="radio" value="2" v-model="order.titleType" name="kaipiaotype"
+                                           id="kaipiaotype_unit"
                                            class="radio">
                                     <span>单位</span></label>
                             </li>
                             <li><font class="fontl">发票类型：<i>*</i></font>
-                                <select id="tickettype" v-model="order.invoiceType" >
+                                <select id="tickettype" v-model="order.invoiceType">
                                     <template v-for="item in invoiceList">
                                         <option :value="item.value">{{item.name}}</option>
                                     </template>
@@ -93,19 +100,23 @@
                                 <input type="text" v-model.trim="order.invoiceId" id="txt_TicketName"/>
                             </li>
                             <li v-if="order.titleType != 1"><font class="fontl">纳税人识别号：<i>*</i></font>
-                                <input type="text" v-model.trim="order.tin" id="txtTicketFaxNo" class="mui-input-clear"/>
+                                <input type="text" v-model.trim="order.tin" id="txtTicketFaxNo"
+                                       class="mui-input-clear"/>
                             </li>
                             <li class="chbox"><font class="fontl">取票方式：<i>*</i></font>
                                 <label class="item">
-                                    <input type="radio" value="1" v-model="order.deliveryType" name="qupiaotype" id="qupiaotype_ziqu" class="radio"
+                                    <input type="radio" value="1" v-model="order.deliveryType" name="qupiaotype"
+                                           id="qupiaotype_ziqu" class="radio"
                                            checked="checked">
                                     <span>自&nbsp;&nbsp;&nbsp;&nbsp;取</span></label>
                                 <label class="item">
-                                    <input type="radio" value="2" v-model="order.deliveryType" name="qupiaotype" id="qupiaotype_guahao"
+                                    <input type="radio" value="2" v-model="order.deliveryType" name="qupiaotype"
+                                           id="qupiaotype_guahao"
                                            class="radio">
                                     <span>挂号邮寄</span></label>
                                 <label class="item">
-                                    <input type="radio" value="3" v-model="order.deliveryType" name="qupiaotype" id="qupiaotype_kuaidi"
+                                    <input type="radio" value="3" v-model="order.deliveryType" name="qupiaotype"
+                                           id="qupiaotype_kuaidi"
                                            class="radio">
                                     <span>快递邮寄（到付，费用自理）</span></label>
                             </li>
@@ -164,15 +175,15 @@
                         <h4>选择支付方式</h4>
                         <ul>
                             <li class="chbox"><font>支付类型：<i>*</i></font>
-                               <div class="payTypeList">
-                                   <el-radio v-model="payType" label="1">
-                                       线上支付
-                                   </el-radio>
+                                <div class="payTypeList">
+                                    <el-radio v-model="payType" label="1">
+                                        线上支付
+                                    </el-radio>
 
-                                   <el-radio v-model="payType" label="2">
-                                       线下支付（需上传缴费凭证）
-                                   </el-radio>
-                               </div>
+                                    <el-radio v-model="payType" label="2">
+                                        线下支付（需上传缴费凭证）
+                                    </el-radio>
+                                </div>
                             </li>
                         </ul>
 
@@ -215,7 +226,7 @@
                             </ul>
                             <div class="su_icon">
                                 <a href="javascript:" id="btn_submitoffline"
-                                         @click="underLineSubmit()" class="sue">
+                                   @click="underLineSubmit()" class="sue">
                                     提交
                                 </a>
                             </div>
@@ -223,19 +234,28 @@
                         <div id="online" v-if="payType == 1">
                             <ul class="">
                                 <li><font>线上类型：<i>*</i></font>
-
                                     <ul class="tabbtn">
-                                        <li id="lialipay" class="current"><a
-                                                onclick="javascript:changpaytype('alipay');">
-                                            <img th:src="@{/images/zfb.png}"/></a></li>
-                                        <li id="liweixinpay"><a onclick="javascript:changpaytype('weixinpay');">
-                                            <img th:src="@{/images/wx.png}"/></a></li>
+                                        <li id="lialipay" :class="onlineType == 1?'current':''"
+                                            @click="onlineType=1">
+                                            <a>
+                                                <img th:src="@{/images/zfb.png}"/>
+                                            </a>
+                                        </li>
+                                        <li id="liweixinpay" :class="onlineType == 2?'current':''"
+                                            @click="onlineType=2">
+                                            <a>
+                                                <img th:src="@{/images/wx.png}"/>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </li>
                             </ul>
                             <input type="hidden" id="hf_paytype" value="2"/>
-                            <div class="su_icon"><a href="javascript:openpaypage();" id="btm_GoToPay"
-                                                    class="sue">去支付</a>
+                            <div class="su_icon">
+                                <a href="javascript:;" id="btm_GoToPay" class="sue"
+                                    @click="goPay">
+                                    去支付
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -264,7 +284,6 @@
                         <a href="/">返回中国体视学学会官网首页</a>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -274,6 +293,19 @@
         京公网安备110108007550号<br/>
         技术支持：北京智联软件技术有限公司
     </div>
+
+    <el-dialog
+        title="支付二维码"
+        :visible.sync="qrCodeDialog"
+        width="30%"
+    >
+        <div  v-loading="loading">
+            <img :src="qrCodeUrl" alt="支付二维码" class="qrCode">
+        </div>
+        <span slot="footer" class="dialog-footer">
+        <el-button @click="qrCodeDialog = false">关 闭</el-button>
+      </span>
+    </el-dialog>
 </div>
 
 <template th:include="/layout/layout::layout" id="per_left"></template>
@@ -283,149 +315,149 @@
 </script>
 <div th:include="/protalBase/script::protalScript"></div>
 <!--<script type="text/javascript">-->
-    <!--$(document).ready(function () {-->
-        <!--$("#rbtnpayonline").click(function () {-->
-            <!--$("#offline").hide();-->
-            <!--$("#online").show();-->
-            <!--$("#liweixinpay").removeClass("current");-->
-            <!--$("#lialipay").addClass("current");-->
-            <!--$("#hf_paytype").val(2); //线上-->
-        <!--});-->
-        <!--$("#rbtnpayoffline").click(function () {-->
-            <!--$("#offline").show();-->
-            <!--$("#online").hide();-->
-            <!--$("#hf_paytype").val(4); //线下-->
-        <!--});-->
+<!--$(document).ready(function () {-->
+<!--$("#rbtnpayonline").click(function () {-->
+<!--$("#offline").hide();-->
+<!--$("#online").show();-->
+<!--$("#liweixinpay").removeClass("current");-->
+<!--$("#lialipay").addClass("current");-->
+<!--$("#hf_paytype").val(2); //线上-->
+<!--});-->
+<!--$("#rbtnpayoffline").click(function () {-->
+<!--$("#offline").show();-->
+<!--$("#online").hide();-->
+<!--$("#hf_paytype").val(4); //线下-->
+<!--});-->
 
-        <!--$("#ddl_provlist").change(function () {-->
-            <!--var provId = $("#ddl_provlist").val();-->
-            <!--if (provId != 0) {-->
+<!--$("#ddl_provlist").change(function () {-->
+<!--var provId = $("#ddl_provlist").val();-->
+<!--if (provId != 0) {-->
 
-                <!--$.ajax({-->
-                    <!--type: "get",//使用get方法访问后台-->
+<!--$.ajax({-->
+<!--type: "get",//使用get方法访问后台-->
 
-                    <!--dataType: "json",//返回json格式的数据-->
-                    <!--url: "./Ajax/GetCityListByProvId.ashx?provid=" + provId,//要访问的后台地址-->
-                    <!--success: function (data) {//msg为返回的数据，在这里做数据绑定-->
+<!--dataType: "json",//返回json格式的数据-->
+<!--url: "./Ajax/GetCityListByProvId.ashx?provid=" + provId,//要访问的后台地址-->
+<!--success: function (data) {//msg为返回的数据，在这里做数据绑定-->
 
-                        <!--if (data.status == "ok") {-->
-                            <!--$("#ddl_citylist option").remove();-->
-                            <!--$("#ddl_citylist").append("<option value=''>请选择市区</option>");-->
-                            <!--$.each(data.datamap, function (index, item) {-->
-                                <!--var id = data.datamap[index].id;-->
-                                <!--var text = data.datamap[index].name;-->
-                                <!--$("#ddl_citylist").append("<option value='" + id + "'>" + text + "</option>");-->
-                            <!--});-->
-                        <!--} else {-->
-                            <!--alert(data.reason);-->
-                        <!--}-->
-                    <!--}-->
-                <!--});-->
+<!--if (data.status == "ok") {-->
+<!--$("#ddl_citylist option").remove();-->
+<!--$("#ddl_citylist").append("<option value=''>请选择市区</option>");-->
+<!--$.each(data.datamap, function (index, item) {-->
+<!--var id = data.datamap[index].id;-->
+<!--var text = data.datamap[index].name;-->
+<!--$("#ddl_citylist").append("<option value='" + id + "'>" + text + "</option>");-->
+<!--});-->
+<!--} else {-->
+<!--alert(data.reason);-->
+<!--}-->
+<!--}-->
+<!--});-->
 
-            <!--}-->
-        <!--});-->
+<!--}-->
+<!--});-->
 
 <!--//开票信息-->
-        <!--$("#kaipiao_yes").click(function () {-->
-            <!--$("#kaipiaoarea").css("display", "block");-->
+<!--$("#kaipiao_yes").click(function () {-->
+<!--$("#kaipiaoarea").css("display", "block");-->
 
-        <!--});-->
-        <!--$("#kaipiao_no").click(function () {-->
-            <!--$("#kaipiaoarea").css("display", "none");-->
-        <!--});-->
+<!--});-->
+<!--$("#kaipiao_no").click(function () {-->
+<!--$("#kaipiaoarea").css("display", "none");-->
+<!--});-->
 
-        <!--$("#kaipiaotype_unit").click(function () {-->
-            <!--$("#shuihaoarea").css("display", "block");-->
-        <!--});-->
-        <!--$("#kaipiaotype_geren").click(function () {-->
-            <!--$("#shuihaoarea").css("display", "none");-->
-        <!--});-->
+<!--$("#kaipiaotype_unit").click(function () {-->
+<!--$("#shuihaoarea").css("display", "block");-->
+<!--});-->
+<!--$("#kaipiaotype_geren").click(function () {-->
+<!--$("#shuihaoarea").css("display", "none");-->
+<!--});-->
 
-        <!--$("#qupiaotype_guahao").click(function () {-->
-            <!--$("#postarea").css("display", "block");-->
+<!--$("#qupiaotype_guahao").click(function () {-->
+<!--$("#postarea").css("display", "block");-->
 
-        <!--});-->
-        <!--$("#qupiaotype_kuaidi").click(function () {-->
-            <!--$(".shdz_k").css("display", "none");-->
-            <!--$("#postarea").css("display", "block");-->
-        <!--});-->
-        <!--$("#qupiaotype_ziqu").click(function () {-->
-            <!--$("#postarea").css("display", "none");-->
-        <!--});-->
-    <!--});-->
+<!--});-->
+<!--$("#qupiaotype_kuaidi").click(function () {-->
+<!--$(".shdz_k").css("display", "none");-->
+<!--$("#postarea").css("display", "block");-->
+<!--});-->
+<!--$("#qupiaotype_ziqu").click(function () {-->
+<!--$("#postarea").css("display", "none");-->
+<!--});-->
+<!--});-->
 
-    <!--//线下支付提交-->
-    <!--function payoffsbumit() {-->
-
-
-        <!--meetingpaydo();-->
-        <!--return true;-->
-    <!--}-->
-
-    <!--function openpaypage() {-->
+<!--//线下支付提交-->
+<!--function payoffsbumit() {-->
 
 
-        <!--meetingpaydo();-->
+<!--meetingpaydo();-->
+<!--return true;-->
+<!--}-->
+
+<!--function openpaypage() {-->
+
+
+<!--meetingpaydo();-->
 <!--//显示等待框  同时启动定时刷新获得订单状态定时器  一旦支付成功，跳转到支付成功显示信息.-->
-        <!--return true;-->
-    <!--}-->
+<!--return true;-->
+<!--}-->
 
 
-    <!--var timeID;-->
-    <!--var isweixin = false;-->
-    <!--var getting = {-->
-        <!--type: "post",-->
-        <!--url: '../paycenter/Ajax/CheckOrderStatus.ashx?orderno=' + orderno,-->
-        <!--success: function (data) {-->
-            <!--var json = eval('(' + data + ')');-->
-            <!--if (json.chkres == "sucess") {-->
-                <!--window.clearInterval(timeID);-->
+<!--var timeID;-->
+<!--var isweixin = false;-->
+<!--var getting = {-->
+<!--type: "post",-->
+<!--url: '../paycenter/Ajax/CheckOrderStatus.ashx?orderno=' + orderno,-->
+<!--success: function (data) {-->
+<!--var json = eval('(' + data + ')');-->
+<!--if (json.chkres == "sucess") {-->
+<!--window.clearInterval(timeID);-->
 <!--//支付成功-->
-                <!--$("#step2").hide();-->
-                <!--$("#step3").show();-->
-            <!--} else {-->
-                <!--if (isweixin) {-->
-                    <!--alert("关闭刷新状态");-->
-                    <!--window.clearInterval(timeID); //微信只返回一次-->
-                <!--}-->
-            <!--}-->
-        <!--}-->
-    <!--};-->
+<!--$("#step2").hide();-->
+<!--$("#step3").show();-->
+<!--} else {-->
+<!--if (isweixin) {-->
+<!--alert("关闭刷新状态");-->
+<!--window.clearInterval(timeID); //微信只返回一次-->
+<!--}-->
+<!--}-->
+<!--}-->
+<!--};-->
 
-    <!--function meetingpaydo() {-->
+<!--function meetingpaydo() {-->
 
 <!--//支付成功-->
-        <!--$("#step2").hide();-->
-        <!--$("#step4").show();-->
+<!--$("#step2").hide();-->
+<!--$("#step4").show();-->
 
 
-    <!--}-->
+<!--}-->
 
-    <!--//线上支付提交-->
-    <!--function changpaytype(type) {-->
-        <!--if (type == "alipay") {-->
-            <!--$("#liweixinpay").removeClass("current");-->
-            <!--$("#lialipay").addClass("current");-->
-            <!--$("#hf_paytype").val(2); //微信1 支付宝2-->
-        <!--} else if (type == "weixinpay") {-->
-            <!--$("#lialipay").removeClass("current");-->
-            <!--$("#liweixinpay").addClass("current");-->
-            <!--$("#hf_paytype").val(1); //微信1 支付宝2-->
-        <!--}-->
-    <!--}-->
+<!--//线上支付提交-->
+<!--function changpaytype(type) {-->
+<!--if (type == "alipay") {-->
+<!--$("#liweixinpay").removeClass("current");-->
+<!--$("#lialipay").addClass("current");-->
+<!--$("#hf_paytype").val(2); //微信1 支付宝2-->
+<!--} else if (type == "weixinpay") {-->
+<!--$("#lialipay").removeClass("current");-->
+<!--$("#liweixinpay").addClass("current");-->
+<!--$("#hf_paytype").val(1); //微信1 支付宝2-->
+<!--}-->
+<!--}-->
 
 
-    <!--function newWin(url, id) {-->
-        <!--var a = document.createElement('a');-->
-        <!--a.setAttribute('href', url);-->
-        <!--a.setAttribute('target', '_blank');-->
-        <!--a.setAttribute('id', id);-->
+<!--function newWin(url, id) {-->
+<!--var a = document.createElement('a');-->
+<!--a.setAttribute('href', url);-->
+<!--a.setAttribute('target', '_blank');-->
+<!--a.setAttribute('id', id);-->
 <!--// 防止反复添加-->
-        <!--if (!document.getElementById(id)) {-->
-            <!--document.body.appendChild(a);-->
-        <!--}-->
-        <!--a.click();-->
-    <!--}-->
+<!--if (!document.getElementById(id)) {-->
+<!--document.body.appendChild(a);-->
+<!--}-->
+<!--a.click();-->
+<!--}-->
 <!--</script>-->
 
 <script th:src="@{/js/src/pay.js}"></script>

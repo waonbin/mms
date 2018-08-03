@@ -207,7 +207,7 @@
                                            </div>
                                            <div v-if="step == 1">
                                                <template v-if="!hwState">
-                                                   <hy-group></hy-group>
+                                                   <hy-group ref="editors" :List="etitors"></hy-group>
                                                </template>
                                                <template v-if="hwState">
                                                    <el-transfer
@@ -279,7 +279,6 @@
         </div>
         <!-- end:: Body -->
 
-
         <!-- begin::Footer -->
         <div th:include="/base/footer::footer"></div>
         <!-- end::Footer -->
@@ -296,7 +295,7 @@
     <div th:include="/base/scripts::scripts"></div>
     <script src="http://cdn.quilljs.com/1.0.0/quill.js"></script>
     <!--报名设置组件-->
-    <template th:include="/HYcomponents/hy::hy"></template>
+    <div th:include="/HYcomponents/hy::hy"></div>
 
     <script>
         $(function() {

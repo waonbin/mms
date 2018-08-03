@@ -33,8 +33,16 @@
 .btn-submit {
     margin-left: 98px;
 }
-#editor {
-    min-height: 300px;
+.editor-box {
+    height: 300px !important;
+    margin-bottom: 50px !important;
+}
+.editor-title {
+    font-size: 26px;
+    line-height: 1.5;
+}
+.editor-tip {
+    color: #999;
 }
 .form-box {
     width: 600px;

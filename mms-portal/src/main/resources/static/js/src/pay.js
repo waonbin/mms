@@ -8,13 +8,16 @@ $(function () {
                 name: ''
             },
             payType: '1',
+            onlineType: '2', //1-支付宝 2-微信
             isKaipiao: '1',
             uploadUrl: ctxPath + '/file/upload',
             step: 1,
             dues: '', //会费金额-每年
             duration: '', //会费金额-年
-            //上传文件返回的id;
-            uploadFileId: 0,
+            uploadFileId: 0, //上传文件返回的id;
+            qrCodeDialog: false,
+            loading: true,
+            qrCodeUrl: '',
             typeList: [],
             cityList: [],
             dictionaryList: [],
@@ -139,7 +142,7 @@ $(function () {
                        data[item] = parms[item]
                    }
                 });
-                console.log(data)
+
                 $.ajax({
                     url: ctxPath + '/payment/order',
                     type: 'post',
@@ -149,6 +152,25 @@ $(function () {
             },
             handlePreview: function () {
 
+            },
+            getWXCode: function() {
+              $.ajax({
+                  url: ctxPath + '/wxpay/notify',
+              }).done(function(data) {
+                  console.log(data);
+              }.bind(this)).fail(function() {
+                  this.$message.error('获取失败');
+              }.bind(this)).always(function() {
+                  this.loading  = false;
+              }.bind(this))
+            },
+            goPay: function() {
+                this.loading = true;
+                this.qrCodeDialog = true;
+
+                if(this.onlineType == 2) {
+                    this.getWXCode()
+                }
             },
             getDictionary: function() {
                 $.ajax({

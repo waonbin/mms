@@ -30,12 +30,14 @@ $(function() {
             return {
                 qull:null,
                 step: 1,
+                names: 'demo',
                 dialogVisible:false,
                 style:'',
                 dialogImageUrl:'',
                 imageUrl:'',
                 //会务设置状态： 0-编辑，1-设置
                 hwState: 1,
+                etitors: [],
                 base: {
                     name:'',
                     startDate:'',
@@ -119,7 +121,16 @@ $(function() {
             },
             //会务状态调整为富文本
             hwStateEdit() {
-              this.hwState = 0
+              this.hwState = 0;
+              this.generateValue.map(function(item) {
+                  this.etitors.push(this.generateData.filter(function (n) {
+                      return n.key === item
+                  })[0])
+              }.bind(this));
+
+              setTimeout(function() {
+                  console.log(this.$refs.editors.init())
+              }.bind(this))
             },
             next() {
                 if (this.step == 0) {

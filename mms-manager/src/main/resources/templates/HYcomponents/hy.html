@@ -1,9 +1,13 @@
 <template th:fragment="hy">
     <!--会务富文本-->
     <template id="hw">
-        <template v-for="item in List">
-            <div class="editor-box" id="editor"></div>
-        </template>
+        <div>
+            <p class="editor-tip" v-if="!List.length">没有数据～</p>
+            <template v-for="(item,i) in List">
+                <h3 class="editor-title">{{item.label}}</h3>
+                <div class="editor-box" :id="'editor'+i"></div>
+            </template>
+        </div>
     </template>
 
     <!--报名费用-->

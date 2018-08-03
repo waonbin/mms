@@ -1,14 +1,17 @@
 $(function() {
     Vue.component('hyGroup',{
-        template: '#hy',
+        template: '#hw',
+        name:'jajja',
         props: {
-            list:{
+            List:{
                 type: Array,
-                default: ['name']
+                default: []
             }
         },
         data() {
-
+            return {
+                quill: {},
+            }
         },
         methods: {
             init() {
@@ -33,12 +36,16 @@ $(function() {
                     ['image', 'code-block']
                 ];
 
-                this.quill = new Quill('#editor', {
-                    modules: {
-                        toolbar: toolbarOptions
-                    },
-                    theme: 'snow'
-                });
+                this.List.forEach(function(item,i) {
+                    var id = '#editor'+i;
+
+                    this.quill[i] = new Quill(id, {
+                        modules: {
+                            toolbar: toolbarOptions
+                        },
+                        theme: 'snow'
+                    });
+                }.bind(this));
             }
         }
     });

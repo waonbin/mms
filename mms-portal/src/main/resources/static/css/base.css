@@ -71,3 +71,10 @@
 .member_name input+input {
     margin-left: 10px;
 }
+
+/*二维码*/
+.qrCode {
+    display: block;
+    width: 150px;
+    margin: 0 auto;
+}
