@@ -1,5 +1,6 @@
 package com.zlsoft.portal.web.rest;
 
+import com.github.wxpay.sdk.WXPayConstants;
 import com.github.wxpay.sdk.WXPayUtil;
 import com.zlsoft.common.service.OrderService;
 import com.zlsoft.domain.Order;
@@ -33,6 +34,9 @@ public class PayResource {
     @Value("${wxpay.notifyUrl}")
     private String notifyUrl;
 
+    @Value("${wxpay.mchKey}")
+    private String mchKey;
+
     @PostMapping("/wxpay/membership/pay")
     public ResponseEntity pay(String orderNo, double totalFee) {
 
@@ -54,7 +58,7 @@ public class PayResource {
         return ResponseEntity.ok(result);
     }
 
-    @GetMapping("/wxpay/notify")
+    @PostMapping("/wxpay/notify")
     public String wxpayNotify(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
 
@@ -73,7 +77,7 @@ public class PayResource {
         String notityXml = inputString.toString();
 
         //验证签名
-        if(!WXPayUtil.isSignatureValid(notityXml, "")) {
+        if(!isSignatureValid(notityXml, mchKey)) {
             return buildResult("FAIL", "签名验证失败");
         }
 
@@ -102,5 +106,22 @@ public class PayResource {
         parameters.put("return_msg", return_msg);
         return "<xml><return_code><![CDATA[" + return_code + "]]>" +
                 "</return_code><return_msg><![CDATA[" + return_msg + "]]></return_msg></xml>";
+    }
+
+    /**
+     * 判断签名是否正确
+     *
+     * @param xmlStr XML格式数据
+     * @param key API密钥
+     * @return 签名是否正确
+     * @throws Exception
+     */
+    private static boolean isSignatureValid(String xmlStr, String key) throws Exception {
+        Map<String, String> data = WXPayUtil.xmlToMap(xmlStr);
+        if (!data.containsKey(WXPayConstants.FIELD_SIGN) ) {
+            return false;
+        }
+        String sign = data.get(WXPayConstants.FIELD_SIGN);
+        return WXPayUtil.generateSignature(data, key, WXPayConstants.SignType.HMACSHA256).equals(sign);
     }
 }

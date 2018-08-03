@@ -12,10 +12,10 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     public void configureMessageBroker(MessageBrokerRegistry registry) {
         registry.enableSimpleBroker("/pay");
-        registry.setApplicationDestinationPrefixes("/mms-pay");
+        registry.setApplicationDestinationPrefixes("/mms");
     }
 
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/mms-websocket").withSockJS();
+        registry.addEndpoint("/websocket").withSockJS();
     }
 }

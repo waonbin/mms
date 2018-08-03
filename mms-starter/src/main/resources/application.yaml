@@ -51,7 +51,7 @@ wxpay:
     APPSecret: f8e4c5603b328bffc729f84a305ff89b
     mchId: 1501344151
     mchKey: C8LaZ3Fq4h3CK8LW2gxPdto7NQ6yTfXD
-    notifyUrl: http://05e3877c.ngrok.io/mms/wxpay/membership/pay
+    notifyUrl: http://05e3877c.ngrok.io/mms/wxpay/notify
 
 mms:
   store_home: .
