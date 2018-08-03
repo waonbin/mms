@@ -26,7 +26,7 @@ public class TestWXPay {
     public void doUnifiedOrder() {
 
         Map<String, String> data = new HashMap<String, String>();
-        data.put("body", "test");
+        data.put("body", "支付测试");
         data.put("out_trade_no", "2016090910595900000012");
         data.put("device_info", "");
         data.put("fee_type", "CNY");
