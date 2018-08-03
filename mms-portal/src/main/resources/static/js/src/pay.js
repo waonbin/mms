@@ -155,7 +155,8 @@ $(function () {
             },
             getWXCode: function() {
               $.ajax({
-                  url: ctxPath + '/wxpay/notify',
+                  url: ctxPath + '/wxpay/membership/pay',
+                  type: 'post'
               }).done(function(data) {
                   console.log(data);
               }.bind(this)).fail(function() {
