@@ -65,9 +65,6 @@ public class PayResource {
         response.setContentType("text/html;charset=UTF-8");
         response.setHeader("Access-Control-Allow-Origin", "*");
 
-        //socket消息
-        messagingTemplate.convertAndSend("/pay/callback", "SUCCESS");
-
         //回去支付接口返回值
         StringBuffer inputString = new StringBuffer();
         String line;
@@ -95,7 +92,7 @@ public class PayResource {
             this.orderService.save(order);
 
             //socket消息
-//            messagingTemplate.convertAndSend("/pay/callback", "SUCCESS");
+            messagingTemplate.convertAndSend("/pay/callback", "SUCCESS");
         }
 
         return buildResult("SUCCESS", "支付成功");
