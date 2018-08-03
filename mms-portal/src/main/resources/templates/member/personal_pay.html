@@ -194,7 +194,6 @@
                                             class="upload-demo"
                                             :action="uploadUrl"
                                             accept=".jpg,.png"
-                                            :on-preview="handlePreview"
                                             :on-remove="handleRemove"
                                             :on-success="handSuccess"
                                             :on-error="handError"
@@ -300,7 +299,7 @@
         width="30%"
     >
         <div  v-loading="loading">
-            <img :src="qrCodeUrl" alt="支付二维码" class="qrCode">
+            <div id="qrcode" class="qrCode"></div>
         </div>
         <span slot="footer" class="dialog-footer">
         <el-button @click="qrCodeDialog = false">关 闭</el-button>
@@ -459,6 +458,6 @@
 <!--a.click();-->
 <!--}-->
 <!--</script>-->
-<script th:src="@{/js/jquery.qrcode.min}"></script>
+<script th:src="@{/js/jquery.qrcode.min.js}"></script>
 <script th:src="@{/js/src/pay.js}"></script>
 </html>

@@ -7,6 +7,7 @@ $(function () {
                 id: '',
                 name: ''
             },
+            ws: null, //WebSocket
             payType: '1',
             onlineType: '2', //1-支付宝 2-微信
             isKaipiao: '1',
@@ -17,7 +18,6 @@ $(function () {
             uploadFileId: 0, //上传文件返回的id;
             qrCodeDialog: false,
             loading: true,
-            qrCodeUrl: '',
             typeList: [],
             cityList: [],
             dictionaryList: [],
@@ -148,10 +148,28 @@ $(function () {
                     type: 'post',
                     data: data
                 })
-
             },
-            handlePreview: function () {
+            //设置webStoker
+            infoWS: function() {
+                var ws = new WebSocket("wss://echo.websocket.org");
 
+                ws.onopen = function(evt) {
+                    console.log("Connection open ...");
+                    ws.send("Hello WebSockets!");
+                };
+
+                ws.onmessage = function(evt) {
+                    console.log( "Received Message: " + evt.data);
+                    ws.close();
+                };
+
+                ws.onclose = function(evt) {
+                    console.log("Connection closed.");
+                };
+            },
+            //获取完微信地址转化为二维码
+            changeImgUrl: function (url) {
+                $('#qrcode').qrcode(url);
             },
             getWXCode: function() {
               $.ajax({
@@ -163,7 +181,10 @@ $(function () {
                       totalFee: '0.01'
                   }
               }).done(function(data) {
-                  console.log(data);
+                  if(data.resultCode.toLocaleLowerCase() === 'success'
+                    && data.returnCode.toLocaleLowerCase() === 'success') {
+                      this.changeImgUrl(data.codeUrl)
+                  }
               }.bind(this)).fail(function() {
                   this.$message.error('获取失败');
               }.bind(this)).always(function() {
