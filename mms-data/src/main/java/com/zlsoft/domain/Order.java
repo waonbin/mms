@@ -26,7 +26,7 @@ public class Order extends AbstractBaseEntity implements Serializable {
     /**
      * 订单编号
      */
-    @Column(length = 16)
+    @Column(length = 32)
     private String orderNo;
 
     /**

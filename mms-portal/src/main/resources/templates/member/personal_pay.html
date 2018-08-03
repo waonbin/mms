@@ -460,4 +460,17 @@
 <!--</script>-->
 <script th:src="@{/js/jquery.qrcode.min.js}"></script>
 <script th:src="@{/js/src/pay.js}"></script>
+<script src="https://cdn.bootcss.com/sockjs-client/1.1.4/sockjs.min.js"></script>
+<script src="https://cdn.bootcss.com/stomp.js/2.3.3/stomp.min.js"></script>
+
+<script type="text/javascript">
+    var socket = new SockJS('/mms/websocket');
+    stompClient = Stomp.over(socket);
+    stompClient.connect({}, function(frame) {
+        stompClient.subscribe('/pay/callback', function(msg) {
+            alert("success");
+        });
+    });
+</script>
+
 </html>

@@ -10,13 +10,13 @@ import com.zlsoft.utils.WxPayUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.math.BigDecimal;
 import java.util.Map;
 import java.util.Optional;
 import java.util.SortedMap;
@@ -38,17 +38,15 @@ public class PayResource {
     private String mchKey;
 
     @PostMapping("/wxpay/membership/pay")
-    public ResponseEntity pay(String orderNo, double totalFee) {
+    public ResponseEntity pay(String orderNo, BigDecimal totalFee) {
 
         WxPayParam param = new WxPayParam();
         String productId = "01";
 
-        orderNo = WxPayUtil.generateOutTradeNo();
-
         param.setBody("会员缴费");
         param.setOutTradeNo(orderNo);
         param.setProductId(productId);
-        param.setTotalFee(String.valueOf((int)(totalFee * 100)));
+        param.setTotalFee(String.valueOf(totalFee.multiply(new BigDecimal(100)).longValue()));
         param.setTradeType("NATIVE");
         param.setNotifyUrl(notifyUrl);
         param.setFeeType("CNY");
@@ -66,6 +64,9 @@ public class PayResource {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         response.setHeader("Access-Control-Allow-Origin", "*");
+
+        //socket消息
+        messagingTemplate.convertAndSend("/pay/callback", "SUCCESS");
 
         //回去支付接口返回值
         StringBuffer inputString = new StringBuffer();
@@ -94,7 +95,7 @@ public class PayResource {
             this.orderService.save(order);
 
             //socket消息
-            messagingTemplate.convertAndSend("/pay/callback", "SUCCESS");
+//            messagingTemplate.convertAndSend("/pay/callback", "SUCCESS");
         }
 
         return buildResult("SUCCESS", "支付成功");
