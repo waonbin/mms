@@ -20,6 +20,7 @@ $(function () {
             loading: true,
             typeList: [],
             cityList: [],
+            orderNo: '',
             dictionaryList: [],
             order: {
                 recipients: '',
@@ -147,7 +148,9 @@ $(function () {
                     url: ctxPath + '/order/order',
                     type: 'post',
                     data: data
-                })
+                }).done(function(data) {
+                    this.orderNo = data.orderNo
+                }.bind(this))
             },
             //设置webStoker
             infoWS: function() {
@@ -183,7 +186,7 @@ $(function () {
                   type: 'post',
                   data: {
                       body: '会费',
-                      orderNo: '2016090910595900000012',
+                      orderNo: this.orderNo,
                       totalFee: '0.01'
                   }
               }).done(function(data) {
