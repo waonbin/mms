@@ -17,6 +17,7 @@ $(function () {
             duration: '', //会费金额-年
             uploadFileId: 0, //上传文件返回的id;
             qrCodeDialog: false,
+            socket: null,
             loading: true,
             typeList: [],
             cityList: [],
@@ -154,24 +155,23 @@ $(function () {
             },
             //设置webStoker
             infoWS: function() {
-                var ws = new WebSocket("wss://echo.websocket.org");
+                var _this = this;
+                this.socket = new SockJS('/mms/websocket');
 
-                ws.onopen = function(evt) {
-                    console.log("Connection open ...");
-                    ws.send("Hello WebSockets!");
-                };
-
-                ws.onmessage = function(evt) {
-                    console.log( "Received Message: " + evt.data);
-                    ws.close();
-                };
-
-                ws.onclose = function(evt) {
-                    console.log("Connection closed.");
-                };
+                stompClient = Stomp.over(this.socket);
+                stompClient.connect({}, function(frame) {
+                    stompClient.subscribe('/pay/callback', function(msg) {
+                        alert("success");
+                        _this.step = 3;
+                        _this.qrCodeDialog = false;
+                        stompClient.disconnect();
+                    });
+                });
             },
             //获取完微信地址转化为二维码
             changeImgUrl: function (url) {
+                $('#qrcode canvas').remove();
+
                 $('#qrcode').qrcode({
                     render: "canvas", //也可以替换为table
                     width: 150,
@@ -185,12 +185,8 @@ $(function () {
                   url: ctxPath + '/wxpay/membership/pay',
                   type: 'post',
                   data: {
-<<<<<<< HEAD
                       body: '会费',
                       orderNo: this.orderNo,
-=======
-                      orderNo: '2018090910595900000015',
->>>>>>> edf3e9b5d880f222919e0bb04325230fe0b4dd3b
                       totalFee: '0.01'
                   }
               }).done(function(data) {
@@ -209,7 +205,9 @@ $(function () {
                 this.qrCodeDialog = true;
 
                 if(this.onlineType == 2) {
-                    this.getWXCode()
+                    this.getWXCode();
+                    this.infoWS();
+
                 }
             },
             getDictionary: function() {
