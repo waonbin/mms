@@ -185,8 +185,12 @@ $(function () {
                   url: ctxPath + '/wxpay/membership/pay',
                   type: 'post',
                   data: {
+<<<<<<< HEAD
                       body: '会费',
                       orderNo: this.orderNo,
+=======
+                      orderNo: '2018090910595900000015',
+>>>>>>> edf3e9b5d880f222919e0bb04325230fe0b4dd3b
                       totalFee: '0.01'
                   }
               }).done(function(data) {

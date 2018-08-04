@@ -6,7 +6,13 @@ import com.google.common.base.Strings;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.security.SecureRandom;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
 
@@ -128,7 +134,9 @@ public class WxPayUtil {
      */
     public static String generateOutTradeNo() {
         StringBuffer orderSNBuffer = new StringBuffer();
-        orderSNBuffer.append(System.currentTimeMillis());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS")
+                .withLocale(Locale.CHINA).withZone(ZoneId.systemDefault());
+        orderSNBuffer.append(formatter.format(Instant.now()));
         orderSNBuffer.append(getRandomString(7));
         return orderSNBuffer.toString();
     }
