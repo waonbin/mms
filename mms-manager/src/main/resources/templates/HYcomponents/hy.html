@@ -45,10 +45,52 @@
                     </template>
                 </el-table-column>
             </el-table>
+            <el-dialog title="添加" :visible.sync="dialogFormVisible" width="30%">
+                <el-form :model="form" ref="ruleForm">
+                    <el-form-item label="会员类型" label-width="120"
+                                  prop="memberType"
+                                  :rules="[
+                                      { required: true, message: '请选择会员类型', trigger: 'change' },
+                                    ]"
+                    >
+                        <el-select v-model="form.memberType" placeholder="请选择活动区域">
+                            <el-option
+                                    v-for="item in memberList"
+                                    :key="item.value"
+                                    :label="item.name"
+                                    :value="item.value">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="启始时间" label-width="120">
+                        <el-date-picker
+                                v-model="form.starTime"
+                                type="date"
+                                placeholder="选择日期"
+                                :picker-options="start_time"
+                        ></el-date-picker>
+                    </el-form-item>
+                    <el-form-item label="截止时间" label-width="120">
+                        <el-date-picker
+                                v-model="form.endTime"
+                                type="date"
+                                placeholder="选择日期"
+                                :picker-options="end_time"
+                        ></el-date-picker>
+                    </el-form-item>
+                    <el-form-item label="注册费用" label-width="120">
+                        <el-input v-model="form.money" auto-complete="off" style="width: 230px"></el-input>
+                    </el-form-item>
+                </el-form>
+                <div slot="footer" class="dialog-footer">
+                    <el-button @click="dialogFormVisible = false">取 消</el-button>
+                    <el-button type="primary" @click="save">确 定</el-button>
+                </div>
+            </el-dialog>
         </div>
     </template>
 
-    <!--分会场-->
+    <!--报名费用-->
     <template id="fhc">
         <div>
             <el-table

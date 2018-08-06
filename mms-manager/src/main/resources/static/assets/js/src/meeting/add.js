@@ -29,7 +29,7 @@ $(function() {
 
             return {
                 qull:null,
-                step: 1,
+                step: 2,
                 names: 'demo',
                 dialogVisible:false,
                 style:'',
@@ -58,7 +58,7 @@ $(function() {
                     return item.label.indexOf(query) > -1;
                 },
                 //报名设置-状态
-                settingState:'commond'
+                settingState:'money'
             }
         },
         computed: {
@@ -88,6 +88,12 @@ $(function() {
         methods: {
             stateSwitch(stateName) {
                 this.settingState = stateName;
+
+                if(stateName == 'money') {
+                   this.$nextTick(function() {
+                       this.$refs.bmfy.info()
+                   }.bind(this))
+                }
             },
             changeTime(time) {
                 if(!time || time.length <= 0) {
@@ -155,6 +161,9 @@ $(function() {
                 }.bind(this)).fail(function() {
                     this.$message.error('保存失败！');
                 }.bind(this))
+            },
+            addSettingBox() {
+
             },
             baseSubmit() {
                 var meeting = this.base;

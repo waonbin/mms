@@ -31,6 +31,9 @@ $(function() {
                         });
                     }
                 });
+            },
+            detail: function(id) {
+                location.href=ctxPath+"/admin/baoming/details?id="+id
             }
         },
         mounted: function() {

@@ -222,6 +222,7 @@
                                            <div v-if="step == 2">
                                                <div class="border-bottom" v-if="settingState !== 'commond'">
                                                    <el-button type="primary" @click="stateSwitch('commond')">关闭</el-button>
+                                                   <el-button type="primary" @click="addSettingBox">添加</el-button>
                                                </div>
                                                <template v-if="settingState == 'commond'">
                                                    <el-transfer
@@ -236,11 +237,11 @@
                                                </template>
                                                <!--报名费用-->
                                                <template v-if="settingState == 'money'">
-                                                   <registration-fee></registration-fee>
+                                                   <parallel-sessions ref="bmfy"></parallel-sessions>
                                                </template>
                                                <!--分会场-->
                                                <template v-if="settingState == 'FHC'">
-                                                   <parallel-sessions></parallel-sessions>
+                                                   <registration-fee></registration-fee>
                                                </template>
                                                <!--酒店预订-->
                                                <template v-if="settingState == 'hotelOrder'">
@@ -265,6 +266,7 @@
                                        </div>
                                        <div class="form-btn">
                                            <el-button type="primary" v-if="step === 3">确认发布</el-button>
+                                           <el-button type="primary" v-if="step === 1 && !hwState" @click="hwState=true">上一步</el-button>
                                            <el-button type="primary" v-if="step === 1 && !hwState">保存</el-button>
                                            <el-button type="primary" v-if="step !== 3 && !hwState && settingState === 'commond'" @click="next">下一步</el-button>
                                            <el-button type="primary" v-if="step === 1 && hwState" @click="hwStateEdit">确定</el-button>

@@ -127,3 +127,6 @@
     padding: 20px 0;
     margin: 10px 0;
 }
+.el-dialog .el-form-item__label {
+    width: 123px;
+}
