@@ -58,7 +58,7 @@ $(function() {
                     return item.label.indexOf(query) > -1;
                 },
                 //报名设置-状态
-                settingState:'money'
+                settingState:'commond'
             }
         },
         computed: {
@@ -89,11 +89,11 @@ $(function() {
             stateSwitch(stateName) {
                 this.settingState = stateName;
 
-                if(stateName == 'money') {
-                   this.$nextTick(function() {
-                       this.$refs.bmfy.info()
-                   }.bind(this))
-                }
+                // if(stateName == 'money') {
+                //    this.$nextTick(function() {
+                //        this.$refs.bmfy.info()
+                //    }.bind(this))
+                // }
             },
             changeTime(time) {
                 if(!time || time.length <= 0) {
@@ -139,10 +139,10 @@ $(function() {
               }.bind(this))
             },
             next() {
+                this.hwState = 1;
+
                 if (this.step == 0) {
                     this.checkBase()
-                } else if(this.step == 2){
-
                 } else {
                     this.step++
                 }
@@ -163,7 +163,11 @@ $(function() {
                 }.bind(this))
             },
             addSettingBox() {
-
+                if (this.settingState == 'money') {
+                    this.$nextTick(function() {
+                        this.$refs.bmfy.dialogFormVisible = true;
+                    }.bind(this))
+                }
             },
             baseSubmit() {
                 var meeting = this.base;
