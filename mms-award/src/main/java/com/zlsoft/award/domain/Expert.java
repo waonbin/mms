@@ -33,7 +33,7 @@ public class Expert extends AbstractBaseEntity implements Serializable {
     /**
      * 单位
      */
-    private Short referenceId;
+    private Long referenceId;
 
     /**
      * 专业（字典）
@@ -68,11 +68,11 @@ public class Expert extends AbstractBaseEntity implements Serializable {
         this.name = name;
     }
 
-    public Short getReferenceId() {
+    public Long getReferenceId() {
         return referenceId;
     }
 
-    public void setReferenceId(Short referenceId) {
+    public void setReferenceId(Long referenceId) {
         this.referenceId = referenceId;
     }
 

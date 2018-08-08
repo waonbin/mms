@@ -1,11 +1,24 @@
 package com.zlsoft.award.domain;
 
-import com.zlsoft.utils.domain.AbstractBaseEntity;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.TableGenerator;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.zlsoft.utils.domain.AbstractBaseEntity;
 
 /**
  * 奖项基本信息
@@ -41,19 +54,23 @@ public class Award extends AbstractBaseEntity implements Serializable {
     /**
      * 申报时间
      */
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+//    @JsonFormat(pattern = “yyyy-MM-dd HH:mm:ss”, locale = “zh”, timezone=”GMT+8”)
+//    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone="GMT+8")
     private Date declareDate;
 
     /**
      * 初审时间
      */
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+//    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone="GMT+8")
     private Date firstTrialDate;
 
     /**
      * 复审时间
      */
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+//    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone="GMT+8")
     private Date retrialDate;
 
     /**
@@ -61,6 +78,29 @@ public class Award extends AbstractBaseEntity implements Serializable {
      */
     @Column(length = 64)
     private String category;
+    
+    @Column(length=50)
+    private String major;
+    
+    /**
+     * 投递数量
+     */
+    @Transient
+    private Integer count;
+    
+    /**
+     * 评奖进度
+     */
+    @Transient
+    private String processStatus;
+    
+    @OneToMany(cascade = {CascadeType.ALL})
+    @JoinColumn(name="awardId")
+    private List<AwardQuota> awardQuotas;
+    
+    @OneToMany(cascade = {CascadeType.REFRESH,CascadeType.REMOVE})
+    @JoinColumn(name="awardId")
+    private List<Declare> declares;
 
     public Long getId() {
         return id;
@@ -117,4 +157,51 @@ public class Award extends AbstractBaseEntity implements Serializable {
     public void setCategory(String category) {
         this.category = category;
     }
+
+	public String getMajor() {
+		return major;
+	}
+
+	public void setMajor(String major) {
+		this.major = major;
+	}	
+
+	public Integer getCount() {
+		return count;
+	}
+
+	public void setCount(Integer count) {
+		this.count = count;
+	}
+
+	public String getProcessStatus() {
+		return processStatus;
+	}
+
+	public void setProcessStatus(String processStatus) {
+		this.processStatus = processStatus;
+	}
+
+	public List<AwardQuota> getAwardQuotas() {
+		if(awardQuotas == null){
+			return new ArrayList<AwardQuota>();
+		}
+		return awardQuotas;
+	}
+
+	public void setAwardQuotas(List<AwardQuota> awardQuotas) {
+		this.awardQuotas = awardQuotas;
+	}
+
+	public List<Declare> getDeclares() {
+		if(declares == null){
+			return new ArrayList<Declare>();
+		}
+		return declares;
+	}
+
+	public void setDeclares(List<Declare> declares) {
+		this.declares = declares;
+	}   
+    
 }

@@ -1,9 +1,20 @@
 package com.zlsoft.award.domain;
 
-import com.zlsoft.utils.domain.AbstractBaseEntity;
-
-import javax.persistence.*;
 import java.io.Serializable;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.TableGenerator;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.zlsoft.utils.domain.AbstractBaseEntity;
 
 /**
  * 奖项配额（各单位对应奖项推荐名额）
@@ -24,20 +35,27 @@ public class AwardQuota extends AbstractBaseEntity implements Serializable {
     )
     private Long id;
 
-    /**
-     * 奖项id
-     */
-    private Long awardId;
+//    /**
+//     * 奖项id
+//     */
+//    private Long awardId;
 
     /**
      * 推荐单位id
-     */
-    private Long referenceId;
+     */    
+    @OneToOne(cascade = {CascadeType.REFRESH})
+    @JoinColumn(name="referenceId",referencedColumnName = "id")
+    private Reference reference;
 
     /**
      * 推荐名额
      */
     private Integer quota;
+    
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name="awardId")
+    private Award award;
 
     public Long getId() {
         return id;
@@ -47,27 +65,35 @@ public class AwardQuota extends AbstractBaseEntity implements Serializable {
         this.id = id;
     }
 
-    public Long getAwardId() {
-        return awardId;
-    }
+//    public Long getAwardId() {
+//        return awardId;
+//    }
+//
+//    public void setAwardId(Long awardId) {
+//        this.awardId = awardId;
+//    }
 
-    public void setAwardId(Long awardId) {
-        this.awardId = awardId;
-    }
+	public Reference getReference() {
+		return reference;
+	}
 
-    public Long getReferenceId() {
-        return referenceId;
-    }
-
-    public void setReferenceId(Long referenceId) {
-        this.referenceId = referenceId;
-    }
-
+	public void setReference(Reference reference) {
+		this.reference = reference;
+	}
+	
     public Integer getQuota() {
         return quota;
     }
 
-    public void setQuota(Integer quota) {
+	public void setQuota(Integer quota) {
         this.quota = quota;
     }
+
+	public Award getAward() {
+		return award;
+	}
+
+	public void setAward(Award award) {
+		this.award = award;
+	}
 }
