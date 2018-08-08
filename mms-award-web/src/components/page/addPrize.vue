@@ -9,7 +9,7 @@
         </div>
         <div class="container">
             <div class="operate">
-                <el-button type="info">
+                <el-button type="info" @click="$router.push('/prize')">
                     取消
                 </el-button>
                 <el-button type="primary" @click="check">

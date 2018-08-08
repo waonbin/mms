@@ -35,7 +35,9 @@ export default new Router({
                     name: 'add-prize',
                     meta: {
                         title: '新建奖项',
-                        menu: 'add-prize'
+                        menu: 'add-prize',
+                        parent_label:'奖项列表',
+                        parent_path:'/prize',
                     }
                 }
             ]

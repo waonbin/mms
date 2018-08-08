@@ -1,24 +1,31 @@
 <template>
     <div class="tags" v-if="showTags">
-        <ul>
-            <li class="tags-li" v-for="(item,index) in tagsList" :class="{'active': isActive(item.path)}" :key="index">
-                <router-link :to="item.path" class="tags-li-title">
-                    {{item.title}}
-                </router-link>
-                <span class="tags-li-icon" @click="closeTags(index)"><i class="el-icon-close"></i></span>
-            </li>
-        </ul>
-        <div class="tags-close-box">
-            <el-dropdown @command="handleTags">
-                <el-button size="mini" type="primary">
-                    标签选项<i class="el-icon-arrow-down el-icon--right"></i>
-                </el-button>
-                <el-dropdown-menu size="small" slot="dropdown">
-                    <el-dropdown-item command="other">关闭其他</el-dropdown-item>
-                    <el-dropdown-item command="all">关闭所有</el-dropdown-item>
-                </el-dropdown-menu>
-            </el-dropdown>
-        </div>
+        <el-breadcrumb separator="/">
+            <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+            <template v-if="tags.parent_label">
+                <el-breadcrumb-item :to="{ path: tags.parent_path }">{{tags.parent_label}}</el-breadcrumb-item>
+            </template>
+            <el-breadcrumb-item>{{tags.title}}</el-breadcrumb-item>
+        </el-breadcrumb>
+        <!--<ul>-->
+            <!--<li class="tags-li" v-for="(item,index) in tagsList" :class="{'active': isActive(item.path)}" :key="index">-->
+                <!--<router-link :to="item.path" class="tags-li-title">-->
+                    <!--{{item.title}}-->
+                <!--</router-link>-->
+                <!--<span class="tags-li-icon" @click="closeTags(index)"><i class="el-icon-close"></i></span>-->
+            <!--</li>-->
+        <!--</ul>-->
+        <!--<div class="tags-close-box">-->
+            <!--<el-dropdown @command="handleTags">-->
+                <!--<el-button size="mini" type="primary">-->
+                    <!--标签选项<i class="el-icon-arrow-down el-icon&#45;&#45;right"></i>-->
+                <!--</el-button>-->
+                <!--<el-dropdown-menu size="small" slot="dropdown">-->
+                    <!--<el-dropdown-item command="other">关闭其他</el-dropdown-item>-->
+                    <!--<el-dropdown-item command="all">关闭所有</el-dropdown-item>-->
+                <!--</el-dropdown-menu>-->
+            <!--</el-dropdown>-->
+        <!--</div>-->
     </div>
 </template>
 
@@ -26,7 +33,8 @@
     export default {
         data() {
             return {
-                tagsList: []
+                tagsList: [],
+                tags: {}
             }
         },
         methods: {
@@ -77,6 +85,8 @@
         watch:{
             $route(newValue, oldValue){
                 this.setTags(newValue);
+                console.log('111')
+                this.tags = newValue.meta;
             }
         },
         created(){
@@ -92,8 +102,9 @@
         position: relative;
         height: 35px;
         overflow: hidden;
-        background: #fff;
-        padding-right: 120px;
+        border-bottom: 1px solid #c7cece;
+        /*background: #fff;*/
+        /*padding-right: 120px;*/
     }
 
     .tags ul {
@@ -127,6 +138,11 @@
 
     .tags-li.active {
         color: #fff;
+    }
+
+    .tags .el-breadcrumb {
+        line-height: 35px;
+        padding: 0 28px;
     }
 
     .tags-li-title {
