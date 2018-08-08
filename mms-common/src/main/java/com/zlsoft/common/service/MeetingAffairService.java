@@ -2,12 +2,12 @@ package com.zlsoft.common.service;
 
 import com.zlsoft.domain.MeetingAffair;
 import com.zlsoft.utils.service.SimpleService;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface MeetingAffairService extends SimpleService<MeetingAffair, Long> {
 
-    List<MeetingAffair> findByMeetingId(Long meetingId);
+    Page<MeetingAffair> findByMeetingId(Long meetingId, Pageable pageable);
     void deleteByMeetingId(Long meetingId);
 
 }

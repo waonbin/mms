@@ -110,13 +110,15 @@ public class MeetingResource {
     }
 
     /**
-     * GET  /affair/info : get meeting affairs by meeting id
+     * GET  /affair/page/{page} : get meeting affairs by page
      * @param meetingId meeting id
+     * @param page zero-based page index
      * @return The HTTP Status with meeting affairs' data
      */
-    @GetMapping("/affair/info")
-    public ResponseEntity getAffairs(long meetingId) {
-        List<MeetingAffair> meetingAffairs = this.meetingAffairService.findByMeetingId(meetingId);
+    @GetMapping("/affair/page/{page}")
+    public ResponseEntity getAffairs(long meetingId, @PathVariable("page") int page) {
+        PageRequest pageRequest = PageRequest.of(page, Constants.PAGE_SIZE);
+        Page<MeetingAffair> meetingAffairs = this.meetingAffairService.findByMeetingId(meetingId, pageRequest);
         return ResponseEntity.ok(meetingAffairs);
     }
 
@@ -159,13 +161,15 @@ public class MeetingResource {
     }
 
     /**
-     * GET  /dues/info : get meeting dues by meeting id
+     * GET  /dues/page/{page} : get meeting dues by page
      * @param meetingId meeting id
+     * @param page zero-based page index
      * @return The HTTP Status with meeting dues' data
      */
-    @GetMapping("/dues/info")
-    public ResponseEntity getDues(long meetingId) {
-        List<MeetingDues> meetingDues = this.meetingDuesService.findByMeetingId(meetingId);
+    @GetMapping("/dues/page/{page}")
+    public ResponseEntity getDues(long meetingId, @PathVariable("page") int page) {
+        PageRequest pageRequest = PageRequest.of(page, Constants.PAGE_SIZE);
+        Page<MeetingDues> meetingDues = this.meetingDuesService.findByMeetingId(meetingId, pageRequest);
         return ResponseEntity.ok(meetingDues);
     }
 
@@ -219,14 +223,16 @@ public class MeetingResource {
     }
 
     /**
-     * GET  /hotel/info : get meeting hotel by meeting id
+     * GET  /hotel/page/{page} : get meeting hotel by page
      * @param meetingId meeting id
+     * @param page zero-based page index
      * @return The HTTP Status with meeting hotels' data
      */
-    @GetMapping("/hotel/info")
-    public ResponseEntity getHotels(long meetingId) {
-        List<MeetingHotel> meetingDues = this.meetingHotelService.findByMeetingId(meetingId);
-        return ResponseEntity.ok(meetingDues);
+    @GetMapping("/hotel/page/{page}")
+    public ResponseEntity getHotels(long meetingId, @PathVariable("page") int page) {
+        PageRequest pageRequest = PageRequest.of(page, Constants.PAGE_SIZE);
+        Page<MeetingHotel> meetingHotels = this.meetingHotelService.findByMeetingId(meetingId, pageRequest);
+        return ResponseEntity.ok(meetingHotels);
     }
 
     /**
@@ -279,13 +285,15 @@ public class MeetingResource {
     }
 
     /**
-     * GET  /place/info : get meeting place by meeting id
+     * GET  /place/page/{page} : get meeting place by page
      * @param meetingId meeting id
+     * @param page zero-based page index
      * @return The HTTP Status with meeting places' data
      */
-    @GetMapping("/place/info")
-    public ResponseEntity getPlaces(long meetingId) {
-        List<MeetingPlace> meetingPlaces = this.meetingPlaceService.findByMeetingId(meetingId);
+    @GetMapping("/place/page/{page}")
+    public ResponseEntity getPlaces(long meetingId, @PathVariable("page") int page) {
+        PageRequest pageRequest = PageRequest.of(page, Constants.PAGE_SIZE);
+        Page<MeetingHotel> meetingPlaces = this.meetingHotelService.findByMeetingId(meetingId, pageRequest);
         return ResponseEntity.ok(meetingPlaces);
     }
 
@@ -339,13 +347,15 @@ public class MeetingResource {
     }
 
     /**
-     * GET  /route/info : get meeting route by meeting id
+     * GET  /route/page/{page} : get meeting route by page
      * @param meetingId meeting id
+     * @param page zero-based page index
      * @return The HTTP Status with meeting routes' data
      */
-    @GetMapping("/route/info")
-    public ResponseEntity getRoutes(long meetingId) {
-        List<MeetingVisitorRoute> meetingVisitorRoutes = this.meetingVisitorRouteService.findByMeetingId(meetingId);
+    @GetMapping("/route/page/{page}")
+    public ResponseEntity getRoutes(long meetingId, @PathVariable("page") int page) {
+        PageRequest pageRequest = PageRequest.of(page, Constants.PAGE_SIZE);
+        Page<MeetingVisitorRoute> meetingVisitorRoutes = this.meetingVisitorRouteService.findByMeetingId(meetingId, pageRequest);
         return ResponseEntity.ok(meetingVisitorRoutes);
     }
 
