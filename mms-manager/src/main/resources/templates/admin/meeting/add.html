@@ -266,9 +266,9 @@
                                        </div>
                                        <div class="form-btn">
                                            <el-button type="primary" v-if="step === 3">确认发布</el-button>
-                                           <el-button type="primary" v-if="step === 1 && !hwState" @click="hwState=true">上一步</el-button>
-                                           <el-button type="primary" v-if="step === 1 && !hwState">保存</el-button>
-                                           <el-button type="primary" v-if="step !== 3 && !hwState && settingState === 'commond'" @click="next">下一步</el-button>
+                                           <!--<el-button type="primary" v-if="step !== 1 && !hwState" @click="step&#45;&#45;">上一步</el-button>-->
+                                           <el-button type="primary" v-if="(step === 1 && !hwState) || (step === 2 && settingState == 'commond')">保存</el-button>
+                                           <el-button type="primary" v-if="(step === 1 && !hwState) || step !== 3 && settingState === 'commond'" @click="next">下一步</el-button>
                                            <el-button type="primary" v-if="step === 1 && hwState" @click="hwStateEdit">确定</el-button>
                                        </div>
                                    </div>
