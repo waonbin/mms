@@ -32,7 +32,11 @@ public class DeclareExpert extends AbstractBaseEntity implements Serializable {
     /**
      * 专家id
      */
-    private Long expertId;
+//    private Long expertId;
+    
+    @OneToOne(cascade = {CascadeType.REFRESH})
+    @JoinColumn(name="expertId",referencedColumnName = "id")
+    private Expert expert;
 
     public Long getId() {
         return id;
@@ -50,11 +54,11 @@ public class DeclareExpert extends AbstractBaseEntity implements Serializable {
         this.declareId = declareId;
     }
 
-    public Long getExpertId() {
-        return expertId;
-    }
+	public Expert getExpert() {
+		return expert;
+	}
 
-    public void setExpertId(Long expertId) {
-        this.expertId = expertId;
-    }
+	public void setExpert(Expert expert) {
+		this.expert = expert;
+	}
 }

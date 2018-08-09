@@ -4,6 +4,8 @@ import com.zlsoft.common.repository.MeetingPlaceRepository;
 import com.zlsoft.common.service.MeetingPlaceService;
 import com.zlsoft.domain.MeetingPlace;
 import com.zlsoft.utils.service.impl.BaseSimpleService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,8 +16,8 @@ import java.util.List;
 public class MeetingPlaceServiceImpl extends BaseSimpleService<MeetingPlace, Long> implements MeetingPlaceService {
 
     @Override
-    public List<MeetingPlace> findByMeetingId(Long meetingId) {
-        return ((MeetingPlaceRepository)this.getRepository()).findByMeetingId(meetingId);
+    public Page<MeetingPlace> findByMeetingId(Long meetingId, Pageable pageable) {
+        return ((MeetingPlaceRepository)this.getRepository()).findByMeetingId(meetingId, pageable);
     }
 
     @Override
